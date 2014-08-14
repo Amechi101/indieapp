@@ -1,0 +1,40 @@
+{% extends "theme_base.html" %}
+
+{% load staticfiles %}
+{% load metron_tags %}
+{% load i18n %}
+
+
+{% block style_base %}
+    <!-- Stylesheets for Indie-Scrap -->
+    <link rel="stylesheet" href="{% static "css/site.css" %}" >
+    <link rel="stylesheet" href="{% static "css/main.css" %}"/> 
+    <link rel="stylesheet" href="{% static "css/form.css" %}"/> 
+    {% block extra_style %}{% endblock %}
+{% endblock %}
+
+
+{% block extra_head_base %}
+    {% block extra_head %}{% endblock %}
+{% endblock %}
+
+
+{% block footer %}
+<!-- Start footer -->
+    {% include "_footer.html" %}
+<!-- End footer -->
+{% endblock %}
+
+
+{% block extra_body_base %}
+    {% analytics %}
+    {% block extra_body %}{% endblock %}
+{% endblock %}
+
+
+{% block script_base %}
+    <script src="{% block jquery_src %}{% static "js/jquery-1.11.0.js" %}{% endblock %}"></script>
+    <script src="{% static "js/bootstrap.min.js" %}"></script>
+    <script src="{% static "pinax/js/theme.js" %}"></script>
+    {% block extra_script %}{% endblock %}
+{% endblock %}
