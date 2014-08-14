@@ -1,32 +1,39 @@
 
-/***             Structural styles for registration                     ***/
+/***             Structural styles for all forms                  ***/
 
-#content h1, #content h2, #content h3, #content h4, #content h5, #content h6 {
+#content-form {
+    clear: both;
+    position: relative;
+    transition: padding 0.25s ease-out 0s;
+}
+
+
+#content-form h1, #content-form h2, #content-form h3, #content-form h4, #content-form h5, #content-form h6 {
     margin-bottom: 23px;
     font-weight: normal;
     line-height: 170%;
 }
 
-#content p, #content blockquote {
+#content-form p, #content-form blockquote {
     margin-bottom: 23px;
     line-height: 190%
 }
 
-#content input[type=submit] {
+#content-form input[type=submit] {
     -webkit-appearance: none
 }
 
-.underline{
+#content-form .underline{
     text-decoration:underline
 }
 
- .heading-title {
+#content-form .heading-title {
     font-size: 30px
 }
 
 
 
-.inner {
+#content-form .inner-form {
     max-width: 1423px;
     margin: 0 auto; 
     -webkit-transition: width 0.3s ease-out; 
@@ -34,35 +41,33 @@
     -ms-transition: width 0.3s ease-out;
     transition: width 0.3s ease-out
 }
-.inner.width-2 {
+.inner-form.width-2 {
     width: 940px
 }
 
-.block {
+.block-form {
     position: relative
 }
-.block:after {
+
+.block-form:after {
     content: '';
     display: block;
     clear: both
 }
 
-.block:first-child,
-.block.first {
+.block-form:first-child,
+.block-form.first {
     padding-top: 50px
 }
-.block:last-child {
+.block-form:last-child {
     margin-bottom: 0;
     border-bottom: 0
-}.block.min-height {
+}.block-form.min-height {
     min-height: 300px
 }
 
 
-
-
-
-#content .button {
+#content-form .button {
     display: inline-block;
     height: 40px;
     line-height: 41px;
@@ -77,20 +82,20 @@
     transition: opacity 0.2s linear
 }
 
-#content .button.large {
+#content-form .button.large {
     height: 50px;
     line-height: 51px
 }
-#content .button.x-large {
+#content-form .button.x-large {
     height: 66px;
     line-height: 67px
 }
-#content .button.dark {
+#content-form .button.dark {
     background-color: #444}.button.voted{background:# 444;
     cursor: default
 }
 
-#content .button, #id_button{
+#content-form .button, #id_button{
     -webkit-box-sizing:border-box;
     -moz-box-sizing:border-box;
     -ms-box-sizing:border-box;
@@ -130,6 +135,7 @@ padding: 60px 0
 
 
 .box-login{
+
     max-width:610px;
     margin:0 auto;
     padding-bottom:20px;
@@ -143,6 +149,7 @@ padding: 60px 0
 .box-login .head h2{
     margin-bottom:10px
 }
+
 
 .socialconnect a{
     position:relative;
@@ -246,7 +253,9 @@ padding: 60px 0
 }
 
 .box-login .socialconnect a.twitter{
-    float:right
+    /*float: right;*/
+    margin:0 auto;
+    margin-top: 50px;
 }
 
 .box-login .box-form{
@@ -254,13 +263,23 @@ padding: 60px 0
     display:block;
     margin-bottom:40px;
     padding:35px 70px;
-    background-color:#f1f1f1;
+    background-color:#fff;
     border-radius:2px
 }
 
 .box-login .box-form p:last-child{
     margin-bottom:0
 }
+
+.box-form .resend-form-final {
+    color: #000;
+    font-weight:500;
+}
+
+.box-form .resend-form-final a {
+    color:#3770A7;
+}
+
 
 .box-login .box-form .text-input,
 #id_email, #id_username, #id_password, #id_password_confirm{
@@ -295,7 +314,7 @@ padding: 60px 0
 
 
 @media screen and (max-width:1024px){
-    .inner.width-2{
+    .inner-form.width-2{
         width:auto
    }
 }

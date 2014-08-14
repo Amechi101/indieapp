@@ -203,6 +203,8 @@ SOCIAL_AUTH_PIPELINE = [
     "social.pipeline.user.user_details"
 ]
 
+# SOCIAL_AUTH_USER_MODEL = 'social.apps.django_app.default.models.UserSocialAuth'
+
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = "/"
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ.get("SOCIAL_AUTH_GOOGLE_OAUTH2_KEY")
