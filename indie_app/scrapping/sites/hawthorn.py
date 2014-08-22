@@ -63,5 +63,5 @@ if __name__=="__main__":
     for category in categories:
         results[category] = getProducts(category)
     file = open("hawthorn.txt", 'w')
-    file.write(results)
+    file.write(json.dumps(results))
     file.close()
