@@ -18,9 +18,9 @@
                 </li>
             </ul>
         </li>
-        <li class="logged-in">
+        <!-- <li class="logged-in">
             <a href="{% url "account_logout" %}" class="logout" title="Sign out">Logout</a>
-        </li>  
+        </li>  --> 
     {% else %}
         <li><a href="{% url "account_login" %}">{% trans "Log in" %}</a></li>
         <li><a href="{% url "account_signup" %}">{% trans "Sign up" %}</a></li>
