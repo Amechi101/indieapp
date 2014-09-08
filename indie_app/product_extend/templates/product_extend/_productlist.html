@@ -1,0 +1,23 @@
+{% extends "site_base.html" %}
+
+{% block header_class %}base-header base{% endblock %}
+{% block topbar %}
+    
+            <!-- Second Menu Level -->
+            <header id="second-header" class="second-header base">
+                <nav class="second-top-inner">
+                    <a href="#" class="arrow left"></a>
+                    <ul class="middle clearfix">
+                        <li><a href="#">Men </a></li>
+                        <li><a href="#">Women </a></li>
+                    </ul>
+                </nav>
+            </header>
+{% endblock %}
+
+{% block body %}
+    <div class="block last"></div>
+        <div class="inner" role="main">
+            {% block product %}{% include "product_extend/_product.html" %} {% endblock %}
+        </div>
+{% endblock %}

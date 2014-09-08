@@ -131,10 +131,12 @@ INSTALLED_APPS = [
     "eventlog",
     "metron",
     "south",
+    "shop",
     "social.apps.django_app.default",
 
     # project
     "indie_app",
+    "product_extend",
 ]
 
 # A sample logging configuration. The only tangible logging
@@ -178,7 +180,8 @@ ACCOUNT_USE_OPENID = False
 ACCOUNT_REQUIRED_EMAIL = False
 
 ACCOUNT_EMAIL_UNIQUE = True
-ACCOUNT_EMAIL_CONFIRMATION_REQUIRED = False
+# ACCOUNT_EMAIL_CONFIRMATION_REQUIRED = False
+ACCOUNT_USE_AUTH_AUTHENTICATE = True
 ACCOUNT_LOGIN_REDIRECT_URL = "home"
 ACCOUNT_LOGOUT_REDIRECT_URL = "home"
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 2

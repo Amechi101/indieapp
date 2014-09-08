@@ -13,6 +13,13 @@
 /*****************************************************************************************************************************************************/
 
 @font-face {
+    font-family: 'penna-regular';
+    src: url('../fonts/penna.otf') format('opentype'),
+         url('../fonts/penna.woff') format('woff'),
+         url('../fonts/penna.ttf') format('truetype'),
+         url('../fonts/penna.svg#penna') format('svg');
+    font-weight: normal;
+    font-style: normal;
 
 }
 
@@ -24,14 +31,6 @@
 .clearfix { 
     zoom: 1; 
 }
-.clearfix:before, .clearfix:after { 
-    content: ''; 
-    display: table; 
-}
-.clearfix:after { 
-    clear: both; 
-}
-
 
 /***********************************************************************************************************************************************************/
 /********************************                                   Buttons & Links                                     ****************************************/
@@ -66,18 +65,120 @@
 /***********************************************************************************************************************************************************/
 /********************************                                    Site Header                                           ****************************************/
 /*****************************************************************************************************************************************************/
- 
-#header  {
+
+
+/********  Header  Base   *********/
+
+.base-header  {
     position: relative;
-    width:100%;
-    height: 10%;
-    min-height: 70px;
-    z-index:1000;
-    top:0;
     background:rgba(255,255,255,1);
+    transition:all 0.5s ease;
 }
 
-#header nav.top-inner {
+
+.base-header nav.top-inner > a {
+    font-size: 0px;
+    padding: 0px;
+    text-decoration: none;
+    position: relative;
+    height: 100%;
+    display: inline-block;
+}
+
+
+/********  Header Homepage  *********/
+
+
+.base-header-home  {
+    position: relative;
+}
+
+.base-header-home  nav.top-inner ul {
+    margin: 0px;
+    padding-left: 0;
+    list-style: none;
+}
+
+.base-header-home nav.top-inner ul li {
+    position: relative;
+    display: inline-block
+}
+
+.base-header-home  nav.top-inner ul li a {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    color:#fff;
+    font-family: 'penna-regular';
+    font-size:35px;
+    text-decoration: none;
+    -webkit-transition:color 0.2s ease-in-out;
+    -moz-transition:color 0.2s ease-in-out;
+    -ms-transition:color 0.2s ease-in-out;
+    -o-transition:color 0.2s ease-in-out;
+    transition:color 0.2s ease-in-out;
+}
+
+.base-header-home nav.top-inner ul li a:focus {
+    color:#000;
+    background:none;
+    text-decoration: none;
+}
+
+.base-header-home  nav.top-inner ul:after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    width: 0%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background:rgba(255, 255,255, 1);
+    -webkit-transition: all 0.3s  ease;
+    -moz-transition: all 0.3s  ease;
+    transition: all 0.3s ease;
+}
+
+.base-header-home  nav.top-inner ul li a:hover,
+.base-header-home  nav.top-inner ul li a:active {
+    color: #000;
+}
+
+.base-header-home  nav.top-inner ul:hover::after,
+.base-header-home  nav.top-inner ul:active::after {
+    width: 100%;
+}
+
+
+
+.base-header-home nav.top-inner .container-head {
+    height: 100%;
+    display: inline-block;
+}
+
+.base-header-home nav.top-inner > a {
+    font-size: 0px;
+    padding: 0px;
+    text-decoration: none;
+    position: relative;
+    height: 100%;
+    display: inline-block;
+}
+
+
+/*  Common shared rules or headers Product   */
+
+header.base {
+    width:100%;
+    height: 70px;
+    min-height: 70px;
+    z-index:1100;
+    top:0;
+}
+
+.base-header nav.top-inner,
+.base-header-home nav.top-inner,
+.second-header nav.second-top-inner {
     box-sizing: border-box;
     margin: 0px auto;
     max-width: 1203px;
@@ -87,77 +188,99 @@
     height: 100%;
 }
 
-#header nav.top-inner ul {
-    margin: 13.5px 0px;
-}
 
-#header nav.top-inner ul li a{
-    color:#3770A7;
-        -webkit-transition:color 0.2s ease-in-out;
-    -moz-transition:color 0.2s ease-in-out;
-    -ms-transition:color 0.2s ease-in-out;
-    -o-transition:color 0.2s ease-in-out;
-    transition:color 0.2s ease-in-out;
-}
-
-#header nav.top-inner ul li a:hover {
-color:#000;
-background:none;
-}
-
-/* for logo  */
-#header nav.top-inner > a {
-    font-size: 0px;
-    padding: 0px;
-    text-decoration: none;
-    position: relative;
+.base-header nav.top-inner .container-head,
+.base-header-home nav.top-inner .container-head {
     height: 100%;
     display: inline-block;
 }
 
-/* header left */
-#header nav.top-inner .left,
-#header nav.top-inner ul li {
-    float:left
-}
-
-/* header right  */
-#header nav.top-inner .right {
-    float:right;
-}
-
-#header nav.top-inner .container-head {
-    height: 100%;
-    display: inline-block;
-}
-
-#header nav.top-inner .logo {
+.base-header-home nav.top-inner .logo,
+.base-header nav.top-inner .logo  {
     width: 188px;
     height: 65px;
     text-align:center;
     position: relative;
     background: url('../images/logo.svg') no-repeat;
     background-size: 100%;
-    background-position: center center;
+    background-position: center center; 
+}
+
+
+/* header left */
+.base-header nav.top-inner .left,
+.base-header-home nav.top-inner .left,
+.second-header nav.second-top-inner .left{
+    float:left
+}
+
+/* header right  */
+.base-header nav.top-inner .right,
+.base-header-home nav.top-inner .right {
+    float:right;
+}
+
+
+
+/********  Header  Second  Product  *********/
+
+.second-header {
+    position:fixed;
+}
+
+.second-header nav.second-top-inner .arrow {
+    width: 80px;
+    height: 70px;
+    text-align:center;
+    position: relative;
+    background: url('../images/arrowUp.svg') no-repeat;
+   background-size: 100%;
+    background-position: center center; 
+}
+
+.second-header nav.second-top-inner > a {
+    font-size: 0px;
+    padding: 0px;
+    text-decoration: none;
+    position: relative;
+    height: 100%;
+}
+
+.second-header ul.middle {
+    margin: 0px;
+    padding:0;
   
+}
+
+.second-header .middle li {
+    position: relative; 
+    margin: 20px 0px;
+    display:inline-block;
+    list-style-type:none;  
+}
+
+.second-header .middle li a {
+ padding:20px 10px; 
+ font-size:17px;
+ text-decoration:none;
 }
 
 
 
 /***      after user logs-in    ***/
-#header nav.top-inner li.logged-in img {
+.base-header nav.top-inner li.logged-in img {
     float: left;
     margin: 4px 0 0 0;
 }
-#header nav.top-inner li.logged-in  a.name {
+.base-header nav.top-inner li.logged-in  a.name {
     float: left;
     margin-right: 10px;
     color: #aaa;
 }
-#header nav.top-inner li.logged-in  a.name:hover {
+.base-header nav.top-inner li.logged-in  a.name:hover {
     text-decoration: underline;
 }
-#header nav.top-inner li.logged-in  a.logout{
+.base-header nav.top-inner li.logged-in  a.logout{
     position: relative;
     display: block;
     float: left;
@@ -170,7 +293,7 @@ background:none;
     text-indent: -23em;
     overflow: hidden;
 }
-#header nav.top-inner li.logged-in a.logout:before {
+.base-header nav.top-inner li.logged-in a.logout:before {
     content: url('../images/1407831805_Door-3.svg');
     display: block;
     position: absolute;
@@ -193,7 +316,7 @@ background:none;
 -ms-transition: all 0.3s ease-out;
     transition: all 0.3s ease-out;
 }
-#header nav.top-inner li.logged-in  a.logout:hover:before {
+.base-header nav.top-inner li.logged-in  a.logout:hover:before {
     color: #313131;
 }
 
@@ -292,6 +415,109 @@ background:none;
     background: white;
     padding: 5px;
 }
+
+/*  Homepage  */
+
+.homepage-cover {
+    position: absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    background:rgba(0,0,0,0.7);
+}
+
+
+#content .homepage-image {
+    text-align: center;
+    top: 0px;
+    left: 0px;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: url('../images/homepage-image.jpg') no-repeat scroll center 100% / cover #000;
+}
+
+#content .homepage-image .homepage-text {
+    position: relative;
+    top: 45%;
+    z-index: 1000;
+    width:60%;
+    margin: 0 auto;
+}
+
+#content .homepage-image .homepage-text p {
+   font-family: 'penna-regular';
+  font-size: 40px;
+    font-weight: 400;
+    color: #fff;
+    text-align: center;
+    letter-spacing: 1px;
+    line-height:1.2;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+
+#content .homepage-image .homepage-inner {
+    position: relative;
+    top:50%;
+    z-index:1000;
+}
+
+#content .homepage-image .homepage-inner a {
+    z-index:1;
+}
+
+#content .homepage-image .homepage-inner a {
+     font-family: 'penna-regular';
+    font-size: 30px;
+    font-weight: 400;
+    color: #fff;
+    text-align: center;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+    display: inline-block;
+    padding: 14px 23px;
+    border: 1px solid #fff;
+    cursor: pointer;
+    -webkit-transition: all 0.3s  ease;
+    -moz-transition: all 0.3s  ease;
+    transition: all 0.3s ease;
+}
+
+#content .homepage-image .homepage-inner a:first-child {
+    margin-right: 10px;
+}
+
+#content .homepage-image .homepage-inner a:after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    width: 0%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background:rgba(255, 255,255, 1);
+    -webkit-transition: all 0.3s  ease;
+    -moz-transition: all 0.3s  ease;
+    transition: all 0.3s ease;
+}
+
+#content .homepage-image .homepage-inner a:hover,
+#content .homepage-image .homepage-inner a:active {
+    color: #000;
+}
+
+#content .homepage-image .homepage-inner a:hover::after,
+#content .homepage-image .homepage-inner a:active::after {
+    width: 100%;
+}
+
+
+
 
 
 @media screen and (max-width:1096px){

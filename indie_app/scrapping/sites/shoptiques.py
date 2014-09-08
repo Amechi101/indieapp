@@ -21,7 +21,18 @@ def httpGet(url):
     return connection.read()
 
 def getCategories():
-    categories = [["Dresses", "http://www.shoptiques.com/categories/clothing/dresses"], ["Tops","http://www.shoptiques.com/categories/clothing/tops"], ["Bottoms","http://www.shoptiques.com/categories/clothing/bottoms"], ["Jumpsuits & Rompers", "http://www.shoptiques.com/categories/clothing/jumpsuits-and-rompers"], ["Jackets & Blazers", "http://www.shoptiques.com/categories/clothing/jackets-and-blazers"], ["Outerwear", "http://www.shoptiques.com/categories/clothing/outerwear"], ["Swimwear", "http://www.shoptiques.com/categories/clothing/swimwear"], ["Intimates","http://www.shoptiques.com/categories/clothing/lingerie"]]
+    categories = [
+
+    ["Dresses", "http://www.shoptiques.com/categories/clothing/dresses"], 
+    ["Tops","http://www.shoptiques.com/categories/clothing/tops"], 
+    ["Bottoms","http://www.shoptiques.com/categories/clothing/bottoms"], 
+    ["Jumpsuits & Rompers", "http://www.shoptiques.com/categories/clothing/jumpsuits-and-rompers"], 
+    ["Jackets & Blazers", "http://www.shoptiques.com/categories/clothing/jackets-and-blazers"], 
+    ["Outerwear", "http://www.shoptiques.com/categories/clothing/outerwear"], 
+    ["Swimwear", "http://www.shoptiques.com/categories/clothing/swimwear"], 
+    ["Intimates","http://www.shoptiques.com/categories/clothing/lingerie"]
+
+    ]
     return categories
 
 def getProducts(site):

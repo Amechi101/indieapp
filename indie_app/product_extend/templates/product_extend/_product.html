@@ -1,0 +1,15 @@
+{% load i18n %}
+{% load url from future %}
+    <ul class="grid list-item col-3"> 
+        <li class="col n-4">
+        <figure class="rollover site">
+        {% for object in product_list %}
+            <img src="{{object.product_img.url}}">
+            <div class="scrap-designer">{{object.label_name}}</div>
+            <div class="scrap-title">{{object.get_name}}, <span class="scrap-price">${{object.unit_price}}</span></div>
+            <a class="scrap-buy" href="#">Buy</a>
+            <figcaption class="scrap-from"> Scrapped from:<a class="scrap-site" href="{{object.product_website}}"> {{object.product_website_name}}</a></figcaption>
+        {% endfor %}
+        </figure>
+    </li> 
+    </ul>
