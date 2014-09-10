@@ -1,18 +1,14 @@
 {% extends "site_base.html" %}
 
-{% block header_class %}base-header base{% endblock %}
+{% block header_class %}base-header-product{% endblock %}
 {% block topbar %}
-    
-            <!-- Second Menu Level -->
-            <header id="second-header" class="second-header base">
-                <nav class="second-top-inner">
-                    <a href="#" class="arrow left"></a>
-                    <ul class="middle clearfix">
-                        <li><a href="#">Men </a></li>
-                        <li><a href="#">Women </a></li>
-                    </ul>
-                </nav>
-            </header>
+    <ul class="left category">
+        <li><a href="#">Men </a></li>
+        <li><a href="#">Women </a></li>
+    </ul>
+    <ul class="right clearfix">
+        {% block account_bar %}{% include "_account_bar.html" %}{% endblock %}
+    </ul>    
 {% endblock %}
 
 {% block body %}

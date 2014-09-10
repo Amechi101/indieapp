@@ -19,33 +19,29 @@ var Initilazer = (function( $ , _ ) {
 
 	//Private variables
 	var _window = $(window),
-		_headerSecond = $('#second-header');
+	      _body = $('body');
+	
 
 
 
 	return {
-		scrollHeader: function() {
+		dropDownMenu: function () {
+			// var _menu = $('.dropdown');
 			
-			// //Default State for header
-			// if ()
-			_headerSecond.css({display:'none'});
+			// _menu.on('click', 'a', function() {
+				
+			// 	if( _menu.is('li') ) {
+			// 		_menu.toggleClass('open');
+			// 	} else  {
+			// 		_window.click(function() {
+			// 			console.log($(this).removeClass('open'));
+			// 		});	
+			// 	}
+			// });
+			
+			
 
-			_window.scroll(function() {
-				var _this = $(this);
 
-				if ( _this.scrollTop() > ( _headerSecond.height() ) ) {
-
-					_headerSecond.filter(function ( index ) {
-						return index === 0;
-					}).css({display:'inline-block'}).addClass('second-header');	
-
-
-				} else {
-					_headerSecond.filter(function ( index ) {
-						return index === 0;
-					}).css({display:'none'}).removeClass('.second-header');	
-				}
-			});
 		}
 	};
 	
@@ -54,7 +50,7 @@ var Initilazer = (function( $ , _ ) {
 
 
 //Calling functions
-Initilazer.scrollHeader();
+Initilazer.dropDownMenu();
 
 
 

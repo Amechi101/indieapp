@@ -1,18 +1,17 @@
-from base import SearchBase
-
+from bs4 import BeautifulSoup
 import urllib2
 import json
 import pprint
 
 
-class TrademarkScrape( SearchBase ):
+class TrademarkScrape( object ):
 
 
     def getDivs(self):
-        self.soup(urllib2.urlopen("http://www.trade-mark.com").read()) # passes html to soup
+        soup = BeautifulSoup(urllib2.urlopen("http://www.trade-mark.com").read()) # passes html to soup
 
         # finds all <div class="nav"> place in array
-        divs = [ x for x in self.soup.find_all('div') if x.get('class') == [u'nav'] ] 
+        divs = [ x for x in soup.find_all('div') if x.get('class') == [u'nav'] ] 
 
         return self.getLinks(divs[0]) #There should only be one <div class="nav"> at trade-mark.com, so we'll pass this tag over to getLinks
 
