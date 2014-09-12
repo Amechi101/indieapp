@@ -1,6 +1,12 @@
 
 /***             Structural styles for all forms                  ***/
 
+#content-form:after {
+    content: "";
+    display: block;
+    clear: both;   
+}
+
 #content-form {
     clear: both;
     position: relative;
@@ -10,7 +16,6 @@
 
 #content-form h1, #content-form h2, #content-form h3, #content-form h4, #content-form h5, #content-form h6 {
     margin-bottom: 23px;
-    font-weight: normal;
     line-height: 170%;
 }
 
@@ -28,25 +33,28 @@
 }
 
 #content-form .heading-title {
-    font-size: 30px
+    font-size:2.5em;
 }
 
 
 
 #content-form .inner-form {
-    max-width: 1423px;
+    max-width: 100%;
+   padding: 0px 66px;
     margin: 0 auto; 
     -webkit-transition: width 0.3s ease-out; 
     - moz-transition: width 0.3s ease-out; 
     -ms-transition: width 0.3s ease-out;
     transition: width 0.3s ease-out
 }
-.inner-form.width-2 {
+
+#content-form  .inner-form.width-2 {
     width: 940px
 }
 
 .block-form {
-    position: relative
+    position: relative;
+    padding: 0px 0px 50px;
 }
 
 .block-form:after {
@@ -62,10 +70,7 @@
 .block-form:last-child {
     margin-bottom: 0;
     border-bottom: 0
-}.block-form.min-height {
-    min-height: 300px
 }
-
 
 #content-form .button {
     display: inline-block;
@@ -73,10 +78,12 @@
     line-height: 41px;
     padding: 0 15px;
     width: 100%;
-    background-color: #409f89;color:# fff;
+    background-color: #ECF0F1;
+    color:#000;
     cursor: pointer;
     border: 0;
     border-radius: 2px; 
+    font-size:2.5em;
     -webkit-transition: opacity 0.2s linear; 
     -moz-transition: opacity 0.2s linear;
     transition: opacity 0.2s linear
@@ -90,10 +97,8 @@
     height: 66px;
     line-height: 67px
 }
-#content-form .button.dark {
-    background-color: #444}.button.voted{background:# 444;
-    cursor: default
-}
+
+/*  Registration forms  */ 
 
 #content-form .button, #id_button{
     -webkit-box-sizing:border-box;
@@ -102,25 +107,19 @@
     box-sizing:border-box
 }
 
-#footer > .inner {
+/* #footer > .inner {
 padding: 60px 0
- }
-
-
-
-/*****************************************************
-**********************************************************
-******************************************************************/
+ } */
 
 
 .text-input, #id_email, #id_username, #id_password, #id_password_confirm {
     display:block;
     height:46px;
     padding:0 15px;
-    background:#f4f4f4;
+    background:#ECF0F1;
     line-height:46px;
     font-size:17px;
-    border:1px solid #d6d6d6;
+    border:0;
     border-radius:2px;
     -webkit-box-sizing:border-box;
     -moz-box-sizing:border-box;
@@ -132,10 +131,13 @@ padding: 60px 0
     transition:all .2s linear
 }
 
+#content-form #id_remember {
+  position:relative;  
+}
+
 
 
 .box-login{
-
     max-width:610px;
     margin:0 auto;
     padding-bottom:20px;
@@ -153,7 +155,7 @@ padding: 60px 0
 
 .socialconnect a{
     position:relative;
-    display:block;
+    display: inline-block;
     width:298px;
     height:59px;
     line-height:59px;
@@ -196,7 +198,6 @@ padding: 60px 0
 
 .socialconnect a:before{
     content:'';
-    display:block;
     position:absolute;
     top:0;
     left:0;
@@ -246,19 +247,17 @@ padding: 60px 0
     clear:both
 }
 
-.box-login .socialconnect a.facebook{
- 
-  margin:0 auto;
-  
+.box-login .socialconnect a.facebook {
+    float: left;
 }
+
 
 .box-login .socialconnect a.twitter{
-    /*float: right;*/
-    margin:0 auto;
-    margin-top: 50px;
+    float: right;
+
 }
 
-.box-login .box-form{
+/* .box-login .box-form{
     position:relative;
     display:block;
     margin-bottom:40px;
@@ -266,7 +265,7 @@ padding: 60px 0
     background-color:#fff;
     border-radius:2px
 }
-
+ */
 .box-login .box-form p:last-child{
     margin-bottom:0
 }
@@ -315,16 +314,16 @@ padding: 60px 0
 
 @media screen and (max-width:1024px){
     .inner-form.width-2{
-        width:auto
+        width:auto;
    }
+#content-form .inner-form {
+    padding: 0px;
+  }
 }
 
 @media screen and (max-width:768px){
 
-    .box-login .box-form{
-        padding:35px
-    }
-
+  
     .box-login .socialconnect a{
         float:none;
         width:100%;

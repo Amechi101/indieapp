@@ -20,6 +20,7 @@ class ProductExtend(Product):
     product_website_name = models.CharField(max_length=254, blank=True, null=True)
     product_website = models.URLField(max_length=200,  null=True, blank=True) 
     product_img = models.ImageField('Product Image', upload_to='product_images', null=True, blank=True) 
+    product_category_main = models.CharField(max_length=254, blank=True, null=True)
 
     #Metadata
     class Meta: 
@@ -72,6 +73,8 @@ def download_image(url):
 	request = urllib2.urlopen(r, timeout=10)
 	image_data = cStringIO.StringIO(request.read())
 	img = Image.open(image_data)
+
+
 	img_copy = copy.copy(img)
 	if vaild_img(img_copy):
 		return img

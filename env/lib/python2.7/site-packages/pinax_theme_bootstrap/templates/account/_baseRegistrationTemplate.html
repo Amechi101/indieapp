@@ -1,0 +1,22 @@
+{% extends "site_base.html" %}
+
+{% block head_title %}{% endblock %}
+
+
+{% block body_base %}
+<div id="content-form">
+	<div class="block-form"></div>
+	<div class="inner-form width-2">
+    	<div class="box-login">
+    	{% block registration %}
+    	{% endblock %}
+        </div>
+    </div>
+</div> 
+{% endblock %}
+
+
+{% block extra_script %}
+{% endblock %}
+
+

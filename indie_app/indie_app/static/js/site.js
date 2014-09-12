@@ -25,24 +25,45 @@ var Initilazer = (function( $ , _ ) {
 
 
 	return {
-		dropDownMenu: function () {
-			// var _menu = $('.dropdown');
+		// backBoneApplication: function() {
+		// 	var userRegistration = Backbone.View.extend({
+		// 		el: $('div.load-form'),
+		// 		events: {
+		// 			'click a#login': 'addLoginPage'
+		// 		},
+		// 		template: _.template( $('#signUpTemplate').html() ),
+		// 		initialize: function() {
+		// 			_.bindAll(this, 'addLoginPage');
+		// 		},
+		// 		addLoginPage: function() {
+		// 			this.$el.html(this.template());
+		// 		}
+		// 	});
 			
-			// _menu.on('click', 'a', function() {
-				
-			// 	if( _menu.is('li') ) {
-			// 		_menu.toggleClass('open');
-			// 	} else  {
-			// 		_window.click(function() {
-			// 			console.log($(this).removeClass('open'));
-			// 		});	
-			// 	}
-			// });
-			
-			
+		// 	var userRegistration = new userRegistration();
+		// },
+		// scrollMenu: function() {
+		// 	var _headerMenu = $('#header-menu'),
+		// 		_productMenu = $('#product-menu');
 
+		// 	_window.scroll(function() {
+		// 		var _this = $(this); // this --> window
 
-		}
+		// 		if ( _this.scrollTop() > ( _headerMenu.height() ) ) {
+		// 			_productMenu.filter(function ( index ) {
+		// 	    		return index === 0;
+		// 	  		}).css({ position:'fixed', top:0});
+
+		// 	  		_headerMenu.css({display:'none'});
+		// 		} else {
+		// 			_productMenu.filter(function ( index ) {
+		// 	    		return index === 0;
+		// 	  		}).css({ position:'relative'}); 
+
+		// 	  		_headerMenu.css({display:'inline-block'});
+		// 		}
+		// 	});
+  //   	}	
 	};
 	
 
@@ -50,7 +71,8 @@ var Initilazer = (function( $ , _ ) {
 
 
 //Calling functions
-Initilazer.dropDownMenu();
+// Initilazer.backBoneApplication();
+Initilazer.scrollMenu();
 
 
 

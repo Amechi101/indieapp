@@ -1,19 +1,34 @@
 {% extends "site_base.html" %}
 
-{% block header_class %}base-header-product{% endblock %}
-{% block topbar %}
-    <ul class="left category">
-        <li><a href="#">Men </a></li>
-        <li><a href="#">Women </a></li>
-    </ul>
-    <ul class="right clearfix">
-        {% block account_bar %}{% include "_account_bar.html" %}{% endblock %}
-    </ul>    
+{% block header_class %}base-header-product base{% endblock %}
+
+{% block product_menu %}
+<div id="product-menu">
+    <div class="menu-left">
+        <ul class="category">
+            <li><a href="#">Men </a></li>
+            <li><a href="#">Women </a></li>
+        </ul>
+    </div>
+    <div class="menu-right">
+        <div class="menu-sort">
+            <label class="default-value">Newest Scrap's</label>
+            <label class="selected-value"></label>
+            <div class="filter-select">
+                <a href="#">Newest Scrap's</a>
+                <a href="#">Oldest Scrap's</a>
+                <a href="#">Most Liked Scarp's</a>  
+            </div>     
+        </div>
+    </div> 
+</div>
 {% endblock %}
 
+
 {% block body %}
-    <div class="block last"></div>
+    <div class="block last">
         <div class="inner" role="main">
             {% block product %}{% include "product_extend/_product.html" %} {% endblock %}
         </div>
+    </div>
 {% endblock %}
