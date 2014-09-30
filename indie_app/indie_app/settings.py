@@ -1,5 +1,5 @@
 import os
-
+import dj_database_url
 
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
 PACKAGE_ROOT = os.path.abspath(os.path.dirname(__file__))
@@ -64,6 +64,10 @@ STATIC_URL = "/site_media/static/"
 STATICFILES_DIRS = [
     os.path.join(PACKAGE_ROOT, "static"),
 ]
+
+# Empty list to store host allowed
+ALLOWED_HOSTS = []
+
 
 # List of finder classes that know how to find static files in
 # various locations.
@@ -224,3 +228,14 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
     "profile",
     "email"
 ]
+
+############## Heroku
+
+# Parse database configuration from $DATABASE_URL
+DATABASES['default'] =  dj_database_url.config()
+
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Allow all host headers
+ALLOWED_HOSTS = ['*']
