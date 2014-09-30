@@ -8,14 +8,14 @@
                 <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
-                <li><a href="{% url "account_settings" %}"> {% trans "Account" %}<i class="fa fa-user"></i></a></li>
-                <li><a href="#">{% trans "Dashboard" %}<i class="fa fa-user"></i> </a></li>
+                <li><a href="{% url "account_settings" %}"> {% trans "Account" %}</a></li>
+                <li><a href="#">{% trans "Dashboard" %} </a></li>
                 {% if request.user.is_staff %}
-                    <li><a href="{% url THEME_ADMIN_URL|default:"admin:index" %}">{% trans "Admin" %}<i class="fa fa-cog"></i> </a></li>
+                    <li><a href="{% url THEME_ADMIN_URL|default:"admin:index" %}">{% trans "Admin" %}</a></li>
                 {% endif %}
                 <li class="divider"></li>
                 <li>
-                    <a id="account_logout" href="{% url "account_logout" %}"> {% trans "Log out" %}<i class="fa fa-power-off"></i></a>
+                    <a id="account_logout" href="{% url "account_logout" %}"> {% trans "Log out" %}</a>
                 </li>
             </ul>
         </li>

@@ -3,121 +3,16 @@
 <ul class="grid list-item col-3"> 
     <li class="col n-4">
     <figure class="rollover site">
-    <div class="scrap-likes icon-heart"></div>
+    <div class="scrap-likes">
+        <span class="icon-heart"></span>
+    </div>
     {% for object in product_list %}
-        <img src="{{object.product_img.url}}">
+        <img src="{{object.product_img.url}}" width="470" height="700">
+        <div class="scrap-from"> Scrapped from:<a class="scrap-site" href="{{object.product_website}}"> {{object.product_website_name}}</a></div>
         <div class="scrap-designer">{{object.label_name}}</div>
-        <div class="scrap-title">{{object.get_name}}, <span class="scrap-price">$ {{object.unit_price}}</span></div>
+        <div class="scrap-title">{{object.get_name}}, <span class="scrap-price">${{object.unit_price}}</span></div>
         <a class="scrap-buy" href="#">Buy</a>
-        <figcaption class="scrap-from"> Scrapped from:<a class="scrap-site" href="{{object.product_website}}"> {{object.product_website_name}}</a></figcaption>
     {% endfor %}
     </figure>
-    </li> 
-    <li class="col n-4">
-        <figure class="rollover site">
-            <img  src="/site_media/static/images/test12.jpg"  />
-            <div class="scrap-designer">Katy Ray</div>
-            <div class="scrap-title">Snood, <span class="scrap-price">$455</span></div>
-            <a class="scrap-buy" href="#">Buy</a>
-            <figcaption class="scrap-from"> Scrapped from:<a class="scrap-site" href="#"></a></figcaption>
-        </figure>
-    </li>  
-    <li class="col n-4">
-        <figure class="rollover site">
-            <a href="#">
-                <img  src="/site_media/static/images/test6.jpg"  />
-            </a>
-        </figure>
-    </li>   
-    <li class="col n-4">
-        <figure class="rollover site">
-            <a href="#">
-                <img   src="/site_media/static/images/test12.jpg"  />
-            </a>
-        </figure>
-    </li>               
-    <li class="col n-4">
-        <figure class="rollover site">
-            <a href="#">
-                <img  height="" src="/site_media/static/images/test12.jpg"  />
-            </a>
-        </figure>
-    </li>   
-    <li class="col n-4">
-        <figure class="rollover site">
-            <a href="#">
-                <img  height="" src="/site_media/static/images/test6.jpg"  />
-            </a>
-        </figure>
-    </li>   
-    <li class="col n-4">
-        <figure class="rollover site">
-            <a href="#">
-                <img  src="/site_media/static/images/test6.jpg"  />
-            </a>
-        </figure>
-    </li>   
-    <li class="col n-4">
-        <figure class="rollover site">
-            <a href="#">
-                <img  src="/site_media/static/images/test12.jpg"  />
-            </a>
-        </figure>
-    </li>   
-    <li class="col n-4">
-        <figure class="rollover site">
-            <a href="#">
-                <img  src="/site_media/static/images/test12.jpg"  />
-            </a>
-        </figure>
-    </li>   
-    <li class="col n-4">
-        <figure class="rollover site">
-            <a href="#">
-                <img   src="/site_media/static/images/test12.jpg"  />
-            </a>
-        </figure>
-    </li>   
-    <li class="col n-4">
-        <figure class="rollover site">
-            <a href="#">
-                <img   src="/site_media/static/images/test10.jpg"  />
-            </a>
-        </figure>
-    </li>   
-    <li class="col n-4">
-        <figure class="rollover site">
-            <a href="#">
-                <img   src="/site_media/static/images/test12.jpg"  />
-            </a>
-        </figure>
-    </li>   
-    <li class="col n-4">
-        <figure class="rollover site">
-            <a href="#">
-                <img   src="/site_media/static/images/test12.jpg"  />
-            </a>
-        </figure>
-    </li>   
-    <li class="col n-4">
-        <figure class="rollover site">
-            <a href="#">
-                <img   src="/site_media/static/images/test10.jpg"  />
-            </a>
-        </figure>
-    </li>   
-    <li class="col n-4">
-        <figure class="rollover site">
-            <a href="#">
-                <img   src="/site_media/static/images/test12.jpg"  />
-            </a>
-        </figure>
-    </li>   
-    <li class="col n-4">
-        <figure class="rollover site">
-            <a href="#">
-                <img  src="/site_media/static/images/test12.jpg"  />
-            </a>
-        </figure>
-    </li>
 </ul>
+

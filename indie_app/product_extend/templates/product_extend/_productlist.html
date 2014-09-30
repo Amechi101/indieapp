@@ -2,27 +2,6 @@
 
 {% block header_class %}base-header-product base{% endblock %}
 
-{% block product_menu %}
-<div id="product-menu">
-    <div class="menu-left">
-        <ul class="category">
-            <li><a href="#">Men </a></li>
-            <li><a href="#">Women </a></li>
-        </ul>
-    </div>
-    <div class="menu-right">
-        <div class="menu-sort">
-            <label class="default-value">Newest Scrap's</label>
-            <label class="selected-value"></label>
-            <div class="filter-select">
-                <a href="#">Newest Scrap's</a>
-                <a href="#">Oldest Scrap's</a>
-                <a href="#">Most Liked Scarp's</a>  
-            </div>     
-        </div>
-    </div> 
-</div>
-{% endblock %}
 
 
 {% block body %}
@@ -31,4 +10,61 @@
             {% block product %}{% include "product_extend/_product.html" %} {% endblock %}
         </div>
     </div>
+{% endblock %}
+
+
+{% block product_menu %}
+<div id="product-menu">
+    <div class="product-wrapper">
+        <div class="menu-left">
+            <ul class="category">
+                <li  id="menu-toggle" class=""></li>
+            </ul>
+        </div>
+        <div class="menu-right">
+            <div id="sb-search" class="sb-search">
+    <form>
+        <input class="sb-search-input" placeholder="Enter your search term..." type="search" value="" name="search" id="search">
+        <input class="sb-search-submit" type="submit" value="">
+        <span class="sb-icon-search"></span>
+    </form>
+</div>
+        </div> 
+    </div>
+</div>
+<div id="product-navigation-filter" class="product-navigation-filter product-navigation-filter-bottom" >
+    <div class="filter-options">
+        <div id="menu" class="filter-section">
+            <div class="filter-section-men">
+                <label class="filter-label-sub">Men:</label>
+                <ul id="men">
+                <!-- men section -->
+   
+                </ul>
+            </div>
+            <div class="filter-section-women">
+                <label class="filter-label-sub">Women:</label>
+                <ul id="women"> 
+                <!-- womens section --> 
+                
+                </ul> 
+            </div>
+            <div class="filter-section-price">
+                <label class="filter-label-sub">Price Range:</label>
+                <ul id="price">
+                    <!-- price -->
+                </ul>    
+            </div>
+            <div class="filter-section-other">
+                <label class="filter-label-sub">Sort:</label>
+                <ul id="other">
+                    <!-- other filter -->
+                </ul>    
+            </div>
+            <div class="filter-clear">
+                <a id="product-clear" href="#" class="product-button-clear">Clear Filter</a>
+            </div> 
+        </div> 
+    </div>     
+</div>
 {% endblock %}

@@ -2,6 +2,7 @@
 
 {% load staticfiles %}
 {% load metron_tags %}
+{% load account_tags %}
 {% load i18n %}
 
 
@@ -26,7 +27,25 @@
 {% endblock %}
 
 
+
 {% block extra_body_base %}
+    <!-- Mobile Navigation -->
+    <nav id="mobile-nav" class="mobile-menu-base">
+        <ul class="account">
+        {% if request.user.is_authenticated %}
+            <li>{% user_display request.user %}</li>
+            <a href="{% url "account_settings" %}"> {% trans "Account" %}</a>
+            <a href="#">{% trans "Dashboard" %} </a>
+            {% if request.user.is_staff %}
+                <a href="{% url THEME_ADMIN_URL|default:"admin:index" %}">{% trans "Admin" %}</a>
+            {% endif %}
+            <a id="account_logout" href="{% url "account_logout" %}"> {% trans "Log out" %}</a>
+            {% else %}
+                <a href="{% url "account_login" %}">{% trans "Log in" %}</a>
+                <a href="{% url "account_signup" %}">{% trans "Sign up" %}</a>
+        {% endif %}
+        </ul> 
+    </nav>
     {% analytics %}
     {% block extra_body %}{% endblock %}
 {% endblock %}
@@ -37,6 +56,7 @@
     <script src="{% static "js/bootstrap.min.js" %}"></script>
     <script src="{% static "js/underscore.js" %}"></script>
     <script src="{% static "js/backbone.js" %}"></script>
+    <script src="{% static "js/classie.js" %}"></script>
     <script src="{% static "js/site.js" %}"></script>
     <script src="{% static "pinax/js/theme.js" %}"></script>
     {% block extra_script %}
