@@ -13,7 +13,7 @@ Copyright (C) 2014 Indie-Scrap
 "use strict";
 
 //To avoid namespace collision
-var indieScrapInitilazer =  indieScrapInitilazer || new Function();
+var indieScrapInitilazer =  indieScrapInitilazer || {};
 
 indieScrapInitilazer = (function( $, document, window, _ ,  undefined ) {
 
