@@ -362,18 +362,19 @@ header.base nav.top-inner ul.account .open > a {
 /***********************************************************************************************************************************************************/
 /********************************                                   Product Menu                               ****************************************/
 /*****************************************************************************************************************************************************/
-#product-menu {
+.product-menu {
     position:fixed;
     float:left;
     bottom:0;
     width:100%;
-    background-color:#000;
+    background-color:rgba(0,0,0,0.5);
     height:50px;
     min-height:50px;
     z-index: 10001;
+    transition:background 0.4s ease;
 }
 
-#product-menu .product-wrapper {
+.product-menu .product-wrapper {
 box-sizing:border-box;
     margin:0 auto;
     max-width:1203px;
@@ -383,16 +384,16 @@ box-sizing:border-box;
     height:100%  
 } 
 
-#product-menu .menu-left {
+.product-menu .menu-left {
     float: left;
 }
 
-#product-menu .menu-right {
+.product-menu .menu-right {
     float:right;
 }
 
 
-#product-menu .menu-sort {
+.product-menu .menu-sort {
 position: relative;
 display: inline-block;
 vertical-align: top;
@@ -406,12 +407,12 @@ background: none repeat scroll 0% 0% rgb(18,194,134);
 margin: 4px 0px 0px;
 }
 
-#product-menu ul.category {
+.product-menu ul.category {
     margin:0;
     padding:0;
 }
 
-#product-menu ul.category li {
+.product-menu ul.category li {
     position: relative;
     display:inline-block;
     height:50px;
@@ -426,13 +427,13 @@ margin: 4px 0px 0px;
 }
 
 
-#product-menu ul.category li:hover,
-#product-menu ul.category li:active {
+.product-menu ul.category li:hover,
+.product-menu ul.category li:active {
   background: url('//cdn.shopify.com/s/files/1/0561/7509/t/2/assets/filter-open.png?16811') no-repeat scroll center center red;
 }
 
 /* For menu activation */
-#product-menu ul.category li.active {
+.product-menu ul.category li.active {
     background: url('//cdn.shopify.com/s/files/1/0561/7509/t/2/assets/filter-close.png?16811') no-repeat scroll center center red;
 }
 
@@ -457,6 +458,10 @@ margin: 4px 0px 0px;
 .product-navigation-filter-bottom.product-filter-open {
     bottom: 40px;
        
+}
+
+.product-menu.product-filter-background {
+    background:rgba(0,0,0,1);
 }
 
 .product-navigation-filter .filter-options {
@@ -654,7 +659,7 @@ margin: 4px 0px 0px;
 
 .sb-search.sb-search-open .sb-icon-search,
 .no-js .sb-search .sb-icon-search {
-    background:#000;
+    background:rgba(0,0,0,1);
     color: #fff;
     z-index: 11;
 }

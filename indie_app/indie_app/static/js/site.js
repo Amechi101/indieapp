@@ -98,13 +98,15 @@ indieScrapInitilazer = (function( $, document, window, _ ,  undefined ) {
 			*/
 			
 			//Product Navigation
-			var menuLink   = $('#menu-toggle'), //trigger for menu
-				filterMenu = $('#product-navigation-filter');	//actually menu to be trigged
+			var menuLink             = $('#menu-toggle'), //trigger for menu
+				filterMenu           = $('#product-navigation-filter'), //actually menu to be trigged
+				menuBackgroundColor  = $('.product-menu');	
 
 			menuLink.on('click', function( event ) {
 				event.preventDefault();
 				classie.toggle(this,'active'); //Show link is activate
 				filterMenu.toggleClass('product-filter-open'); //menu is open
+				menuBackgroundColor.toggleClass('product-filter-background')
 				disableOther(menuLink);
 			});
 			
