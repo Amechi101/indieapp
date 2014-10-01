@@ -9,8 +9,8 @@ TEMPLATE_DEBUG = DEBUG
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.mysql", # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        "NAME": "", #dev.db for sqlite3
+        "ENGINE": "django.db.backends.sqlite3", # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        "NAME": "dev.db", #dev.db for sqlite3
     }
 }
 
@@ -232,7 +232,7 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
 
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
-DATABASES['default'] =  dj_database_url.config(default='mysql://bb645b9e154107:8bc1ccbd@us-cdbr-iron-east-01.cleardb.net/heroku_bd0ad2ec30fb77c')
+# DATABASES['default'] =  dj_database_url.config(default='mysql://bb645b9e154107:8bc1ccbd@us-cdbr-iron-east-01.cleardb.net/heroku_bd0ad2ec30fb77c')
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
