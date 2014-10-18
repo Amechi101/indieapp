@@ -7,6 +7,7 @@ from django.utils.translation import ugettext_lazy as _
 from shop.models import Product
 
 import datetime
+
 import imghdr # Used to validate images
 import urllib2 # Used to download images
 import urlparse # Cleans up image urls
@@ -17,14 +18,17 @@ import copy # Copies instances of Image
 
 class ProductExtend(Product):
     label_name = models.CharField(max_length=254, blank=True, null=True)
-    product_website_name = models.CharField(max_length=254, blank=True, null=True)
+    product_slug_url = models.URLField(max_length=200,  null=True, blank=True)
     product_website = models.URLField(max_length=200,  null=True, blank=True) 
+    product_website_name = models.CharField(max_length=254, blank=True, null=True)
     product_img = models.ImageField('Product Image', upload_to='product_images', null=True, blank=True) 
     product_category_main = models.CharField(max_length=254, blank=True, null=True)
 
     #Metadata
     class Meta: 
-    	pass
+        verbose_name = _('Product')
+        verbose_name_plural = _('Products')
+
 
     #Helps return something meaningful, to show within the admin interface for easy interaction
     def get_label_name(self):
@@ -45,8 +49,19 @@ class ProductExtend(Product):
         """
         return "{0}".format(self.product_website)
 
-    # From http://ishcray.com/downloading-and-saving-image-to-imagefield-in-django #################################
-    # For image saving and other features
+    def get_product_slug_url(self):
+        """
+        Return the product website for this item (provided for extensibility)
+        """
+        return "{0}".format(self.product_slug_url)
+
+    def get_product_category_main(self):
+        """
+        Return the product website for this item (provided for extensibility)
+        """
+        return "{0}".format(self.product_category_main)
+
+    # From http://ishcray.com/downloading-and-saving-image-to-imagefield-in-django 
     def save(self, url="", *args, **kwargs):
     	if self.product_img != '' and url != '':
     		image = download_image(url)
@@ -62,13 +77,15 @@ class ProductExtend(Product):
     			pass
     	super(Product, self).save(*args, **kwargs)
 
+
+# From http://ishcray.com/downloading-and-saving-image-to-imagefield-in-django 
 def download_image(url):
 	"""Downloads an image and makes sure it's verified.
  
     Returns a PIL Image if the image is valid, otherwise raises an exception.
     """
 
-	headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 5.1; rv:31.0) Gecko/20100101 Firefox/31.0'} # More likely to get a response if server thinks you're a browser
+	headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 5.1; rv:31.0) Gecko/20100101 Firefox/31.0'} 
 	r = urllib2.Request(url, headers=headers)
 	request = urllib2.urlopen(r, timeout=10)
 	image_data = cStringIO.StringIO(request.read())
@@ -81,6 +98,7 @@ def download_image(url):
 	else:
 		raise Exception('An invalid image was detected when attempting to save a Product!')
 
+# From http://ishcray.com/downloading-and-saving-image-to-imagefield-in-django 
 def valid_img(img):
 	"""Verifies that an instance of a PIL Image Class is actually an image and returns either True or False."""
 	type = img.format
@@ -92,7 +110,7 @@ def valid_img(img):
 			return False
 	else:
 		return True
-# END ################################
+
 
 
 

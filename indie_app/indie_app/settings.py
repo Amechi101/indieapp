@@ -193,7 +193,7 @@ AUTHENTICATION_BACKENDS = [
     "social.backends.google.GoogleOAuth2",
     "social.backends.facebook.FacebookOAuth2",
     "social.backends.twitter.TwitterOAuth",
-    "account.auth_backends.UsernameAuthenticationBackend"
+    "account.auth_backends.UsernameAuthenticationBackend",
 ]
 
 SOCIAL_AUTH_PIPELINE = [
@@ -227,6 +227,7 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
     "profile",
     "email"
 ]
+
 
 ############## Heroku ########################
 

@@ -12,12 +12,10 @@ class ProductView(ListView):
 
 	context_object_name = 'product_list'
 	template_name = 'product_extend/_productlist.html'
-	queryset = ProductExtend.objects.all()
-	
+	# queryset = ProductExtend.objects.filter(id=1)
+	model = ProductExtend
 
 	def get_context_data(self, **kwargs):
 		context = super(ProductView, self).get_context_data(**kwargs)
-		# context['designer_list'] = Designer.objects.all()
-
 		return context
 

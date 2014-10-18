@@ -5,6 +5,8 @@
 
 
 {% block body %}
+
+
     <div class="block last">
         <div class="inner" role="main">
             {% block product %}{% include "product_extend/_product.html" %} {% endblock %}
@@ -14,6 +16,7 @@
 
 
 {% block product_menu %}
+<!-- product menu -->
 <div class="product-menu">
     <div class="product-wrapper">
         <div class="menu-left">
@@ -23,12 +26,12 @@
         </div>
         <div class="menu-right">
             <div id="sb-search" class="sb-search">
-    <form>
-        <input class="sb-search-input" placeholder="Enter your search term..." type="search" value="" name="search" id="search">
-        <input class="sb-search-submit" type="submit" value="">
-        <span class="sb-icon-search"></span>
-    </form>
-</div>
+                <form>
+                    <input class="sb-search-input" placeholder="Enter your search term..." type="search" value="" name="search" id="search">
+                    <input class="sb-search-submit" type="submit" value="">
+                    <span class="sb-icon-search"></span>
+                </form>
+            </div>
         </div> 
     </div>
 </div>
