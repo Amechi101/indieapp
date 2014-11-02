@@ -1,7 +1,8 @@
-Application Overview
-================
+Application Overview (v1 Beta)
+====================
 
-The main goal of the application is to build a fashion web scrapping engine as a powerful resource for users search from specific sites to find the latest and greatest products from **independent designers**. 
+--------------------------------------------------
+The main goal of the application is to build a fashion web scrapping engine as a powerful resource for users to search from specific sites to find the latest and greatest products from **independent designers**. 
 
 - The platform will find Men's & Women's Products
 
@@ -13,9 +14,9 @@ The application is separated by a few areas and interactions:
 
 - Scrapping the product(s) --> **Scrap & Ingestor Phase**
 - Saving the product(s) --> **Scrap & Ingestor Phase**
-- Sending signal to users when we scrap a new site or new products are available from any site we scrap --> **Scrap & Ingestor Phase**
+- Sending signals to users when we scrap a new site or new products are available from any site we scrap --> **Scrap & Ingestor Phase**
 - Searching Python Model for product(s) --> **User Interaction *Product Filter**
-- Addding and Deleting likes from User Model for product(s) --> **User Interaction *Timeline**
+- Addding and Deleting likes from the User Model for product(s) --> **User Interaction *Timeline**
 
 **Frontend interactions**
 - Filtering the product(s) --> **User Interaction *Product Filter**
@@ -27,39 +28,50 @@ The application is separated by a few areas and interactions:
 ----------------
 ** Information retrievel and storage within the python model abstraction (DB)**
 
+-------------------------------------------
 
 - Phase I:
 
 ```
 Base Class:
-Access the website headers, make a HTTP connection and initialize the beautiful   soup module
+Access the website headers, make a HTTP connection and initialize the beautiful soup module
 
+Required methods:
+-----------------
 getHttp():
+    returns the the site headers and access the site for each site we scrap
+
 getSoup():
+    returns the Beautiful Soup methods and gives use access to the API using the site we get from getHttp()
 ```
 - Phase 2
 
 ```
 Site Class:
 Specific methods to scrap each site and retrieve all required information 
-required for the database. We search by [ u'CategoryUrl', [u'ProductCategoryName'] 
+required for the database.
 
-Has two required methods:
-
+Required methods:
+-----------------
 getCategoryLinks():
+    returns the values [ u'CategoryUrl'], [u'ProductCategoryName'] 
+
 getProducts():
-
-Things we are aiming to get:
-Product = {}
--  product['name'] = Name_Of_Product
--  product['product_url'] = Product_URL_Specific
--  product['img'] = Product_Image
--  product['price'] = Product_Price
--  product['designer_name'] = Who_Created_The_Product
--  product['website_home_url'] = Site_We_Are_getting_Items_From
--  product['name_of_brand'] = Name_Of_The_Specific_Brand
--  product['Category'] = Category_Of_The_Specific_Product
-
+    finds the product based on what getCategoryLinks() returns
+    Product = {}
+    -  product['name'] = Name_Of_Product
+    -  product['product_url'] = Product_URL_Specific
+    -  product['img'] = Product_Image
+    -  product['price'] = Product_Price
+    -  product['designer_name'] = Who_Created_The_Product
+    -  product['website_home_url'] = Site_We_Are_getting_Items_From
+    -  product['name_of_brand'] = Name_Of_The_Specific_Brand
+    -  product['Category'] = Category_Of_The_Specific_Product
+    
+    
+Other Important Notes
+---------------------
+Create error blocks on the prodct dict methods, and  getting the links, to catch important errors we may run into while scrapping through the site before moving into the complier phase.
 ```
 
 - Phase 3
@@ -67,19 +79,22 @@ Product = {}
 ```
 Compiler Class:
 
-Compiles all information from the Site Classes into JSON objects and converts it into a python object
+Compiles all information from the Site Classes into JSON objects and converts the JSON object into a python object. In this script we will be running a cron job to allow for automated running of the scrap alogrithm to run once a week on --------- at ------ AM/PM
 
-Has two required methods:
+Required methods:
+----------------
+runSiteScript():
+    returns all the sites running the methods and storing it as an JSON object
 
-runSiteScript()
-getJsonData()
+getJsonData():
+    gets all the information from runSiteScript() and returns a python object, which allows us to run python operations
 
 ```
 
 - Phase 4
 
 ```
-This phase requires the action of the Dict Class, in which the program will access the structure that will be compiled into: 
+This phase requires the action of the Dict Class, in which the program will access the structure: 
 
 Python_Object = { 
         'Website': { 
@@ -100,7 +115,7 @@ TBD!!
 ```
 Signal Class:
 
-This will send signals to the user when we scrap a site only when, the Dict class returns a new instance of a product created by scrapping or we add a new website for scrapping into our program.
+This will send signals to the user when we scrap a site only when, the Dict class returns a new instance of a product from scrapping or when we add a new website for scrapping at the Site Class level (Phase 2).
 
 Has 'x' required methods:
 
@@ -111,7 +126,7 @@ TBD!!
 ----------------
 ** User based events the send signals to the (DB), to the scrapping program or generate other events**
 
-
+-------------------------------------------------------------
 > Timeline: An area on the user dashboard for viewing and filtering of their liked items on the site. 
 
 Front-End:
@@ -135,8 +150,33 @@ Front-End:
 
 - Filtering the product(s) --> **User Interaction *Product Filter**
 
+Each site will have its predefined categories, i.e when you select a website first those prefined categories will appear for that particular site. You must select a particular site before being allowed to filter further. Or choose the all selection to choose from all available products returned from our database. Also the user will have to click load more button one time and infinite scrolling will be enabled allowing easier scrolling of items loading x amount per scroll.
+
+        Search by:
+        - Websites (1 & Choice indepedent)
+        - Categories ( Depends on 1 )
+        - Price Range ( Choice indepedent )
+        - Newest Scrap ( Choice indepedent )
+        - Oldest Scrap ( Choice indepedent )
+        - Popular Scrap ( Choice indepedent )
+
 Back-End:
 
 - Searching Python Model for product(s) --> **User Interaction *Product Filter**
 
+"Access and Privilages" 
+----------------
+**User Defined Roles within the application**
+
+--------------------------------------------------------
+
+**Access Granted for Non-members**:
+- Only Viewing and Browsing product information 
+
+**Access Granted for Members**:
+- Liking Products
+- Dashboard Access:
+  - Notifications on new products or new scrapped sites
+  - Account Settings
+  - Save liked products on personalized created timeline
 
