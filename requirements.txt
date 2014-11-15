@@ -15,3 +15,4 @@ static3==0.5.1
 wsgiref==0.1.2
 python_crontab==1.8.1
 beautifulsoup4==4.3.2
+django-shop==0.2.0

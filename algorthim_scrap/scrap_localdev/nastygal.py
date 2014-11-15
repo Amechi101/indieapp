@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 from connection import ScrapeBase
 
+import urllib2
+import json
+
 class NastyGal( object ):
     
     def getCategoryLinks( self ):
@@ -93,14 +96,12 @@ class NastyGal( object ):
                     productsList.append(product)
 
 
-                    
-                # For debugging
-                print "Getting next page"
+              
                 
                 # Gets the next page 
                 next_page = self.getNextPage(current_page)
                 current_page = next_page
-                print next_page
+                print next_page + "Getting next page"
                 
                 if ( next_page != "None" ):
                     products = ScrapeBase().getSoup( next_page ).find_all("a", class_="product-link")
@@ -137,17 +138,17 @@ class NastyGal( object ):
 # import json
 
 ##########################
-# if __name__=="__main__":
+if __name__=="__main__":
     
-#     categoriesClass = NastyGal().getCategoryLinks()
-#     categoriesProductsClass = NastyGal().getProducts(categoriesClass)
+    categoriesClass = NastyGal().getCategoryLinks()
+    categoriesProductsClass = NastyGal().getProducts(categoriesClass)
     
-#     out = open("output_files/nastygal.txt", 'w')
-#     out.write(json.dumps(categoriesProductsClass))
+    out = open("output_files/nastygal.txt", 'w')
+    out.write(json.dumps(categoriesProductsClass))
 
-    # print categoriesProductsClass.keys()
+    print categoriesProductsClass.keys()
 
-    # print categoriesClass
-    # print categoriesProductsClass
+    print categoriesClass
+    print categoriesProductsClass
     
    

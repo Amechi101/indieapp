@@ -3,7 +3,7 @@ from connection import ScrapeBase
 
 import urllib2
 import json
-import re
+
 
 
 class TrademarkScrape( object ):
@@ -105,16 +105,16 @@ class TrademarkScrape( object ):
         return product_dict
 
 
-# if __name__ == "__main__":
+if __name__ == "__main__":
 
     
-#     div_links = ( TrademarkScrape().getCategoryLinks() )
-#     product_dict = ( TrademarkScrape().getProducts(div_links) )
+    div_links = ( TrademarkScrape().getCategoryLinks() )
+    product_dict = ( TrademarkScrape().getProducts(div_links) )
    
-#     out = open('output_files/trademark.txt', 'w')
-#     out.write(json.dumps(product_dict))
+    out = open('output_files/trademark.txt', 'w')
+    out.write(json.dumps(product_dict))
     
-#     print product_dict.keys()
-#     print ("\n\nResults are in trademark.txt")
+    print product_dict.keys()
+    print ("\n\nResults are in trademark.txt")
 
 

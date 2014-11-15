@@ -69,53 +69,25 @@ getProducts():
     -  product['Category'] = Category_Of_The_Specific_Product
     
     
-Other Important Notes
----------------------
-Create error blocks on the prodct dict methods, and  getting the links, to catch important errors we may run into while scrapping through the site before moving into the complier phase.
+> Additional Procedures
+
+Create error blocks on each of the site methods throughout the program to catch important errors we may run into while scrapping through the site before moving into saving and or after saving the information.
 ```
 
 - Phase 3
 
 ```
-Compiler Class:
+SQL Alchemy Classes:
 
-Compiles all information from the Site Classes into JSON objects and converts the JSON object into a python object. In this script we will be running a cron job to allow for automated running of the scrap alogrithm to run once a week on --------- at ------ AM/PM
+From each of the scrapping methods from each individual Site Class we will store the items directly into the database. Re-Creating the models again in models.py ( within the algorithm_scrap module to match to the model rep). This Class also will be the main module to delete and/or update any new values to Django Product Model (database). 
 
-Required methods:
-----------------
-runSiteScript():
-    returns all the sites running the methods and storing it as an JSON object
+> Additional Procedures
 
-getJsonData():
-    gets all the information from runSiteScript() and returns a python object, which allows us to run python operations
+We will be running a cron job to allow for automated running of each scrap algorithm to run once a week on --------- at ------ AM/PM
 
-```
-
-- Phase 4
-
-```
-This phase requires the action of the Dict Class, in which the program will access the structure: 
-
-Python_Object = { 
-        'Website': { 
-                'product_category' : [.... ]
-format inside product_category --> [0] = { 'name' : 'leather jacket', 'url' : ...}
-    }
-}
-
-Dict Class:
-
-The Dict Class will be the main module to find, sort, delete and add any new values to Django Model. The main purposes of this class will be sorting thru the dictionary structure from the Compiler Class and finding information  pertaining to the matched fields on the Django and running methods against the model. 
-
-Has 'x' required methods:
-
-TBD!!
-
-```
-```
 Signal Class:
 
-This will send signals to the user when we scrap a site only when, the Dict class returns a new instance of a product from scrapping or when we add a new website for scrapping at the Site Class level (Phase 2).
+This will send signals to the user when we scrap a site only when, a new instance of a product from scrapping is signaled by the program or when we add a new website for scrapping at the Site Class level (Phase 2).
 
 Has 'x' required methods:
 
@@ -124,7 +96,7 @@ TBD!!
 ```
 "User Interactions" 
 ----------------
-** User based events the send signals to the (DB), to the scrapping program or generate other events**
+** User based events that send signals to the backend to do something or consume some sort of data**
 
 -------------------------------------------------------------
 > Timeline: An area on the user dashboard for viewing and filtering of their liked items on the site. 
@@ -144,25 +116,45 @@ Back-End:
 The user will be able to add likes (when liking item) and delete likes when on their timeline. The item will then be wiped from memory in their accounts.
 
 ------
-> Product Filter: An area on the product page for users to filter through the site based on set filter parameters
+> Product Filtering: For users to filter through the our products based using set filter parameters
 
 Front-End:
 
 - Filtering the product(s) --> **User Interaction *Product Filter**
 
-Each site will have its predefined categories, i.e when you select a website first those prefined categories will appear for that particular site. You must select a particular site before being allowed to filter further. Or choose the all selection to choose from all available products returned from our database. Also the user will have to click load more button one time and infinite scrolling will be enabled allowing easier scrolling of items loading x amount per scroll.
+Each site will have its predefined categories, i.e when you select a website those predefined categories will appear for filtering products for that particular site. You must select a particular site before being allowed to filter using categories.  
 
-        Search by:
-        - Websites (1 & Choice indepedent)
-        - Categories ( Depends on 1 )
-        - Price Range ( Choice indepedent )
-        - Newest Scrap ( Choice indepedent )
-        - Oldest Scrap ( Choice indepedent )
-        - Popular Scrap ( Choice indepedent )
+Filtering Logic:
 
+- If the user selects a website from the homepage ( will be redirected to the product page ) and/or on the product page then:
+
+1. The website filter shows the current site begin used (loading it from the database to display) changing the page's view loading the products for that specific site and
+
+2. Filling the product filter with all the pre-loaded categories for   that particular website
+
+3. The user will be able to on product page interact with the website filter to continuously change which website to shop on. Changing the view for aformentioned steps 1 through 2.
+
+If the user selects `All` from the homepage ( will be redirected to the product page ) or from the website filter on the product page then they will be only able to filter using 
+1. Price range 
+2. Generic Filters
+3. Newest Scrap 
+4. Oldest Scrap 
+5. Popular Scrap 
+
+**Filtering Options:**
+```
+    - Websites (1 & Choice indepedent)
+    - Categories ( Depends on 1 )
+    - Price Range ( Choice indepedent )
+    - Newest Scrap ( Choice indepedent )
+    - Oldest Scrap ( Choice indepedent )
+    - Popular Scrap ( Choice indepedent )
+```
 Back-End:
 
-- Searching Python Model for product(s) --> **User Interaction *Product Filter**
+- Searching Python Product Model for product(s) using backbone.js to update views on front-end --> **User Interaction *Product Filter**
+
+- Searching Python Product Model for categories(s) using backbone.js to update views on front-end --> **User Interaction *Product Filter**
 
 "Access and Privilages" 
 ----------------
