@@ -1,5 +1,5 @@
 *.pyc
 env
 settings_localdev.py
-db.sqlite3
+dev.db
 
