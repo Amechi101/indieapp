@@ -1,1 +1,1 @@
-web: gunicorn indie_app.wsgi --log-file -
+web: cd indie_app; gunicorn indie_app.wsgi
