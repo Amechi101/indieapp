@@ -1,1 +1,1 @@
-web: gunicorn indie_app.wsgi
+web: python indie_app/manage.py collectstatic --noinput; bin/gunicorn_django --workers=4 --bind=0.0.0.0:$PORT indie_app/settings.py 
