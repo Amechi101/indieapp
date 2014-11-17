@@ -9,8 +9,8 @@ TEMPLATE_DEBUG = DEBUG
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3", # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        "NAME": "dev.db", #dev.db for sqlite3
+        "ENGINE": "django.db.backends.mysql", # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        "NAME": "", #dev.db for sqlite3
     }
 }
 
