@@ -18,7 +18,7 @@ beautifulsoup4==4.3.2
 django-shop==0.2.0
 requests==2.3.0
 MySQL-python==1.2.5
-sqlalchemy==1.0
+sqlalchemy==0.9.8
 six==1.7.3
 Pillow==2.5.3
 
