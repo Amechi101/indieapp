@@ -46,7 +46,7 @@ if __name__=="__main__":
 	acquire_python = DataManipulate().getPythonData( master_data )
 
 	out = open("output_files/final.json", 'w')
-	out.write( acquire_json )
+	out.write( acquire_python )
 
 	# print acquire_python
 
