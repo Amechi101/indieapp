@@ -26,28 +26,6 @@
 {% endblock %}
 
 
-{% block mobile_nav %}
-<nav id="nav" role="navigation">
-    <div class="block">
-        <ul class="account">
-        {% if request.user.is_authenticated %}
-            <li>{% user_display request.user %}</li>
-            <a href="{% url "account_settings" %}"> {% trans "Dashboard" %}</a>
-            <a href="{% url "product_list" %}"> {% trans "Scrap Feed" %}</a>
-            {% if request.user.is_staff %}
-                <a href="{% url THEME_ADMIN_URL|default:"admin:index" %}">{% trans "Admin" %}</a>
-            {% endif %}
-            <a id="account_logout" href="{% url "account_logout" %}"> {% trans "Log out" %}</a>
-            {% else %}
-                <a href="{% url "account_login" %}">{% trans "Log in" %}</a>
-                <a href="{% url "account_signup" %}">{% trans "Sign up" %}</a>
-        {% endif %}
-            <a class="close-btn" id="nav-close-btn" href="#top">Return to Content</a>
-        </ul>      
-    </div>
-</nav>
-{% endblock  %}
-
 
 {% block footer %}
 <!-- Start footer -->
@@ -68,13 +46,11 @@
     <!--Library Script-->
     <script src="{% static "js/jquery.dcjqaccordion.2.7.js" %}"></script>
     <script src="{% static "js/jquery.scrollTo.min.js" %}"></script>
-    <script src="{% static "js/responsive-sidemenu-toggle.js" %}"></script>
+    <script src="{% static "js/sidebarEffects.js" %}"></script>
     <script src="{% static "js/classie.js" %}"></script>
     
     <!--Application Script -->
     <script src="{% static "js/site.js" %}"></script>
-
-    
     
     <!--Special Script-->
     <script type="text/javascript" src="//use.typekit.net/uee5rje.js"></script>

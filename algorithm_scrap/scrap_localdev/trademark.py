@@ -67,22 +67,16 @@ class TrademarkScrape( object ):
                 
                 product['name'] = doc['name']
 
-                product['product_url'] = doc['url']
+                product['product_slug_url'] = doc['url']
 
-                product['img'] = doc['image_varchar']
+                product['product_img'] = doc['image_varchar']
                 
                 try:
-                    product['price'] = doc['final_price']
+                    product['product_price'] = doc['final_price']
                 except AttributeError:
                     return 0
 
-                #Designers are in the title of the product name
-                #but not constant enough to scrap in completion, so we must manually add
-                #the designers to each product or figure a method to extract each name
-                # for the product being scrap
-                product['designer_name'] = 'Alexandra and Louisa Burch'
-
-                product['Category'] = link[1]
+                product['product_category'] = link[1]
                 
 
                 # append the product dictionary in the new list
@@ -90,9 +84,9 @@ class TrademarkScrape( object ):
 
             # For other information not immediately related the main product
             for supplement in supplement_information:
-                product['name_of_brand'] = supplement.find(class_='logo').text.strip()
+                product['product_website_name'] = supplement.find(class_='logo').text.strip()
 
-                product['website_home_url'] = supplement.find(class_='logo', href=True).get('href').strip()
+                product['product_website_url'] = supplement.find(class_='logo', href=True).get('href').strip()
                 
                 products.append(product)
 

@@ -96,7 +96,6 @@ class NastyGal( object ):
                     productsList.append(product)
 
 
-              
                 
                 # Gets the next page 
                 next_page = self.getNextPage(current_page)
@@ -108,14 +107,7 @@ class NastyGal( object ):
                 else:
                     breakout = True
 
-            for supplement in supplement_information:
-                product['website_home_url'] = "http://www.nastygal.com"
-                product['name_of_brand'] = "Nasty Gal"
-
-
-
-
-
+    
             #products is a list of product dictionaries
             #remember how link is [u'site', [u'productCategory']]
             #we'll use productCategory to the products.

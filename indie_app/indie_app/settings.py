@@ -9,8 +9,8 @@ TEMPLATE_DEBUG = DEBUG
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.mysql", # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        "NAME": "", #dev.db for sqlite3
+        "ENGINE": "django.db.backends.sqlite3", # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        "NAME": "local.db", #dev.db for sqlite3
     }
 }
 
@@ -134,12 +134,12 @@ INSTALLED_APPS = [
     "eventlog",
     "metron",
     "south",
-    "shop",
     "social.apps.django_app.default",
 
     # project
     "indie_app",
     "product_extend",
+    "website",
 ]
 
 # A sample logging configuration. The only tangible logging
@@ -186,7 +186,7 @@ ACCOUNT_EMAIL_UNIQUE = True
 # ACCOUNT_EMAIL_CONFIRMATION_REQUIRED = False
 ACCOUNT_USE_AUTH_AUTHENTICATE = True
 ACCOUNT_LOGIN_REDIRECT_URL = "/browse/all"
-ACCOUNT_LOGOUT_REDIRECT_URL = "home"
+ACCOUNT_LOGOUT_REDIRECT_URL = "/"
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 2
 
 AUTHENTICATION_BACKENDS = [
@@ -233,7 +233,7 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
 
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
-DATABASES['default'] =  dj_database_url.config(default='mysql://bfe625208dcfc2:a671882e@us-cdbr-iron-east-01.cleardb.net/heroku_e0f7dcc4e8c8454?reconnect=true')
+# DATABASES['default'] =  dj_database_url.config(default='mysql://bfe625208dcfc2:a671882e@us-cdbr-iron-east-01.cleardb.net/heroku_e0f7dcc4e8c8454?reconnect=true')
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')

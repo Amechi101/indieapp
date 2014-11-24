@@ -1,11 +1,13 @@
 from __future__ import unicode_literals
 
 from django.contrib import admin
-from product_extend.models import ProductExtend
+from product_extend.models import Product
 
 
-class ProductExtendAdmin(admin.ModelAdmin):
-    list_per_page = 25
+class ProductAdmin(admin.ModelAdmin):
+	list_display = ["name"]
+	search_fields = ["name"]
+	list_per_page = 25
 
 
-admin.site.register(ProductExtend, ProductExtendAdmin)
+admin.site.register(Product, ProductAdmin)

@@ -1,10 +1,12 @@
+# -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-
-from shop.models import Product
+from decimal import Decimal
+from product_extend.utils.fields import CurrencyField
 
 import datetime
 
@@ -15,51 +17,81 @@ import cStringIO # Used to imitate reading from byte file
 from PIL import Image # Holds downloaded image and verifies it
 import copy # Copies instances of Image
 
+# from website.models import Website
 
-class ProductExtend(Product):
-    label_name = models.CharField(max_length=254, blank=True, null=True)
+USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
+
+
+class Product(models.Model):
+    """
+    The product structure for the application, the products we scrap from sites will model this and save directly into the tables.
+    """
+
+    name = models.CharField(max_length=254, verbose_name=_('Name'), null=True, blank=True)
+    
+    product_price = CurrencyField( verbose_name=_('Unit price') )
     product_slug_url = models.URLField(max_length=200,  null=True, blank=True)
-    product_website = models.URLField(max_length=200,  null=True, blank=True) 
-    product_website_name = models.CharField(max_length=254, blank=True, null=True)
+    product_category = models.CharField(max_length=254, blank=True, null=True)
     product_img = models.ImageField('Product Image', upload_to='product_images', null=True, blank=True) 
-    product_category_main = models.CharField(max_length=254, blank=True, null=True)
+    
+    product_website_url = models.URLField(max_length=200,  null=True, blank=True) 
+    product_website_name = models.CharField(max_length=254, blank=True, null=True)
+    
+    #For Admin Purposes, to keep track of new and old items in the database by administrative users
+    date_added = models.DateTimeField(auto_now_add=True, null=True, blank=True, verbose_name=_('Date added'))
+    last_modified = models.DateTimeField(auto_now=True, null=True, blank=True, verbose_name=_('Last modified') )
+
+    #For Admin Purposes, to make sure an item is active by administrative users
+    active = models.BooleanField(default=False, verbose_name=_('Active') )
+
+    # Foreign Key
+    # website = models.ForeignKey(Website, null=True)
+
 
     #Metadata
     class Meta: 
         verbose_name = _('Product')
         verbose_name_plural = _('Products')
 
+    def __unicode__(self):
+        return self.name
 
-    #Helps return something meaningful, to show within the admin interface for easy interaction
-    def get_label_name(self):
+    def get_product_price(self):
         """
-        Return the label name for this item (provided for extensibility)
+        Return the price for this item (provided for extensibility)
         """
-        return "{0}".format(self.label_name)
+        return "{0}".format(self.product_price)
+
+    def get_name(self):
+        """
+        Return the name of this Product (provided for extensibility)
+        """
+        return "{0}".format(self.name)
+
 
     def get_product_website_name(self):
         """
-        Return the proudct website name for this item (provided for extensibility)
+        Return the website's name for this item (provided for extensibility)
         """
         return "{0}".format(self.product_website_name)
     
-    def get_product_website(self):
+    def get_product_website_url(self):
     	"""
-        Return the product website for this item (provided for extensibility)
+        Return the website's url for this item (provided for extensibility)
         """
-        return "{0}".format(self.product_website)
+        return "{0}".format(self.product_website_url)
 
     def get_product_slug_url(self):
         """
-        Return the product website for this item (provided for extensibility)
+        Return the product slug url for this item (provided for extensibility)
         """
         return "{0}".format(self.product_slug_url)
 
-    def get_product_category_main(self):
+    def get_product_category(self):
         """
-        Return the product website for this item (provided for extensibility)
+        Return the product category for this item (provided for extensibility)
         """
-        return "{0}".format(self.product_category_main)
+        return "{0}".format(self.product_category)
 
     # From http://ishcray.com/downloading-and-saving-image-to-imagefield-in-django 
     def save(self, url="", *args, **kwargs):
@@ -76,6 +108,7 @@ class ProductExtend(Product):
     			print("Error trying to save model: saving image failed: " + str(e))
     			pass
     	super(Product, self).save(*args, **kwargs)
+
 
 
 # From http://ishcray.com/downloading-and-saving-image-to-imagefield-in-django 
@@ -96,7 +129,7 @@ def download_image(url):
 	if vaild_img(img_copy):
 		return img
 	else:
-		raise Exception('An invalid image was detected when attempting to save a Product!')
+		raise Exception('An invalid image was detected when attempting to save!')
 
 # From http://ishcray.com/downloading-and-saving-image-to-imagefield-in-django 
 def valid_img(img):

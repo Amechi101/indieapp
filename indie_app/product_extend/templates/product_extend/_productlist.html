@@ -4,18 +4,7 @@
 
 
 
-{% block body %}
-
-
-    <div class="block last">
-        <div class="inner" role="main">
-            {% block product %}{% include "product_extend/_product.html" %} {% endblock %}
-        </div>
-    </div>
-{% endblock %}
-
-
-{% block product_menu %}
+{% block body_base %}
 <!-- product menu -->
 <div class="product-menu">
     <div class="product-wrapper">
@@ -66,4 +55,15 @@
         </div> 
     </div>     
 </div>
+ <main id="content">
+    <div class="block last">
+        <div class="inner" role="main">
+            {% block product %}{% include "product_extend/_product.html" %} {% endblock %}
+        </div>
+    </div>
+    </main>
 {% endblock %}
+
+
+
+{% block footer %}{% endblock %}
