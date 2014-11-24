@@ -1,5 +1,6 @@
 *.pyc
 env
+staticfiles
 settings_localdev.py
-dev.db
+*.db
 
