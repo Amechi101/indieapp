@@ -52,6 +52,9 @@ class SiteMethods( ScrapeBase ):
 	def setPricePath(self, path):
 		self.pricePath = path
 	
+	def setCategoryPath(self, path):
+		self.categoryPath = path
+	
 	
 	
 	def setProductPageSizePath(self, path):
@@ -59,20 +62,20 @@ class SiteMethods( ScrapeBase ):
 	
 	def setProductPageColorPath(self, path):
 		self.productPageColorPath = path
-
+	
 	def setProductPageDescriptionPath(self, path):
 		self.productPageDescriptionPath = path
 	
-#	def setProductPageContainer(self, container):
-#		self.ProductPageContainer = container
-
+	#	def setProductPageContainer(self, container):
+	#		self.ProductPageContainer = container
+	
 	
 	def find(self, element, steps):
 		try:
 			for i, step in enumerate(steps):
 				if type(step) is dict:
 					element = element.find(**step)
-					
+				
 				elif type(step) is str:
 					index = step.find('[')
 					if step.startswith('.'):
@@ -85,7 +88,7 @@ class SiteMethods( ScrapeBase ):
 							return [self.find(x, steps[i+1:]) for x in element.find_all( step[:index] )]
 						pos = int(pos)
 						element = element.find_all(step)[pos]
-
+		
 		except Exception, e:
 			
 			#print exception type, file name, and line number
@@ -95,7 +98,10 @@ class SiteMethods( ScrapeBase ):
 			return None
 		
 		return element
-
+	
+	def getCategories(self):
+		return self.find(soup.html, self.categoryPath)
+	
 	def go(self):
 		print "getting soup"
 		soup = ScrapeBase().getSoup(self.url)
@@ -111,9 +117,9 @@ class SiteMethods( ScrapeBase ):
 		divs = [x for x in divs if x is not None] # makes sure we don't have any Nones in our array
 		
 		divs = divs[0:1] # for testing, we only want one div
-
-		products = []
 		
+		products = [ ]
+
 		for div in divs:
 			
 			product = { }
@@ -126,20 +132,20 @@ class SiteMethods( ScrapeBase ):
 				product['name'] = self.find(div, self.namePath).contents
 			if self.pricePath:
 				product['price'] = self.find(div, self.pricePath).contents
-
-
+			
+			
 			results = self.checkProductPage(product['url'])
-
+			
 			product.update(results)
-
+			
 			products.append(product)
-						
-						
+		
+		
 		return products
-
-
+	
+	
 	def checkProductPage(self, url):
-
+		
 		product = { }
 		
 		soup = ScrapeBase().getSoup(url)
@@ -150,13 +156,13 @@ class SiteMethods( ScrapeBase ):
 			product['colors'] = self.find(soup.html, self.productPageColorPath)
 		if self.productPageDescriptionPath:
 			product['description_long'] = self.find(soup.html, self.productPageDescriptionPath)
-
+		
 		return product
-		
-			
-		
-
-
+	
+	
+	
+	
+	
 	def filterTags( self, element_tag, product_category_link  ):
 		"""
 			Method to filter tags with the necessary category links to access the products later
@@ -196,7 +202,8 @@ def test():
 def pilgrimsurfsupply():
 	site = SiteMethods()
 	site.setUrl('http://pilgrimsurfsupply.com/store/')
-	site.setProductContainer(class_=['s '])
+	site.setProductContainer(class_=['product_cell'])
+	site.setCategoryPath([ {"id":"category-tree"}, 'li', 'ul', 'li[all]', 'a', '.contents' ])
 	site.setImage( [ {"class_":"product_cell_graphic"}, 'a', 'img'] )
 	site.setProductLink( [{"class_":"product_cell_graphic"}, 'a'] )
 	site.setProductName( [{"class_":"product_cell_label"}, 'a'] )
