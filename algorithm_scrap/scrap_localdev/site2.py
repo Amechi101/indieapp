@@ -59,6 +59,7 @@ class SiteMethods( ScrapeBase ):
 	
 	def setProductPageColorPath(self, path):
 		self.productPageColorPath = path
+
 	def setProductPageDescriptionPath(self, path):
 		self.productPageDescriptionPath = path
 	
@@ -195,7 +196,7 @@ def test():
 def pilgrimsurfsupply():
 	site = SiteMethods()
 	site.setUrl('http://pilgrimsurfsupply.com/store/')
-	site.setProductContainer(class_=['product_cell'])
+	site.setProductContainer(class_=['s '])
 	site.setImage( [ {"class_":"product_cell_graphic"}, 'a', 'img'] )
 	site.setProductLink( [{"class_":"product_cell_graphic"}, 'a'] )
 	site.setProductName( [{"class_":"product_cell_label"}, 'a'] )

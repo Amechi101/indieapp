@@ -39,6 +39,14 @@ class ScrapeBase( object ):
 		soup = BeautifulSoup( self.getHttp( site_target ) )
 		return soup
 
+	def getSoupWithJSRendered(self, site_target):
+		browser = webdriver.PhantomJS()
+		browser.get('http://techcrunch.com/2012/05/15/facebook-lightbox/')
+		html_source = browser.page_source
+		browser.quit()
+
+		soup = BeautifulSoup.BeautifulSoup(html_source)
+
 
 		
 		
