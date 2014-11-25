@@ -99,11 +99,18 @@ class SiteMethods( ScrapeBase ):
 		
 		return element
 	
+	
+	def isAllCategories(self, name):
+		if (type(name) is list): name = name[0]
+		name = str(name).lower()
+		print name
+		return 'category' in name or name.startswith('all ')
+	
 	def getCategories(self):
 		print "getting soup"
 		soup = ScrapeBase().getSoup(self.url)
 		print "finished"
-		return [x['href'] for x in self.find(soup.html, self.categoryPath)]
+		return [[x.contents.lower(), x['href']] for x in self.find(soup.html, self.categoryPath) if not self.isAllCategories(x.contents)]
 	
 	
 	
