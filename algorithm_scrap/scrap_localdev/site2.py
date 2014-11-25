@@ -100,7 +100,12 @@ class SiteMethods( ScrapeBase ):
 		return element
 	
 	def getCategories(self):
-		return self.find(soup.html, self.categoryPath)
+		print "getting soup"
+		soup = ScrapeBase().getSoup(self.url)
+		print "finished"
+		return [x['href'] for x in self.find(soup.html, self.categoryPath)]
+	
+	
 	
 	def go(self):
 		print "getting soup"
@@ -201,9 +206,11 @@ def test():
 
 def pilgrimsurfsupply():
 	site = SiteMethods()
+	
+	
 	site.setUrl('http://pilgrimsurfsupply.com/store/')
 	site.setProductContainer(class_=['product_cell'])
-	site.setCategoryPath([ {"id":"category-tree"}, 'li', 'ul', 'li[all]', 'a', '.contents' ])
+	site.setCategoryPath([ {"id":"category-tree"}, 'li', 'ul', 'li[all]', 'a' ])
 	site.setImage( [ {"class_":"product_cell_graphic"}, 'a', 'img'] )
 	site.setProductLink( [{"class_":"product_cell_graphic"}, 'a'] )
 	site.setProductName( [{"class_":"product_cell_label"}, 'a'] )
@@ -214,7 +221,7 @@ def pilgrimsurfsupply():
 	site.setProductPageColorPath([ {"id":"SelectColor"}, 'option[all]', '.contents' ])
 	site.setProductPageDescriptionPath([ {"id":"Product_description_long"}, '.contents' ])
 	
-	return site.go()
+	return site.getCategories()
 
 
 
