@@ -36,6 +36,8 @@ class SiteMethods( ScrapeBase ):
 	def setUrl(self, url):
 		self.url = url
 	
+	def setCategory(self, category):
+		self.category = category
 	
 	def setProductContainer(self, **container):
 		self.container = container
@@ -110,7 +112,7 @@ class SiteMethods( ScrapeBase ):
 		print "getting soup"
 		soup = ScrapeBase().getSoup(self.url)
 		print "finished"
-		return [[x.contents.lower(), x['href']] for x in self.find(soup.html, self.categoryPath) if not self.isAllCategories(x.contents)]
+		return [[x.contents, x['href']] for x in self.find(soup.html, self.categoryPath) if not self.isAllCategories(x.contents)]
 	
 	
 	
@@ -136,17 +138,19 @@ class SiteMethods( ScrapeBase ):
 			
 			product = { }
 			
-			if self.productLinkPath:
-				product['url'] = self.find(div, self.productLinkPath)['href']
-			if self.imagePath:
-				product['img'] = self.find(div, self.imagePath)['src']
-			if self.namePath:
+			if hasattr(self, "namePath"):
 				product['name'] = self.find(div, self.namePath).contents
-			if self.pricePath:
-				product['price'] = self.find(div, self.pricePath).contents
+			if hasattr(self, "productLinkPath"):
+				product['product_slug_url'] = self.find(div, self.productLinkPath)['href']
+			if hasattr(self, "imagePath"):
+				product['product_img'] = self.find(div, self.imagePath)['src']
+			if hasattr(self, "pricePath"):
+				product['product_price'] = self.find(div, self.pricePath).contents
+			if hasattr(self, "category"):
+				product['product_category'] = self.category
 			
 			
-			results = self.checkProductPage(product['url'])
+			results = self.checkProductPage(product['product_slug_url'])
 			
 			product.update(results)
 			
@@ -162,11 +166,11 @@ class SiteMethods( ScrapeBase ):
 		
 		soup = ScrapeBase().getSoup(url)
 		
-		if self.productPageSizePath:
+		if hasattr(self, "productPageSizePath"):
 			product['sizes'] = self.find(soup.html, self.productPageSizePath)
-		if self.productPageColorPath:
+		if hasattr(self, "productPageColorPath"):
 			product['colors'] = self.find(soup.html, self.productPageColorPath)
-		if self.productPageDescriptionPath:
+		if hasattr(self, "productPageDescriptionPath"):
 			product['description_long'] = self.find(soup.html, self.productPageDescriptionPath)
 		
 		return product
@@ -216,8 +220,13 @@ def pilgrimsurfsupply():
 	
 	
 	site.setUrl('http://pilgrimsurfsupply.com/store/')
-	site.setProductContainer(class_=['product_cell'])
+
 	site.setCategoryPath([ {"id":"category-tree"}, 'li', 'ul', 'li[all]', 'a' ])
+	links = site.getCategories()
+
+
+
+	site.setProductContainer(class_=['product_cell'])
 	site.setImage( [ {"class_":"product_cell_graphic"}, 'a', 'img'] )
 	site.setProductLink( [{"class_":"product_cell_graphic"}, 'a'] )
 	site.setProductName( [{"class_":"product_cell_label"}, 'a'] )
@@ -228,7 +237,14 @@ def pilgrimsurfsupply():
 	site.setProductPageColorPath([ {"id":"SelectColor"}, 'option[all]', '.contents' ])
 	site.setProductPageDescriptionPath([ {"id":"Product_description_long"}, '.contents' ])
 	
-	return site.getCategories()
+	
+	products = []
+	for category, link in links:
+		if (type(category) is list): category = category[0]
+		site.setCategory(category)
+		site.setUrl(link)
+		products.extend(site.go())
+	return products
 
 
 
