@@ -33,6 +33,10 @@ class SiteMethods( ScrapeBase ):
 			"""
 		return site_name
 	
+	
+	def setBaseUrl(self, url):
+		self.baseUrl = url
+	
 	def setUrl(self, url):
 		self.url = url
 	
@@ -97,6 +101,7 @@ class SiteMethods( ScrapeBase ):
 			exc_type, exc_obj, exc_tb = sys.exc_info()
 			fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
 			print(exc_type, fname, exc_tb.tb_lineno)
+			print "steps", steps
 			return None
 		
 		return element
@@ -109,7 +114,7 @@ class SiteMethods( ScrapeBase ):
 		return 'category' in name or name.startswith('all ')
 	
 	def getCategories(self):
-		print "getting soup"
+		print "getting soup from " + self.url
 		soup = ScrapeBase().getSoup(self.url)
 		print "finished"
 		return [[x.contents, x['href']] for x in self.find(soup.html, self.categoryPath) if not self.isAllCategories(x.contents)]
@@ -117,7 +122,7 @@ class SiteMethods( ScrapeBase ):
 	
 	
 	def go(self):
-		print "getting soup"
+		print "getting soup from " + self.url
 		soup = ScrapeBase().getSoup(self.url)
 		print "finished"
 		
@@ -139,13 +144,16 @@ class SiteMethods( ScrapeBase ):
 			product = { }
 			
 			if hasattr(self, "namePath"):
-				product['name'] = self.find(div, self.namePath).contents
+				product['name'] = self.find(div, self.namePath)
 			if hasattr(self, "productLinkPath"):
 				product['product_slug_url'] = self.find(div, self.productLinkPath)['href']
 			if hasattr(self, "imagePath"):
-				product['product_img'] = self.find(div, self.imagePath)['src']
+				try:
+					product['product_img'] = self.find(div, self.imagePath)['src']
+				except KeyError: # swords smith has a <img /> somewhere that doesn't have a src attribute. What's this world come to
+					product['product_img'] = "http://www.designjenesis.com/web120/a6/images/unavailable.png"
 			if hasattr(self, "pricePath"):
-				product['product_price'] = self.find(div, self.pricePath).contents
+				product['product_price'] = self.find(div, self.pricePath)
 			if hasattr(self, "category"):
 				product['product_category'] = self.category
 			
@@ -163,6 +171,9 @@ class SiteMethods( ScrapeBase ):
 	def checkProductPage(self, url):
 		
 		product = { }
+		
+		if (url.startswith('/')):
+			url = self.baseUrl + url
 		
 		soup = ScrapeBase().getSoup(url)
 		
@@ -212,25 +223,29 @@ class SiteMethods( ScrapeBase ):
 
 
 def test():
-	return pilgrimsurfsupply()
+	return swordsSmith()
 
 
 def pilgrimsurfsupply():
 	site = SiteMethods()
-	
+		
+		
+	siteUrl = 'http://pilgrimsurfsupply.com'
 	
 	site.setUrl('http://pilgrimsurfsupply.com/store/')
 
 	site.setCategoryPath([ {"id":"category-tree"}, 'li', 'ul', 'li[all]', 'a' ])
 	links = site.getCategories()
 
+	for i in range(len(links)):
+		if (links[i][1].startswith('/')):
+			links[i][1] = siteUrl + links[i][1]
 
-
-	site.setProductContainer(class_=['product_cell'])
+	site.setProductContainer(class_=["product_cell"])
 	site.setImage( [ {"class_":"product_cell_graphic"}, 'a', 'img'] )
 	site.setProductLink( [{"class_":"product_cell_graphic"}, 'a'] )
-	site.setProductName( [{"class_":"product_cell_label"}, 'a'] )
-	site.setPricePath([ {"class_":"product_cell_price"} ])
+	site.setProductName( [{"class_":"product_cell_label"}, 'a', '.contents'] )
+	site.setPricePath([ {"class_":"product_cell_price"}, '.contents' ])
 	
 	
 	site.setProductPageSizePath([ {"id":"SelectSize"}, 'option[all]', '.contents' ])
@@ -245,6 +260,43 @@ def pilgrimsurfsupply():
 		site.setUrl(link)
 		products.extend(site.go())
 	return products
+
+
+def swordsSmith():
+	site = SiteMethods()
+	
+	
+	siteUrl = 'http://swords-smith.com'
+	
+	site.setUrl('http://swords-smith.com/collections/womens-clothing-and-accessories')
+	site.setBaseUrl(siteUrl)
+	
+	site.setCategoryPath([ {"class_":"main-content"}, {"class_":"grid-nav"}, 'li[all]', 'a' ])
+	links = site.getCategories()
+	
+	for i in range(len(links)):
+		if (links[i][1].startswith('/')):
+			links[i][1] = siteUrl + links[i][1]
+	
+	site.setProductContainer(class_="product")
+	site.setImage( ['a', 'img'] )
+	site.setProductLink( ['a'] )
+	site.setProductName( ['a', {"class_":"product-name"}, '.contents[0]' ] )
+	site.setPricePath([ {"class_":"product-price"}, '.contents[1].contents[0]' ])
+	
+	
+	site.setProductPageSizePath([ {"id":"js-product-detail-size-list"}, 'ul', 'li[all]', '.contents' ])
+	site.setProductPageDescriptionPath([ {"class_":"product-detail-description"}, 'span', 'p', '.contents' ])
+	
+	
+	products = []
+	for category, link in links:
+		if (type(category) is list): category = category[0]
+		site.setCategory(category)
+		site.setUrl(link)
+		products.extend(site.go())
+	return products
+
 
 
 
