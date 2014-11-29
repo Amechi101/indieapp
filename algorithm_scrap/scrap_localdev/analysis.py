@@ -27,6 +27,11 @@ class Analysis( ScrapeBase ):
 	def getSiblings(self, element):
 		return [x for x in element.parent.children if x.name is not None]
 
+	def areSiblings(self, e1, e2):
+		if e1 is None or e2 is None: return False
+		if e1.parent is None or e2.parent is None: return False
+		return e2.parent.name == e1.parent.name and e2.parent.attrs == e1.parent.attrs
+
 
 	def isSimilar(self, e1, e2):
 		if (e1 == e2): return True
@@ -81,13 +86,36 @@ class Analysis( ScrapeBase ):
 		return mostCommon
 
 	def getTags2(self): # now we're going to
-		divs = filter(self.isntWorthLess, self.soup.find_all('div'))
+		imgs = self.soup.find_all('img')
 
+		numOfImgs = len(imgs)
 		possiblities = []
 
-		for div in divs:
-			siblings = list(self.getSiblings(div))
-			print len(siblings)
+		while len(imgs) > 0:
+			
+			for i in range(len(imgs)):
+				imgs[i] = imgs[i].parent
+			
+			imgs = [img for img in imgs if img is not None]
+			
+
+			for i in range(len(imgs)):
+				
+				siblings = []
+				for n in range(len(imgs)):
+					if i == n: continue
+					
+					if (self.areSiblings(imgs[i], imgs[n])):
+						siblings.append(n)
+
+				print "number of sibs", len(siblings)
+				if len(siblings) > 0:
+					print "a", imgs[siblings[0]].name, "with attrs:", imgs[siblings[0]].attrs
+				print
+				if (len(siblings) / float(numOfImgs) > .3):
+					return imgs[siblings[0]].parent.attrs
+				
+
 
 
 

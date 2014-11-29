@@ -4,6 +4,7 @@ from connection import ScrapeBase
 import urlparse
 import urllib2
 import json
+from utils import *
 
 import sys, os
 
@@ -61,6 +62,9 @@ class SiteMethods( ScrapeBase ):
 	def setCategoryPath(self, path):
 		self.categoryPath = path
 	
+	def setName(self, name):
+		self.name = name
+	
 	
 	
 	def setProductPageSizePath(self, path):
@@ -77,8 +81,8 @@ class SiteMethods( ScrapeBase ):
 	
 	
 	def find(self, element, steps):
-		try:
-			for i, step in enumerate(steps):
+		for i, step in enumerate(steps):
+			try:
 				if type(step) is dict:
 					element = element.find(**step)
 				
@@ -94,15 +98,19 @@ class SiteMethods( ScrapeBase ):
 							return [self.find(x, steps[i+1:]) for x in element.find_all( step[:index] )]
 						pos = int(pos)
 						element = element.find_all(step)[pos]
-		
-		except Exception, e:
-			
-			#print exception type, file name, and line number
-			exc_type, exc_obj, exc_tb = sys.exc_info()
-			fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-			print(exc_type, fname, exc_tb.tb_lineno)
-			print "steps", steps
-			return None
+						
+			except Exception, e:
+				
+				#print exception type, file name, and line number
+				exc_type, exc_obj, exc_tb = sys.exc_info()
+				fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+				print(exc_type, fname, exc_tb.tb_lineno)
+				print "on step", step, "in", steps
+				print "element == None:", element == None
+				if element is not None:
+					print "element was a", element.name, "with", element.attrs
+				print
+				return None
 		
 		return element
 	
@@ -141,7 +149,7 @@ class SiteMethods( ScrapeBase ):
 
 		for div in divs:
 			
-			product = { }
+			product = {"product_website_url": self.url, "product_website_name": self.name }
 			
 			if hasattr(self, "namePath"):
 				product['name'] = self.find(div, self.namePath)
@@ -223,8 +231,10 @@ class SiteMethods( ScrapeBase ):
 
 
 def test():
-	return swordsSmith()
-
+	data = swordsSmith()
+	if isHealthy(data): print "data is healthy"
+	else: print "data is unhealthy"
+	return data
 
 def pilgrimsurfsupply():
 	site = SiteMethods()
@@ -233,6 +243,8 @@ def pilgrimsurfsupply():
 	siteUrl = 'http://pilgrimsurfsupply.com'
 	
 	site.setUrl('http://pilgrimsurfsupply.com/store/')
+	site.setBaseUrl(siteUrl)
+	site.setName("Pilgrim Surf Supply")
 
 	site.setCategoryPath([ {"id":"category-tree"}, 'li', 'ul', 'li[all]', 'a' ])
 	links = site.getCategories()
@@ -270,6 +282,7 @@ def swordsSmith():
 	
 	site.setUrl('http://swords-smith.com/collections/womens-clothing-and-accessories')
 	site.setBaseUrl(siteUrl)
+	site.setName("Swords Smith")
 	
 	site.setCategoryPath([ {"class_":"main-content"}, {"class_":"grid-nav"}, 'li[all]', 'a' ])
 	links = site.getCategories()
@@ -282,7 +295,7 @@ def swordsSmith():
 	site.setImage( ['a', 'img'] )
 	site.setProductLink( ['a'] )
 	site.setProductName( ['a', {"class_":"product-name"}, '.contents[0]' ] )
-	site.setPricePath([ {"class_":"product-price"}, '.contents[1].contents[0]' ])
+	site.setPricePath([ {"class_":"product-price"}, '.contents' ])
 	
 	
 	site.setProductPageSizePath([ {"id":"js-product-detail-size-list"}, 'ul', 'li[all]', '.contents' ])

@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 from bs4 import BeautifulSoup
+from selenium import webdriver
 
 import requests
 import urllib2
@@ -45,7 +46,7 @@ class ScrapeBase( object ):
 		html_source = browser.page_source
 		browser.quit()
 
-		soup = BeautifulSoup.BeautifulSoup(html_source)
+		return BeautifulSoup(html_source)
 
 
 		
