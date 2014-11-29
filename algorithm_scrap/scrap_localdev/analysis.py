@@ -30,7 +30,7 @@ class Analysis( ScrapeBase ):
 	def areSiblings(self, e1, e2):
 		if e1 is None or e2 is None: return False
 		if e1.parent is None or e2.parent is None: return False
-		return e2.parent.name == e1.parent.name and e2.parent.attrs == e1.parent.attrs
+		return e2.parent == e1.parent
 
 
 	def isSimilar(self, e1, e2):
@@ -89,9 +89,10 @@ class Analysis( ScrapeBase ):
 		imgs = self.soup.find_all('img')
 
 		numOfImgs = len(imgs)
-		possiblities = []
+		
+		possibleElements = None
 
-		while len(imgs) > 0:
+		while len(imgs) > 0 and possibleElements is None:
 			
 			for i in range(len(imgs)):
 				imgs[i] = imgs[i].parent
@@ -113,8 +114,28 @@ class Analysis( ScrapeBase ):
 					print "a", imgs[siblings[0]].name, "with attrs:", imgs[siblings[0]].attrs
 				print
 				if (len(siblings) / float(numOfImgs) > .3):
-					return imgs[siblings[0]].parent.attrs
-				
+					possibleElements = siblings
+					break
+					
+		if possibleElements is None or len(possibleElements) == 0: return None
+					
+		OverOne = 0
+		for sib in possibleElements:
+			if len(list(imgs[sib].find_all('img'))) > 1: OverOne = OverOne + 1
+
+		if OverOne / float(len(possibleElements)) < .3:
+			return imgs[possibleElements[0]].attrs
+		
+		while True:
+			allChildren = []
+			for el in possibleElements:
+				allChildren.extend([x for x in imgs[el].children if x.name is not None])
+
+			OverOne = 0
+			for child in allChildren:
+				if len(list(child.find_all('img'))) > 1: OverOne = OverOne + 1
+			if OverOne / float(len(possibleElements)) < .3:
+				return allChildren[0].attrs
 
 
 
@@ -136,7 +157,7 @@ def test():
 
 # For Testing Purposes
 if __name__=="__main__":
-	analysis = Analysis("http://pilgrimsurfsupply.com/store/")
+	analysis = Analysis("http://swords-smith.com/collections/womens-clothing-and-accessories")
 	analysis.loadSoup()
 	print analysis.getTags2()
 
