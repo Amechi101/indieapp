@@ -168,7 +168,7 @@ if __name__=="__main__":
 
 
 	method = """
-def swordsSmith():
+def """ + name + """():
 	site = SiteMethods()
 
 
