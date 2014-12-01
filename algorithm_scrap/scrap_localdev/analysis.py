@@ -52,40 +52,8 @@ class Analysis( ScrapeBase ):
 
 		return all([self.isSimilar(children1[i], children2[i]) for i in range(length)])
 
-	def getSigniture(self, container):
-		if hasattr(container, "children"):
-			children = [x for x in container.children if x.name is not None]
-			if len(children) > 0:
-				return container.name + ''.join([self.getSigniture(x) for x in children])
-			else:
-				return container.name
-		elif container.name is not None:
-			return "ff"#container['id']
 
-
-	def isntWorthLess(self, container):
-		try:
-			return len([x for x in container.children if x.name is not None]) > 0
-		except:
-			return False
-
-
-	def getTags(self): # this method didn't work out, turns out the most common div isn't the product divs
-		if not hasattr(self, "soup"):
-			print "Please loadSoup() before calling getTags"
-			return
-		containers = filter(self.isntWorthLess, self.soup.find_all('div'))
-
-		childrenSignitures = [self.getSigniture(x) for x in containers]
-		childrenSignitures = filter(lambda x: x, childrenSignitures) # filters out None
-
-		sigs = set(childrenSignitures) # eliminate mulitple occurences
-
-		mostCommon = max(sigs, key=childrenSignitures.count)
-
-		return mostCommon
-
-	def getTags2(self): # now we're going to
+	def getContainer(self): # now we're going to
 		imgs = self.soup.find_all('img')
 
 		numOfImgs = len(imgs)
@@ -109,10 +77,10 @@ class Analysis( ScrapeBase ):
 					if (self.areSiblings(imgs[i], imgs[n])):
 						siblings.append(n)
 
-				print "number of sibs", len(siblings)
-				if len(siblings) > 0:
-					print "a", imgs[siblings[0]].name, "with attrs:", imgs[siblings[0]].attrs
-				print
+#				print "number of sibs", len(siblings)
+#				if len(siblings) > 0:
+#					print "a", imgs[siblings[0]].name, "with attrs:", imgs[siblings[0]].attrs
+#				print
 				if (len(siblings) / float(numOfImgs) > .3):
 					possibleElements = siblings
 					break
@@ -144,22 +112,89 @@ class Analysis( ScrapeBase ):
 		return self.soup
 
 
+	def findElement(self, e, dict, path):
+#		print path
+		for element in e.children:
+			if element.name is None: continue
 
+			broke = False
+			for key in dict.keys():
+				broke = True
+				if key == "name":
+					if element.name != dict["name"]:
+						break
+					else:
+						broke = False
+						continue
+				if not key in e.attrs: break
+				if e.attrs[key] != dict[key]: break
+				broke = False
 
-def test():
-	analysis = Analysis("http://pilgrimsurfsupply.com/store/")
-	analysis.loadSoup()
-	soup = analysis.getSoup()
-	p = soup.find(class_='product_cell')
-	sibs = list(analysis.getSiblings(p))
-	print [analysis.isSimilar(sibs[0], sibs[i]) for i in range(3)]
+			if not broke:
+				return path + [element.name]
+			recusion = self.findElement(element, dict, path + [element.name])
+			if recusion is not None:
+				return recusion
+
+	def getImg(self, container):
+		cont = None
+		
+		if "class" in container:
+			c = container["class"]
+			cont = filter(lambda x: x['class']==c, self.soup.find_all(**container))[0]
+		elif "class_" in container:
+			c = container["class_"]
+			cont = filter(lambda x: x['class']==c, self.soup.find_all(**container))[0]
+		else:
+			cont = self.soup.find(**container)
+		return self.findElement(cont, {"name":"img"}, [])
+
 
 
 # For Testing Purposes
 if __name__=="__main__":
-	analysis = Analysis("http://swords-smith.com/collections/womens-clothing-and-accessories")
+	SiteUrl = raw_input("what's website (just www.something.com): ")
+	ProductsPage = raw_input("where are the products (like www.something.com/store): ")
+	name = raw_input("what's the name of the site")
+
+	if ProductsPage.endswith('/'):
+		ProductsPage = ProductsPage[:len(ProductsPage)-1]
+
+	analysis = Analysis(ProductsPage)
 	analysis.loadSoup()
-	print analysis.getTags2()
+	print ProductsPage
+	container = analysis.getContainer()
+	print container
 
 
+	method = """
+def swordsSmith():
+	site = SiteMethods()
+
+
+	siteUrl = '""" + SiteUrl + """'
+
+	site.setUrl('"""  + ProductsPage + """')
+	site.setBaseUrl(siteUrl)
+	site.setName('""" + name + """')
+
+	site.setCategoryPath([ {"class_":"main-content"}, {"class_":"grid-nav"}, 'li[all]', 'a' ])
+	links = site.getCategories()
+
+	for i in range(len(links)):
+		if (links[i][1].startswith('/')):
+			links[i][1] = siteUrl + links[i][1]
+
+	site.setProductContainer(""" + str(container) + """)
+	site.setImage( ['a', 'img'] )
+	site.setProductLink( ['a'] )
+	site.setProductName( ['a', {"class_":"product-name"}, '.contents[0]' ] )
+	site.setPricePath([ {"class_":"product-price"}, '.contents' ])
+
+
+	site.setProductPageSizePath([ {"id":"js-product-detail-size-list"}, 'ul', 'li[all]', '.contents' ])
+		site.setProductPageDescriptionPath([ {"class_":"product-detail-description"}, 'span', 'p', '.contents' ])
+"""
+
+	print analysis.getImg(container)
 

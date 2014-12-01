@@ -193,41 +193,6 @@ class SiteMethods( ScrapeBase ):
 			product['description_long'] = self.find(soup.html, self.productPageDescriptionPath)
 		
 		return product
-	
-	
-	
-	
-	
-	def filterTags( self, element_tag, product_category_link  ):
-		"""
-			Method to filter tags with the necessary category links to access the products later
-			"""
-		# Creating possible option to choose any string
-		# if len( str( element_tag ) ) == 0:
-		#	 return None
-		# else:
-		#	 return element_tag
-		
-		# Finding tag with descendants where the category link would live
-		find_tag = [ x for x in self.html_tag.descendants if x.name == element_tag ]
-		
-		#Setting the apporiate index to find the links throughout the site,
-		#this index wiil scan the site against this array,looking for the proper HTML tag to filter
-		# It is set with numbers from 0 - 10 as from experience anything outside the range would indicate
-		# that we must change the tag in filter tags list filter
-		tag_index = [0,1,2,3,4,5,6,7,8,9,10]
-		try:
-			for i in tag_index:
-				if tag_index[i]:
-					tag = find_tag[i]
-				else:
-					return []
-		except Exception, e:
-			return e, "Not in Range!"
-		
-		
-		# Returning the links and the contents within the links in a new list
-		return [ [x.get('href'), x.contents ] for x in tag.find_all('a') if x.get('href').strip().startswith( product_category_link ) ]
 
 
 def test():
