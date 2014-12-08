@@ -11,6 +11,7 @@ urlpatterns = patterns("",
     url(r"^account/social/", include("social.apps.django_app.urls", namespace="social")),
     url(r"^account/", include("account.urls")),
     url(r'^browse/', include('product_extend.urls')),
+    url(r'^scrap/', include('scrap.urls')),
 )
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

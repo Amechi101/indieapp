@@ -1,30 +1,32 @@
 {% load i18n %}
 {% load account_tags %}
 
-    {% if request.user.is_authenticated %}
-        <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                {% user_display request.user %}
-                <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu dash">
-                <li><a href="{% url "account_settings" %}"> {% trans "Dashboard" %}</a></li>
-                <li><a href="{% url "product_list" %}">{% trans "Scrap Feed" %}</a></li>
-                {% if request.user.is_staff %}
-                    <li><a href="{% url THEME_ADMIN_URL|default:"admin:index" %}">{% trans "Admin" %}</a></li>
-                {% endif %}
-                <li class="divider"></li>
-                <li>
-                    <a id="account_logout" href="{% url "account_logout" %}"> {% trans "Log out" %}</a>
-                </li>
-            </ul>
-        </li>
-    {% else %}
-        <li><a href="{% url "account_login" %}">{% trans "Log in" %}</a></li>
-        <li><a href="{% url "account_signup" %}">{% trans "Sign up" %}</a></li>
+ 
+
+<ul class="nav_pages">
+{% if request.user.is_authenticated %}
+    <li><a href="{% url "account_settings" %}"> {% trans "DASHBOARD" %}</a></li>
+    {% if request.user.is_staff %}
+    <li><a href="{% url THEME_ADMIN_URL|default:"admin:index" %}">{% trans "Admin" %}</a></li>
     {% endif %}
+    <li><a id="account_logout" href="{% url "account_logout" %}"> {% trans "LOG OUT" %}</a></li>
+    {% else %}
+    <li><a href="{% url "account_login" %}"><span>{% trans "LOG IN" %}</span></a></li>
+    <li><a href="{% url "account_signup" %}"><span>{% trans "SIGN UP" %}</span></a></li>
+    {% endif %}
+    <li><a href="{% url "home" %}"><span>HOME</span></a></li>
+    <li><a href="#member"><a href="#"><span>ABOUT INDIESCRAP</span></a></li>
+    <li><a href="#service"><span>LEGAL STUFF</span></a></li>
+    <li><a href="#about"><span>CONTACT US</span></a></li>
+    <li><a href="{% url "product_list" %}"> <span>{% trans "BROWSE PRODUCTS" %}</span></a></li>
+</ul>
+<ul class="nav_social">
+    <li><a href="#"><span  class="icon-indie_web-04"></span></a></li>
+    <li><a href="#"><span  class="icon-indie_web-05"></span></a></li> 
+</ul>
+<p class="nav_copyright">{% trans "&copy;2014 IndieScrap. Scraping in NYC with love." %}</p>
 
-
+  
 <form id="accountLogOutForm" style="display: none;" action="{% url "account_logout" %}" method="POST">
     {% csrf_token %}
 </form>

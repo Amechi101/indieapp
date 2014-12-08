@@ -4,27 +4,25 @@
 {% load metron_tags %}
 {% load account_tags %}
 {% load i18n %}
-
-
-{% block style_base %}
-    <!-- Stylesheets for Indie-Scrap -->
-    <link rel="stylesheet" href="{% static "css/base.css" %}" /> 
-    <link rel="stylesheet" href="{% static "css/site.css" %}" />
-    <link rel="stylesheet" href="{% static "css/form.css" %}" /> 
+    
+    {% block style_base %}
+        <!-- Stylesheets for Indie-Scrap -->
+        <link rel="stylesheet" href="{% static "css/base.css" %}" />
+        <link rel="stylesheet" href="{% static "css/site.css" %}" />
+        <link rel="stylesheet" href="{% static "css/fonts.css" %}" />
+        <link rel="stylesheet" href="{% static "css/form.css" %}" />
     {% block extra_style %}{% endblock %}
-{% endblock %}
-
-{% block top_script_base %}
-    {% block top_script %} 
-        <script src="{% static "js/modernizr.custom.32600.js" %}"></script>
     {% endblock %}
-{% endblock %}
 
+    {% block top_script_base %}
+        {% block top_script %}
+            <script src="{% static "js/lib/modernizr.custom.32600.js" %}"></script>
+        {% endblock %}
+    {% endblock %}
 
 {% block extra_head_base %}
     {% block extra_head %}{% endblock %}
 {% endblock %}
-
 
 
 {% block footer %}
@@ -33,22 +31,17 @@
 <!-- End footer -->
 {% endblock %}
 
-
 {% block script_base %}
     
-    <!--Core Script -->
-    <script src="{% static "js/jquery-1.11.0.js" %}"></script>
-    <script src="{% static "js/bootstrap.min.js" %}"></script>
-    <script src="{% static "js/underscore.js" %}"></script>
-    <script src="{% static "js/backbone.js" %}"></script>
-    <script src="{% static "pinax/js/theme.js" %}"></script>
-    
     <!--Library Script-->
-    <script src="{% static "js/jquery.dcjqaccordion.2.7.js" %}"></script>
-    <script src="{% static "js/jquery.scrollTo.min.js" %}"></script>
-    <script src="{% static "js/sidebarEffects.js" %}"></script>
-    <script src="{% static "js/classie.js" %}"></script>
-    
+    <script src="{% static "js/lib/jquery-1.11.0.js" %}"></script>
+    <script src="{% static "js/lib/bootstrap.min.js" %}"></script>
+    <script src="{% static "js/lib/underscore.js" %}"></script>
+    <script src="{% static "js/lib/backbone.js" %}"></script>
+    <script src="{% static "pinax/js/theme.js" %}"></script>
+    <script src="{% static "js/lib/sidebarEffects.js" %}"></script>
+    <script src="{% static "js/lib/classie.js" %}"></script>
+
     <!--Application Script -->
     <script src="{% static "js/site.js" %}"></script>
     
@@ -60,8 +53,6 @@
     {% endblock %}
 {% endblock %}
 
-
 {% block extra_body_base %}
-    {% block extra_body %}
-    {% endblock %}
+    {% block extra_body %}{% endblock %}
 {% endblock %}

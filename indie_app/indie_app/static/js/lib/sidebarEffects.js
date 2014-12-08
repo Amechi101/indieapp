@@ -28,18 +28,27 @@
 	function init() {
 
 		var container = document.getElementById( 'st-container' ),
-			buttons = Array.prototype.slice.call( document.querySelectorAll( '#st-trigger-effects > a' ) ),
+			buttons = Array.prototype.slice.call( document.querySelectorAll( '#st-trigger-effects #btn_menu, #st-trigger-effects #btn_search' ) ),
 			// event type (if mobile use touch events)
 			eventtype = mobilecheck() ? 'touchstart' : 'click',
+			reset = document.getElementById('closeMenu'),
+			resetSearch = document.getElementById('closeSearch'),
 			resetMenu = function() {
 				classie.remove( container, 'st-menu-open' );
 			},
-			bodyClickFn = function(evt) {
-				if( !hasParentClass( evt.target, 'st-menu' ) ) {
+			// bodyClickFn = function(evt) {
+			// 	if( !hasParentClass( evt.target, 'st-menu' )  ) {
+			// 		resetMenu();
+			// 		document.removeEventListener( eventtype, bodyClickFn );
+			// 	}
+
+			// };
+			resetClickFn = function(evt) {
+				if (evt.target == reset || evt.target == resetSearch) {
 					resetMenu();
-					document.removeEventListener( eventtype, bodyClickFn );
+					document.removeEventListener(eventtype, resetClickFn);
 				}
-			};
+			}; 
 
 		buttons.forEach( function( el, i ) {
 			var effect = el.getAttribute( 'data-effect' );
@@ -52,12 +61,18 @@
 				setTimeout( function() {
 					classie.add( container, 'st-menu-open' );
 				}, 25 );
-				document.addEventListener( eventtype, bodyClickFn );
+				document.addEventListener( eventtype, resetClickFn );
+				// document.addEventListener( eventtype, bodyClickFn );
 			});
 		} );
+
+		
 
 	}
 
 	init();
 
 })();
+
+
+

@@ -27,7 +27,7 @@ class Product(models.Model):
     The product structure for the application, the products we scrap from sites will model this and save directly into the tables.
     """
 
-    name = models.CharField(max_length=254, verbose_name=_('Name'), null=True, blank=True)
+    product_name = models.CharField(max_length=254, verbose_name=_('Name'), null=True, blank=True)
     
     product_price = CurrencyField( verbose_name=_('Unit price') )
     product_slug_url = models.URLField(max_length=200,  null=True, blank=True)
@@ -53,8 +53,6 @@ class Product(models.Model):
         verbose_name = _('Product')
         verbose_name_plural = _('Products')
 
-    def __unicode__(self):
-        return self.name
 
     def get_product_price(self):
         """
@@ -62,11 +60,11 @@ class Product(models.Model):
         """
         return "{0}".format(self.product_price)
 
-    def get_name(self):
+    def get_product_name(self):
         """
         Return the name of this Product (provided for extensibility)
         """
-        return "{0}".format(self.name)
+        return "{0}".format(self.product_name)
 
 
     def get_product_website_name(self):

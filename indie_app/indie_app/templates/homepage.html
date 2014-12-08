@@ -1,190 +1,45 @@
 {% extends "site_base.html" %}
 
-{% load account_tags %}
-{% load staticfiles %}
 {% load i18n %}
 
 {% block head_title %}{% trans "Welcome" %}{% endblock %}
 
 {% block body_class %}homepage{% endblock %}
+  
 
-{% block side_nav %}
-<!-- Homepage Menu -->
-<nav class="st-menu st-effect-2" id="menu-2">
-    <div class="block">
-        <a class="close-btn" id="nav-close-btn" href="#top">Return to Content</a> 
-        <ul>
-            {% if request.user.is_authenticated %}
-                <li style="color:red;">{% user_display request.user %}</li>
-                <a href="{% url "account_settings" %}"> {% trans "Dashboard" %}</a>
-                {% if request.user.is_staff %}
-                    <a href="{% url THEME_ADMIN_URL|default:"admin:index" %}">{% trans "Admin" %}</a>
-                {% endif %}
-                <a id="account_logout" href="{% url "account_logout" %}"> {% trans "Log out" %}</a>
-                {% else %}
-                    <a href="{% url "account_login" %}">{% trans "Log in" %}</a>
-                    <a href="{% url "account_signup" %}">{% trans "Sign up" %}</a>
-            {% endif %}
-            <a href="#">About Indiescrap</a>
-            <a href="#">Legal Stuff</a>
-            <a href="#">Contact Us</a>
-            <a href="{% url "product_list" %}"> {% trans "Browse All Sites" %}</a>
-            
-            <ul class="social">
-                <li><a href="" data-icon="p"></a></li>
-                <li><a href="" data-icon="f"></a></li>
-                <li><a href="" data-icon="s"></a></li>
-            </ul>
-            <p class="copy">{% trans "&copy;2014 IndieScrap. Scraping in NYC with love." %}</p>
-        </ul>      
-    </div>
-</nav>
-{% endblock  %}
-
-
-{% block topbar_base %}              
-<header id="home">
-    <nav id="st-trigger-effects" class="inner">
-        <div class="navbar-right">
-            <button type="button" id="btn_search" class="btn btn-navbar btn-toggle-sidebar-right hidden-xs" data-panel="#sidebar_search">
-                <span class="icon-glco_web-05 icon-main"></span>
-                <span class="icon-glco_web-02 icon-close"></span>
-                <span class="text-hide">Search</span>
-            </button>
-            <a data-effect="st-effect-2"></a>
-        </div>
-        
-        <div class="inner-logo navbar-left">
-            <a><img src="{% static "images/logo.svg" %}" class="logo left"></img></a>
-        </div>
-    </nav>
-</header> 
-{% endblock %}  
-
-{% block body_base %}
-<!-- search sidebar right -->
-<div id="sidebar_right" class="sidebar sidebar-closed">
-    <div class="sidebar-panel-wrapper">
-        <div id="sidebar_search" class="sidebar-panel">
-            <div class="overlay sidebar-panel-overlay"></div>
-            <div class="overlay sidebar-block-overlay">
-                <div id="sidebar_search_block" class="sidebar-block">
-                <form id="navbar_search_form" class="form-controlled search-form closed hidden-xs" action="filter_for_sites" method="get" role="search">
-                    <label for="navbar_search" class="hide">Search</label>
-                    <input id="navbar_search" class="search form-control" type="search" name="q" value="" maxlength="128" />
-                    <span id="navbar_search_icon" class="icon-glco_web-05"></span>
-                </form>
-                    <div class="empty">
-                        <button type="button" class="btn btn-search-up btn-clear">
-                            <span class="text-hide">Go to Search.</span>
-                        </button>
-                        <p>What can we help you find?</p>
-                    </div>
+{% block body %}
+<section class="homepage-image">
+    <div class="home">
+        <div class="home-image-wrapper">
+            <div class="slide">
+                <div class="slide-text">
+                    <h3><span>KUTIKAI</span></h3>
+                    <span class="slide-subtext">to marka, w którą wkładamy mnóstwo serca</span>
                 </div>
             </div>
         </div>
-
-        <div id="sidebar_right_loader" class="please-wait"><span class="text-hide">Loading...</span></div>
+        <a id="nav_down" class="browse-next" href="#"></a>
     </div>
-</div> <!-- end search sidebar -->
-
-<!-- main content -->
-<div class="page_wrapper page-index">
-    <div class="page_content">
-        <ul class="page_tiles">
-            <li class="page_tiles--artist">
-                <img src="http://www.pitchandsmith.com/sites/default/files/imagecache/square_medium/ext_images/adam_tensta_press3_sara_ringstrom.jpg" alt="" />
-                <h2 class="page_tiles--artist_heading"><a href="/artists/adam_tensta/">Adam Tensta</a></h2>
-            </li>
-
-            <li class="page_tiles--artist">
-                <img src="http://www.pitchandsmith.com/sites/default/files/imagecache/square_medium/ext_images/alaska_-_6.jpeg" alt="" />
-                <h2 class="page_tiles--artist_heading"><a href="/artists/alaska/">Alaska</a></h2>
-            </li>
-
-            <li class="page_tiles--artist">
-                <img src="http://www.pitchandsmith.com/sites/default/files/imagecache/square_medium/ext_images/aliceboman14_johannaattesson.jpg" alt="" />
-                <a href="/artists/alice_boman/#book-artist" class="page_tiles--artist_book_link">Boka artist</a>
-                <h2 class="page_tiles--artist_heading"><a href="/artists/alice_boman/">Alice Boman</a></h2>
-            </li>
-
-            <li class="page_tiles--artist">
-                <img src="http://www.pitchandsmith.com/sites/default/files/imagecache/square_medium/ext_images/josebyjohanna_hedborg.jpg" alt="" />
-                <a href="/artists/jose_gonzalez/#book-artist" class="page_tiles--artist_book_link">Boka artist</a>
-                <h2 class="page_tiles--artist_heading"><a href="/artists/jose_gonzalez/">José González</a></h2>
-            </li>
-
-            <li class="page_tiles--artist">
-                <img src="http://www.pitchandsmith.com/sites/default/files/imagecache/square_medium/ext_images/skarmavbild_2014-07-01_kl._12.05.50.png" alt="" />
-                <a href="/artists/kalle_baah/#book-artist" class="page_tiles--artist_book_link">Boka artist</a>
-                <h2 class="page_tiles--artist_heading"><a href="/artists/kalle_baah/">Kalle Baah</a></h2>
-            </li>
-
-            <li class="page_tiles--artist">
-                <img src="http://www.pitchandsmith.com/sites/default/files/imagecache/square_medium/ext_images/pressbild_3_richard_frantzen.jpg" alt="" />
-                <a href="/artists/llojd/#book-artist" class="page_tiles--artist_book_link">Boka artist</a>
-                <h2 class="page_tiles--artist_heading"><a href="/artists/llojd/">LLOJD</a></h2>
-            </li>
-
-            <li class="page_tiles--artist">
-                <img src="http://www.pitchandsmith.com/sites/default/files/imagecache/square_medium/ext_images/lff_press-1.jpg" alt="" />
-                <a href="/artists/lo-fi-fnk/#book-artist" class="page_tiles--artist_book_link">Boka artist</a>
-                <h2 class="page_tiles--artist_heading"><a href="/artists/lo-fi-fnk/">Lo-Fi-Fnk</a></h2>
-            </li>
-
-            <li class="page_tiles--artist">
-                <img src="http://www.pitchandsmith.com/sites/default/files/imagecache/square_medium/ext_images/lv_a_008_lowres72dpi.jpg" alt="" />
-                <a href="/artists/maskinen/#book-artist" class="page_tiles--artist_book_link">Boka artist</a>
-                <h2 class="page_tiles--artist_heading"><a href="/artists/maskinen/">Maskinen</a></h2>
-            </li>
-
-            <li class="page_tiles--artist">
-                <img src="http://www.pitchandsmith.com/sites/default/files/imagecache/square_medium/ext_images/mayka_club_photo_.jpg" alt="" />
-                <a href="/artists/mayka/#book-artist" class="page_tiles--artist_book_link">Boka artist</a>
-                <h2 class="page_tiles--artist_heading"><a href="/artists/mayka/">Mayka</a></h2>
-            </li>
-
-            <li class="page_tiles--artist">
-                <img src="http://www.pitchandsmith.com/sites/default/files/imagecache/square_medium/ext_images/2.jpg" alt="" />
-                <a href="/artists/movits/#book-artist" class="page_tiles--artist_book_link">Boka artist</a>
-                <h2 class="page_tiles--artist_heading"><a href="/artists/movits/">Movits!</a></h2>
-            </li>
-
-            <li class="page_tiles--artist">
-                <img src="http://www.pitchandsmith.com/sites/default/files/imagecache/square_medium/ext_images/eklof_20140716_0730.jpg" alt="" />
-                <a href="/artists/nadya/#book-artist" class="page_tiles--artist_book_link">Boka artist</a>
-                <h2 class="page_tiles--artist_heading"><a href="/artists/nadya/">Nadya</a></h2>
-            </li>
-
-            <li class="page_tiles--artist">
-                <img src="http://www.pitchandsmith.com/sites/default/files/imagecache/square_medium/ext_images/noonie_bao_photo_by_sami_snierva_01s.jpg" alt="" />
-                <a href="/artists/noonie_bao/#book-artist" class="page_tiles--artist_book_link">Boka artist</a>
-                <h2 class="page_tiles--artist_heading"><a href="/artists/noonie_bao/">Noonie Bao</a></h2>
-            </li>
-
-            <li class="page_tiles--artist">
-                <img src="http://www.pitchandsmith.com/sites/default/files/imagecache/square_medium/ext_images/norlie-kkv_web.jpg" alt="" />
-                <a href="/artists/norlie_kkv/#book-artist" class="page_tiles--artist_book_link">Boka artist</a>
-                <h2 class="page_tiles--artist_heading"><a href="/artists/norlie_kkv/">Norlie & KKV</a></h2>
-            </li>
-
-            <li class="page_tiles--artist">
-                <img src="http://www.pitchandsmith.com/sites/default/files/imagecache/square_medium/ext_images/panda_da_panda_pressbild2013_fotograf_jakob_koc.jpg" alt="" />
-                <a href="/artists/panda_da_panda/#book-artist" class="page_tiles--artist_book_link">Boka artist</a>
-                <h2 class="page_tiles--artist_heading"><a href="/artists/panda_da_panda/">Panda Da Panda</a></h2>
-            </li>
-
-            <li class="page_tiles--artist">
-                <img src="http://www.pitchandsmith.com/sites/default/files/imagecache/square_medium/ext_images/parham1-patrik-vincent.jpg" alt="" />
-                <a href="/artists/parham/#book-artist" class="page_tiles--artist_book_link">Boka artist</a>
-                <h2 class="page_tiles--artist_heading"><a href="/artists/parham/">Parham</a></h2>
-            </li>   
-        </ul>
-    </div>
-</div> <!-- main content end-->
-<div class="paginate">
-    <a rel="noindex, follow" href="#">Load More</a>  
-</div>
+</section>
+        
+<section class="home_content">
+    <ul class="home_tiles">
+        <li class="page_tiles-home"> <h2 class="page_tiles-home_heading"><a href="">AYR</a> </h2></li>
+        <li class="page_tiles-home"> <h2 class="page_tiles-home_heading"><a href="">SWORDS & SMITH</a> </h2></li>
+        <li class="page_tiles-home"> <h2 class="page_tiles-home_heading"><a href="">SWORDS & SMITH</a> </h2></li>
+        <li class="page_tiles-home"> <h2 class="page_tiles-home_heading"><a href="">SWORDS & SMITH</a> </h2></li>
+        <li class="page_tiles-home"> <h2 class="page_tiles-home_heading"><a href="">SWORDS & SMITH</a> </h2></li>
+        <li class="page_tiles-home"> <h2 class="page_tiles-home_heading"><a href="">SWORDS & SMITH</a> </h2></li>
+        <li class="page_tiles-home"> <h2 class="page_tiles-home_heading"><a href="">SWORDS & SMITH</a> </h2></li>
+        <li class="page_tiles-home"> <h2 class="page_tiles-home_heading"><a href="">SWORDS & SMITH</a> </h2></li>
+        <li class="page_tiles-home"> <h2 class="page_tiles-home_heading"><a href="">SWORDS & SMITH</a> </h2></li>
+        <li class="page_tiles-home"> <h2 class="page_tiles-home_heading"><a href="">SWORDS & SMITH</a> </h2></li>
+        <li class="page_tiles-home"> <h2 class="page_tiles-home_heading"><a href="">SWORDS & SMITH</a> </h2></li>
+        <li class="page_tiles-home"> <h2 class="page_tiles-home_heading"><a href="">SWORDS & SMITH</a> </h2></li>
+        <li class="page_tiles-home"> <h2 class="page_tiles-home_heading"><a href="">SWORDS & SMITH</a> </h2></li>
+        <li class="page_tiles-home"> <h2 class="page_tiles-home_heading"><a href="">SWORDS & SMITH</a> </h2></li>     
+    </ul>
+</section>
 {% endblock %}
 
 

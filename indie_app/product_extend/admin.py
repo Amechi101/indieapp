@@ -5,8 +5,8 @@ from product_extend.models import Product
 
 
 class ProductAdmin(admin.ModelAdmin):
-	list_display = ["name"]
-	search_fields = ["name"]
+	list_display = ["product_name"]
+	search_fields = ["product_name"]
 	list_per_page = 25
 
 
