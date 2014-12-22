@@ -11,6 +11,9 @@
         <link rel="stylesheet" href="{% static "css/site.css" %}" />
         <link rel="stylesheet" href="{% static "css/fonts.css" %}" />
         <link rel="stylesheet" href="{% static "css/form.css" %}" />
+        <link rel="stylesheet" href="{% static "css/jquery.mmenu.all.css" %}" />
+        
+    
     {% block extra_style %}{% endblock %}
     {% endblock %}
 
@@ -34,18 +37,70 @@
 {% block script_base %}
     
     <!--Library Script-->
-    <script src="{% static "js/lib/jquery-1.11.0.js" %}"></script>
+    <script src="{% static "js/lib/jquery-1.11.1.min.js" %}"></script>
     <script src="{% static "js/lib/bootstrap.min.js" %}"></script>
-    <script src="{% static "js/lib/underscore.js" %}"></script>
-    <script src="{% static "js/lib/backbone.js" %}"></script>
+    <script src="{% static "js/lib/underscore-min.js" %}"></script>
+    <script src="{% static "js/lib/backbone-min.js" %}"></script>
     <script src="{% static "pinax/js/theme.js" %}"></script>
-    <script src="{% static "js/lib/sidebarEffects.js" %}"></script>
     <script src="{% static "js/lib/classie.js" %}"></script>
+    <script src="{% static "js/lib/jquery.backstretch.min.js" %}"></script>
+    <script src="{% static "js/lib/jquery.accordion.js" %}"></script>
+    <script src="{% static "js/lib/jquery.easing.1.3.js" %}"></script>
+    <script src="{% static "js/lib/jquery.mmenu.min.all.js" %}"></script>
+    <!-- <script src="{% static "js/lib/jquery.autocomplete.js" %}"></script> -->
+
+
 
     <!--Application Script -->
     <script src="{% static "js/site.js" %}"></script>
-    
+
+     
     <!--Special Script-->
+    <script>
+        $(function() {
+            /*
+             *
+             * Plugin intializers
+             *
+             */
+            
+            //homepage image source, helping backload faster
+            $('.homepage-image .slide').backstretch("http://127.0.0.1:8000/site_media/static/images/girl-standing.jpg");
+
+            //Homepage accordion
+            //Accordian for product viewing homepage
+            $('#st-accordion').accordion({
+                oneOpenedItem   : true
+            });
+
+            //Global Site Navigation
+            $("#my-menu").mmenu({
+                "header": {
+                    "title": "Main Menu",
+                    "add": true,
+                    "update": true
+                }
+            });
+            
+            // $("#my-menu-second").mmenu({
+            //     "offCanvas": {
+            //         "position": "right"
+            //     },
+            //     "header": {
+            //         "title": "Website Filter",
+            //         "add": true,
+            //         "update": true
+            //     }
+            // });
+
+            $("#my-button").click(function() {
+                $("#my-menu").trigger("open.mm");  
+            });
+            
+        });
+    </script>
+
+  
     <script type="text/javascript" src="//use.typekit.net/uee5rje.js"></script>
     <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
     {% block extra_script %}

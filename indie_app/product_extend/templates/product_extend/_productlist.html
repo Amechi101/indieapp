@@ -1,8 +1,47 @@
 {% extends "site_base.html" %}
 
+{% block global_rightside_sitefilter %}
+<!-- Global website search (right side)  -->
+    <div class="nav-sidebar" id="nav-filters">
+        <button type="button" class="btn btn-navbar" id="closeSearch" >
+            <span class="icon-indie_web-03"></span>
+        </button> 
+        <div class="wrapper-nav">
+            <p class="results">Current Site:<strong>None</strong></p>
+            {% block global_rightside_search %}
+            <div class='search-wrapper '>
+                <div class='search-input-container'>
+                    <div class='search-input-tablet-and-desktop'>
+                        <input autocomplete='off' class='search-input' id='search-input' placeholder='Search sites' spellcheck='false' type='text' />
+                    </div>
+                </div>
+            </div>
+            {% endblock  %}
+            <div class="wrapper-dropdown" id="global-site-letter">
+                <span>Filter By Letter</span>
+                <ul id="letter">
+                    
+                </ul>
+            </div>
+            <div class="wrapper-dropdown" id="global-site-trending">
+                <span>Filter By Trending</span>
+                <ul id="trending">
+                   
+                </ul>
+            </div>
+
+
+            <!-- Created after slection on one of the two drop downs are choosen -->
+            <ul class="list-tags">
+                <li class="close style2"><a href="">A</a></li>
+                <li class="close style2"><a href="">B</a></li>
+            </ul>
+        </div>
+    </div>
+{% endblock  %}
+
+
 {% block header_class %}base-header-product base{% endblock %}
-
-
 
 {% block body_base %}
 <!-- product menu -->
@@ -55,13 +94,13 @@
         </div> 
     </div>     
 </div>
- <main id="content">
+<main id="content">
     <div class="block last">
         <div class="inner" role="main">
             {% block product %}{% include "product_extend/_product.html" %} {% endblock %}
         </div>
     </div>
-    </main>
+</main>
 {% endblock %}
 
 

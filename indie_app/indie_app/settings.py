@@ -1,5 +1,10 @@
 import os
 
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
+
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
 PACKAGE_ROOT = os.path.abspath(os.path.dirname(__file__))
 # tweaked settings to prevent Django 1.5 detection in Django 1.7
@@ -10,7 +15,7 @@ TEMPLATE_DEBUG = DEBUG
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3", # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        "NAME": "local.db", #dev.db for sqlite3
+        "NAME": "devlocal.db", #dev.db for sqlite3
     }
 }
 
@@ -96,6 +101,7 @@ TEMPLATE_CONTEXT_PROCESSORS = [
     "social.apps.django_app.context_processors.backends",
     "social.apps.django_app.context_processors.login_redirect",
     "pinax_theme_bootstrap.context_processors.theme",
+    'product_extend.context_processors.constsHomepage',
 ]
 
 
@@ -140,6 +146,7 @@ INSTALLED_APPS = [
     "indie_app",
     "product_extend",
     "website",
+    'cloudinary',
 ]
 
 # A sample logging configuration. The only tangible logging
@@ -175,7 +182,14 @@ FIXTURE_DIRS = [
     os.path.join(PROJECT_ROOT, "fixtures"),
 ]
 
+cloudinary.config( 
+  cloud_name = "doqjl5owq", 
+  api_key = "936571887474212", 
+  api_secret = "RMBIzbb7sOzx1LREz7Uj0d22Ms0" 
+)
+
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
 
 ACCOUNT_OPEN_SIGNUP = True
 

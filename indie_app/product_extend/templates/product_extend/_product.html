@@ -8,7 +8,7 @@
     <li class="col n-4">
         <figure class="rollover site">
             <div class="scrap-likes"><span class="icon-heart"></span></div>
-            <img src="{{object.product_img}}" width="470" height="700">
+            <img src="{{MEDIA_URL}}{{object.product_img}}" width="470" height="700">
            <!--  <div class="scrap-from"> Scrapped from:<a class="scrap-site" target="_blank" href="{{object.product_website_url}}">{{object.product_website_name}}</a></div> -->
             <div class="scrap-designer"> Scrapped from: <a class="scrap-site" target="_blank" href="{{object.product_website_url}}">{{object.product_website_name}}</a></div>
             <div class="scrap-title">{{object.product_name }}, <span class="scrap-price">${{object.product_price}}</span></div>

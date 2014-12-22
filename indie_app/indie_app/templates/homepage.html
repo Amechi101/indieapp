@@ -1,47 +1,103 @@
 {% extends "site_base.html" %}
+{% load url from future %}
 
 {% load i18n %}
 
 {% block head_title %}{% trans "Welcome" %}{% endblock %}
 
 {% block body_class %}homepage{% endblock %}
-  
+
 
 {% block body %}
-<section class="homepage-image">
+<!-- <section class="homepage-image">
     <div class="home">
         <div class="home-image-wrapper">
             <div class="slide">
                 <div class="slide-text">
-                    <h3><span>KUTIKAI</span></h3>
-                    <span class="slide-subtext">to marka, w którą wkładamy mnóstwo serca</span>
+                    <h3><span>The Best Independent Websites</span></h3>
+                    <span class="slide-subtext">Underground shopping just got easier</span>
                 </div>
             </div>
         </div>
-        <a id="nav_down" class="browse-next" href="#"></a>
+        <a id="navDown" class="browse-next" href="#"></a>
     </div>
 </section>
-        
-<section class="home_content">
-    <ul class="home_tiles">
-        <li class="page_tiles-home"> <h2 class="page_tiles-home_heading"><a href="">AYR</a> </h2></li>
-        <li class="page_tiles-home"> <h2 class="page_tiles-home_heading"><a href="">SWORDS & SMITH</a> </h2></li>
-        <li class="page_tiles-home"> <h2 class="page_tiles-home_heading"><a href="">SWORDS & SMITH</a> </h2></li>
-        <li class="page_tiles-home"> <h2 class="page_tiles-home_heading"><a href="">SWORDS & SMITH</a> </h2></li>
-        <li class="page_tiles-home"> <h2 class="page_tiles-home_heading"><a href="">SWORDS & SMITH</a> </h2></li>
-        <li class="page_tiles-home"> <h2 class="page_tiles-home_heading"><a href="">SWORDS & SMITH</a> </h2></li>
-        <li class="page_tiles-home"> <h2 class="page_tiles-home_heading"><a href="">SWORDS & SMITH</a> </h2></li>
-        <li class="page_tiles-home"> <h2 class="page_tiles-home_heading"><a href="">SWORDS & SMITH</a> </h2></li>
-        <li class="page_tiles-home"> <h2 class="page_tiles-home_heading"><a href="">SWORDS & SMITH</a> </h2></li>
-        <li class="page_tiles-home"> <h2 class="page_tiles-home_heading"><a href="">SWORDS & SMITH</a> </h2></li>
-        <li class="page_tiles-home"> <h2 class="page_tiles-home_heading"><a href="">SWORDS & SMITH</a> </h2></li>
-        <li class="page_tiles-home"> <h2 class="page_tiles-home_heading"><a href="">SWORDS & SMITH</a> </h2></li>
-        <li class="page_tiles-home"> <h2 class="page_tiles-home_heading"><a href="">SWORDS & SMITH</a> </h2></li>
-        <li class="page_tiles-home"> <h2 class="page_tiles-home_heading"><a href="">SWORDS & SMITH</a> </h2></li>     
-    </ul>
-</section>
+ -->
+
+    {% block global_specific_sitefilter %}
+    <section id="home-specific-site-filter"> 
+        <div class="nav-sidebar" id="nav-filters">
+            <div class="wrapper-nav">
+                <!-- <p class="results"><strong>6</strong> available sites for you to search! </p> -->
+                <p class="results">Filter Sites By:</p>
+                <div class="wrapper-dropdown" id="global-site-letter">
+                    <span>Letter</span>
+                    <ul id="letter">
+                        
+                    </ul>
+                </div>
+                <div class="wrapper-dropdown" id="global-site-trending">
+                    <span>Trending</span>
+                    <ul id="trending">
+                       
+                    </ul>
+                </div>
+
+                <div class="wrapper-dropdown" id="global-site-sex">
+                    <span>Sex</span>
+                    <ul id="sex">
+                       
+                    </ul>
+                </div>
+
+                <!-- Created after slection on one of the two drop downs are choosen -->
+                <ul class="list-tags">
+                    <li class="close style2"><a href="">A</a></li>
+                    <li class="close style2"><a href="">B</a></li>
+
+                </ul>
+            </div>
+        </div>   
+    </section>
+    {% endblock  %}
+
+    {% block global_sitefilter %}
+    <section id="home-site-filter"> 
+        <div class='search-wrapper '>
+            <div class='search-input-container'>
+                <div class='search-input-tablet-and-desktop'>
+                    <label class='search-label' for='search-input'></label>
+                    <input class='search-input' id='search-input' placeholder='Search Name Of Sites' spellcheck='false' type='text' />
+                </div>
+            </div>
+        </div>
+    </section>  
+    {% endblock %}  
+
+    <section id="st-accordion" class="home_content">
+        <ul class="home_tiles">
+            {% block homepage_websites %}{% include "_homepage_ajaxall.html" %} {% endblock %}
+        </ul>
+    </section>
+{% endblock %}
+
+{% block pagination %}
+<div class='magazine-pagination'>
+    <div class='pagination-link active'>1</div>
+        <a class="pagination-link" href="/featured/2">2</a>
+        <a class="pagination-link" href="/featured/3">3</a>
+        <div class='pagination-text'>...</div>
+        <a class="pagination-link page-next" href="/featured/2">next</a>
+    </div>
+</div>
 {% endblock %}
 
 
 {% block footer %}{% endblock %}
+
+{% block scrollTop %}
+ <a href="javascript:void(0)" id="scrollTop">Scroll</a>
+{% endblock %}
+
+
 

@@ -1,0 +1,31 @@
+{% load url from future %}
+{% load cloudinary %}
+{% load i18n %}
+
+
+{% for object in home %}
+<li class="page_tiles-home home-website-reveal">
+    <a href="javascript:void(0)">
+        {# Renders an IMG tag for a CloudinaryImage objects. #}
+        {# THUMBNAIL defined in context_processors #}
+        
+        {% cloudinary object.site_logo_image THUMBNAIL %}  
+    </a> 
+    <div class="home-content">
+        <div class="home-detail-inner">
+            <span class="home-detail"></span>
+            <div class="home-details">
+                <h3>{{object.name}}  </h3>
+
+
+                {% if object.menswear%}
+                <label>Available for:Menswear </label>
+                {% endif %}
+
+                <p>{{object.description}}</p>
+                <a href="browse/{{object.website_slug}}">Shop {{object.name}}</a>
+            </div>
+        </div>
+    </div>
+</li>
+{% endfor %} 

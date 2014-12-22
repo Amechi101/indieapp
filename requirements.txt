@@ -21,4 +21,5 @@ MySQL-python==1.2.5
 sqlalchemy==0.9.8
 six==1.7.3
 Pillow==2.5.3
+cloudinary==1.0.18
 

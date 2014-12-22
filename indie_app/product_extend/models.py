@@ -17,7 +17,7 @@ import cStringIO # Used to imitate reading from byte file
 from PIL import Image # Holds downloaded image and verifies it
 import copy # Copies instances of Image
 
-# from website.models import Website
+from website.models import Website
 
 USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
 
@@ -42,16 +42,18 @@ class Product(models.Model):
     last_modified = models.DateTimeField(auto_now=True, null=True, blank=True, verbose_name=_('Last modified') )
 
     #For Admin Purposes, to make sure an item is active by administrative users
-    active = models.BooleanField(default=False, verbose_name=_('Active') )
+    active = models.BooleanField(default=True, verbose_name=_('Active') )
 
     # Foreign Key
-    # website = models.ForeignKey(Website, null=True)
-
+    website = models.ForeignKey(Website, null=True)
 
     #Metadata
     class Meta: 
         verbose_name = _('Product')
         verbose_name_plural = _('Products')
+
+    def __unicode__(self):
+        return "{0}".format(self.product_name)
 
 
     def get_product_price(self):

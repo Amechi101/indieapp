@@ -17,83 +17,45 @@ Copyright (C) 2014 Indie-Scrap
 var indieScrapInitilazer =  indieScrapInitilazer || {};
 
 indieScrapInitilazer = (function ( $, document, window, _ , undefined  ) {
-    
-    
+    /*
+     *
+     * Private functions
+     *
+     */
+
+    // Write them below
+
+    // $('#search-input').autocomplete({
+    //     serviceUrl: 'scrap_api/_internal-website-api/v2/all_wesbsites/',
+    //     type:'GET',
+    //     dataType:'jsonp',
+    //     appendTo:$('.homepage'),
+    //     onSelect: function (suggestion) {
+
+    //         // alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
+    //     },
+    //     onSearchComplete: function(data) {
+    //         console.log(data);
+    //     },
+    //     transformResult: function(response, originalQuery) {
+    //         console.log(response.objects);
+
+    //         return {
+    //             suggestions: $.map(response.objects, function(dataItem) {
+    //                 console.log(dataItem);
+    //                 return { 
+    //                     value: dataItem.name, 
+    //                     data: dataItem.website_slug 
+    //                 };
+    //             })
+    //         };
+    //     }
+    // });
+
+
     return {
-        ProductFilter: function() {
-          
-            // var productFliter = Backbone.Model.extend({
-            //     defaults :{
-            //         categories:{
-            //             // @TODO update logic to backend to change as to what site is currently being choosen by the user on the front-end
-            //             // for men and women
-            //             men:['Tops','Bottoms','Shorts','Jackets & Blazers','Sweaters','Outerwear','Shoes','Accessories','Undergarments'],
-            //             women:['Dresses','Tops','Skirts','Shorts','Bottoms','Jumpsuits & Rompers','Jackets & Blazers','Sweaters','Outerwear','Shoes','Accessories','Lingerie']
-            //         },
-            //         priceRange:['0-50', '50-100','100-200','200-300','400+'],
-            //         generalFilter:['Newest Scrap\'s','Oldest Scrap\'s','Popular Scarp\'s']
-            //     };
 
-            // });
-
-            // var productView = Backbone.View.extend({
-            //     //this is the scope of the Backbone selector, choosing the descendants of the
-            //     el:'#product-navigation .filter-options',
-
-            //     initialize: function() {
-            //         _.bindAll(this,'render','filterFunc');
-                  
-            //         this.render();
-            //     },
-            //     filterFunc: function() {
-            //         //Array to access the information from the backbone models
-            //         var productFilterItems = [this.model.attributes.categories.men, this.model.attributes.categories.women, this.model.attributes.priceRange, this.model.attributes.generalFilter];
-            //         var menuFilter = $('#men', this.el);
-                  
-            //           /*
-            //             Looping construct to add the elements from the model in a <li> tag this will allow for easier access to attach any events and data 
-            //             that needs to be transferred to the backend.
-
-            //           */
-            //         for (var i = 0, j=0, k=0, l=0; i < productFilterItems[0].length || j < productFilterItems[1].length || k < productFilterItems[2].length || l < productFilterItems[3].length ; i++, j++, k++, l++) {
-                    
-            //             //mens filter
-            //             if ( i < productFilterItems[0].length ) {
-            //               $('#men', this.el).append('<li id="' + productFilterItems[0][i] + '" class="product-options"><span></span>' + productFilterItems[0][i] + '</li>');  
-            //             }
-
-            //             //womens filter
-            //             if ( j < productFilterItems[1].length ) {
-            //               $('#women', this.el).append('<li id="' + productFilterItems[1][i] + '" class="product-options"><span></span>' + productFilterItems[1][i] + '</li>');
-            //             }
-                        
-            //             //price filter
-            //             if ( k < productFilterItems[2].length ) {
-            //               $('#price', this.el).append('<li id="' + productFilterItems[2][i].replace('+','') + '" class="product-options"><span></span>$' + productFilterItems[2][i].replace('-', '-$') + '</li>');
-            //             }
-
-            //             // filter
-            //             if ( l < productFilterItems[3].length ) {
-            //               $('#other', this.el).append('<li id="' + productFilterItems[3][i].replace('+','') + '" class="product-options"><span></span>' + productFilterItems[3][i] + '</li>');
-            //             }
-            //         }
-                  
-            //     },
-            //     render: function() {
-            //         this.filterFunc();
-            //     }
-            // });
-              
-            // var productFliterObject  = new productFliter();
-            // var productViewObject = new productView({model:productFliterObject});
-
-            //     // console.log(productFliterObject)
-            //     // console.log(productViewObject)
-                
-
-        }, 
-        LeftGlobalSiteSearch: function() {
-
+        GlobalSiteSearch: function() {
 
             /*
              *
@@ -101,8 +63,11 @@ indieScrapInitilazer = (function ( $, document, window, _ , undefined  ) {
              *
              */
             function SearchDropdown( element ) {
+                    
                 this.el = element;
                 this.initEvents();
+                
+                
             }
 
             SearchDropdown.prototype = {
@@ -114,9 +79,8 @@ indieScrapInitilazer = (function ( $, document, window, _ , undefined  ) {
                 }
             };
 
-            var searchByLetter = new SearchDropdown($('#global-site-letter'));
-            var searchByTrending = new SearchDropdown($('#global-site-trending'));
-            var searchBySex = new SearchDropdown($('#global-site-sex'));
+            var searchByLetter = new SearchDropdown($('#global-site-letter, #global-site-trending, #global-site-sex'));
+
 
             /*
              *
@@ -129,7 +93,7 @@ indieScrapInitilazer = (function ( $, document, window, _ , undefined  ) {
 
                         letter:['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'],
                         trending:['Newest sites','Oldest sites'],
-                        sex:['Menswear','Womenswear','Both']
+                        sex:['Menswear','Womenswear']
                     }
                 }
             });
@@ -215,8 +179,99 @@ indieScrapInitilazer = (function ( $, document, window, _ , undefined  ) {
                 }
             }
         },
+        ProductFilter: function() {
+          
+            // var productFliter = Backbone.Model.extend({
+            //     defaults :{
+            //         categories:{
+            //             // @TODO update logic to backend to change as to what site is currently being choosen by the user on the front-end
+            //             // for men and women
+            //             men:['Tops','Bottoms','Shorts','Jackets & Blazers','Sweaters','Outerwear','Shoes','Accessories','Undergarments'],
+            //             women:['Dresses','Tops','Skirts','Shorts','Bottoms','Jumpsuits & Rompers','Jackets & Blazers','Sweaters','Outerwear','Shoes','Accessories','Lingerie']
+            //         },
+            //         priceRange:['0-50', '50-100','100-200','200-300','400+'],
+            //         generalFilter:['Newest Scrap\'s','Oldest Scrap\'s','Popular Scarp\'s']
+            //     };
+
+            // });
+
+            // var productView = Backbone.View.extend({
+            //     //this is the scope of the Backbone selector, choosing the descendants of the
+            //     el:'#product-navigation .filter-options',
+
+            //     initialize: function() {
+            //         _.bindAll(this,'render','filterFunc');
+                  
+            //         this.render();
+            //     },
+            //     filterFunc: function() {
+            //         //Array to access the information from the backbone models
+            //         var productFilterItems = [this.model.attributes.categories.men, this.model.attributes.categories.women, this.model.attributes.priceRange, this.model.attributes.generalFilter];
+            //         var menuFilter = $('#men', this.el);
+                  
+            //           /*
+            //             Looping construct to add the elements from the model in a <li> tag this will allow for easier access to attach any events and data 
+            //             that needs to be transferred to the backend.
+
+            //           */
+            //         for (var i = 0, j=0, k=0, l=0; i < productFilterItems[0].length || j < productFilterItems[1].length || k < productFilterItems[2].length || l < productFilterItems[3].length ; i++, j++, k++, l++) {
+                    
+            //             //mens filter
+            //             if ( i < productFilterItems[0].length ) {
+            //               $('#men', this.el).append('<li id="' + productFilterItems[0][i] + '" class="product-options"><span></span>' + productFilterItems[0][i] + '</li>');  
+            //             }
+
+            //             //womens filter
+            //             if ( j < productFilterItems[1].length ) {
+            //               $('#women', this.el).append('<li id="' + productFilterItems[1][i] + '" class="product-options"><span></span>' + productFilterItems[1][i] + '</li>');
+            //             }
+                        
+            //             //price filter
+            //             if ( k < productFilterItems[2].length ) {
+            //               $('#price', this.el).append('<li id="' + productFilterItems[2][i].replace('+','') + '" class="product-options"><span></span>$' + productFilterItems[2][i].replace('-', '-$') + '</li>');
+            //             }
+
+            //             // filter
+            //             if ( l < productFilterItems[3].length ) {
+            //               $('#other', this.el).append('<li id="' + productFilterItems[3][i].replace('+','') + '" class="product-options"><span></span>' + productFilterItems[3][i] + '</li>');
+            //             }
+            //         }
+                  
+            //     },
+            //     render: function() {
+            //         this.filterFunc();
+            //     }
+            // });
+              
+            // var productFliterObject  = new productFliter();
+            // var productViewObject = new productView({model:productFliterObject});
+
+            //     // console.log(productFliterObject)
+            //     // console.log(productViewObject)
+                
+
+        }, 
         ScrollToLogic:function() {
             
+            var $elScroll = $('#scrollTop');
+
+            $(window).scroll(function() {
+                if( $(this).scrollTop() > 100 ) {
+                    $elScroll.fadeIn();
+                } else {
+                    $elScroll.fadeOut();
+                }
+            });
+
+            $elScroll.on('click', function() {
+                $('html, body').animate({
+                    scrollTop:0
+                }, 600);
+
+                return false;
+            });
+
+
 
             
         }
@@ -232,7 +287,7 @@ indieScrapInitilazer = (function ( $, document, window, _ , undefined  ) {
  */
 
 indieScrapInitilazer.ProductFilter();
-indieScrapInitilazer.LeftGlobalSiteSearch();
+indieScrapInitilazer.GlobalSiteSearch();
 indieScrapInitilazer.ProductMenuToggling();
 indieScrapInitilazer.ScrollToLogic();
 

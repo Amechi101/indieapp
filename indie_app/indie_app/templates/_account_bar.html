@@ -3,7 +3,7 @@
 
  
 
-<ul class="nav_pages">
+<ul class="nav_pages mm-nolist">
 {% if request.user.is_authenticated %}
     <li><a href="{% url "account_settings" %}"> {% trans "DASHBOARD" %}</a></li>
     {% if request.user.is_staff %}
@@ -18,9 +18,8 @@
     <li><a href="#member"><a href="#"><span>ABOUT INDIESCRAP</span></a></li>
     <li><a href="#service"><span>LEGAL STUFF</span></a></li>
     <li><a href="#about"><span>CONTACT US</span></a></li>
-    <li><a href="{% url "product_list" %}"> <span>{% trans "BROWSE PRODUCTS" %}</span></a></li>
 </ul>
-<ul class="nav_social">
+<ul class="nav_social mm-nolist">
     <li><a href="#"><span  class="icon-indie_web-04"></span></a></li>
     <li><a href="#"><span  class="icon-indie_web-05"></span></a></li> 
 </ul>
