@@ -1098,7 +1098,7 @@ li.page_tiles-home  > a {
     display: none;
     text-indent: -9999px;
     outline: none;
-    background: url("../images/down.png") no-repeat scroll 0% 0% transparent;
+    background: url("../images/top.png") no-repeat scroll 0% 0% transparent;
 }
 
     
