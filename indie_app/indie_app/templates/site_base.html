@@ -2,7 +2,7 @@
 
 {% load staticfiles %}
 {% load metron_tags %}
-{% load account_tags %}
+
 {% load i18n %}
     
     {% block style_base %}
@@ -41,15 +41,17 @@
     <script src="{% static "js/lib/bootstrap.min.js" %}"></script>
     <script src="{% static "js/lib/underscore-min.js" %}"></script>
     <script src="{% static "js/lib/backbone-min.js" %}"></script>
+    <script src="{% static "js/lib/backbone-tastypie.js" %}"></script>
     <script src="{% static "pinax/js/theme.js" %}"></script>
     <script src="{% static "js/lib/classie.js" %}"></script>
     <script src="{% static "js/lib/jquery.backstretch.min.js" %}"></script>
     <script src="{% static "js/lib/jquery.accordion.js" %}"></script>
     <script src="{% static "js/lib/jquery.easing.1.3.js" %}"></script>
     <script src="{% static "js/lib/jquery.mmenu.min.all.js" %}"></script>
-    <!-- <script src="{% static "js/lib/jquery.autocomplete.js" %}"></script> -->
 
-
+    <!-- backbone code -->
+    <script src="{% static "backboneapp/backbone_search.js" %}"></script>
+    <script src="{% static "backboneapp/backbone_product.js" %}"></script>
 
     <!--Application Script -->
     <script src="{% static "js/site.js" %}"></script>
@@ -82,16 +84,16 @@
                 }
             });
             
-            // $("#my-menu-second").mmenu({
-            //     "offCanvas": {
-            //         "position": "right"
-            //     },
-            //     "header": {
-            //         "title": "Website Filter",
-            //         "add": true,
-            //         "update": true
-            //     }
-            // });
+            $("#my-menu-second").mmenu({
+                "offCanvas": {
+                    "position": "right"
+                },
+                "header": {
+                    "title": "Website Filter",
+                    "add": true,
+                    "update": true
+                }
+            });
 
             $("#my-button").click(function() {
                 $("#my-menu").trigger("open.mm");  

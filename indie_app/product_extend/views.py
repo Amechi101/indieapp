@@ -9,12 +9,13 @@ from django.views.generic import ListView
 from product_extend.models import Product
 
 
-
 class ProductView(ListView):
 
 	context_object_name = 'product_list'
 	template_name = 'product_extend/_productlist.html'
-	model = Product
+	queryset = Product.objects.all()
+	paginate_by = 12
+
 
 	def get_context_data(self, **kwargs):
 		context = super(ProductView, self).get_context_data(**kwargs)

@@ -72,13 +72,11 @@ class Trademark( ScrapeBase ):
 
                 product['product_slug_url'] = doc['url']
 
-                product['product_img'] = doc['image_varchar'].pop()
+                product['product_image'] = doc['image_varchar'].pop()
                 
                 product['product_price'] = doc['final_price']
                 
                 product['product_category'] = productCategory
-                
-                product['product_website_url'] = "http://www.trade-mark.com"
                 
                 product['product_website_name'] = "Trade-Mark"
 

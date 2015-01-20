@@ -1,108 +1,94 @@
 {% extends "site_base.html" %}
 
-{% block global_rightside_sitefilter %}
-<!-- Global website search (right side)  -->
-    <div class="nav-sidebar" id="nav-filters">
-        <button type="button" class="btn btn-navbar" id="closeSearch" >
+{% block site_filter_menu %}
+<!-- Global Menu (left side ) -->
+<aside id="my-menu-second" class="">
+    <div class="nav_content">
+    <!--     <button type="button" class="btn btn-navbar" id="closeMenu" >
             <span class="icon-indie_web-03"></span>
-        </button> 
-        <div class="wrapper-nav">
-            <p class="results">Current Site:<strong>None</strong></p>
-            {% block global_rightside_search %}
-            <div class='search-wrapper '>
-                <div class='search-input-container'>
-                    <div class='search-input-tablet-and-desktop'>
-                        <input autocomplete='off' class='search-input' id='search-input' placeholder='Search sites' spellcheck='false' type='text' />
-                    </div>
-                </div>
-            </div>
-            {% endblock  %}
-            <div class="wrapper-dropdown" id="global-site-letter">
-                <span>Filter By Letter</span>
-                <ul id="letter">
-                    
-                </ul>
-            </div>
-            <div class="wrapper-dropdown" id="global-site-trending">
-                <span>Filter By Trending</span>
-                <ul id="trending">
-                   
-                </ul>
-            </div>
-
-
-            <!-- Created after slection on one of the two drop downs are choosen -->
-            <ul class="list-tags">
-                <li class="close style2"><a href="">A</a></li>
-                <li class="close style2"><a href="">B</a></li>
-            </ul>
-        </div>
+        </button>  -->
+           
     </div>
+</aside>
 {% endblock  %}
 
 
-{% block header_class %}base-header-product base{% endblock %}
-
-{% block body_base %}
-<!-- product menu -->
-<div class="product-menu">
-    <div class="product-wrapper">
-        <div class="menu-left">
-            <ul class="category">
-                <li  id="menu-toggle" class=""></li>
-            </ul>
-        </div>
-        <div class="menu-right">
-            <div class="menu-show">
-                <!-- To show the current site begin filtered and allow user to change -->
-            </div>
-        </div> 
-    </div>
+{% block extra_icon_header %}
+<div class="navbar-right">
+    <a href="#my-menu-second" id="btn_search" class="btn btn-navbar btn-toggle-sidebar-right">
+        <span class="icon-indie_web-06 icon-main"></span>
+    </a>          
 </div>
-<div id="product-navigation-filter" class="product-navigation-filter product-navigation-filter-bottom" >
-    <div class="filter-options">
-        <div id="menu" class="filter-section">
-            <div class="filter-section-men">
-                <label class="filter-label-sub">Men:</label>
-                <ul id="men">
-                <!-- men section -->
-   
-                </ul>
-            </div>
-            <div class="filter-section-women">
-                <label class="filter-label-sub">Women:</label>
-                <ul id="women"> 
-                <!-- womens section --> 
-                
-                </ul> 
-            </div>
-            <div class="filter-section-price">
-                <label class="filter-label-sub">Price Range:</label>
-                <ul id="price">
-                    <!-- price -->
-                </ul>    
-            </div>
-            <div class="filter-section-other">
-                <label class="filter-label-sub">Sort:</label>
-                <ul id="other">
-                    <!-- other filter -->
-                </ul>    
-            </div>
-            <div class="filter-clear">
-                <a id="product-clear" href="#" class="product-button-clear">Clear Filter</a>
-            </div> 
-        </div> 
-    </div>     
-</div>
-<main id="content">
-    <div class="block last">
-        <div class="inner" role="main">
-            {% block product %}{% include "product_extend/_product.html" %} {% endblock %}
-        </div>
-    </div>
-</main>
 {% endblock %}
 
+
+{% block specific_sitefilter_id %}product-specific-site-filter{% endblock %}
+{% block global_specific_sitefilter %}
+<div class="nav-sidebar" id="nav-filters">
+    <div class="wrapper-nav">
+        <h3 class="results-head"><strong>6</strong> Products Available </h3>
+        <p class="results">Current Site: <strong>None</strong></p>
+        
+    
+        <!-- @TODO match filter with current categories from the backend for specific selected site -->
+
+        <!-- Will be generated here as required by the categories choosing by what the user choose to view on the homepage or navigated somehow to
+            the unique URL given to the websites on the backend -->
+
+        <div class="wrapper-dropdown" id="price-filter">
+            <span>Price Range</span>
+            <ul id="price">
+               
+            </ul>
+        </div>
+        <div class="wrapper-dropdown" id="trending-product-filter">
+            <span>Trending</span>
+            <ul id="other">
+               
+            </ul>
+        </div>
+
+        <ul class="list-tags">
+        <!--@TODO Create cancelable elements after selections above from either drop downs -->
+            <li class="close style2"><a href="">A</a></li>
+            <li class="close style2"><a href="">B</a></li>
+
+        </ul>
+    </div>
+</div>   
+{% endblock  %}
+
+{% block main_container_id %}content{% endblock %}
+{% block body %}
+<div class="block last">
+    <div class="inner" role="main">
+        {% block product %}{% include "product_extend/_product.html" %} {% endblock %}
+    </div>
+</div>
+{% endblock %}
+
+
+{% if is_paginated %}
+    {% block pagination %}
+        <div class='magazine-pagination'>
+            {% if page_obj.has_previous %}
+            <a class="pagination-link" href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+             {% endif %}
+            
+            <div class='pagination-link active'>{{ page_obj.number }}</div>
+
+            {% if page_obj.has_next %}
+            <a class="pagination-link" href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+            <div class='pagination-text'>...</div>
+            <a class="pagination-link page-next" href="?page={{ page_obj.next_page_number }}">next</a>
+            {% endif %}   
+         </div>
+    {% endblock %}
+{% endif %}
+
+{% block scrollTop %}
+ <a href="javascript:void(0)" id="scrollTop">Scroll</a>
+{% endblock %}
 
 
 {% block footer %}{% endblock %}

@@ -6,13 +6,12 @@
 <ul class="nav_pages mm-nolist">
 {% if request.user.is_authenticated %}
     <li><a href="{% url "account_settings" %}"> {% trans "DASHBOARD" %}</a></li>
-    {% if request.user.is_staff %}
-    <li><a href="{% url THEME_ADMIN_URL|default:"admin:index" %}">{% trans "Admin" %}</a></li>
-    {% endif %}
     <li><a id="account_logout" href="{% url "account_logout" %}"> {% trans "LOG OUT" %}</a></li>
+    
     {% else %}
     <li><a href="{% url "account_login" %}"><span>{% trans "LOG IN" %}</span></a></li>
     <li><a href="{% url "account_signup" %}"><span>{% trans "SIGN UP" %}</span></a></li>
+    
     {% endif %}
     <li><a href="{% url "home" %}"><span>HOME</span></a></li>
     <li><a href="#member"><a href="#"><span>ABOUT INDIESCRAP</span></a></li>

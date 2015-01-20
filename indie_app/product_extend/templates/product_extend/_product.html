@@ -1,18 +1,44 @@
 {% load i18n %}
-
 {% load url from future %}
 
+{% load cloudinary %}
 
 <ul class="grid list-item col-3"> 
-    {% for object in product_list %}
-    <li class="col n-4">
-        <figure class="rollover site">
-            <div class="scrap-likes"><span class="icon-heart"></span></div>
-            <img src="{{MEDIA_URL}}{{object.product_img}}" width="470" height="700">
-           <!--  <div class="scrap-from"> Scrapped from:<a class="scrap-site" target="_blank" href="{{object.product_website_url}}">{{object.product_website_name}}</a></div> -->
-            <div class="scrap-designer"> Scrapped from: <a class="scrap-site" target="_blank" href="{{object.product_website_url}}">{{object.product_website_name}}</a></div>
-            <div class="scrap-title">{{object.product_name }}, <span class="scrap-price">${{object.product_price}}</span></div>
-            <a class="scrap-buy" target="_blank" href="{{object.product_slug_url}}">View Item</a>
+    {% for object in product_list  %}
+    <li class='col n-4'>
+        <figure class='connected magazine-cards-container magazine-three-slots medium'>
+            <div class='hover-show-glyphs light magazine-single-card-container'>
+                <div class='magazine-card magazine-product-card'>
+                    <div class='magazine-product-img-container'>
+                        <div class='hover-container hover-show-glyphs'>
+                            {# Renders an IMG tag for a CloudinaryImage objects. #}
+                            {# PRODUCT defined in context_processors #}
+                            <div class='product-image' style="background-image:url('{% cloudinary_url object.product_image PRODUCT %}');"></div>
+
+                            <!-- <a href="#" class="fancybox fancybox.ajax add-to-collection glyph-action glyph-hidden"></a> -->
+
+                            <div class='top-right'>
+                                <span class="card-price button-price">$ {{object.product_price}}</span>
+                            </div>
+
+                            <div class='top-left'>
+                                <a class="card-price button" href="#"><i class="icon-indie_web-07 icon-heart"></i><span>43</span></a>
+                            </div>
+
+                            <!-- <h3 class='hover-title'>{{object.product_name }}</h3> -->
+
+                            <!-- <a class="view-scrap" target="_blank" href="{{object.product_slug_url}}">
+                               View On: {{object.product_website_name}}.com
+                            </a> -->
+
+                            <label class="view-scrap">
+                               {{object.product_name }}
+                            </label>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
         </figure>
     </li>
     {% endfor %}

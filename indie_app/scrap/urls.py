@@ -6,7 +6,7 @@ from tastypie.api import Api
 from api.product.allproducts_resources import ProductResource
 from api.website.allwebsite_resources import WebsiteResource
 
-from scrap.views import trademark_site
+from scrap._trademark_views import _trademark
 
 ###########################
 v1_api = Api(api_name='v1')
@@ -20,8 +20,8 @@ v2_api.register( WebsiteResource() )
 
 ######################################
 urlpatterns = patterns('',
-    url(r'^_internal-productall-api/', include(v1_api.urls)),
-
-    url(r'^_internal-website-api/', include(v2_api.urls)),
-    url(r'^_internal/trademark/', trademark_site, name='scape_site'),
+    url(r'^_internal_productall_api/', include(v1_api.urls)),
+    url(r'^_internal_websiteall_api/', include(v2_api.urls)),
+    
+    url(r'^_internal/trademark_api/', _trademark),
 )

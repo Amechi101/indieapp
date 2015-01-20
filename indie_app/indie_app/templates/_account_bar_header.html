@@ -1,0 +1,23 @@
+{% load i18n %}
+{% load account_tags %}
+
+
+
+{% if request.user.is_authenticated %}  
+    <a href="{% url "account_settings" %}"> 
+        <span class="icon-indie_web-02 icon-main"></span>
+    </a>
+    
+    {% else %}
+    
+    <a href="{% url "account_login" %}" class="btn btn-navbar btn-toggle-sidebar-right">
+        <span class="icon-indie_web-02 icon-main"></span>
+    </a>
+    
+{% endif %}
+
+
+  
+<form id="accountLogOutForm" style="display: none;" action="{% url "account_logout" %}" method="POST">
+    {% csrf_token %}
+</form>

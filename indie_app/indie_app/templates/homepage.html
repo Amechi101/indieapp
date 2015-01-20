@@ -8,8 +8,8 @@
 {% block body_class %}homepage{% endblock %}
 
 
-{% block body %}
-<!-- <section class="homepage-image">
+{% block banner %}
+<section class="homepage-image">
     <div class="home">
         <div class="home-image-wrapper">
             <div class="slide">
@@ -22,46 +22,46 @@
         <a id="navDown" class="browse-next" href="#"></a>
     </div>
 </section>
- -->
+{% endblock %}
 
-    {% block global_specific_sitefilter %}
-    <section id="home-specific-site-filter"> 
-        <div class="nav-sidebar" id="nav-filters">
-            <div class="wrapper-nav">
-                <!-- <p class="results"><strong>6</strong> available sites for you to search! </p> -->
-                <p class="results">Filter Sites By:</p>
-                <div class="wrapper-dropdown" id="global-site-letter">
-                    <span>Letter</span>
-                    <ul id="letter">
-                        
-                    </ul>
-                </div>
-                <div class="wrapper-dropdown" id="global-site-trending">
-                    <span>Trending</span>
-                    <ul id="trending">
-                       
-                    </ul>
-                </div>
 
-                <div class="wrapper-dropdown" id="global-site-sex">
-                    <span>Sex</span>
-                    <ul id="sex">
-                       
-                    </ul>
-                </div>
+{% block specific_sitefilter_id %}home-specific-site-filter{% endblock %}
+{% block global_specific_sitefilter %}
+<div class="nav-sidebar" id="nav-filters">
+    <div class="wrapper-nav">
+        <h3 class="results-head"><strong>6</strong> Available Sites For Search</h3>
+        <p class="results">Filter Sites By:</p>
+        <div class="wrapper-dropdown" id="global-site-letter">
+            <span>Letter</span>
+            <ul id="letter">
+                
+            </ul>
+        </div>
+        <div class="wrapper-dropdown" id="global-site-trending">
+            <span>Trending</span>
+            <ul id="trending">
+               
+            </ul>
+        </div>
 
-                <!-- Created after slection on one of the two drop downs are choosen -->
-                <ul class="list-tags">
-                    <li class="close style2"><a href="">A</a></li>
-                    <li class="close style2"><a href="">B</a></li>
+        <div class="wrapper-dropdown" id="global-site-sex">
+            <span>Sex</span>
+            <ul id="sex">
+               
+            </ul>
+        </div>
 
-                </ul>
-            </div>
-        </div>   
-    </section>
-    {% endblock  %}
+        <ul class="list-tags">
+        <!--@TODO Create cancelable elements after selections above from either drop downs -->
+            <li class="close style2"><a href="">A</a></li>
+            <li class="close style2"><a href="">B</a></li>
 
-    {% block global_sitefilter %}
+        </ul>
+    </div>
+</div>   
+{% endblock  %}
+
+{% block global_sitefilter %}
     <section id="home-site-filter"> 
         <div class='search-wrapper '>
             <div class='search-input-container'>
@@ -72,26 +72,42 @@
             </div>
         </div>
     </section>  
-    {% endblock %}  
+{% endblock %} 
 
+
+{% if home %}
+    {% block body %}
     <section id="st-accordion" class="home_content">
-        <ul class="home_tiles">
+        <ul id="search-results"  class="home_tiles">
             {% block homepage_websites %}{% include "_homepage_ajaxall.html" %} {% endblock %}
         </ul>
+
+    </ul>
     </section>
-{% endblock %}
+    {% endblock %}
 
-{% block pagination %}
-<div class='magazine-pagination'>
-    <div class='pagination-link active'>1</div>
-        <a class="pagination-link" href="/featured/2">2</a>
-        <a class="pagination-link" href="/featured/3">3</a>
-        <div class='pagination-text'>...</div>
-        <a class="pagination-link page-next" href="/featured/2">next</a>
-    </div>
-</div>
-{% endblock %}
 
+    {% if is_paginated %}
+        {% block pagination %}
+            <div class='magazine-pagination'>
+                {% if page_obj.has_previous %}
+                <a class="pagination-link" href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+                 {% endif %}
+                
+                <div class='pagination-link active'>{{ page_obj.number }}</div>
+
+                {% if page_obj.has_next %}
+                <a class="pagination-link" href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+                <div class='pagination-text'>...</div>
+                <a class="pagination-link page-next" href="?page={{ page_obj.next_page_number }}">next</a>
+                {% endif %}   
+             </div>
+        {% endblock %}
+    {% endif %}
+
+{% else %}
+    <p>No sites found!!</p>
+{% endif %}
 
 {% block footer %}{% endblock %}
 

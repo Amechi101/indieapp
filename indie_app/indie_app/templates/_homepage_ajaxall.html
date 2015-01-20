@@ -15,15 +15,23 @@
         <div class="home-detail-inner">
             <span class="home-detail"></span>
             <div class="home-details">
-                <h3>{{object.name}}  </h3>
+                <h3>{{object.name}} </h3>
 
-
-                {% if object.menswear%}
-                <label>Available for:Menswear </label>
+                {% if object.menswear and not object.womenswear %}
+                    <label>Available Products: Menswear Only</label>
+                
+                {% elif object.menswear and object.womenswear %}
+                    <label>Available Products:  Menswear & Womeseswear</label>
+                
+                {% elif object.womenswear and not object.menswear%}
+                    <label>Available Products: Womenswear Only</label>
+                
+                {% else %}
+                    <label></label>
                 {% endif %}
 
                 <p>{{object.description}}</p>
-                <a href="browse/{{object.website_slug}}">Shop {{object.name}}</a>
+                <a href="browse/{{object.website_slug}}">Scrap {{object.name}}</a>
             </div>
         </div>
     </div>

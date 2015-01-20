@@ -59,6 +59,17 @@
     color:#000;
 }
 
+/* Star */
+.icon-indie_web-06:before {
+    content: "\f005";
+    font-size: 1.9em;
+}
+
+/* Heart */
+.icon-indie_web-07:before {
+    content: "\f004";
+}
+
 
 /* Icons to choose from... */
 .icon-clear:before {
