@@ -34,13 +34,13 @@ Registered Website Id's
 ===================
 > name_of_website = website_id
 
-Maison Kitsune = 1
-Hotel 1171 = 2
-Nu* New York = 3
-Project No.8 = 4
-Miss Hoe = 5
-Reformation = 6
-Trade-Mark = 7
+- Maison Kitsune = 1
+- Hotel 1171 = 2
+- Nu* New York = 3
+- Project No.8 = 4
+- Miss Hoe = 5
+- Reformation = 6
+- Trade-Mark = 7
 
 
 Registering a website for products to be viewed

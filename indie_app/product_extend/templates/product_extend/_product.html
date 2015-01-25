@@ -6,40 +6,44 @@
 <ul class="grid list-item col-3"> 
     {% for object in product_list  %}
     <li class='col n-4'>
-        <figure class='connected magazine-cards-container magazine-three-slots medium'>
-            <div class='hover-show-glyphs light magazine-single-card-container'>
-                <div class='magazine-card magazine-product-card'>
-                    <div class='magazine-product-img-container'>
-                        <div class='hover-container hover-show-glyphs'>
-                            {# Renders an IMG tag for a CloudinaryImage objects. #}
-                            {# PRODUCT defined in context_processors #}
-                            <div class='product-image' style="background-image:url('{% cloudinary_url object.product_image PRODUCT %}');"></div>
+        <div class='magazine-single-card-container medium'>
+            <div class='magazine-card magazine-product-card'>
+                <div class='magazine-product-img-container'>
+                    <div class='hover-container'>
+                        {# Renders an IMG tag for a CloudinaryImage objects. #}
+                        {# PRODUCT defined in context_processors #}
+                        <div class='product-image' style="background-image:url('{% cloudinary_url object.product_image PRODUCT %}');"></div>
 
-                            <!-- <a href="#" class="fancybox fancybox.ajax add-to-collection glyph-action glyph-hidden"></a> -->
-
-                            <div class='top-right'>
-                                <span class="card-price button-price">$ {{object.product_price}}</span>
-                            </div>
-
-                            <div class='top-left'>
-                                <a class="card-price button" href="#"><i class="icon-indie_web-07 icon-heart"></i><span>43</span></a>
-                            </div>
-
-                            <!-- <h3 class='hover-title'>{{object.product_name }}</h3> -->
-
-                            <!-- <a class="view-scrap" target="_blank" href="{{object.product_slug_url}}">
-                               View On: {{object.product_website_name}}.com
-                            </a> -->
-
-                            <label class="view-scrap">
-                               {{object.product_name }}
-                            </label>
-                            
+                        <div class='top-right'>
+                            <span class="card-price button-price">$ {{object.product_price}}</span>
                         </div>
+
+                        <div class='top-left'>
+                            <a class="card-price button" href="#hit"><i class="icon-indie_web-07 icon-heart"></i><span>43</span></a>
+                        </div>
+
+                        <a id="card-reveal" class="card-view" href="#"><h3 class='hover-title'>View More</h3></a>
+
+
+
+                        <label class="card-name">{{object.product_name }}</label>
+
+                        <div class="card-cover active">
+                            <span class="card-exit"></span>
+                            
+                            <a class="card-follow" href="javascript:void(0)">Follow {{object.product_website_name}}.com</a>
+                            <a class="card-buy" target="_blank" href="{{object.product_slug_url}}">Buy {{object.product_name }}</a>
+                            
+                            <ul class="card-social">
+                                <label>Share</label>
+                                <li><a href="#"><span  class="icon-indie_web-04"></span></a></li>
+                                <li><a href="#"><span  class="icon-indie_web-05"></span></a></li> 
+                            </ul>
+                        </div>   
                     </div>
                 </div>
             </div>
-        </figure>
+        </div>
     </li>
     {% endfor %}
 </ul>
