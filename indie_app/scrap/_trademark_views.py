@@ -1,7 +1,7 @@
 from django.db import transaction
 from django.http import HttpResponse
 
-from product_extend.models import Product
+from _backend_api.models import Product
 
 from scrap_module.utils.compiler import DataCompiler
 from scrap_module.sites.trademark import Trademark
@@ -33,7 +33,7 @@ def _trademark(request):
 	with transaction.atomic():
 		for item in trademark_data:
 			try:
-				data_store = Product.objects.get_or_create( product_slug_url=item['product_slug_url'], website_id=7, defaults=item )
+				data_store = Product.objects.get_or_create( product_slug_url=item['product_slug_url'], website_id=1, defaults=item )
 
 				if data_store:
 					# Logging for Django purposes
@@ -43,7 +43,7 @@ def _trademark(request):
 
 					items_counter += 1
 
-					data_count = Product.objects.filter( website_id=7 ).count()
+					data_count = Product.objects.filter( website_id=1 ).count()
 
 					data_store.save()
 

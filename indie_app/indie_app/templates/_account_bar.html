@@ -3,7 +3,7 @@
 
  
 
-<ul class="nav_pages mm-nolist">
+<ul>
 {% if request.user.is_authenticated %}
     <li><a href="{% url "account_settings" %}"> {% trans "DASHBOARD" %}</a></li>
     <li><a id="account_logout" href="{% url "account_logout" %}"> {% trans "LOG OUT" %}</a></li>
@@ -17,14 +17,7 @@
     <li><a href="#member"><a href="#"><span>ABOUT INDIESCRAP</span></a></li>
     <li><a href="#service"><span>LEGAL STUFF</span></a></li>
     <li><a href="#about"><span>CONTACT US</span></a></li>
-</ul>
-<ul class="nav_social mm-nolist">
-    <li><a href="#"><span  class="icon-indie_web-04"></span></a></li>
-    <li><a href="#"><span  class="icon-indie_web-05"></span></a></li> 
-</ul>
-<p class="nav_copyright">{% trans "&copy;2014 IndieScrap. Scraping in NYC with love." %}</p>
-
-  
+</ul> 
 <form id="accountLogOutForm" style="display: none;" action="{% url "account_logout" %}" method="POST">
     {% csrf_token %}
 </form>

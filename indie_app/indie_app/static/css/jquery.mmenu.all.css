@@ -1,8 +1,8 @@
 /*
-	jQuery.mmenu CSS
+  jQuery.mmenu CSS
 */
 /*
-	jQuery.mmenu panels CSS
+  jQuery.mmenu panels CSS
 */
 .mm-menu.mm-horizontal > .mm-panel {
   -webkit-transition: -webkit-transform 0.4s ease;
@@ -230,11 +230,11 @@ html.mm-opened .mm-page {
     background: rgba(255, 255, 255, 0.05); }
 
 /*
-	jQuery.mmenu offcanvas addon CSS
+  jQuery.mmenu offcanvas addon CSS
 */
 .mm-page {
   box-sizing: border-box;
-  position: relative; }
+  /* position: relative; */ }
 
 .mm-slideout {
   -webkit-transition: -webkit-transform 0.4s ease;
@@ -297,7 +297,7 @@ html.mm-opening .mm-slideout {
     -o-transform: translate(440px, 0);
     transform: translate(440px, 0); } }
 /*
-	jQuery.mmenu buttonbars addon CSS
+  jQuery.mmenu buttonbars addon CSS
 */
 .mm-buttonbar {
   border: 1px solid transparent;
@@ -369,7 +369,7 @@ html.mm-opening .mm-slideout {
     color: #333333; }
 
 /*
-	jQuery.mmenu counters addon CSS
+  jQuery.mmenu counters addon CSS
 */
 em.mm-counter {
   font: inherit;
@@ -401,7 +401,7 @@ em.mm-counter {
   color: rgba(255, 255, 255, 0.3); }
 
 /*
-	jQuery.mmenu dragOpen addon CSS
+  jQuery.mmenu dragOpen addon CSS
 */
 html.mm-opened.mm-dragging .mm-menu,
 html.mm-opened.mm-dragging .mm-page,
@@ -415,7 +415,7 @@ html.mm-opened.mm-dragging #mm-blocker {
   transition-duration: 0s; }
 
 /*
-	jQuery.mmenu footer addon CSS
+  jQuery.mmenu footer addon CSS
 */
 .mm-footer {
   background: inherit;
@@ -439,7 +439,7 @@ html.mm-opened.mm-dragging #mm-blocker {
   color: rgba(255, 255, 255, 0.3); }
 
 /*
-	jQuery.mmenu header addon CSS
+  jQuery.mmenu header addon CSS
 */
 .mm-header {
   background: inherit;
@@ -542,7 +542,7 @@ html.mm-opened.mm-dragging #mm-blocker {
     border-color: rgba(255, 255, 255, 0.3); }
 
 /*
-	jQuery.mmenu labels addon CSS
+  jQuery.mmenu labels addon CSS
 */
 .mm-list li.mm-label > span {
   text-overflow: ellipsis;
@@ -566,7 +566,7 @@ html.mm-opened.mm-dragging #mm-blocker {
   background: rgba(255, 255, 255, 0.05); }
 
 /*
-	jQuery.mmenu searchfield addon CSS
+  jQuery.mmenu searchfield addon CSS
 */
 .mm-search,
 .mm-search input {
@@ -641,7 +641,7 @@ div.mm-panel > div.mm-search {
   color: rgba(255, 255, 255, 0.3); }
 
 /*
-	jQuery.mmenu toggles addon CSS
+  jQuery.mmenu toggles addon CSS
 */
 input.mm-toggle,
 input.mm-check {
@@ -745,7 +745,7 @@ em.mm-counter + a.mm-subopen + label.mm-check + span {
   border-color: rgba(255, 255, 255, 0.6); }
 
 /*
-	jQuery.mmenu effects extension CSS
+  jQuery.mmenu effects extension CSS
 */
 html.mm-slide .mm-menu {
   -webkit-transition: -webkit-transform 0.4s ease;
@@ -898,7 +898,7 @@ html.mm-zoom-panels .mm-menu.mm-horizontal > .mm-panel {
       transform: scale(0.7, 0.7) translateX(-30%); }
 
 /*
-	jQuery.mmenu fullscreen extension CSS
+  jQuery.mmenu fullscreen extension CSS
 */
 .mm-menu.mm-fullscreen {
   width: 100%;
@@ -956,7 +956,7 @@ html.mm-opened.mm-fullscreen .mm-page {
   box-shadow: none !important; }
 
 /*
-	jQuery.mmenu position extension CSS
+  jQuery.mmenu position extension CSS
 */
 .mm-menu.mm-top,
 .mm-menu.mm-bottom {
@@ -994,7 +994,7 @@ html.mm-right.mm-opening .mm-slideout {
     -o-transform: translate(-440px, 0);
     transform: translate(-440px, 0); } }
 /*
-	jQuery.mmenu z-position extension CSS
+  jQuery.mmenu z-position extension CSS
 */
 html.mm-front .mm-slideout {
   -webkit-transform: none !important;
@@ -1052,7 +1052,7 @@ html.mm-opening .mm-menu.mm-front, html.mm-opening .mm-menu.mm-next {
   max-height: 880px; }
 
 /*
-	jQuery.mmenu themes extension CSS
+  jQuery.mmenu themes extension CSS
 */
 html.mm-opened.mm-light .mm-page {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); }

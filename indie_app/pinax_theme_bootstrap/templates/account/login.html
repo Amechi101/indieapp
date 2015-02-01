@@ -1,0 +1,37 @@
+{% extends "account/_baseRegistrationTemplate.html" %}
+
+{% load url from future %}
+{% load i18n %}
+{% load bootstrap %}
+
+{% block head_title %}{% trans "Log in" %}{% endblock %}
+
+{% block registration %}
+    <div class="head">
+        <h2 class="heading-title">Log In</h2>
+    </div>
+    <div class="socialconnect">
+        <a href="" class="facebook">Login with your Facebook</a>
+        <a href="#" class="twitter">Sign-up with Twitter</a>
+    </div>
+    <p align="center"><em>Or Login with your Username & Password</em></p>
+    <form method="POST" action="{% url "account_login" %}" autocapitalize="off" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
+        {% csrf_token %}
+        {{ form|bootstrap }}
+        {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+        {% endif %}
+        <p><a href="{% url "account_password_reset" %}" class="underline"><strong>{% trans "Forgot your password?" %}</strong></a></p>
+         <p><button type="submit" class="button large bold">{% trans "Log in" %}</button></p>
+    </form>         
+{% endblock %}
+
+
+
+{% block extra_script %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#id_username').focus();
+        });
+    </script>
+{% endblock %}

@@ -21,13 +21,6 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-indie_web-01:before,
-.icon-indie_web-02:before,
-.icon-indie_web-03:before {
-   font-size: 2.0em;
-   color:#000; 
-}
-
 
 /* Navicon */
 .icon-indie_web-01:before {
@@ -62,7 +55,6 @@
 /* Star */
 .icon-indie_web-06:before {
     content: "\f005";
-    font-size: 1.9em;
 }
 
 /* Heart */

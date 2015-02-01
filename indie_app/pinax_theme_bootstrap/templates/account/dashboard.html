@@ -1,0 +1,24 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+
+
+{% block body_base %}
+{% block subnav %}
+{% endblock %}
+<section id="main-content">
+    <section class="wrapper">
+    <div class="row">
+        <div class="col-lg-9">
+            {% block body %}
+            {% endblock %}
+        </div>
+    </div>
+    </section>
+</section>
+<br/>
+{% include "_messages.html" %}
+
+{% endblock %}
+
+

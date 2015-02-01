@@ -1,0 +1,178 @@
+{% load staticfiles %} 
+{% load url from future %}
+<!DOCTYPE html>
+<!--[if lt IE 9]><html class="ie"><![endif]-->
+<!--[if gte IE 9]><!--><html lang="{{ LANGUAGE_CODE }}" class="no-js"><!--<![endif]-->
+    <head> 
+        <meta charset="utf-8" />
+        <title>{% block head_title_base %}{% if SITE_NAME %}{{ SITE_NAME }} | {% endif %}{% block head_title %}{% endblock %}{% endblock %}</title>
+        {% block viewport %}
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% endblock %}
+
+        {% block style_base %}
+            {% block extra_style %}{% endblock %}
+        {% endblock %}
+
+        {% block top_script_base %}
+            {% block top_script %} {% endblock %}
+        {% endblock %}
+        
+        {% block html5shim %}
+            <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+            <!--[if lt IE 9]>
+                <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+                <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+            <![endif]-->
+        {% endblock %}
+
+        {% block extra_head_base %}
+            {% block extra_head %}{% endblock %}
+        {% endblock %}
+    </head>
+    <body class="{% block body_class %}{% endblock %}">
+
+        <!-- Global Website search (top) -->
+        <section class="website-filtersearch">
+            <header class="navigation__header">
+                <span class="navigation__header__branding">Indie</span>
+                <a id="indie-global-websearch-close" href="javascript:void(0)" class="navigation__header__close"><span class="icon-indie_web-03"></span></a>
+            </header>
+            <div class="nav-sidebar" id="nav-filters">
+                <div class="wrapper-nav">
+                    <h3 class="results-head"><strong>6</strong> Available Sites For Search</h3>
+                    <p class="results">Filter Sites By:</p>
+                    <div class="wrapper-dropdown" id="global-site-letter">
+                        <span>Letter</span>
+                        <ul id="letter">
+                            
+                        </ul>
+                    </div>
+
+                    <div class="wrapper-dropdown" id="global-site-sex">
+                        <span>Sex</span>
+                        <ul id="sex">
+                           
+                        </ul>
+                    </div>
+
+                    <ul class="list-tags">
+                    <!--@TODO Create cancelable elements after selections above from either drop downs -->
+                        <li class="close style2"><a href="">A</a></li>
+                        <li class="close style2"><a href="">B</a></li>
+
+                    </ul>
+                </div>
+            </div> 
+            <div class="indie-fill-websites">
+                <div class="indie-fill-panel-wrapper">
+                    <div id="sidebar_search_block" class="sidebar-block">
+                    <!-- The empty div disappears when search results are found and inputs list stucture of the sites from the website model-->
+                    <!-- Or returns a <p> tag only inside the empty div with No results found! -->
+                        <div class="empty">
+                            <button class="btn btn-search-up btn-clear" type="button">
+                                <span class="text-hide">
+                                    Go to Search.
+                                </span>
+                            </button>
+                            <p>Filter websites above to discover</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="sidebar_right_loader" class="please-wait"><span class="text-hide">Loading...</span></div>
+            </div>
+        </section>
+
+       <div id="indie-wrap">            
+            {% block topbar_base %}
+            <header class="navbar">
+                <nav id="indie-global-menu">
+                    <div id="navbar_logo_wrapper" class="">
+                        <a href="{% url "home" %}" id="navbar_logo" class="text-hide">Home</a>
+                    </div>
+
+                    <div class="navbar-left">
+                        <a href="javascript:void(0)" class="btn btn-navbar btn-toggle-sidebar-left">
+                            <div class="bars">
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="navbar-right">
+                        <a href="javascript:void(0)" class="btn btn-navbar btn-toggle-sidebar-right">
+                            <span class="icon-indie_web-02 icon-main"></span>
+                        </a>          
+                    </div>
+                </nav>
+            </header>
+            {% endblock %}
+
+            {% block banner %}{% endblock %}  
+            
+            {% block global_specific_sitefilter_base %}
+            <section id="{% block specific_sitefilter_id %}{% endblock %}"> 
+                {% block global_specific_sitefilter %}{% endblock  %}
+            </section>
+            {% endblock  %}
+
+            {% block global_sitefilter_base %}
+                {% block global_sitefilter %}{% endblock  %}
+            {% endblock  %}
+            
+            {% block body_base %}
+            <!-- global site content -->
+            <main id="{% block main_container_id %}gloabal-content{% endblock %}" role="main">
+                {% block body %}{% endblock %}
+            </main>
+            {% endblock %}
+
+            
+            {% block pagination %}{% endblock %}
+
+            
+            {% block footer_base %}
+                {% block footer %}{% endblock %}
+            {% endblock %} 
+
+
+            <!-- Global Menu (bottom ) -->
+            <section class="navigation">
+                <header class="navigation__header">
+                    <span class="navigation__header__branding">Indie</span>
+                    <a id="indie-global-menu-close" href="javascript:void(0)" class="navigation__header__close"><span class="icon-indie_web-03"></span></a>
+                </header>
+                <nav class="navigation__primary">
+                    {% block account_bar %}{% include "_account_bar.html" %}{% endblock %}
+                </nav> 
+                <nav class="navigation__icons">
+                    <ul>
+                        <li><a href="#"><span  class="icon-indie_web-04"></span></a></li>
+                        <li><a href="#"><span  class="icon-indie_web-05"></span></a></li> 
+                    </ul>
+                </nav>
+                <p class="nav_copyright">&copy;2014 IndieScrap. Scraping in NYC with love.</p>
+            </section>
+        </div>
+
+        {% block scrollTop %}{% endblock %}
+        
+        <!-- JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+
+
+        {% block script_base %}
+            {% block extra_script %}
+            {% endblock %}
+        {% endblock %}
+
+        {% block extra_body_base %}
+            {% block extra_body %}{% endblock %}
+        {% endblock %}
+        
+
+    </body>
+</html>
