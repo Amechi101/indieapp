@@ -3,4 +3,5 @@ env
 staticfiles
 settings_localdev.py
 *.db
+*.log
 
