@@ -102,7 +102,6 @@ var websiteSearchModel = Backbone.Model.extend({
     },
     defaults :{
         categories:{
-            letter:['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'],
             sex:['Menswear','Womenswear']
         }
     }
@@ -137,23 +136,26 @@ var dropdownSearchView = Backbone.View.extend({
         this.render();
     },
     events: {
+        'click #sex li': "filter_sex",
+    },
+    filter_sex: function (event) {
+        var filter = $(event.target).data("filter");
+        var filteredItems = _.filter(websiteSearchCollectionObject.models, function (i) {
+            return i.get(filter) == true;
+        });
+        console.log(filteredItems);
     },
     filterFunc: function() {
         //Array to access the information from the backbone models
-        var searchFilterItems = [this.model.attributes.categories.letter, this.model.attributes.categories.sex];
+        var searchFilterItems = [this.model.attributes.categories.sex];
 
       
         // Looping construct to add the elements from the model in a <li> tag.
-        for (var i = 0, k=0; i < searchFilterItems[0].length || k < searchFilterItems[1].length; i++, k++) {
+        for (var k= 0; k < searchFilterItems[0].length; k++) {
         
-            //letter filter
-            if ( i < searchFilterItems[0].length ) {
-              $('#letter', this.el).append('<li>' + searchFilterItems[0][i] + '</li>');  
-            }
-            
             //sex filter
-            if ( k < searchFilterItems[1].length ) {
-              $('#sex', this.el).append('<li>' + searchFilterItems[1][i] + '</li>');
+            if ( k < searchFilterItems[0].length ) {
+              $('#sex', this.el).append('<li data-filter="'+searchFilterItems[0][k]+'">' + searchFilterItems[0][k] + '</li>');
             }
 
         }
@@ -168,10 +170,12 @@ var dropdownSearchView = Backbone.View.extend({
 var websiteSearchModelObject = new websiteSearchModel();
 
 //Collection
-var websiteSearchCollectionObject = new websiteSearchCollection();
+websiteSearchCollectionObject = new websiteSearchCollection();
+
 
 //View Dropdown
 var searchViewObject = new dropdownSearchView({model:websiteSearchModelObject}); 
 
 // console.log(websiteSearchModelObject);
 // console.log(websiteSearchCollectionObject);
+//
