@@ -4,6 +4,7 @@
 {% load i18n %}
 {% load cloudinary %}
 
+{% load jsonify %}
 
 {% block head_title %}{% trans "Welcome" %}{% endblock %}
 
@@ -18,6 +19,11 @@
 {% endblock %}
 {% block footer %}{% endblock %}
 
-
+{% block extra_script %}
+<script type="text/javascript">
+  var websites = {{ website_list|jsonify }};
+  websiteSearchCollectionObject.reset(websites);
+</script>
+{% endblock %}
 
 

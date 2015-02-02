@@ -25,8 +25,15 @@ class WebsiteResource(ModelResource):
 		authentication = BasicAuthentication()
 		authorization = DjangoAuthorization()
 		filtering = {
-		    'name': ALL
+		    'name': ALL,
+            'menswear': ALL,
+            'womenswear': ALL,
+            'date_added': ALL,
 		}
+        
+        ordering = [
+                'date_added'
+        ]
 
 
 
