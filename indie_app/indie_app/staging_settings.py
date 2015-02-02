@@ -1,5 +1,10 @@
 import os
 
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
+
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
 PACKAGE_ROOT = os.path.abspath(os.path.dirname(__file__))
 # tweaked settings to prevent Django 1.5 detection in Django 1.7
@@ -9,8 +14,8 @@ TEMPLATE_DEBUG = DEBUG
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3", # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        "NAME": "dev.db", #dev.db for sqlite3
+        "ENGINE": "django.db.backends.mysql", # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        "NAME": "", #dev.db for sqlite3
     }
 }
 
@@ -96,6 +101,7 @@ TEMPLATE_CONTEXT_PROCESSORS = [
     "social.apps.django_app.context_processors.backends",
     "social.apps.django_app.context_processors.login_redirect",
     "pinax_theme_bootstrap.context_processors.theme",
+    'indie_app.context_processors.consts',
 ]
 
 
@@ -134,12 +140,12 @@ INSTALLED_APPS = [
     "eventlog",
     "metron",
     "south",
-    "shop",
     "social.apps.django_app.default",
 
     # project
     "indie_app",
-    "product_extend",
+    "_backend_api",
+    "cloudinary",
 ]
 
 # A sample logging configuration. The only tangible logging
@@ -150,6 +156,15 @@ INSTALLED_APPS = [
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
+    'formatters': {
+        'verbose': {
+            'format' : "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+            'datefmt' : "%d/%b/%Y %H:%M:%S"
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
     "filters": {
         "require_debug_false": {
             "()": "django.utils.log.RequireDebugFalse"
@@ -160,13 +175,28 @@ LOGGING = {
             "level": "ERROR",
             "filters": ["require_debug_false"],
             "class": "django.utils.log.AdminEmailHandler"
-        }
+        },
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'indie_app.log',
+            'formatter': 'verbose'
+        },
     },
     "loggers": {
         "django.request": {
             "handlers": ["mail_admins"],
             "level": "ERROR",
             "propagate": True,
+        },
+        'django': {
+            'handlers':['file'],
+            'propagate': True,
+            'level':'DEBUG',
+        },
+        'product_extend': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
         },
     }
 }
@@ -175,7 +205,14 @@ FIXTURE_DIRS = [
     os.path.join(PROJECT_ROOT, "fixtures"),
 ]
 
+cloudinary.config( 
+  cloud_name = "doqjl5owq", 
+  api_key = "936571887474212", 
+  api_secret = "RMBIzbb7sOzx1LREz7Uj0d22Ms0" 
+)
+
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
 
 ACCOUNT_OPEN_SIGNUP = True
 
@@ -185,8 +222,8 @@ ACCOUNT_REQUIRED_EMAIL = False
 ACCOUNT_EMAIL_UNIQUE = True
 # ACCOUNT_EMAIL_CONFIRMATION_REQUIRED = False
 ACCOUNT_USE_AUTH_AUTHENTICATE = True
-ACCOUNT_LOGIN_REDIRECT_URL = "/browse/all"
-ACCOUNT_LOGOUT_REDIRECT_URL = "home"
+ACCOUNT_LOGIN_REDIRECT_URL = "/"
+ACCOUNT_LOGOUT_REDIRECT_URL = "/"
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 2
 
 AUTHENTICATION_BACKENDS = [
@@ -233,7 +270,7 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
 
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
-# DATABASES['default'] =  dj_database_url.config(default='mysql://bb645b9e154107:8bc1ccbd@us-cdbr-iron-east-01.cleardb.net/heroku_bd0ad2ec30fb77c')
+DATABASES['default'] =  dj_database_url.config(default='mysql://ba0b3876b2b57d:da519b20@us-cdbr-iron-east-01.cleardb.net/heroku_560a6be42009a00?reconnect=true')
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')

@@ -99,11 +99,6 @@ var productViewObject = new productView({model:productFliterObject});
 
 var websiteSearchModel = Backbone.Model.extend({
     initialize: function() {
-    },
-    defaults :{
-        categories:{
-            sex:['Menswear','Womenswear']
-        }
     }
 });
 
@@ -116,7 +111,6 @@ var websiteSearchModel = Backbone.Model.extend({
 var websiteSearchCollection = Backbone.Collection.extend({
     
     model:websiteSearchModel,
-    url:'http://127.0.0.1:8000/scrap_api/_internal_websiteall_api/v2/all_wesbsites/'
 
 });
 
@@ -131,7 +125,7 @@ var dropdownSearchView = Backbone.View.extend({
     el:'.wrapper-nav',
 
     initialize: function() {
-        _.bindAll(this,'render','filterFunc');
+        _.bindAll(this,'render','filterFunc','filter_sex');
       
         this.render();
     },
@@ -140,22 +134,24 @@ var dropdownSearchView = Backbone.View.extend({
     },
     filter_sex: function (event) {
         var filter = $(event.target).data("filter");
+        console.log(filter);
         var filteredItems = _.filter(websiteSearchCollectionObject.models, function (i) {
             return i.get(filter) == true;
         });
         console.log(filteredItems);
+        // alert('hello')
     },
     filterFunc: function() {
         //Array to access the information from the backbone models
-        var searchFilterItems = [this.model.attributes.categories.sex];
+        var searchFilterItems = ['Menswear','Womenswear'];
 
       
         // Looping construct to add the elements from the model in a <li> tag.
-        for (var k= 0; k < searchFilterItems[0].length; k++) {
+        for (var k= 0; k < searchFilterItems.length; k++) {
         
             //sex filter
-            if ( k < searchFilterItems[0].length ) {
-              $('#sex', this.el).append('<li data-filter="'+searchFilterItems[0][k]+'">' + searchFilterItems[0][k] + '</li>');
+            if ( k < searchFilterItems.length ) {
+              $('#sex', this.el).append('<li data-filter="'+ searchFilterItems[k] +'">' + searchFilterItems[k] + '</li>');
             }
 
         }

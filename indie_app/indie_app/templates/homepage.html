@@ -23,6 +23,8 @@
 <script type="text/javascript">
   var websites = {{ website_list|jsonify }};
   websiteSearchCollectionObject.reset(websites);
+  console.log(websites);
+
 </script>
 {% endblock %}
 
