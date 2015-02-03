@@ -277,7 +277,7 @@ if not os.environ.has_key('DATABASE_URL'):
     os.environ['DATABASE_URL'] = 'mysql://ba0b3876b2b57d:da519b20@us-cdbr-iron-east-01.cleardb.net/heroku_560a6be42009a00?reconnect=true'
 
 import dj_database_url
-DATABASES['default'] =  dj_database_url.config()
+DATABASES['heroku_560a6be42009a00'] =  dj_database_url.config()
 
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
