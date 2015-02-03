@@ -14,8 +14,8 @@ TEMPLATE_DEBUG = DEBUG
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.mysql", # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        "NAME": "", #devlocal.db for sqlite3
+        "ENGINE": "django.db.backends.sqlite3", # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        "NAME": "devlocal.db", #devlocal.db for sqlite3
     }
 }
 
@@ -269,11 +269,11 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
 ############## Heroku ########################
 
 # Parse database configuration from $DATABASE_URL
-import dj_database_url
-DATABASES['default'] =  dj_database_url.config(default='mysql://ba0b3876b2b57d:da519b20@us-cdbr-iron-east-01.cleardb.net/heroku_560a6be42009a00?reconnect=true')
+# import dj_database_url
+# DATABASES['default'] =  dj_database_url.config(default='mysql://ba0b3876b2b57d:da519b20@us-cdbr-iron-east-01.cleardb.net/heroku_560a6be42009a00?reconnect=true')
 
-# Honor the 'X-Forwarded-Proto' header for request.is_secure()
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+# # Honor the 'X-Forwarded-Proto' header for request.is_secure()
+# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-# Allow all host headers
-ALLOWED_HOSTS = ['*']
+# # Allow all host headers
+# ALLOWED_HOSTS = ['*']
