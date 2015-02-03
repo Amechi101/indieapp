@@ -270,7 +270,7 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
 
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
-DATABASES['default'] =  dj_database_url.config(default='mysql://ba0b3876b2b57d:da519b20@us-cdbr-iron-east-01.cleardb.net/heroku_560a6be42009a00?reconnect=true')
+DATABASES['default'] =  dj_database_url.config(default=os.environ.get('DATABASE_URL'))
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
