@@ -12,16 +12,24 @@ PACKAGE_ROOT = os.path.abspath(os.path.dirname(__file__))
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.mysql", # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+#         "NAME": "heroku_560a6be42009a00", #devlocal.db for sqlite3
+#         'USER': 'ba0b3876b2b57d',
+#         'PASSWORD': 'da519b20',
+#         'HOST': 'https://salty-refuge-1024.herokuapp.com',
+#         'PORT': '',
+#     }
+# }
+
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.mysql", # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        "NAME": "heroku_560a6be42009a00", #devlocal.db for sqlite3
-        'USER': 'ba0b3876b2b57d',
-        'PASSWORD': 'da519b20',
-        'HOST': 'localhost',
-        'PORT': '',
+        "ENGINE": "django.db.backends.sqlite3", # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        "NAME": os.path.join(PROJECT_ROOT, 'devlocal.db') #devlocal.db for sqlite3
     }
 }
+
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -272,16 +280,16 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
 
 ############## Heroku ########################
 
-# Parse database configuration from $DATABASE_URL
-if not os.environ.has_key('DATABASE_URL'):
-    os.environ['DATABASE_URL'] = 'mysql://ba0b3876b2b57d:da519b20@us-cdbr-iron-east-01.cleardb.net/heroku_560a6be42009a00?reconnect=true'
+# # Parse database configuration from $DATABASE_URL
+# if not os.environ.has_key('DATABASE_URL'):
+#     os.environ['DATABASE_URL'] = 'mysql://ba0b3876b2b57d:da519b20@us-cdbr-iron-east-01.cleardb.net/heroku_560a6be42009a00?reconnect=true'
 
-import dj_database_url
-DATABASES['heroku_560a6be42009a00'] =  dj_database_url.config()
+# import dj_database_url
+# DATABASES['heroku_560a6be42009a00'] =  dj_database_url.config()
 
 
-# Honor the 'X-Forwarded-Proto' header for request.is_secure()
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+# # Honor the 'X-Forwarded-Proto' header for request.is_secure()
+# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-# Allow all host headers
-ALLOWED_HOSTS = ['*']
+# # Allow all host headers
+# ALLOWED_HOSTS = ['*']
