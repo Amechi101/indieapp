@@ -21,11 +21,7 @@ body {
   background-color:#fff;
 }
 
-/********************************  Header  *************************************/   
 
-
-
-/* Buttons */
 .btn {
 /*     font-family:FuturaStd-Bold,"Helvetica Neue",Helvetica,Arial,sans-serif; */
     -webkit-font-smoothing:antialiased;
@@ -62,6 +58,8 @@ body {
 }
 
 
+/********************************  Header  *************************************/   
+
 .btn-navbar{
     width:64px;
     height:64px;
@@ -87,22 +85,6 @@ body {
 }
 
 
-
-.btn-navbar .icon-main{
-    width:16px;
-    height:16px;
-    position:relative;
-    vertical-align:middle
-}
-
-
-.btn-navbar .icon-main {
-    display:inline-block;
-    position:relative
-}
-
-
-/* Navigation header  */
 .navbar-left,.navbar-left .btn-navbar {
     float:left;
 }
@@ -115,11 +97,13 @@ body {
     position: relative;  
     color: #FFF;
     top:30%;
-    right:20%;
-    font-size:30px;
+    right:0%;
+    font-size:2.2rem;
     font-weight:300;
+    vertical-align:middle;
+    width:16px;
+    height:16px;
 }
-
 
 .navbar {
     border:none;
@@ -132,13 +116,45 @@ body {
     left: 0px;
     width: 100%;
     position:relative;
-    /* background: none repeat scroll 0% 0% rgba(255,255,255, 1); */
-/*     box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.4); */
     -ms-transition:all 0.5s ease-in;
     -o-transition:all 0.5s ease-in;
     -moz-transition:all 0.5s ease-in;
     transition:all 0.5s ease-in;
 }
+
+/*  Registration header settings  */
+.indie-registration, 
+.indie-product,
+.indie-user-account{
+  background: none repeat scroll 0% 0% rgba(255,255,255, 1);  
+}
+
+
+/* Product display header settings  */
+.indie-product {
+    position: fixed;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.4); 
+}
+
+.indie-user-account {
+   box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.4);   
+}
+
+
+/* commmon sub header properties  */
+.indie-registration .navbar-left .bar,
+.indie-product .navbar-left .bar,
+.indie-user-account  .navbar-left .bar{
+    background: #000;
+}
+
+.indie-registration .navbar-right .icon-indie_web-02, 
+.indie-product .navbar-right .icon-indie_web-02{
+    color: #000;
+} 
+
+
+
 
 
 .navbar-left,.navbar-right {
@@ -486,6 +502,10 @@ body {
     border-bottom:1px solid #ebebeb
 }
 
+.navigation__header-search {
+    border: none;
+}
+
 .navigation__header__branding{
 /*     background-image:url(../img/structure/branding.png); */
 }
@@ -558,6 +578,14 @@ body {
     text-align: center;
     color:#000;
     font-weight:400;
+}
+
+
+
+@media screen and (max-width:720px) {
+    .nav_copyright {
+        font-size:12px
+    }
 }
 
 .navigation__sections ul{
@@ -1007,8 +1035,16 @@ body.home .body h1 {
     font-weight:700;
 }
 
+body.home .body .icon-indie_web-09 {
+   position: absolute;
+    font-size:1.3rem;
+    margin-left: 10px;
+    top:34%
+    
+}
 
-h1 {
+
+body.home  h1 {
     font-size:1.8em;
     margin:0;
     text-transform:none;
@@ -1016,7 +1052,7 @@ h1 {
 }
 
 @media only screen and (min-width: 500px) {
-    h1{
+   body.home  h1{
         font-size:2.4em;
         line-height:1.08333
     }
@@ -1438,7 +1474,7 @@ span.card-price{
 }
 
 
- .card-cover.active {
+ .card-cover.card--active {
     opacity: 1;
     -webkit-transform:translate3d(0, 0, 0);
     transform:translate3d(0, 0px, 0);   

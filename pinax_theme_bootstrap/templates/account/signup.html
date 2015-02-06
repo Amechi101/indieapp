@@ -19,14 +19,20 @@
     {% csrf_token %} 
     {{ form|bootstrap }} 
     {% if redirect_field_value %}
-    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />{% endif %}
-    <p class="agree">By signing up, I agree to IndieScrap's 
+    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+    {% endif %}
+    <p class="agree">By signing up, I agree to IndieScrap's>
         <a href="#" class="underline">Terms & Conditions</a> & <a class="underline" href="#">Privacy Policy</a>
     </p>
     <p>
         <button type="submit" class="button large bold">{% trans "Sign up" %}</button>
     </p>
 </form>
+<div class="footer">
+    <h2 class="heading-title" align="center">Are you a member? 
+        <a href="{% url "account_login" %}">{% trans "Login now" %}</a>
+    </h2>
+</div>
 {% endblock %}
 
 {% block extra_script %}

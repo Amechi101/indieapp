@@ -1,4 +1,4 @@
-from django.db import transaction
+from django.db import transaction, IntegrityError
 from django.http import HttpResponse
 
 from _backend_api.models import Product
@@ -29,10 +29,10 @@ def _trademark(request):
 	# counter for each item scrapped in total
 	items_counter = 0
 
-
-	with transaction.atomic():
-		for item in trademark_data:
-			try:
+	try:
+		with transaction.atomic():
+			for item in trademark_data:
+				
 				data_store = Product.objects.get_or_create( product_slug_url=item['product_slug_url'], website_id=1, defaults=item )
 
 				if data_store:
@@ -45,14 +45,14 @@ def _trademark(request):
 
 					data_count = Product.objects.filter( website_id=1 ).count()
 
-					data_store.save()
+					# data_store.save()
 
 				else:
 					data_store.update(**item)
-				
-			except Exception:
-				# "Not inserted ==>", into database
-				logger.exception('Something went wrong inserting a new entry %r', item )
+					
+	except IntegrityError:
+		# "Not inserted ==>", into database
+		logger.exception('Something went wrong inserting a new entry %r', item )
 
 	return HttpResponse('<h1>Products saved!</h1><br\>'
 						'<h2> %r Total Products Scrapped</h2><br\>'

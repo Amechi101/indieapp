@@ -12,11 +12,11 @@ from _backend_api.utils.fields import CurrencyField
 import datetime
 
 class Website(models.Model):
-    name = models.CharField(max_length=254, blank=True, null=True, unique=True)
+    name = models.CharField(max_length=255, blank=True, null=True, unique=True)
     description = models.TextField(null=True, blank=True)
 
     #Shows products from the backend listed for specific website only
-    website_slug = models.SlugField(verbose_name=_('Website Slug'), unique=True,  null=True,  blank=True)
+    website_slug = models.SlugField(max_length=255, verbose_name=_('Website Slug'), unique=True,  null=True,  blank=True)
     
     # Points to a Cloudinary image
     site_logo_image = CloudinaryField('image', null=True, blank=True)
@@ -63,16 +63,16 @@ class Product(models.Model):
     The product structure for the application, the products we scrap from sites will model this and save directly into the tables.
     """
 
-    product_name = models.CharField(max_length=254, verbose_name=_('Name'), null=True, blank=True)
+    product_name = models.CharField(max_length=255, verbose_name=_('Name'), null=True, blank=True)
     
     product_price = CurrencyField( verbose_name=_('Unit price') )
-    product_slug_url = models.URLField(max_length=200,  null=True, blank=True)
-    product_category = models.CharField(max_length=254, blank=True, null=True)
+    product_slug_url = models.URLField(max_length=255,  null=True, blank=True)
+    product_category = models.CharField(max_length=255, blank=True, null=True)
 
     # Points to a Cloudinary image
-    product_image = CloudinaryField('product image', null=True, blank=True)
+    product_image = CloudinaryField('product image', max_length=255, null=True, blank=True)
     
-    product_website_name = models.CharField(max_length=254, blank=True, null=True)
+    product_website_name = models.CharField(max_length=255, blank=True, null=True)
     
     #For Admin Purposes, to keep track of new and old items in the database by administrative users
     date_added = models.DateTimeField(auto_now_add=True, null=True, blank=True, verbose_name=_('Date added'))

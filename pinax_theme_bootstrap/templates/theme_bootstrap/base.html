@@ -32,99 +32,14 @@
     </head>
     <body class="{% block body_class %}{% endblock %}">
 
-        <!-- Global Website search (top) -->
-        <section class="website-filtersearch">
-            <header class="navigation__header">
-                <span class="navigation__header__branding">Indie</span>
-                <a id="indie-global-websearch-close" href="javascript:void(0)" class="navigation__header__close"><span class="icon-indie_web-03"></span></a>
-            </header>
-            <div class="nav-sidebar" id="nav-filters">
-                <div class="wrapper-nav">
-                    <h3 class="results-head"><strong>6</strong> Available Sites For Search</h3>
-                    <p class="results">Filter Sites By:</p>
-                    
-                    <div class="wrapper-dropdown" id="global-site-letter">
-                        <span>Trending</span>
-                        <ul id="letter">
-                            
-                        </ul>
-                    </div>
-                    
-                    <div class="wrapper-dropdown" id="global-site-sex">
-                        <span>Sex</span>
-                        <ul id="sex">
-                           
-                        </ul>
-                    </div>
-
-                    <ul class="list-tags">
-                    <!--@TODO Create cancelable elements after selections above from either drop downs -->
-                        <li class="close style2"><a href="">A</a></li>
-                        <li class="close style2"><a href="">B</a></li>
-
-                    </ul>
-                </div>
-            </div> 
-            <div id="home-site-filter"> 
-                <div class='search-wrapper '>
-                    <div class='search-input-container'>
-                        <div class='search-input-tablet-and-desktop'>
-                            <label class='search-label' for='search-input'></label>
-                            <input class='search-input' id='search-input' placeholder='Search Name Of Sites' spellcheck='false' type='text' />
-                        </div>
-                    </div>
-                </div>
-            </div>  
-            <div class="indie-fill-websites">
-                <div class="indie-fill-panel-wrapper">
-                    <div id="sidebar_search_block" class="sidebar-block">
-                    <!-- The empty div disappears when search results are found and inputs list stucture of the sites from the website model-->
-                    <!-- Or returns a <p> tag only inside the empty div with No results found! -->
-                        <div class="empty">
-                            <button class="btn btn-search-up btn-clear" type="button">
-                                <span class="text-hide">
-                                    Go to Search.
-                                </span>
-                            </button>
-                            <p>Filter websites above to discover</p>
-                        </div>
-             <!--            <nav class="navigation__sections">
-                            <ul class="list-products">
-
-                            <li class="list-item">
-                                <div class="relative">
-                                    <div class="overlay list-item-overlay">
-                                        <h3 class="list-item-product-name">
-                                            <a title="Brooks Sun" href="http://www.garrettleight.com/shop/brooks-sun/"></a>
-                                        </h3>
-                                    </div>
-                                    <div class="clearfix">
-                                        ::before
-                                        <div class="list-item-thumbnail-frame">
-                                            <div class="list-item-thumbnail-wrapper">
-                                                <a class="list-item-thumbail" style="background-image: url('http://d37cne1a4c0fnx.cloudfront.net/…b33525d08d6e5fb8d27136e95/b/r/brooks-2002-47-ch-b_plr.jpg');" title="Brooks Sun" href="http://www.garrettleight.com/shop/brooks-sun/">
-                                                    <span class="hide"></span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        ::after
-                                    </div>
-                                </div>
-                            </li>
-                                          
-                        </ul>
-                        </nav> -->
-                           
-                   </div>
-                </div>
-                <div id="sidebar_right_loader" class="please-wait"><span class="text-hide">Loading...</span></div>
-            </div>
-        </section>
-
+        {% block website_search_base %}
+            {% block website_search %}{% include "_global_partials/_website_search.html" %}{% endblock %}
+        {% endblock %}
+        
        <div id="indie-wrap">            
             {% block topbar_base %}
-            <header class="navbar">
-                <nav id="indie-global-menu">
+            <header id="indie-global-menu" class="navbar {% block header_class %}{% endblock %}">
+                <nav>
                     <div id="navbar_logo_wrapper" class="">
                         <a href="{% url "home" %}" id="navbar_logo" class="text-hide">Home</a>
                     </div>
@@ -139,26 +54,20 @@
                         </a>
                     </div>
 
+                    {% block header_website_search_icon %}
                     <div class="navbar-right">
                         <a href="javascript:void(0)" class="btn btn-navbar btn-toggle-sidebar-right">
                             <span class="icon-indie_web-02 icon-main"></span>
                         </a>          
                     </div>
+                    {% endblock %}
                 </nav>
             </header>
             {% endblock %}
 
-            {% block banner %}{% endblock %}  
             
-            {% block global_specific_sitefilter_base %}
-            <section id="{% block specific_sitefilter_id %}{% endblock %}"> 
-                {% block global_specific_sitefilter %}{% endblock  %}
-            </section>
-            {% endblock  %}
+            {% block product_banner %}{% endblock %}
 
-            {% block global_sitefilter_base %}
-                {% block global_sitefilter %}{% endblock  %}
-            {% endblock  %}
             
             {% block body_base %}
             <!-- global site content -->
@@ -187,8 +96,9 @@
                 </nav> 
                 <nav class="navigation__icons">
                     <ul>
-                        <li><a href="#"><span  class="icon-indie_web-04"></span></a></li>
-                        <li><a href="#"><span  class="icon-indie_web-05"></span></a></li> 
+                        <li><a href="#"><span class="icon-indie_web-04"></span></a></li>
+                        <li><a href="#"><span class="icon-indie_web-05"></span></a></li>
+                        <li><a href="#"><span class="icon-indie_web-08"></span></a></li> 
                     </ul>
                 </nav>
                 <p class="nav_copyright">&copy;2014 IndieScrap. Scraping in NYC with love.</p>

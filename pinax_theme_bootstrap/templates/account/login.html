@@ -23,7 +23,13 @@
         {% endif %}
         <p><a href="{% url "account_password_reset" %}" class="underline"><strong>{% trans "Forgot your password?" %}</strong></a></p>
          <p><button type="submit" class="button large bold">{% trans "Log in" %}</button></p>
-    </form>         
+    </form>  
+    <div class="footer">
+        <h2 class="heading-title" align="center">Not a member yet? 
+            <a href="{% url "account_signup" %}">{% trans "Register now" %}</a>
+        </h2>
+
+</div>       
 {% endblock %}
 
 

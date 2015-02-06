@@ -1,0 +1,17 @@
+{% load i18n %}
+{% load account_tags %}
+
+
+
+{% if request.user.is_authenticated %}  
+<li><a href="{% url "account_settings" %}"> {% trans "DASHBOARD" %}</a></li>   
+{% else %}
+<li><a href="{% url "account_login" %}">Login</a></li>
+<li><a href="{% url "account_signup" %}">Sign Up</a></li>
+      
+{% endif %}
+<li><a href="#">About Us</a></li>
+  
+<form id="accountLogOutForm" style="display: none;" action="{% url "account_logout" %}" method="POST">
+    {% csrf_token %}
+</form>

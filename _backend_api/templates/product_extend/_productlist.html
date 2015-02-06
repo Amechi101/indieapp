@@ -1,8 +1,9 @@
 {% extends "site_base.html" %}
 
+{% block header_class %}indie-product{% endblock %}
 
-{% block specific_sitefilter_id %}product-specific-site-filter{% endblock %}
-{% block global_specific_sitefilter %}
+{% block product_banner %}
+<section id="product-specific-site-filter"> 
 <div class="nav-sidebar" id="nav-filters">
     <div class="wrapper-nav">
         <h3 class="results-head"><strong>6</strong> Products Available </h3>
@@ -42,7 +43,8 @@
 
         </ul>
     </div>
-</div>   
+</div>  
+</section> 
 {% endblock  %}
 
 {% block main_container_id %}content{% endblock %}

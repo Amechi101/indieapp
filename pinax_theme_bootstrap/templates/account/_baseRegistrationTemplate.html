@@ -1,7 +1,13 @@
 {% extends "site_base.html" %}
+{% load url from future %}
+{% load i18n %}
 
-{% block head_title %}{% endblock %}
 
+{% block body_class %}indie-registration-form{% endblock %}
+
+{% block header_class %}indie-registration{% endblock %}
+
+{% block header_website_search_icon %}{% endblock %}
 
 {% block body_base %}
 <div id="content-form">
@@ -14,6 +20,9 @@
     </div>
 </div> 
 {% endblock %}
+
+
+{% block footer %}{% endblock %}
 
 
 {% block extra_script %}

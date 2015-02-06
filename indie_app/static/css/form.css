@@ -1,6 +1,8 @@
 
 /***             Structural styles for all forms                  ***/
-
+.indie-registration-form {
+    background:#ecf0f1; 
+}
 #content-form:after {
     content: "";
     display: block;
@@ -11,12 +13,13 @@
     clear: both;
     position: relative;
     transition: padding 0.25s ease-out 0s;
+    padding: 0 15px;
 }
 
 
 #content-form h1, #content-form h2, #content-form h3, #content-form h4, #content-form h5, #content-form h6 {
-    margin-bottom: 23px;
-    line-height: 170%;
+/*     margin-bottom: 23px;
+    line-height: 170%; */
 }
 
 #content-form p, #content-form blockquote {
@@ -34,6 +37,15 @@
 
 #content-form .heading-title {
     font-size:2.5em;
+}
+
+#content-form .box-form {
+    margin-top:150px;
+}
+
+
+#content-form .box-form p {
+    font-size:24px;   
 }
 
 
@@ -54,7 +66,7 @@
 
 .block-form {
     position: relative;
-    padding: 0px 0px 50px;
+/*     padding: 0px 0px 50px; */
 }
 
 .block-form:after {
@@ -63,10 +75,10 @@
     clear: both
 }
 
-.block-form:first-child,
+/* .block-form:first-child,
 .block-form.first {
     padding-top: 50px
-}
+} */
 .block-form:last-child {
     margin-bottom: 0;
     border-bottom: 0
@@ -78,8 +90,8 @@
     line-height: 41px;
     padding: 0 15px;
     width: 100%;
-    background-color: #ECF0F1;
-    color:#000;
+    background-color: #000;
+    color:#FFF;
     cursor: pointer;
     border: 0;
     border-radius: 2px; 
@@ -116,7 +128,7 @@ padding: 60px 0
     display:block;
     height:46px;
     padding:0 15px;
-    background:#ECF0F1;
+    background:#FFF;
     line-height:46px;
     font-size:17px;
     border:0;
@@ -309,6 +321,10 @@ padding: 60px 0
 .box-login .agree{
     overflow: hidden;
     font-size: 14px;
+}
+
+.heading-title {
+    font-size: 30px;
 }
 
 
