@@ -209,7 +209,7 @@ body {
     visibility:hidden;
     top:-100%;
     left:0;
-    z-index:1200;
+    z-index:999999;
 }
 
  .website-filtersearch{
@@ -474,7 +474,7 @@ body {
     visibility:hidden;
     bottom:-100%;
     left:0;
-    z-index:1200;
+    z-index:999999;
 }
 
  .navigation{
@@ -1144,7 +1144,7 @@ body.home .body li {
 
 #scrollTop {
     position: fixed;
-    z-index: 2147483647;
+    z-index:99999;
     bottom: 20px;
     right: 20px;
     width: 38px;
