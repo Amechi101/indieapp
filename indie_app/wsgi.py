@@ -15,7 +15,7 @@ framework.
 """
 import os
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "indie_app.local_settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "indie_app.settings")
 
 import indie_app.startup as startup
 startup.run()
