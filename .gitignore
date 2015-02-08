@@ -4,6 +4,5 @@
 env
 staticfiles
 local_settings.py
-manage.py
-wsgi.py
+
 
