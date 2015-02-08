@@ -1,89 +1,89 @@
-// @TODO To design with the tastypie api to filter and generate dropdown search list (with cancelable componenets) and search filter for the entire site with 
-// all functionality attached in this JS file. For: Collection. Views. and Model.
+// // @TODO To design with the tastypie api to filter and generate dropdown search list (with cancelable componenets) and search filter for the entire site with 
+// // all functionality attached in this JS file. For: Collection. Views. and Model.
 
 
-/*
- *
- * Backbone Model ( returing URL from tastypie link and craeting the list defaults for the dropdown on the search page)
- *
- */
-var productFliter = Backbone.Model.extend({
-    defaults :{
-        // @TODO update logic to backend to change as to what site is currently being choosen by the user on the front-end
-        categories:[],
-        priceRange:['0-50', '50-100','100-200','200-300','400+'],
-        generalFilter:['Newest Scrape\'s','Oldest Scrape\'s','Popular Scarpe\'s']
-    }
-});
+// /*
+//  *
+//  * Backbone Model ( returing URL from tastypie link and craeting the list defaults for the dropdown on the search page)
+//  *
+//  */
+// var productFliter = Backbone.Model.extend({
+//     defaults :{
+//         // @TODO update logic to backend to change as to what site is currently being choosen by the user on the front-end
+//         categories:[],
+//         priceRange:['0-50', '50-100','100-200','200-300','400+'],
+//         generalFilter:['Newest Scrape\'s','Oldest Scrape\'s','Popular Scarpe\'s']
+//     }
+// });
 
-/*
- *
- * Backbone Collection (To expose the API link for consumpation)
- *
- */
-var productCollection = Backbone.Collection.extend({
+// /*
+//  *
+//  * Backbone Collection (To expose the API link for consumpation)
+//  *
+//  */
+// var productCollection = Backbone.Collection.extend({
     
-    model:productFliter,
-    url:'http://127.0.0.1:8000/scrap_api/_internal_productall_api/v2/all_wesbsites/'
+//     model:productFliter,
+//     url:'http://127.0.0.1:8000/scrap_api/_internal_productall_api/v2/all_wesbsites/'
 
-});
+// });
 
 
-var productView = Backbone.View.extend({
-    //this is the scope of the Backbone selector, choosing the descendants of the
-    el:'.wrapper-nav',
+// var productView = Backbone.View.extend({
+//     //this is the scope of the Backbone selector, choosing the descendants of the
+//     el:'.wrapper-nav',
 
-    initialize: function() {
-        _.bindAll(this,'render','filterFunc');
+//     initialize: function() {
+//         _.bindAll(this,'render','filterFunc');
       
-        this.render();
-    },
-    filterFunc: function() {
-        //Array to access the information from the backbone models
-        var productFilterItems = [this.model.attributes.categories, this.model.attributes.priceRange, this.model.attributes.generalFilter];
+//         this.render();
+//     },
+//     filterFunc: function() {
+//         //Array to access the information from the backbone models
+//         var productFilterItems = [this.model.attributes.categories, this.model.attributes.priceRange, this.model.attributes.generalFilter];
      
-          /*
-            Looping construct to add the elements from the model in a <li> tag this will allow for easier access to attach any events and data 
-            that needs to be transferred to the backend.
+//           /*
+//             Looping construct to add the elements from the model in a <li> tag this will allow for easier access to attach any events and data 
+//             that needs to be transferred to the backend.
 
-          */
-        for (var i = 0, j=0, k=0; i < productFilterItems[0].length || j < productFilterItems[1].length || k < productFilterItems[2].length; i++, j++, k++) {
+//           */
+//         for (var i = 0, j=0, k=0; i < productFilterItems[0].length || j < productFilterItems[1].length || k < productFilterItems[2].length; i++, j++, k++) {
         
 
-            //categories filter
-            if ( i < productFilterItems[0].length ) {
-              $('#categories', this.el).append('<li>' + productFilterItems[0][i] + '</li>');  
-            }
+//             //categories filter
+//             if ( i < productFilterItems[0].length ) {
+//               $('#categories', this.el).append('<li>' + productFilterItems[0][i] + '</li>');  
+//             }
 
-            //price filter
-            if ( k < productFilterItems[1].length ) {
-              $('#price', this.el).append('<li>$' + productFilterItems[1][i].replace('-', '-$') + '</li>');
-            }
+//             //price filter
+//             if ( k < productFilterItems[1].length ) {
+//               $('#price', this.el).append('<li>$' + productFilterItems[1][i].replace('-', '-$') + '</li>');
+//             }
             
-            //trending filter
-            if ( j < productFilterItems[2].length ) {
-              $('#categories', this.el).append('<li>' + productFilterItems[2][i] + '</li>');  
-            }
+//             //trending filter
+//             if ( j < productFilterItems[2].length ) {
+//               $('#categories', this.el).append('<li>' + productFilterItems[2][i] + '</li>');  
+//             }
             
-        }
+//         }
       
-    },
-    render: function() {
-        this.filterFunc();
-    }
-});
+//     },
+//     render: function() {
+//         this.filterFunc();
+//     }
+// });
 
-//Model
-var productFliterObject  = new productFliter();
+// //Model
+// var productFliterObject  = new productFliter();
 
-//Collection
-var productCollectionObject = new productCollection();
+// //Collection
+// var productCollectionObject = new productCollection();
 
-// View Dropdown
-var productViewObject = new productView({model:productFliterObject});
+// // View Dropdown
+// var productViewObject = new productView({model:productFliterObject});
 
-// console.log(productFliterObject)
-// console.log(productViewObject)
+// // console.log(productFliterObject)
+// // console.log(productViewObject)
 
 
 
@@ -91,87 +91,5 @@ var productViewObject = new productView({model:productFliterObject});
 // all functionality attached in this JS file. For: Collection. Views. and Model.
 
 
-/*
- *
- * Backbone Model ( returing URL from tastypie link and craeting the list defaults for the dropdown on the search page)
- *
- */
-
-var websiteSearchModel = Backbone.Model.extend({
-    initialize: function() {
-    }
-});
 
 
-/*
- *
- * Backbone Collection ()
- *
- */
-var websiteSearchCollection = Backbone.Collection.extend({
-    
-    model:websiteSearchModel,
-
-});
-
-
-/*
- *
- * Backbone View ( Rendering the defaults of the model )
- *
- */
-var dropdownSearchView = Backbone.View.extend({
-    //this is the scope of the Backbone selector, choosing the descendants of the
-    el:'.wrapper-nav',
-
-    initialize: function() {
-        _.bindAll(this,'render','filterFunc','filter_sex');
-      
-        this.render();
-    },
-    events: {
-        'click #sex li': "filter_sex",
-    },
-    filter_sex: function (event) {
-        var filter = $(event.target).data("filter");
-        console.log(filter);
-        var filteredItems = _.filter(websiteSearchCollectionObject.models, function (i) {
-            return i.get(filter) == true;
-        });
-        console.log(filteredItems);
-        // alert('hello')
-    },
-    filterFunc: function() {
-        //Array to access the information from the backbone models
-        var searchFilterItems = ['Menswear','Womenswear'];
-
-      
-        // Looping construct to add the elements from the model in a <li> tag.
-        for (var k= 0; k < searchFilterItems.length; k++) {
-        
-            //sex filter
-            if ( k < searchFilterItems.length ) {
-              $('#sex', this.el).append('<li data-filter="'+ searchFilterItems[k] +'">' + searchFilterItems[k] + '</li>');
-            }
-
-        }
-      
-    },
-    render: function() {
-        this.filterFunc();
-    }
-});
-
-//Model
-var websiteSearchModelObject = new websiteSearchModel();
-
-//Collection
-websiteSearchCollectionObject = new websiteSearchCollection();
-
-
-//View Dropdown
-var searchViewObject = new dropdownSearchView({model:websiteSearchModelObject}); 
-
-// console.log(websiteSearchModelObject);
-// console.log(websiteSearchCollectionObject);
-//

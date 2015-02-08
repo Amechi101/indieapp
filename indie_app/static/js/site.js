@@ -37,7 +37,6 @@ indieScrapInitilazer = (function ( $, document, window, _ , undefined  ) {
      *
      */
     return {
-
         GlobalJS: function() {
 
             /*
@@ -61,7 +60,7 @@ indieScrapInitilazer = (function ( $, document, window, _ , undefined  ) {
                 }
             };
 
-            var filterDropdown = new Dropdown($('#global-site-letter, #global-site-sex, #product-categories, #product-price-filter, #product-trending-filter'));
+            var filterDropdown = new Dropdown($('#global-site-trending, #global-site-sex, #product-categories, #product-price-filter, #product-trending-filter'));
 
 
             /*

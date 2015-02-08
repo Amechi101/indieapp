@@ -12,13 +12,8 @@ PACKAGE_ROOT = os.path.abspath(os.path.dirname(__file__))
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2", # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        "NAME": "", 
-
-    }
-}
+# For internal purposes of switching settings components
+DEVELOPMENT = False
 
 
 # Local time zone for this installation. Choices can be found here:
@@ -267,19 +262,16 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
     "email"
 ]
 
+if DEVELOPMENT == True:
 
-############## Heroku ########################
+    try:
+        from heroku_db_config import *
+    except ImportError:
+        pass
+else: 
+    try:
+        from local_settings import *
+    except ImportError:
+        pass
 
-# Parse database configuration from $DATABASE_URL
-if not os.environ.has_key('DATABASE_URL'):
-    os.environ['DATABASE_URL'] = 'postgres://fpyfzfpjxajdbh:XinpGlrb5jifObW6zdz70WS6o2@ec2-23-21-235-249.compute-1.amazonaws.com:5432/da0jlh34a082ck'
 
-import dj_database_url
-DATABASES['default'] =  dj_database_url.config()
-
-
-# Honor the 'X-Forwarded-Proto' header for request.is_secure()
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
-# Allow all host headers
-ALLOWED_HOSTS = ['*']

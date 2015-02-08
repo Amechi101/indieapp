@@ -1,0 +1,21 @@
+{% load url from future %}
+{% load i18n %}
+
+<!-- Global Menu (bottom ) -->
+<section class="navigation">
+    <header class="navigation__header">
+        <span class="navigation__header__branding">Indie</span>
+        <a id="indie-global-menu-close" href="javascript:void(0)" class="navigation__header__close"><span class="icon-indie_web-03"></span></a>
+    </header>
+    <nav class="navigation__primary">
+        {% block account_bar %}{% include "_account_bar.html" %}{% endblock %}
+    </nav> 
+    <nav class="navigation__icons">
+        <ul>
+            <li><a href="#"><span class="icon-indie_web-04"></span></a></li>
+            <li><a href="#"><span class="icon-indie_web-05"></span></a></li>
+            <li><a href="#"><span class="icon-indie_web-08"></span></a></li> 
+        </ul>
+    </nav>
+    <p class="nav_copyright">&copy;2014 IndieScrap. Scraping in NYC with love.</p>
+</section>

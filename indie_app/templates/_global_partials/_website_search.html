@@ -1,6 +1,6 @@
 {% load url from future %}
 {% load i18n %}
-
+{% load jsonify %}
 <!-- Global Website search (top) -->
 <section class="website-filtersearch">
     <header class="navigation__header navigation__header-search">
@@ -8,57 +8,38 @@
     </header>
     <div class="nav-sidebar" id="nav-filters">
         <div class="wrapper-nav">
-            <h3 class="results-head"><strong>6</strong> Available Sites For Search</h3>
+            <h3 id="websites-count" class="results-head"><strong></strong> Available Sites</h3>
             <p class="results">Filter Sites By:</p>
             
-            <div class="wrapper-dropdown" id="global-site-letter">
-                <span>Trending</span>
-                <ul id="letter">
+            <div class="wrapper-dropdown" id="global-site-trending">
+                <span>Recently Added</span>
+                <ul id="website-trending">
                     
                 </ul>
             </div>
             
             <div class="wrapper-dropdown" id="global-site-sex">
                 <span>Sex</span>
-                <ul id="sex">
+                <ul id="website-sex">
                    
                 </ul>
             </div>
 
             <ul class="list-tags">
             <!--@TODO Create cancelable elements after selections above from either drop downs -->
-                <li class="close style2"><a href="">A</a></li>
-                <li class="close style2"><a href="">B</a></li>
+                
 
             </ul>
         </div>
     </div> 
-    <div id="home-site-filter"> 
-        <div class='search-wrapper '>
-            <div class='search-input-container'>
-                <div class='search-input-tablet-and-desktop'>
-                    <label class='search-label' for='search-input'></label>
-                    <input class='search-input' id='search-input' placeholder='Search Name Of Sites' spellcheck='false' type='text' />
-                </div>
-            </div>
-        </div>
-    </div>  
     <div class="indie-fill-websites">
         <div class="indie-fill-panel-wrapper">
             <div id="sidebar_search_block" class="sidebar-block">
             <!-- The empty div disappears when search results are found and inputs list stucture of the sites from the website model-->
             <!-- Or returns a <p> tag only inside the empty div with No results found! -->
-                <div class="empty">
-                    <button class="btn btn-search-up btn-clear" type="button">
-                        <span class="text-hide">
-                            Go to Search.
-                        </span>
-                    </button>
-                    <p>Filter websites above to discover</p>
-                </div>
-     <!--            <nav class="navigation__sections">
+                    {% if website_list.count > 0  %}
+                    {% for website in website_list  %}
                     <ul class="list-products">
-
                     <li class="list-item">
                         <div class="relative">
                             <div class="overlay list-item-overlay">
@@ -78,13 +59,27 @@
                                 ::after
                             </div>
                         </div>
-                    </li>
-                                  
+                    </li>                
                 </ul>
-                </nav> -->
+                </nav>
+                {% endfor %}
+                {% else %}
+
+                <div class="empty">
+                    <button class="btn btn-search-up btn-clear" type="button">
+                        <span class="text-hide">
+                            Go to Search.
+                        </span>
+                    </button>
+                    <p>No Websites Available! Filter Again Above.</p>
+                </div>
+                {% endif %}
+               
+
                    
            </div>
         </div>
         <div id="sidebar_right_loader" class="please-wait"><span class="text-hide">Loading...</span></div>
     </div>
 </section>
+

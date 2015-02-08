@@ -40,27 +40,24 @@
     <script src="{% static "js/lib/bootstrap.min.js" %}"></script>
     <script src="{% static "js/lib/underscore-min.js" %}"></script>
     <script src="{% static "js/lib/backbone-min.js" %}"></script>
-    <script src="{% static "js/lib/backbone-tastypie.js" %}"></script>
     <script src="{% static "pinax/js/theme.js" %}"></script>
     <script src="{% static "js/lib/classie.js" %}"></script>
     <script src="{% static "js/lib/flickerplate.js" %}"></script>
     <script src="{% static "js/lib/hammer-v2.0.3.min.js" %}"></script>
 
-    <!-- backbone code -->
-    <script src="{% static "backboneapp/backboneApp.js" %}"></script>
+    {% block backbone_script %} 
+    {% endblock %}
 
     <!--Application Script -->
     <script src="{% static "js/site.js" %}"></script>
 
-
-  
+    <!-- Adobe Typeface -->
     <script type="text/javascript" src="//use.typekit.net/uee5rje.js"></script>
     <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+    
+    {% analytics %}
+
     {% block extra_script %}
-        {% analytics %}
     {% endblock %}
 {% endblock %}
 
-{% block extra_body_base %}
-    {% block extra_body %}{% endblock %}
-{% endblock %}

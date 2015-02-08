@@ -1,6 +1,6 @@
 {% extends "site_base.html" %}
 {% load url from future %}
-
+{% load staticfiles %}
 {% load i18n %}
 {% load cloudinary %}
 
@@ -17,15 +17,25 @@
     </ul>
 </section>
 {% endblock %}
+
 {% block footer %}{% endblock %}
 
-{% block extra_script %}
+{% block backbone_script %}
+<!-- Collection -->
+<script src="{% static "backboneapp/collections/website_search_collection.js" %}"></script>
+
+<!-- Bootsrapped Model -->
 <script type="text/javascript">
-  var websites = {{ website_list|jsonify }};
-  websiteSearchCollectionObject.reset(websites);
-  console.log(websites);
+
+	var websites = {{ website_list|jsonify }},
+		websitesCollection = new websiteSearchCollection({model:websites});
+
+	websitesCollection.reset(websites);
 
 </script>
+
+<!-- View -->
+<script src="{% static "backboneapp/views/website_search_view.js" %}"></script>
 {% endblock %}
 
 
