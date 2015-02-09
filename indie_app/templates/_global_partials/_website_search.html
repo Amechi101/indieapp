@@ -13,18 +13,24 @@
             
             <div class="wrapper-dropdown" id="global-site-trending">
                 <span>Recently Added</span>
-                <ul id="website-trending">
+                <ul id="website-trending" class="search-filter-container">
                     
                 </ul>
             </div>
             
             <div class="wrapper-dropdown" id="global-site-sex">
                 <span>Sex</span>
-                <ul id="website-sex">
+                <ul id="website-sex" class="search-filter-container">
                    
                 </ul>
             </div>
 
+
+            <script id="listTagTemplate" type="text/template">
+              <% $.each(tags, function(i, tag) { %>
+                <li class="close style2"><a href="javascript:void(0)"><%= tag %></a></li>
+              <% }); %>
+            </script>
             <ul class="list-tags">
             <!--@TODO Create cancelable elements after selections above from either drop downs -->
                 
