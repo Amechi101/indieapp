@@ -11,10 +11,12 @@
 var websiteSearchView = Backbone.View.extend({
     //this is the scope of the Backbone selector, choosing the descendants of the
     el:'#nav-filters',
-
+    list_tags_tpl: _.template($('#listTagTemplate').html()),
     initialize: function() {
-        _.bindAll(this,'render','search_categories','model_count','filter_sex_tag');
-      
+        _.bindAll(this,'render','search_categories','model_count','init_filters');
+        this.filters = {};  
+        this.search_categories();
+        this.init_filters();
         this.render();
     },
     model_count:function() {
@@ -29,36 +31,20 @@ var websiteSearchView = Backbone.View.extend({
             .attr('data-filter',  this.collection.models.length )
             .text(this.collection.models.length.toString());
     },
-    filter_sex_tag: function ( ) {
-        
+    init_filters: function ( ) {
+        var self = this; 
         this.model_count();
 
         var createListTags = $('.list-tags', this.el);
 
-
-        $('#website-sex li', this.el).each(function( index ) {
+        console.log($('.search-filter-container li'));
+        $('.search-filter-container li').each(function( index ) {
             var _this = this;
             var filter =  $(_this).data("filter");
             
             $(_this).on('click', function() {
-                var filteredItems = _.filter( [filter], function (i) {
-                   
-                    switch(i) {
-                        case "Womenswear": 
-                            createListTags.append('<li class="close style2"><a href="javascript:void(0)">' + i + '</a></li>');
-                        break;
-
-                        case "Menswear": 
-                            createListTags.append('<li class="close style2"><a href="javascript:void(0)">' + i + '</a></li>');
-                        break;
-
-                        case "Both": 
-                            createListTags.append('<li class="close style2"><a href="javascript:void(0)">' + i + '</a></li>');
-                        break;
-                    }
-
-                    
-                });
+                self.filters[$(_this).data("filter-type")] = filter;
+                self.render();
             });    
         });
 
@@ -73,18 +59,21 @@ var websiteSearchView = Backbone.View.extend({
 
         // Looping construct to add <li> tags.
         for (var i= 0; i < searchTerms.sex.length; i++) {
-            $('#website-sex', this.el).append('<li data-filter="' + searchTerms.sex[i] + '">' + searchTerms.sex[i] + '</li>'); 
+            $('#website-sex', this.el).append('<li data-filter-type="sex" data-filter="' + searchTerms.sex[i] + '">' + searchTerms.sex[i] + '</li>'); 
         }
 
 
         for (var k=0;  k < searchTerms.trending.length; k++) {
-            $('#website-trending', this.el).append('<li data-filter="' + searchTerms.trending[k] + '">' + searchTerms.trending[k] + '</li>');
+            $('#website-trending', this.el).append('<li data-filter-type="trending" data-filter="' + searchTerms.trending[k] + '">' + searchTerms.trending[k] + '</li>');
         }
       
     },
     render: function() {
-        this.search_categories();
-        this.filter_sex_tag();
+        var self = this;
+        var filters = Object.keys(this.filters).map(function(key){
+                return self.filters[key];
+        });
+        $('#list-tags').html(this.list_tags_tpl({tags: filters}));
     }
 });
 
