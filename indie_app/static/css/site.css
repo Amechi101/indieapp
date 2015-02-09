@@ -1133,6 +1133,7 @@ body.home .body li {
     -moz-osx-font-smoothing: grayscale;
     padding: 24px 8px;
     display: inline-block;
+    outline: none;
     transition: all 0.2s ease-in-out 0s;
 }
 
@@ -1175,10 +1176,10 @@ body.home .body li {
     max-width:1203px;
     min-width:310px;
 /*padding: 0px 42px;*/
+    padding-left:15px;
+    padding-right:15px;
     position:relative;
-    width:100%;
-
-  
+    width:100%;  
 }
 
 #content:after {
@@ -1282,10 +1283,10 @@ body.home .body li {
 /********************************  Products   *************************************/   
 .button, .button-price {
     appearance:none;
-    background-color:#2fdab8;
+    background-color:#FFF;
     border:none;
     border-radius:0;
-    color:white;
+    color:#000;
     display:inline-block;
     font-size:20px;
     font-weight:500;
@@ -1340,7 +1341,7 @@ body.home .body li {
     width:100%;
     position:absolute;
 }
-
+/* 
 .hover-title{
     box-sizing:border-box;
     color:#FFF;
@@ -1388,12 +1389,13 @@ body.home .body li {
         display:none !important
     }
 
-}
+} */
 
 .product-image{
-    background-position:center;
+    background-position:center top;
     background-repeat:no-repeat;
     background-size:contain;
+    background-color: transparent;
     bottom:0;
     font-size:0;
     left:0;
@@ -1430,8 +1432,6 @@ span.card-price{
     -webkit-transition:all 0.2s ease-in-out;
     transition:all 0.2s ease-in-out;
 }
-
-
 
 
 .magazine-single-card-container{
@@ -1523,9 +1523,9 @@ span.card-price{
     flex-flow:column nowrap
 }
 
-.magazine-product-card .product-image{
+/* .magazine-product-card .product-image{
     margin:52px 20%
-}
+} */
 
 @media only screen and (max-width: 540px){
     .magazine-product-card .product-image{
@@ -1587,11 +1587,11 @@ span.card-price{
     overflow: hidden;
     text-align: center;
     text-decoration: none;
-    background-color: #2FDAB8;
+    background-color: #fff;
     border:none;
     border-radius: 0px;
     text-transform:uppercase;
-    color: #FFF;
+    color: #000;
     /* cursor: pointer; */
     display: inline-block;
     font-size: 20px;
@@ -1616,10 +1616,10 @@ span.card-price{
     transition:background .2s ease-in-out;
 }
 
-.card-view:hover {
+/* .card-view:hover {
     background:rgba(0,0,0,0.3);
 }
-
+ */
 
 /********************************   Footer    *************************************/ 
 

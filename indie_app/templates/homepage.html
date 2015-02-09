@@ -3,8 +3,8 @@
 {% load staticfiles %}
 {% load i18n %}
 {% load cloudinary %}
-
 {% load jsonify %}
+
 
 {% block head_title %}{% trans "Welcome" %}{% endblock %}
 
@@ -20,22 +20,22 @@
 
 {% block footer %}{% endblock %}
 
-{% block backbone_script %}
-<!-- Collection -->
-<script src="{% static "backboneapp/collections/website_search_collection.js" %}"></script>
+{% block backbone_scripts_extra %}
+    <!-- Bootstrapped Model -->
+    <script type="text/javascript">
+        var websites = {{ website_list|jsonify }};
+    </script>
 
-<!-- Bootsrapped Model -->
-<script type="text/javascript">
+    <!-- Collection -->
+    <script src="{% static "backboneapp/collections/website_search_collection.js" %}"></script>
 
-	var websites = {{ website_list|jsonify }},
-		websitesCollection = new websiteSearchCollection({model:websites});
+    <!-- View -->
+    <script src="{% static "backboneapp/views/website_search_view.js" %}"></script>
+{% endblock %}
 
-	websitesCollection.reset(websites);
-
-</script>
-
-<!-- View -->
-<script src="{% static "backboneapp/views/website_search_view.js" %}"></script>
+{% block extra_script %}
+	<script src="{% static "js/lib/flickerplate.js" %}"></script>
+	<script src="{% static "js/lib/hammer-v2.0.3.min.js" %}"></script>
 {% endblock %}
 
 

@@ -1,49 +1,51 @@
 "use strict";
 
+/*
+ *
+ *@title View for all websites
+ *@description creating/deleting search tags, updating search count & collection based on search tags
+ *@intial_view with all the sites loaded upfront to search
+ */
+
+
 var websiteSearchView = Backbone.View.extend({
     //this is the scope of the Backbone selector, choosing the descendants of the
-    el:'.wrapper-nav',
+    el:'#nav-filters',
 
     initialize: function() {
-        _.bindAll(this,'render','search_categories','model_count','filter_sex');
+        _.bindAll(this,'render','search_categories','model_count','filter_sex_tag');
       
         this.render();
     },
     model_count:function() {
-        console.log(this.model.models);
+        // console.log(this.model.models);
+
+         this.collection.each(function(website){
+            console.log(website);
+        });
+
 
         $('#websites-count strong', this.el)
-            .attr('data-filter',  this.model.models.length )
-            .text(this.model.models.length.toString());
+            .attr('data-filter',  this.collection.models.length )
+            .text(this.collection.models.length.toString());
     },
-    filter_sex: function ( ) {
+    filter_sex_tag: function ( ) {
         
         this.model_count();
 
         var createListTags = $('.list-tags', this.el);
 
-        console.log(createListTags.find('li a').text() > 0 )
 
         $('#website-sex li', this.el).each(function( index ) {
             var _this = this;
             var filter =  $(_this).data("filter");
             
-            
-
-            
             $(_this).on('click', function() {
                 var filteredItems = _.filter( [filter], function (i) {
                    
-
                     switch(i) {
                         case "Womenswear": 
-                            if( createListTags.find('li a').text() > 0 ) {
-                               
-                                createListTags.find('li').remove()
-                            } else {
-                                createListTags.append('<li class="close style2"><a href="javascript:void(0)">' + i + '</a></li>');
-                            }
-                            
+                            createListTags.append('<li class="close style2"><a href="javascript:void(0)">' + i + '</a></li>');
                         break;
 
                         case "Menswear": 
@@ -82,11 +84,40 @@ var websiteSearchView = Backbone.View.extend({
     },
     render: function() {
         this.search_categories();
-        this.filter_sex();
+        this.filter_sex_tag();
     }
 });
 
-//View Dropdown
-var websiteSearchViewObject = new websiteSearchView({model:websitesCollection}); 
+
+/*
+ *
+ *@title View for a websites
+ *@description 
+ *
+ */
+var websiteView = Backbone.View.extend({
+    //this is the scope of the Backbone selector, choosing the descendants of the
+    el:'#indie-populate-websites',
+
+    initialize: function() {
+        _.bindAll(this,'render');
+      
+        this.render();
+    },
+    template: _.template($('#websiteTemplate').html()),
+
+    render: function(){
+
+        this.collection.forEach(function(element) {
+            console.log( element.attributes.fields)
+
+        });
+        
+    }
+});
+
+
+var websiteSearchViewObject = new websiteSearchView({collection:websitesCollection}); 
+var websiteViewOject = new websiteView({ collection:websitesCollection });
 
 console.log(websiteSearchViewObject);

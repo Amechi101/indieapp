@@ -1,12 +1,12 @@
 {% load url from future %}
 {% load i18n %}
-{% load jsonify %}
+
 <!-- Global Website search (top) -->
-<section class="website-filtersearch">
+<div class="website-filtersearch">
     <header class="navigation__header navigation__header-search">
         <a id="indie-global-websearch-close" href="javascript:void(0)" class="navigation__header__close"><span class="icon-indie_web-03"></span></a>
-    </header>
-    <div class="nav-sidebar" id="nav-filters">
+    </header>   
+    <section class="nav-sidebar" id="nav-filters">
         <div class="wrapper-nav">
             <h3 id="websites-count" class="results-head"><strong></strong> Available Sites</h3>
             <p class="results">Filter Sites By:</p>
@@ -31,55 +31,29 @@
 
             </ul>
         </div>
-    </div> 
-    <div class="indie-fill-websites">
+    </section> 
+    <section id="indie-populate-websites" class="indie-fill-websites">
         <div class="indie-fill-panel-wrapper">
             <div id="sidebar_search_block" class="sidebar-block">
             <!-- The empty div disappears when search results are found and inputs list stucture of the sites from the website model-->
             <!-- Or returns a <p> tag only inside the empty div with No results found! -->
-                    {% if website_list.count > 0  %}
-                    {% for website in website_list  %}
-                    <ul class="list-products">
-                    <li class="list-item">
-                        <div class="relative">
-                            <div class="overlay list-item-overlay">
-                                <h3 class="list-item-product-name">
-                                    <a title="Brooks Sun" href="http://www.garrettleight.com/shop/brooks-sun/"></a>
-                                </h3>
-                            </div>
-                            <div class="clearfix">
-                                ::before
-                                <div class="list-item-thumbnail-frame">
-                                    <div class="list-item-thumbnail-wrapper">
-                                        <a class="list-item-thumbail" style="background-image: url('http://d37cne1a4c0fnx.cloudfront.net/…b33525d08d6e5fb8d27136e95/b/r/brooks-2002-47-ch-b_plr.jpg');" title="Brooks Sun" href="http://www.garrettleight.com/shop/brooks-sun/">
-                                            <span class="hide"></span>
-                                        </a>
-                                    </div>
-                                </div>
-                                ::after
-                            </div>
-                        </div>
-                    </li>                
-                </ul>
-                </nav>
-                {% endfor %}
-                {% else %}
+            <script id="websiteTemplate" type="text/template">
+                <strong><%= fields.description %></strong> 
+            </script>
 
-                <div class="empty">
+
+               <!--  <div class="empty">
                     <button class="btn btn-search-up btn-clear" type="button">
                         <span class="text-hide">
                             Go to Search.
                         </span>
                     </button>
                     <p>No Websites Available! Filter Again Above.</p>
-                </div>
-                {% endif %}
-               
-
-                   
+                </div> -->
+                     
            </div>
         </div>
         <div id="sidebar_right_loader" class="please-wait"><span class="text-hide">Loading...</span></div>
-    </div>
-</section>
+    </section>
+</div>
 

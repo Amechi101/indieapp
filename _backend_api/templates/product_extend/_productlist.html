@@ -64,20 +64,34 @@
             <a class="pagination-link" href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
              {% endif %}
             
-            <div class='pagination-link active'>{{ page_obj.number }}</div>
+            <div class='pagination-link active'>{{ page_obj.number }} </div>
 
             {% if page_obj.has_next %}
             <a class="pagination-link" href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
-            <div class='pagination-text'>...</div>
+            <div class='pagination-text'>... of {{paginator.num_pages}}</div>
+
             <a class="pagination-link page-next" href="?page={{ page_obj.next_page_number }}">next</a>
-            {% endif %}   
+            {% endif %} 
+
          </div>
     {% endblock %}
 {% endif %}
 
 {% block scrollTop %}
- <a href="javascript:void(0)" id="scrollTop">Scroll</a>
+<a href="javascript:void(0)" id="scrollTop">Scroll</a>
 {% endblock %}
 
-
 {% block footer %}{% endblock %}
+
+{% block backbone_scripts_extra %}
+    <!-- Bootstrapped Model -->
+    <script type="text/javascript">
+        var websites = {{ website_list|jsonify }};
+    </script>
+
+    <!-- Collection -->
+    <script src="{% static "backboneapp/collections/website_search_collection.js" %}"></script>
+
+    <!-- View -->
+    <script src="{% static "backboneapp/views/website_search_view.js" %}"></script>
+{% endblock %}

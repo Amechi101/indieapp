@@ -42,22 +42,19 @@
     <script src="{% static "js/lib/backbone-min.js" %}"></script>
     <script src="{% static "pinax/js/theme.js" %}"></script>
     <script src="{% static "js/lib/classie.js" %}"></script>
-    <script src="{% static "js/lib/flickerplate.js" %}"></script>
-    <script src="{% static "js/lib/hammer-v2.0.3.min.js" %}"></script>
 
-    {% block backbone_script %} 
-    {% endblock %}
+    {% block extra_script %}{% endblock %}
+
+    {% block backbone_scripts_extra %}{% endblock %}
 
     <!--Application Script -->
     <script src="{% static "js/site.js" %}"></script>
 
-    <!-- Adobe Typeface -->
-    <script type="text/javascript" src="//use.typekit.net/uee5rje.js"></script>
-    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-    
     {% analytics %}
 
-    {% block extra_script %}
-    {% endblock %}
+    <!-- Adobe Typeface -->
+    <script src="//use.typekit.net/uee5rje.js"></script>
+    <script>try{Typekit.load();}catch(e){}</script>
+
 {% endblock %}
 
