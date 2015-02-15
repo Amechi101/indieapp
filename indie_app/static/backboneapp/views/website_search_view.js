@@ -13,6 +13,7 @@ var websiteSearchView = Backbone.View.extend({
     el:'#nav-filters',
     list_tags_tpl: _.template($('#listTagTemplate').html()),
     events: {
+        "click .list-tags .close a": "remove_filter"
     },
     initialize: function() {
         _.bindAll(this,'render','filter_tags','model_count','init_filters','website_list');
@@ -22,7 +23,7 @@ var websiteSearchView = Backbone.View.extend({
         this.filter_tags();
         this.init_filters();
         
-        
+        this.websiteView = new websiteView({collection: new websiteSearchCollection(this.collection.models)});
         this.render();
 
 
@@ -70,25 +71,34 @@ var websiteSearchView = Backbone.View.extend({
         }
       
     },
+    remove_filter: function(event) {
+        var filter_type = $(event.target).data("filter-type");
+        delete this.filters[filter_type];
+        this.render();
+    },
     website_list:function() {
         var self = this; 
-
-        self.collection.each(function(websites) {
-            
-            console.log(websites);
-            var websiteViewOject = new websiteView({ collection:websites });
- 
-            websiteViewOject.$el.append( websiteViewOject.website_list( websites.attributes.fields ) );
-            
+        var filtered_websites = self.collection.filter(function(website) {
+            var keep = true;
+            $.each(self.filters, function(ftype, fvalue) {
+                if(ftype == "sex") {
+                    if(!website.get(fvalue.toLowerCase()))
+                        keep = false;
+                } else if(ftype == "age") {
+                    // check site date here
+                }
+                // generic logic not useful here but might be for another page
+                else if(website[ftype] != fvalue) {
+                    //keep = false;
+                }
+            });
+            return keep;
         });
+        this.websiteView.collection.reset(filtered_websites);
     },
     render: function() {
         
         var self = this;
-        
-        var filters = Object.keys(this.filters).map(function(key){
-                return self.filters[key];
-        });
 
         //List Tags
         $('.list-tags').html(self.list_tags_tpl({tags: self.filters}));
@@ -105,8 +115,14 @@ var websiteSearchView = Backbone.View.extend({
  */
 var websiteView = Backbone.View.extend({
     //this is the scope of the Backbone selector, choosing the descendants of the
-    el:'#indie-populate-websites',
-    website_list: _.template($('#websiteTemplate').html())
+    initialize: function () {
+        this.listenTo(this.collection, "reset", this.render);
+    },
+    el:'#sidebar_search_block',
+    template: _.template($('#websiteTemplate').html()),
+    render: function() {
+        this.$el.html(this.template({websites: this.collection.models}));
+    }
 });
 
 

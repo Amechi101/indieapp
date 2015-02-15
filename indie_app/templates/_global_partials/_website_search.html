@@ -30,7 +30,7 @@
             <!--@TODO Create cancelable elements after selections above from either drop downs -->
                 <script id="listTagTemplate" type="text/template">
                   <% $.each(tags, function(filter_type, value) { %>
-                    <li class="close style2" data-filter-type="<%= filter_type %>"><a href="javascript:void(0)"><%= value %></a></li>
+                    <li class="close style2"><a href="javascript:void(0)" data-filter-type="<%= filter_type %>"><%= value %></a></li>
                   <% }); %>
                 </script>
             </ul>
@@ -41,31 +41,35 @@
             <div id="sidebar_search_block" class="sidebar-block">
             <!-- The empty div disappears when search results are found and inputs list stucture of the sites from the website model-->
             <!-- Or returns a <p> tag only inside the empty div with No results found! -->
-            <script id="websiteTemplate" type="text/template"> 
+     
+                     
+           </div>
+            <script id="websiteTemplate" type="text/template">
+                <% $.each(websites, function(i, website) { %>
                 <div class="og-expander">
                     <div class="og-expander-inner">
                         <div class="og-fullimg">
-                            <img src="http://res.cloudinary.com/doqjl5owq/image/upload/<%= site_logo_image %>" style="display: inline;"></img>
+                            <img src="http://res.cloudinary.com/doqjl5owq/image/upload/<%= website.get('site_logo_image') %>" style="display: inline;"></img>
                         </div>
                         <div class="og-details">
-                            <h3><%= name %></h3>
-                            <p><%= description %></p>
-                            <a href="browse/<%= website_slug %>"><%= name %> products</a>
+                            <h3><%= website.get('name') %></h3>
+                            <p><%= website.get('description') %></p>
+                            <a href="browse/<%= website.get('website_slug') %>"><%= website.get('name') %> products</a>
                         </div>
                     </div>
                 </div>
-            </script>
-
-               <!--  <div class="empty">
+                <% }); %>
+                <% if(websites) { %>
+                <div class="empty">
                     <button class="btn btn-search-up btn-clear" type="button">
                         <span class="text-hide">
                             Go to Search.
                         </span>
                     </button>
                     <p>No Websites Available! Filter Again Above.</p>
-                </div> -->
-                     
-           </div>
+                </div>
+                <% } %>
+            </script>
         </div>
         <div id="sidebar_right_loader" class="please-wait"><span class="text-hide">Loading...</span></div>
     </div>
