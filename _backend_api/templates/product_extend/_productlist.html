@@ -1,4 +1,5 @@
 {% extends "site_base.html" %}
+{% load jsonify %}
 
 {% block header_class %}indie-product{% endblock %}
 
@@ -83,15 +84,3 @@
 
 {% block footer %}{% endblock %}
 
-{% block backbone_scripts_extra %}
-    <!-- Bootstrapped Model -->
-    <script type="text/javascript">
-        var websites = {{ website_list|jsonify }};
-    </script>
-
-    <!-- Collection -->
-    <script src="{% static "backboneapp/collections/website_search_collection.js" %}"></script>
-
-    <!-- View -->
-    <script src="{% static "backboneapp/views/website_search_view.js" %}"></script>
-{% endblock %}

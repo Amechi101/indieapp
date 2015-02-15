@@ -6,9 +6,19 @@
 {% load jsonify %}
 
 
-{% block head_title %}{% trans "Welcome" %}{% endblock %}
+{% block head_title %}{% trans "Homepage" %}{% endblock %}
 
 {% block body_class %}page home{% endblock %}
+
+{# block pre_wrapper_extra_base #}
+<!-- <div id="border">
+    <span class="top"></span>
+    <span class="right"></span>
+    <span class="bottom"></span>
+    <span class="left"></span>
+</div> -->
+{# endblock #}
+
 
 {% block body %}
 <section class="indie-home-section"> 
@@ -19,6 +29,8 @@
 {% endblock %}
 
 {% block footer %}{% endblock %}
+
+
 
 {% block backbone_scripts_extra %}
     <!-- Bootstrapped Model -->
@@ -36,6 +48,20 @@
 {% block extra_script %}
 	<script src="{% static "js/lib/flickerplate.js" %}"></script>
 	<script src="{% static "js/lib/hammer-v2.0.3.min.js" %}"></script>
+    <script>
+        /*
+         *
+         * Plugin intializers
+         *
+         */
+
+        $('.indie-home-section').flickerplate({
+            auto_flick: true,
+            auto_flick_delay: 10,
+            flick_animation: 'transform-slide',
+            dot_navigation: false
+        });
+    </script>
 {% endblock %}
 
 

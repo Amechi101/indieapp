@@ -1,21 +1,20 @@
-{% extends "account/dashboard.html" %}
+{% extends "account/_dashboard_settings.html" %}
 
+{% load i18n %}
 {% load url from future %}
 {% load bootstrap %}
 
-{% block head_title %}Settings{% endblock %}
+{% block head_title %}{% trans "Settings" %}{% endblock %}
 
-{% block body %}
-    <div class="row">
-        <div class="col-md-5">
-            <form method="POST" action="{% url "account_settings" %}">
-                <legend>Settings</legend>
-                {% csrf_token %}
-                {{ form|bootstrap }}
-                <button class="btn btn-primary" type="submit">Save</button>
-            </form>
-        </div>
-    </div>
+{% block settings %}
+<div class="indie-settings">
+    <form method="POST" action="{% url "account_settings" %}">
+        <legend>{% trans "General Settings" %}</legend>
+        {% csrf_token %}
+        {{ form|bootstrap }}
+        <button class="btn" type="submit">Save</button>
+    </form>
+</div>
 {% endblock %}
 
  

@@ -85,6 +85,21 @@ indieScrapInitilazer = (function ( $, document, window, _ , undefined  ) {
                 return false;
             });
 
+            // var dashboardActiveState = [].slice.call( document.querySelectorAll( 'header.tabs > nav > ul > li' ) );
+
+
+            // dashboardActiveState.forEach(function( tab ) {
+   
+            //     tab.addEventListener('click', function( event ) {
+                 
+            //         classie.add(this,'tab-current');  
+
+            //     });
+
+
+            // });
+
+    
             /*
              *
              * Functionality for Left Global Menu & Website Search & Product Detail
@@ -131,28 +146,45 @@ indieScrapInitilazer = (function ( $, document, window, _ , undefined  ) {
 
             //@TODO revise the functionality, refactor code      
             var globalHtml = $('html'),
+                
                 globalNav = $('.navigation'),
                 globalSearch = $('.website-filtersearch'),
-                globalOpenNav = $('#indie-global-menu a.btn-toggle-sidebar-left'),
-                globalOpenWebSeach = $('#indie-global-menu a.btn-toggle-sidebar-right'),
+                dashboardNotify = $('.dashboard-notifications'),
+                
+                globalOpenNav = $('#indie-global-menu-open'),
+                globalOpenWebSeach = $('#indie-global-website-search'),
+                dashboardOpen = $('#dashboard-notify-open'),
+                
+                dashboardClose = $('#dashboard-notify-close'),
                 globalCloseNav = $('#indie-global-menu-close'),
                 globalCloseWebSearch = $('#indie-global-websearch-close');
 
 
-                //Menu
+                //Menu Open
                 globalOpenNav.on( 'click' , function( event ) {
             
                     //prevent page from going up top
                     event.preventDefault();
                     event.stopPropagation();
                 
-               
                     globalNav.addClass('is--active'); 
-                    globalHtml.addClass('is--overflow');
-                    
+                    globalHtml.addClass('is--overflow'); 
                 });
 
-                //Website filter
+                //menu close
+                globalCloseNav.on( 'click' , function( event ) {
+            
+                    //prevent page from going up top
+                    event.preventDefault();
+                    event.stopPropagation();
+                    
+                    //toggling class with effects
+                    globalNav.removeClass('is--active'); 
+                    globalHtml.removeClass('is--overflow');
+            
+                });
+
+                //Website filter Open
                 globalOpenWebSeach.on( 'click' , function( event ) {
             
                     //prevent page from going up top
@@ -165,22 +197,7 @@ indieScrapInitilazer = (function ( $, document, window, _ , undefined  ) {
                     
                 });
 
-
-                //menu close
-                globalCloseNav.on( 'click' , function( event ) {
-            
-                    //prevent page from going up top
-                    event.preventDefault();
-                    event.stopPropagation();
-            
-                    
-                    //toggling class with effects
-                    globalNav.removeClass('is--active'); 
-                    globalHtml.removeClass('is--overflow');
-            
-                });
-
-                //Search close
+                //Website filter  close
                 globalCloseWebSearch.on( 'click' , function( event ) {
             
                     //prevent page from going up top
@@ -193,22 +210,31 @@ indieScrapInitilazer = (function ( $, document, window, _ , undefined  ) {
                     globalHtml.removeClass('is--overflow');
             
                 });
-        },
-        JsPluginInitilaizers:function() {
+
+
+                //dashboard notifications Open
+                dashboardOpen.on( 'click' , function( event ) {
             
+                    //prevent page from going up top
+                    event.preventDefault();
+                    event.stopPropagation();
+                
+                    dashboardNotify.addClass('is--active-notify'); 
+                    globalHtml.addClass('is--overflow'); 
+                });
 
-            /*
-             *
-             * Plugin intializers
-             *
-             */
-
-            $('.indie-home-section').flickerplate({
-                auto_flick: false,
-                // auto_flick_delay: 10,
-                flick_animation: 'transform-slide',
-                dot_navigation: false,
-            });     
+                //dashboard notifications close
+                dashboardClose.on( 'click' , function( event ) {
+            
+                    //prevent page from going up top
+                    event.preventDefault();
+                    event.stopPropagation();
+                    
+                    //toggling class with effects
+                    dashboardNotify.removeClass('is--active-notify'); 
+                    globalHtml.removeClass('is--overflow');
+            
+                });
         }
     };//return end
 })(  jQuery, document, window, _ , undefined );
@@ -221,5 +247,5 @@ indieScrapInitilazer = (function ( $, document, window, _ , undefined  ) {
  *
  */
 indieScrapInitilazer.GlobalJS();
-indieScrapInitilazer.JsPluginInitilaizers();
+
 

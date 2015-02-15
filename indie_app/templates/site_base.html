@@ -2,29 +2,40 @@
 
 {% load staticfiles %}
 {% load metron_tags %}
-
 {% load i18n %}
     
-    {% block style_base %}
-        <!-- Stylesheets for Indie-Scrap -->
-        <link rel="stylesheet" href="{% static "css/base.css" %}" />
-        <link rel="stylesheet" href="{% static "css/site.css" %}" />
-        <link rel="stylesheet" href="{% static "css/fonts.css" %}" />
-        <link rel="stylesheet" href="{% static "css/form.css" %}" />
-        <link rel="stylesheet" href="{% static "css/flickerplate.css" %}">
-        
+{% block style_base %}
+    <!-- Stylesheets for Indie-Scrap -->
+    <link rel="stylesheet" href="{% static "css/base.css" %}" />
+    <link rel="stylesheet" href="{% static "css/site.css" %}" />
+    <link rel="stylesheet" href="{% static "css/fonts.css" %}" />
+    <link rel="stylesheet" href="{% static "css/form.css" %}" />
+    <link rel="stylesheet" href="{% static "css/flickerplate.css" %}">
+    
     {% block extra_style %}{% endblock %}
-    {% endblock %}
+{% endblock %}
 
-    {% block top_script_base %}
-        {% block top_script %}
-            <script src="{% static "js/lib/modernizr.custom.32600.js" %}"></script>
-        {% endblock %}
-    {% endblock %}
+
+{% block top_script_base %}
+    <script src="{% static "js/lib/modernizr.custom.32600.js" %}"></script>
+   
+    {% block top_script_extra %} {% endblock %}
+{% endblock %}
 
 {% block extra_head_base %}
     {% block extra_head %}{% endblock %}
 {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
 
 
 {% block footer %}

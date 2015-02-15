@@ -1,48 +1,69 @@
 {% extends "site_base.html" %}
 
+{% load staticfiles %} 
 {% load url from future %}
 {% load i18n %}
+{% load jsonify %}
+
+{% block head_title %}Dashboard{% endblock %}
 
 {% block body_class %}dashboard{% endblock %}
 
-{% block header_class %}indie-user-account{% endblock %}
+{% block topbar_base %}
+<header class="tabs tabs-style-line">
+	<nav>
+		<ul>
+			<li><a id="dashboard-notify-open" href="javascript:void(0)">Notifications</a></li> 
+			<li><a href="#">Brands You Follow</a></li>
+			<li><a href="#">Your Liked Products</a></li>
+			<li><a id="indie-global-website-search" href="javascript:void(0);">Browse Websites</a></li>
+			<li><a href="{% url "account_settings" %}">General Settings</a></li>
+			<li><a href="{% url "account_password" %}">Change Password</a></li>
+			<li><a href="{% url "account_delete" %}">Delete Account</a></li>
+			<li><a href="{% url "home" %}">Back To Home</a></li>
+		</ul>
+	</nav>
+</header><!-- /tabs -->
+{% endblock %}
 
-{% block header_website_search_icon %}{% endblock %}
+{% block main_container_id %}gloabal-content-dashboard{% endblock %}
 
-{% block body_base %}
+{% block body %}
+<section id="dashboard-content">
+	{% block dashboard_content %}{% endblock %}
+</section><!-- /content -->
+{% endblock %}
 
-	{% block subnav %}
-	<aside>
-	    <div id="sidebar" class="nav-collapse">
-	        <!-- sidebar menu start-->
-	        <ul class="sidebar-menu" id="nav-accordion">
-	            <li class="sub-menu"><a href="{% url "account_settings" %}">Settings</a> </li>
-	            <li class="sub-menu"><a href="{% url "account_password" %}">Change Password</a></li>
-	            <li class="sub-menu"><a href="{% url "account_delete" %}">Delete Account</a></li>
-	            <li class="sub-menu"><a href="#"><i class="fa fa-cogs"></i> <span>Timeline</span></a></li>
-	            <li class="sub-menu"><a href="#"><i class="fa fa-book"></i> <span>Notifications</span></a></li>
-	        </ul>
-	        <!-- sidebar menu end-->
-	    </div>
-	</aside>
-	{% endblock %}
+{% block footer %}{% endblock %}
 
-	<section id="main-content">
-	    <section class="wrapper">
-	    <div class="row">
-	        <div class="col-lg-9">
-	            {% block body %}
-	            {% endblock %}
-	        </div>
-	    </div>
-	    </section>
-	</section>
-	<br/>
-	{% include "_messages.html" %}
+{% block global_menu %}{% endblock %}
 
+{% block notify %}{% include "account/account_features/_user_notifications.html" %}{% endblock %}
+
+{% block extra_script %}
+<script src="{% static "js/lib/selectFx.js" %}"></script>
+<script>
+	(function() {
+		[].slice.call( document.querySelectorAll( 'select#id_timezone, select#id_language' ) ).forEach( function(el) {	
+			new SelectFx(el);
+		});
+	})();
+</script>
+{% endblock %}
+
+{% block backbone_scripts_extra %}
+    <!-- Bootstrapped Model -->
+    <script type="text/javascript">
+        var websites = {{ website_list|jsonify }};
+    </script>
+
+    <!-- Collection -->
+    <script src="{% static "backboneapp/collections/website_search_collection.js" %}"></script>
+
+    <!-- View -->
+    <script src="{% static "backboneapp/views/website_search_view.js" %}"></script>
 {% endblock %}
 
 
-{% block footer %}{% endblock %}
 
 

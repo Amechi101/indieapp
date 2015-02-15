@@ -5,6 +5,9 @@
 <!--[if gte IE 9]><!--><html lang="{{ LANGUAGE_CODE }}" class="no-js"><!--<![endif]-->
     <head> 
         <meta charset="utf-8" />
+        <meta content="" name="description"></meta>
+        <meta content="" name="author"></meta>
+        <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
         <title>{% block head_title_base %}{% if SITE_NAME %}{{ SITE_NAME }} | {% endif %}{% block head_title %}{% endblock %}{% endblock %}</title>
         {% block viewport %}
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +18,7 @@
         {% endblock %}
 
         {% block top_script_base %}
-            {% block top_script %} {% endblock %}
+            {% block top_script_extra %} {% endblock %}
         {% endblock %}
         
         {% block html5shim %}
@@ -32,11 +35,11 @@
     </head>
     <body class="{% block body_class %}{% endblock %}">
 
-    
-        {% block website_search %}{% include "_global_partials/_website_search.html" %}{% endblock %}
-
+        {% block pre_wrapper_extra_base %}
+            {% block pre_wrapper_extra %}{% endblock %}
+        {% endblock %}   
         
-        <div id="indie-wrap">            
+        <div id="indie-wrapper">            
             {% block topbar_base %}
             <header id="indie-global-menu" class="navbar {% block header_class %}{% endblock %}">
                 <nav>
@@ -45,7 +48,7 @@
                     </div>
 
                     <div class="navbar-left">
-                        <a href="javascript:void(0)" class="btn btn-navbar btn-toggle-sidebar-left">
+                        <a id="indie-global-menu-open" href="javascript:void(0)" class="btn btn-navbar btn-toggle-sidebar-left">
                             <div class="bars">
                                 <div class="bar"></div>
                                 <div class="bar"></div>
@@ -56,7 +59,7 @@
 
                     {% block header_website_search_icon %}
                     <div class="navbar-right">
-                        <a href="javascript:void(0)" class="btn btn-navbar btn-toggle-sidebar-right">
+                        <a id="indie-global-website-search" href="javascript:void(0)" class="btn btn-navbar btn-toggle-sidebar-right">
                             <span class="icon-indie_web-02 icon-main"></span>
                         </a>          
                     </div>
@@ -69,26 +72,24 @@
                 {% block banner %}{% endblock %}
             {% endblock %}
             
-
             {% block body_base %}
             <!-- global site content -->
             <main id="{% block main_container_id %}gloabal-content{% endblock %}" role="main">
                 {% block body %}{% endblock %}
             </main>
             {% endblock %}
-
             
             {% block pagination %}{% endblock %}
 
-            
             {% block footer_base %}
                 {% block footer %}{% endblock %}
             {% endblock %} 
 
+            {% block global_menu %}{% include "_global_partials/_global_menu.html" %}{% endblock %}
 
-            {% block global_menu_base %}
-                {% block global_menu %}{% include "_global_partials/_global_menu.html" %}{% endblock %}
-            {% endblock %}
+            {% block website_search %}{% include "_global_partials/_website_search.html" %}{% endblock %}
+
+            {% block notify %}{% endblock %}
         </div>
 
         {% block scrollTop %}{% endblock %}
@@ -96,7 +97,6 @@
         <!-- JavaScript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
-
 
         {% block script_base %}
             {% block extra_script %}

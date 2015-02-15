@@ -1,12 +1,16 @@
 
-/***             Structural styles for all forms                  ***/
-.indie-registration-form {
-    background:#ecf0f1; 
-}
-#content-form:after {
-    content: "";
+/************** Common Design For All Forms  ****************/
+
+.content-form-dashboard:after, 
+#content-form:after  {
+   content: "";
     display: block;
     clear: both;   
+}
+
+/**************** Registration forms ******************/
+.indie-registration-form {
+    background:#ecf0f1; 
 }
 
 #content-form {
@@ -15,7 +19,6 @@
     transition: padding 0.25s ease-out 0s;
     padding: 0 15px;
 }
-
 
 #content-form h1, #content-form h2, #content-form h3, #content-form h4, #content-form h5, #content-form h6 {
 /*     margin-bottom: 23px;
@@ -124,7 +127,7 @@ padding: 60px 0
  } */
 
 
-.text-input, #id_email, #id_username, #id_password, #id_password_confirm {
+#content-form input {
     display:block;
     height:46px;
     padding:0 15px;
@@ -146,7 +149,6 @@ padding: 60px 0
 #content-form #id_remember {
   position:relative;  
 }
-
 
 
 .box-login{
@@ -172,8 +174,7 @@ padding: 60px 0
     height:59px;
     line-height:59px;
     color:#fff;
-    text-align:left;
-    
+    text-align:left;   
     font-size:17px;
     border-radius:2px;
     -webkit-transition:opacity .2s linear;
@@ -328,24 +329,111 @@ padding: 60px 0
 }
 
 
-@media screen and (max-width:1024px){
-    .inner-form.width-2{
-        width:auto;
-    }
-#content-form .inner-form {
-    padding: 0px;
-  }
-}
-
 @media screen and (max-width:768px){
-
-  
-    .box-login .socialconnect a{
+    .box-login .socialconnect a {
         float:none;
         width:100%;
         margin-bottom:10px
     }
+}
 
+
+/**************** Design for dashboard forms ******************/
+
+.content-form-dashboard {
+    position: relative;
+    padding: 25px 0px;
+}
+
+.content-form-dashboard .inner-form {
+    max-width: 100%;
+   padding: 0px 66px;
+    margin: 0 auto; 
+    -webkit-transition: width 0.3s ease-out; 
+    - moz-transition: width 0.3s ease-out; 
+    -ms-transition: width 0.3s ease-out;
+    transition: width 0.3s ease-out
+}
+
+.content-form-dashboard  .inner-form.width-2 {
+    width: 940px
+}
+
+
+.content-form-dashboard legend {
+    text-align: center;
+    font-weight:700;
+    text-transform: uppercase;
+    font-size:2.2rem;
+    letter-spacing:1px;
+    white-space: nowrap
+}
+
+.content-form-dashboard input {
+    display: block;
+    width:100%;
+    height: 46px;
+    padding: 0px 15px;
+    background: none repeat scroll 0% 0% #bdc3c7;
+    line-height: 46px;
+    font-size: 17px;
+    border: 0px none;
+    border-radius: 2px;
+    box-sizing: border-box;
+}
+
+
+.content-form-dashboard label {
+    font-weight:700;
+    font-size:1.2rem;
+}
+
+.content-form-dashboard div {
+    padding-bottom: 5px
+}
+
+
+.content-form-dashboard .btn {
+    display: inline-block;
+    height: 50px;
+    line-height: 51px;
+    padding: 0 15px;
+    width: 100%;
+    background-color: #000;
+    color:#FFF;
+    cursor: pointer;
+    border: 0;
+    border-radius: 2px; 
+    font-size:2.5em;
+    -webkit-transition: opacity 0.2s linear; 
+    -moz-transition: opacity 0.2s linear;
+    transition: opacity 0.2s linear
+}
+
+.content-form-dashboard .btn:hover {
+  opacity: .75
+}
+
+.content-form-dashboard .indie-delete p {
+    margin: 0;
+    font-weight:500;
+    font-size:2.0rem;
+    padding-bottom: 15px;
+}
+
+.content-form-dashboard .indie-delete p span {
+    color:red;
+}
+
+/********** Media Queries *********/
+
+@media screen and (max-width:1024px){
+    .inner-form.width-2{
+        width:auto;
+    }
+    .inner-form {
+        padding: 0px;
+    }
 }
 
 

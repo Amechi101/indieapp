@@ -1,6 +1,9 @@
 {% for message in messages %}
-    <div class="alert fade in {% if message.tags %} alert-{{ message.tags }}{% endif %}">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        {{ message }}
+<div class="ns-box {% if message.tags %} alert-{{ message.tags }}{% endif %}">
+    <div class="ns-box-inner">
+        <span class="icon icon-indie_web-10"></span>
+        <p>{{ message }}</p>
     </div>
+    <span class="ns-close icon-indie_web-03"  data-dismiss="alert"></span>
+</div>
 {% endfor %}

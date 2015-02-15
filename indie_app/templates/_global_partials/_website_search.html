@@ -1,12 +1,13 @@
 {% load url from future %}
 {% load i18n %}
+{% load cloudinary %}
 
 <!-- Global Website search (top) -->
-<div class="website-filtersearch">
+<section class="website-filtersearch">
     <header class="navigation__header navigation__header-search">
         <a id="indie-global-websearch-close" href="javascript:void(0)" class="navigation__header__close"><span class="icon-indie_web-03"></span></a>
     </header>   
-    <section class="nav-sidebar" id="nav-filters">
+    <div class="nav-sidebar" id="nav-filters">
         <div class="wrapper-nav">
             <h3 id="websites-count" class="results-head"><strong></strong> Available Sites</h3>
             <p class="results">Filter Sites By:</p>
@@ -25,28 +26,35 @@
                 </ul>
             </div>
 
-
-            <script id="listTagTemplate" type="text/template">
-              <% $.each(tags, function(i, tag) { %>
-                <li class="close style2"><a href="javascript:void(0)"><%= tag %></a></li>
-              <% }); %>
-            </script>
             <ul class="list-tags">
             <!--@TODO Create cancelable elements after selections above from either drop downs -->
-                
-
+                <script id="listTagTemplate" type="text/template">
+                  <% $.each(tags, function(i, tag) { %>
+                    <li class="close style2"><a href="javascript:void(0)"><%= tag %></a></li>
+                  <% }); %>
+                </script>
             </ul>
         </div>
-    </section> 
-    <section id="indie-populate-websites" class="indie-fill-websites">
+    </div> 
+    <div id="indie-populate-websites" class="indie-fill-websites">
         <div class="indie-fill-panel-wrapper">
             <div id="sidebar_search_block" class="sidebar-block">
             <!-- The empty div disappears when search results are found and inputs list stucture of the sites from the website model-->
             <!-- Or returns a <p> tag only inside the empty div with No results found! -->
-            <script id="websiteTemplate" type="text/template">
-                <strong><%= fields.description %></strong> 
+            <script id="websiteTemplate" type="text/template"> 
+                <div class="og-expander">
+                    <div class="og-expander-inner">
+                        <div class="og-fullimg">
+                            <img src="http://res.cloudinary.com/doqjl5owq/image/upload/<%= site_logo_image %>" style="display: inline;"></img>
+                        </div>
+                        <div class="og-details">
+                            <h3><%= name %></h3>
+                            <p><%= description %></p>
+                            <a href="browse/<%= website_slug %>"><%= name %> products</a>
+                        </div>
+                    </div>
+                </div>
             </script>
-
 
                <!--  <div class="empty">
                     <button class="btn btn-search-up btn-clear" type="button">
@@ -60,6 +68,7 @@
            </div>
         </div>
         <div id="sidebar_right_loader" class="please-wait"><span class="text-hide">Loading...</span></div>
-    </section>
-</div>
+    </div>
+</section>
+
 

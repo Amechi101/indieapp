@@ -1,0 +1,14 @@
+{% extends "account/dashboard.html" %}
+
+
+{% block dashboard_content %}
+	<div class="content-form-dashboard">
+		<div class="inner-form width-2">
+			{% block settings %}{% endblock %}
+			{% block password %}{% endblock %}
+			{% block delete_password %}{% endblock %}	
+		</div>
+	</div>
+	<br/>
+    {% include "_messages.html" %}
+{% endblock %}
