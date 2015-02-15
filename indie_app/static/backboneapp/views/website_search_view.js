@@ -11,8 +11,9 @@
 var websiteSearchView = Backbone.View.extend({
     //this --> websiteSearchView scope
     el:'#nav-filters',
-    
     list_tags_tpl: _.template($('#listTagTemplate').html()),
+    events: {
+    },
     initialize: function() {
         _.bindAll(this,'render','filter_tags','model_count','init_filters','website_list');
         this.filters = {};  
@@ -20,7 +21,7 @@ var websiteSearchView = Backbone.View.extend({
         this.model_count();
         this.filter_tags();
         this.init_filters();
-        this.website_list();
+        
         
         this.render();
 
@@ -90,8 +91,8 @@ var websiteSearchView = Backbone.View.extend({
         });
 
         //List Tags
-        $('.list-tags').html(self.list_tags_tpl({tags: filters}));
-        
+        $('.list-tags').html(self.list_tags_tpl({tags: self.filters}));
+        this.website_list()
     }
 });
 
