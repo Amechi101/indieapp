@@ -29,8 +29,8 @@
             <ul class="list-tags">
             <!--@TODO Create cancelable elements after selections above from either drop downs -->
                 <script id="listTagTemplate" type="text/template">
-                  <% $.each(tags, function(i, tag) { %>
-                    <li class="close style2"><a href="javascript:void(0)"><%= tag %></a></li>
+                  <% $.each(tags, function(filter_type, value) { %>
+                    <li class="close style2" data-filter-type="<%= filter_type %>"><a href="javascript:void(0)"><%= value %></a></li>
                   <% }); %>
                 </script>
             </ul>
