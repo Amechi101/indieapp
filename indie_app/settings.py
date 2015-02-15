@@ -13,7 +13,7 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 # For internal purposes of switching settings components
-DEVELOPMENT = True
+DEVELOPMENT = False
 
 
 # Local time zone for this installation. Choices can be found here:
@@ -227,7 +227,7 @@ AUTHENTICATION_BACKENDS = [
     "social.backends.google.GoogleOAuth2",
     "social.backends.facebook.FacebookOAuth2",
     "social.backends.twitter.TwitterOAuth",
-    "account.auth_backends.UsernameAuthenticationBackend",
+    "account.auth_backends.UsernameAuthenticationBackend",   
 ]
 
 SOCIAL_AUTH_PIPELINE = [
@@ -251,8 +251,8 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ.get("SOCIAL_AUTH_GOOGLE_OAUTH2_KEY")
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ.get("SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET")
 SOCIAL_AUTH_TWITTER_KEY = os.environ.get("SOCIAL_AUTH_TWITTER_KEY")
 SOCIAL_AUTH_TWITTER_SECRET = os.environ.get("SOCIAL_AUTH_TWITTER_SECRET")
-SOCIAL_AUTH_FACEBOOK_KEY = os.environ.get("SOCIAL_AUTH_FACEBOOK_KEY")
-SOCIAL_AUTH_FACEBOOK_SECRET = os.environ.get("SOCIAL_AUTH_FACEBOOK_SECRET")
+SOCIAL_AUTH_FACEBOOK_KEY = '1421811444777881'
+SOCIAL_AUTH_FACEBOOK_SECRET = 'b860d27e4724aa93b86c3b4570a82145'
 
 SOCIAL_AUTH_FACEBOOK_SCOPE = [
     "email"
