@@ -55,7 +55,7 @@
 
 #content-form .inner-form {
     max-width: 100%;
-   padding: 0px 66px;
+   padding: 0;
     margin: 0 auto; 
     -webkit-transition: width 0.3s ease-out; 
     - moz-transition: width 0.3s ease-out; 
@@ -347,7 +347,7 @@ padding: 60px 0
 
 .content-form-dashboard .inner-form {
     max-width: 100%;
-   padding: 0px 66px;
+   padding: 0px 15px;
     margin: 0 auto; 
     -webkit-transition: width 0.3s ease-out; 
     - moz-transition: width 0.3s ease-out; 
@@ -355,9 +355,6 @@ padding: 60px 0
     transition: width 0.3s ease-out
 }
 
-.content-form-dashboard  .inner-form.width-2 {
-    width: 940px
-}
 
 
 .content-form-dashboard legend {
@@ -372,13 +369,12 @@ padding: 60px 0
 .content-form-dashboard input {
     display: block;
     width:100%;
-    height: 46px;
+    height: 66px;
     padding: 0px 15px;
-    background: none repeat scroll 0% 0% #bdc3c7;
+    background: none repeat scroll 0% 0% #ecf0f1;
     line-height: 46px;
     font-size: 17px;
     border: 0px none;
-    border-radius: 2px;
     box-sizing: border-box;
 }
 
