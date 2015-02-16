@@ -11,7 +11,7 @@
     <h2 class="heading-title">Create Account</h2>
 </div>
 <div class="socialconnect">
-    <a href="{% url "social:begin" "facebook" %}" class="facebook">Sign-up with Facebook</a>
+    <a href="{% url "social:begin" "facebook" %}?next={{ request.path }}" class="facebook">Sign-up with Facebook</a>
     <a href="{% url "social:begin" "twitter" %}" class="twitter">Sign-up with Twitter</a>
 </div>
     <p align="center"><em>Or signup with an email & username</em></p>
