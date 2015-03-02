@@ -22,6 +22,7 @@ from account.forms import SettingsForm
 from account.hooks import hookset
 from account.mixins import LoginRequiredMixin
 from account.models import SignupCode, EmailAddress, EmailConfirmation, Account, AccountDeletion
+from _backend_api.models import Brand
 from account.utils import default_redirect
 
 
@@ -709,7 +710,10 @@ class SettingsView(LoginRequiredMixin, FormView):
 
     def get_context_data(self, **kwargs):
         ctx = kwargs
+
         redirect_field_name = self.get_redirect_field_name()
+
+        ctx['website_list'] = Brand.objects.filter(active=True).order_by('name')
         ctx.update({
             "redirect_field_name": redirect_field_name,
             "redirect_field_value": self.request.REQUEST.get(redirect_field_name, ""),

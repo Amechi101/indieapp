@@ -5,33 +5,33 @@ from django.shortcuts import render
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic import ListView
 
-from _backend_api.models import Product
-from _backend_api.models import Website
+from _backend_api.models import Product, Brand, Location
 
-
-class ProductView(ListView):
+class BrandDetailView(ListView):
 
 	context_object_name = 'product_list'
-	template_name = 'product_extend/_productlist.html'
+	template_name = 'brand_guides/_brandguide.html'
 	queryset = Product.objects.all()
-	paginate_by = 12
+
 
 	def get_context_data(self, **kwargs):
-		context = super(ProductView, self).get_context_data(**kwargs)
+		context = super(BrandDetailView, self).get_context_data(**kwargs)
+		context['brand_list'] = Brand.objects.all()
+		context['address_list'] = Location.objects.all()
 		return context
 
 	def get_queryset(self,  **kwargs):
-		qs = super(ProductView, self).get_queryset()
-		return qs.filter(website__website_slug__exact=self.kwargs['website_slug'])
+		qs = super(BrandDetailView, self).get_queryset()
+		return qs.filter(brand__brand_detail_slug__exact=self.kwargs['brand_detail_slug'])
 
-class WebsiteView(ListView):
+class HomepageView(ListView):
 
 	template_name = 'homepage.html'
-	model = Website
+	model = Brand
 
 	def get_context_data(self, **kwargs):
-		context = super(WebsiteView, self).get_context_data(**kwargs)
-		context['website_list'] = Website.objects.filter(active=True).order_by('name')
+		context = super(HomepageView, self).get_context_data(**kwargs)
+		context['brand_list'] = Brand.objects.filter(active=True).order_by('brand_name')
 		return context
 
 		

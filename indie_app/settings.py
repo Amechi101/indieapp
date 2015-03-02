@@ -10,10 +10,11 @@ PACKAGE_ROOT = os.path.abspath(os.path.dirname(__file__))
 # tweaked settings to prevent Django 1.5 detection in Django 1.7
 
 DEBUG = True
+
 TEMPLATE_DEBUG = DEBUG
 
 # For internal purposes of switching settings components
-DEVELOPMENT = False
+DEVELOPMENT = True
 
 
 # Local time zone for this installation. Choices can be found here:

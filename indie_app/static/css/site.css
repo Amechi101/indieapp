@@ -20,6 +20,22 @@ body {
   background-color:#fff;
 }
 
+.b-hero__watchFull {
+    width: 4.5rem;
+    height: 4.5rem;
+    margin-bottom: 4.4rem;
+    margin-left: auto;
+    background: url("http://weareadaptable.com/wp-content/themes/adaptable/assets/images/play.svg") no-repeat scroll center center / cover transparent;
+    margin-right: auto;
+    display: block;
+    text-indent: -9999px;
+    cursor: nesw-resize;
+    animation-duration: 1500ms;
+    transform-origin: 70% 70% 0px;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
 
 .btn {
 /*     font-family:FuturaStd-Bold,"Helvetica Neue",Helvetica,Arial,sans-serif; */
@@ -290,7 +306,7 @@ body {
     top: auto;
 /*     left: 0; */
     width: 100%;
-    margin-top: 10px;
+/*     margin-top: 10px; */
     text-align: left;
     height: 500px;
     border-bottom: 1px solid #EBEBEB;
@@ -298,7 +314,7 @@ body {
 }
 
 .og-expander-inner {
-    padding: 50px 30px;
+    padding: 0px 30px;
     height: 100%;
 }
 
@@ -307,7 +323,6 @@ body {
 .og-details {
     width: 50%;
     float: left;
-    height: 100%;
     overflow: hidden;
     position: relative;
 }
@@ -348,9 +363,9 @@ body {
     font-size: 16px;
     text-transform: uppercase;
     letter-spacing: 2px;
-    padding: 10px 20px;
+    padding: 10px ;
     display: inline-block;
-    margin: 30px 0 0;
+    margin: 30px 5px 0px;
     outline: none;  
     color: #000;
     text-decoration: none;
@@ -665,16 +680,21 @@ position: relative; */
     background:#F93F40
 }
 
-.list-tags {
+/* for websites & products */
+
+.list-tags,
+.list-tags-product {
     overflow:hidden
 }
-.list-tags li {
+.list-tags li,
+.list-tags-product li {
     position:relative;
     float:left;
     list-style: none;
     margin:0 6px 6px 0px
 }
-.list-tags li a {
+.list-tags li a,
+.list-tags-product li a {
     display:block;
     height:23px;
     padding:0 10px;
@@ -686,22 +706,26 @@ position: relative; */
     -webkit-transition:background .25s ease-out;
     transition:background .25s ease-out
 }
-.list-tags li a:hover {
+.list-tags li a:hover,
+.list-tags-product li a:hover {
     background:#444;
     color:#fff
 }
 
-.list-tags li.close a {
+.list-tags li.close a,
+.list-tags-product li.close a {
     padding-right:43px;
     height:33px;
     line-height:33px;
     border-radius:0
 }
-.list-tags li.close.style2 a {
+.list-tags li.close.style2 a,
+.list-tags-product li.close.style2 a {
     background:#3c948b;
     color:#fff
 }
-.list-tags li.close a:before {
+.list-tags li.close a:before,
+.list-tags-product li.close a:before {
     content:'✕';
     position:absolute;
     top:0;
@@ -715,7 +739,8 @@ position: relative; */
     text-align:center;
     line-height:34px
 }
-.list-tags li.close.style2 a:before {
+.list-tags li.close.style2 a:before,
+.list-tags-product li.close.style2 a:before {
     background:#fff;
     color:#3c948b
 }

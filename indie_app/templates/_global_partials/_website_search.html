@@ -9,25 +9,17 @@
     </header>   
     <div class="nav-sidebar" id="nav-filters">
         <div class="wrapper-nav">
-            <h3 id="websites-count" class="results-head"><strong></strong> Available Sites</h3>
-            <p class="results">Filter Sites By:</p>
-            
-            <div class="wrapper-dropdown" id="global-site-trending">
-                <span>Recently Added</span>
-                <ul id="website-trending" class="search-filter-container">
-                    
-                </ul>
-            </div>
+            <h3 class="results">Filter Sites By:</h3>
             
             <div class="wrapper-dropdown" id="global-site-sex">
-                <span>Sex</span>
+                <span>Categories</span>
                 <ul id="website-sex" class="search-filter-container">
                    
                 </ul>
             </div>
 
             <ul class="list-tags">
-            <!--@TODO Create cancelable elements after selections above from either drop downs -->
+ 
                 <script id="listTagTemplate" type="text/template">
                   <% $.each(tags, function(filter_type, value) { %>
                     <li class="close style2"><a href="javascript:void(0)" data-filter-type="<%= filter_type %>"><%= value %></a></li>
@@ -38,42 +30,39 @@
     </div> 
     <div id="indie-populate-websites" class="indie-fill-websites">
         <div class="indie-fill-panel-wrapper">
-            <div id="sidebar_search_block" class="sidebar-block">
-            <!-- The empty div disappears when search results are found and inputs list stucture of the sites from the website model-->
-            <!-- Or returns a <p> tag only inside the empty div with No results found! -->
-     
-                     
-           </div>
-            <script id="websiteTemplate" type="text/template">
-                <% $.each(websites, function(i, website) { %>
-                <div class="og-expander">
-                    <div class="og-expander-inner">
-                        <div class="og-fullimg">
-                            <img src="http://res.cloudinary.com/doqjl5owq/image/upload/<%= website.get('site_logo_image') %>" style="display: inline;"></img>
-                        </div>
-                        <div class="og-details">
-                            <h3><%= website.get('name') %></h3>
-                            <p><%= website.get('description') %></p>
-                            <a href="browse/<%= website.get('website_slug') %>"><%= website.get('name') %> products</a>
-                        </div>
-                    </div>
-                </div>
-
-            </script>
-                <% if(websites) { %>
-                <div class="empty">
-
-                    <button class="btn btn-search-up btn-clear" type="button">
-                        <span class="text-hide">
-                            Go to Search.
-                        </span>
-                    </button>
-                    <p>No Websites Available! Filter Again Above.</p>
-                </div>
-                <% } %>
-            </script>
+            <div id="sidebar_search_block" class="sidebar-block">      
+                <script id="websiteTemplate" type="text/template">
+                    <% $.each(websites, function(i, website) { %>
+                        <% if(!website) { %>
+                            <div class="empty">
+                                <button class="btn btn-search-up btn-clear" type="button">
+                                    <span class="text-hide">
+                                        Go to Search.
+                                    </span>
+                                </button>
+                                <p>No Websites Available! Filter Again Above.</p>
+                            </div>
+                    
+                        <% } else { %>
+                            <div class="og-expander">
+                                <div class="og-expander-inner">
+                                    <div class="og-fullimg">
+                                        <img src="http://res.cloudinary.com/doqjl5owq/image/upload/<%= website.get('brand_logo') %>" style="display: inline;"></img>
+                                    </div>
+                                    <div class="og-details">
+                                        <h3><%= website.get('brand_name') %></h3>
+                                        <p><%= website.get('brand_description') %></p>
+                                        <a href="<%= location.origin %>/<%= website.get('brand_detail_slug') %>">View <%= website.get('brand_name') %></a>
+                                        <a href="javascript:void(0)">Follow <%= website.get('brand_name') %></a>
+                                    </div>
+                                </div>
+                            </div>
+                        <% } %>
+                    <% }); %>
+                </script>
+            </div>
         </div>
-        <div id="sidebar_right_loader" class="please-wait"><span class="text-hide">Loading...</span></div>
+        <!-- <div id="sidebar_right_loader" class="please-wait"><span class="text-hide">Loading...</span></div> -->
     </div>
 </section>
 

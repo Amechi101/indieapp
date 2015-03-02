@@ -67,7 +67,7 @@ class Trademark( ScrapeBase ):
                 if 'final_price' not in doc:
                     # no final prices means we discard *all results*
                     return []
-            
+
                 product['product_name'] = doc['name']
 
                 product['product_slug_url'] = doc['url']

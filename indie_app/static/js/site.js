@@ -60,7 +60,7 @@ indieScrapInitilazer = (function ( $, document, window, _ , undefined  ) {
                 }
             };
 
-            var filterDropdown = new Dropdown($('#global-site-trending, #global-site-sex, #product-categories, #product-price-filter, #product-trending-filter'));
+            var filterDropdown = new Dropdown($('#global-site-trending, #global-site-sex, #product-categories, #product-price-filter'));
 
 
             /*
@@ -85,21 +85,6 @@ indieScrapInitilazer = (function ( $, document, window, _ , undefined  ) {
                 return false;
             });
 
-            // var dashboardActiveState = [].slice.call( document.querySelectorAll( 'header.tabs > nav > ul > li' ) );
-
-
-            // dashboardActiveState.forEach(function( tab ) {
-   
-            //     tab.addEventListener('click', function( event ) {
-                 
-            //         classie.add(this,'tab-current');  
-
-            //     });
-
-
-            // });
-
-    
             /*
              *
              * Functionality for Left Global Menu & Website Search & Product Detail
@@ -118,7 +103,7 @@ indieScrapInitilazer = (function ( $, document, window, _ , undefined  ) {
                     cardTargetsClose = element.querySelectorAll( '.hover-container > div.card-cover > a.card-close' );
 
 
-                    console.log(cardTargetsContainer);
+                    // console.log(cardTargetsContainer);
 
                             
                 cardTargetsOpen.addEventListener(eventType, function( event ) {
@@ -149,13 +134,10 @@ indieScrapInitilazer = (function ( $, document, window, _ , undefined  ) {
                 
                 globalNav = $('.navigation'),
                 globalSearch = $('.website-filtersearch'),
-                dashboardNotify = $('.dashboard-notifications'),
                 
                 globalOpenNav = $('#indie-global-menu-open'),
                 globalOpenWebSeach = $('#indie-global-website-search'),
-                dashboardOpen = $('#dashboard-notify-open'),
                 
-                dashboardClose = $('#dashboard-notify-close'),
                 globalCloseNav = $('#indie-global-menu-close'),
                 globalCloseWebSearch = $('#indie-global-websearch-close');
 
@@ -211,30 +193,6 @@ indieScrapInitilazer = (function ( $, document, window, _ , undefined  ) {
             
                 });
 
-
-                //dashboard notifications Open
-                dashboardOpen.on( 'click' , function( event ) {
-            
-                    //prevent page from going up top
-                    event.preventDefault();
-                    event.stopPropagation();
-                
-                    dashboardNotify.addClass('is--active-notify'); 
-                    globalHtml.addClass('is--overflow'); 
-                });
-
-                //dashboard notifications close
-                dashboardClose.on( 'click' , function( event ) {
-            
-                    //prevent page from going up top
-                    event.preventDefault();
-                    event.stopPropagation();
-                    
-                    //toggling class with effects
-                    dashboardNotify.removeClass('is--active-notify'); 
-                    globalHtml.removeClass('is--overflow');
-            
-                });
         }
     };//return end
 })(  jQuery, document, window, _ , undefined );

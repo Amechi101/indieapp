@@ -13,9 +13,7 @@
 <header class="tabs tabs-style-line">
 	<nav>
 		<ul>
-			<li><a id="dashboard-notify-open" href="javascript:void(0)">Notifications</a></li> 
 			<li><a href="#">Brands You Follow</a></li>
-			<li><a href="#">Your Liked Products</a></li>
 			<li><a id="indie-global-website-search" href="javascript:void(0);">Browse Websites</a></li>
 			<li><a href="{% url "account_settings" %}">General Settings</a></li>
 			<li><a href="{% url "account_password" %}">Change Password</a></li>
@@ -38,7 +36,6 @@
 
 {% block global_menu %}{% endblock %}
 
-{% block notify %}{% include "account/account_features/_user_notifications.html" %}{% endblock %}
 
 {% block extra_script %}
 <script src="{% static "js/lib/selectFx.js" %}"></script>
@@ -54,7 +51,7 @@
 {% block backbone_scripts_extra %}
     <!-- Bootstrapped Model -->
     <script type="text/javascript">
-        var websites = {{ website_list|jsonify }};
+        var websites = {{ brand_list|jsonify }};
     </script>
 
     <!-- Collection -->

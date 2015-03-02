@@ -11,21 +11,28 @@ from _backend_api.utils.fields import CurrencyField
 
 import datetime
 
-class Website(models.Model):
-    name = models.CharField(max_length=255, blank=True, null=True, unique=True)
-    description = models.TextField(null=True, blank=True)
+class Brand(models.Model):
+    designers_name = models.CharField(max_length=255, blank=True, null=True, unique=True)
+    
+    brand_name = models.CharField(max_length=255, blank=True, null=True, unique=True)
+    brand_founded = models.IntegerField(max_length=4, null=True)
+    
+    brand_origin_city = models.CharField(max_length=255, blank=True, null=True)
+    brand_origin_state = models.CharField(max_length=2, blank=True, null=True)
 
-    #Shows products from the backend listed for specific website only
-    website_slug = models.SlugField(max_length=255, verbose_name=_('Website Slug'), unique=True,  null=True,  blank=True)
     
-    # Points to a Cloudinary image
-    site_logo_image = CloudinaryField('image', null=True, blank=True)
-    product_image_feature = CloudinaryField('Featured Product Image', null=True, blank=True)
+    brand_description = models.TextField(null=True, blank=True)
+    brand_product_description = models.TextField(null=True, blank=True)
+
+    #Shows details about specific brand
+    brand_detail_slug = models.SlugField(max_length=255, verbose_name=_('Brand Slug'), unique=True,  null=True,  blank=True)
     
+    brand_logo = CloudinaryField('Logo Image', null=True, blank=True)
+    brand_feature_image = CloudinaryField('Featured Brand Image', null=True, blank=True)
+
     menswear = models.BooleanField(default=False, verbose_name=_('Menswear'))
     womenswear = models.BooleanField(default=False, verbose_name=_('Womenswear'))
     
-
     active = models.BooleanField(default=True, verbose_name=_('Active'))
 
     #For Admin Purposes and filtering, to keep track of new and old  in the database by administrative users
@@ -34,28 +41,63 @@ class Website(models.Model):
 
     #Metadata
     class Meta: 
-        verbose_name = _('Website')
-        verbose_name_plural = _('Websites')
+        verbose_name = _('Brand')
+        verbose_name_plural = _('Brands')
 
     def __unicode__(self):
-        return "{0}".format( self.id )
+        return "{0}".format( self.brand_name )
 
     #Helps return something meaningful, to show within the admin interface for easy interaction
-    def get_id(self):
+    def get_designers_name(self):
         """
-        Return the id name for this item (provided for extensibility)
+        Return item (provided for extensibility)
         """
-        return "{0}".format(self.id)
+        return "{0}".format(self.designers_name)
     
+    def get_brand_name(self):
+        """
+        Return item (provided for extensibility)
+        """
+        return "{0}".format(self.brand_name)
 
-    def get_description(self):
+    def get_brand_name(self):
         """
-        Return the proudct website name for this item (provided for extensibility)
+        Return item (provided for extensibility)
         """
-        return "{0}".format(self.description)
+        return "{0}".format(self.brand_name)
+    
+    def get_brand_founded(self):
+        """
+        Return item (provided for extensibility)
+        """
+        return "{0}".format(self.brand_founded)
+
+    def get_brand_origin_city(self):
+        """
+        Return item (provided for extensibility)
+        """
+        return "{0}".format(self.brand_origin_city)
+
+    def get_brand_origin_state(self):
+        """
+        Return item (provided for extensibility)
+        """
+        return "{0}".format(self.brand_origin_state)
+
+    def get_brand_description(self):
+        """
+        Return item (provided for extensibility)
+        """
+        return "{0}".format(self.brand_description)
+
+    def get_brand_product_description(self):
+        """
+        Return item (provided for extensibility)
+        """
+        return "{0}".format(self.brand_product_description)
     
     def get_absolute_url(self):
-        return reverse('site_detail', args=[self.website_slug])
+        return reverse('brand_detail', args=[self.brand_detail_slug])
 
 
 class Product(models.Model):
@@ -63,16 +105,11 @@ class Product(models.Model):
     The product structure for the application, the products we scrap from sites will model this and save directly into the tables.
     """
 
-    product_name = models.CharField(max_length=255, verbose_name=_('Name'), null=True, blank=True)
-    
+    product_name = models.CharField(max_length=255, verbose_name=_('Product Name'), null=True, blank=True)
     product_price = CurrencyField( verbose_name=_('Unit price') )
-    product_slug_url = models.URLField(max_length=255,  null=True, blank=True)
-    product_category = models.CharField(max_length=255, blank=True, null=True)
 
     # Points to a Cloudinary image
     product_image = CloudinaryField('product image', max_length=255, null=True, blank=True)
-    
-    product_website_name = models.CharField(max_length=255, blank=True, null=True)
     
     #For Admin Purposes, to keep track of new and old items in the database by administrative users
     date_added = models.DateTimeField(auto_now_add=True, null=True, blank=True, verbose_name=_('Date added'))
@@ -82,7 +119,7 @@ class Product(models.Model):
     active = models.BooleanField(default=True, verbose_name=_('Active') )
 
     # Foreign Key
-    website = models.ForeignKey(Website, null=True)
+    brand = models.ForeignKey(Brand, null=True)
 
     #Metadata
     class Meta: 
@@ -106,24 +143,73 @@ class Product(models.Model):
         return "{0}".format(self.product_name)
 
 
-    def get_product_website_name(self):
-        """
-        Return the website's name for this item (provided for extensibility)
-        """
-        return "{0}".format(self.product_website_name)
+class Location(models.Model):
+    contact_type = models.CharField(max_length=255, blank=True, null=True)
+    
+    brand_address = models.CharField(max_length=255, blank=True, null=True)
+    brand_city = models.CharField(max_length=50, null=True, blank=True)
+    brand_state = models.CharField(max_length=2, null=True, blank=True)
 
-    def get_product_slug_url(self):
-        """
-        Return the product slug url for this item (provided for extensibility)
-        """
-        return "{0}".format(self.product_slug_url)
+    brand_website_name = models.CharField(max_length=255, blank=True, null=True)
+    brand_website_url = models.URLField(max_length=200, null=True, blank=True)
 
-    def get_product_category(self):
-        """
-        Return the product category for this item (provided for extensibility)
-        """
-        return "{0}".format(self.product_category)
+    brand_email = models.CharField(max_length=255, blank=True, null=True)
 
+    brand_email_state = models.BooleanField(default=False, verbose_name=_('Email State'))
+
+    #Foreign Keys
+    brand = models.ForeignKey(Brand, null=True)
+    
+    #Metadata
+    class Meta:
+        verbose_name = _("Location")
+        verbose_name_plural = _("Locations")
+    
+    #Helps return something meaningful, to show within the admin interface for easy interaction
+    def __unicode__(self):
+        return "{0}".format(self.brand)
+
+    def get_contact_type(self):
+        """
+        Return this item (provided for extensibility)
+        """
+        return "{0}".format(self.contact_type)
+
+    def get_brand_address(self):
+        """
+        Return this item (provided for extensibility)
+        """
+        return "{0}".format(self.brand_address)
+
+    def get_brand_city(self):
+        """
+        Return this item (provided for extensibility)
+        """
+        return "{0}".format(self.brand_city)
+
+    def get_brand_state(self):
+        """
+        Return this item (provided for extensibility)
+        """
+        return "{0}".format(self.brand_state)
+
+    def get_brand_website_name(self):
+        """
+        Return this item (provided for extensibility)
+        """
+        return "{0}".format(self.brand_website_name)
+
+    def get_brand_website_url(self):
+        """
+        Return this item (provided for extensibility)
+        """
+        return "{0}".format(self.brand_website_url)
+
+    def get_brand_email(self):
+        """
+        Return this item (provided for extensibility)
+        """
+        return "{0}".format(self.brand_email)
 
 
 

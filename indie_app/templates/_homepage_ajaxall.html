@@ -12,29 +12,12 @@
         </ul>
     </div>   
 </li>
-{% for object in website_list %}     
-    {# Renders an IMG for a CloudinaryImage objects. #}
-    {# THUMBNAIL defined in context_processors #}
-    <li data-background="{% cloudinary_url object.product_image_feature BRANDIMAGE %}">
+{% for brand in brand_list %}     
+    <li data-background="{% cloudinary_url brand.brand_feature_image BRANDIMAGE %}">
         <div class="body">
-            <h1>{{object.name}}</h1>
-
-            {% if object.menswear and not object.womenswear %}
-                    <p>Available Products: Menswear Only</p>
-            
-                {% elif object.menswear and object.womenswear %}
-                    <p>Available Products:  Menswear & Womeseswear</p>
-                
-                {% elif object.womenswear and not object.menswear%}
-                    <p>Available Products: Womenswear Only</p>
-                
-                {% else %}
-                    <p></p>
-            
-            {% endif %}
+            <h1>{{brand.brand_name}}</h1>
             <ul>
-                <li class="flick-title-custom"><a href="browse/{{object.website_slug}}">{{object.name}}'s Products</a></li>
-                <!-- <li class="flick-title-custom"><a href="#">{{object.name}}'s Story</span></a></li> -->
+                <li class="flick-title-custom"><a href="{{brand.brand_detail_slug}}">View {{brand.brand_name}}</a></li>
             </ul>
         </div> 
     </li>

@@ -6,8 +6,10 @@
  *
  */
 for(var i = 0; i < websites.length; i++) {
+
 	var pk = websites[i].pk;
 	websites[i] = websites[i].fields;
+
 	websites[i].pk = pk;
 }
 

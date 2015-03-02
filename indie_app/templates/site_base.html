@@ -27,17 +27,6 @@
 {% endblock %}
 
 
-
-
-
-
-
-
-
-
-
-
-
 {% block footer %}
 <!-- Start footer -->
     {% include "_footer.html" %}
@@ -49,10 +38,14 @@
     <!--Library Script-->
     <script src="{% static "js/lib/jquery-1.11.1.min.js" %}"></script>
     <script src="{% static "js/lib/bootstrap.min.js" %}"></script>
+
     <script src="{% static "js/lib/underscore-min.js" %}"></script>
     <script src="{% static "js/lib/backbone-min.js" %}"></script>
+    
     <script src="{% static "pinax/js/theme.js" %}"></script>
     <script src="{% static "js/lib/classie.js" %}"></script>
+
+
 
     {% block extra_script %}{% endblock %}
 

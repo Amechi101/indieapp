@@ -7,25 +7,25 @@ from tastypie import fields
 from tastypie.resources import ModelResource, ALL
 
 
-from _backend_api.models import Website
+from _backend_api.models import Brand
 
 
 
-class WebsiteResource(ModelResource):
+class BrandResource(ModelResource):
 	"""
 	access to the website database is available here
 	"""
     
 	class Meta:
 		
-		queryset = Website.objects.all()
-		resource_name = 'all_wesbsites'
+		queryset = Brand.objects.all()
+		resource_name = 'all_brands'
 		limit = 50
 		allowed_methods = ['get', 'post']
 		authentication = BasicAuthentication()
 		authorization = DjangoAuthorization()
 		filtering = {
-		    'name': ALL,
+		    'brand_name': ALL,
             'menswear': ALL,
             'womenswear': ALL,
             'date_added': ALL,
