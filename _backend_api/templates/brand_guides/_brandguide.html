@@ -37,10 +37,10 @@
                         <li><a href="#home">{{brand.brand_name}}</a></li>
                     {% endfor %}
                     <li><a href="#about">About</a></li>
-                    <li><a href="#products">Products</a></li>
+                    <li><a href="#products">Collection</a></li>
                     <li><a href="#locations">Locations</a></li>
                     <!-- <li><a href="#social">Social</a></li> -->
-                    <li><a href="#follow">Follow</a></li>
+                    <li><a href="#follow">Bookmark</a></li>
                     <li><a href="{% url "home" %}">Back to Home</a></li>
                 </ul>
             </div>
@@ -106,7 +106,7 @@
     <section class="page-section" id="products">
         <div class="relative">
             
-            <h2 class="section-title font-alt mb-70 mb-sm-40">Products</h2>
+            <h2 class="section-title font-alt mb-70 mb-sm-40">Collection</h2>
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
@@ -241,10 +241,10 @@
         <div class="container">
         {% for brand in brand_list %}
             <div class="local-scroll mb-30 wow fadeInUp" data-wow-duration="1.5s">
-                <a href="#top"><img src="{% cloudinary_url brand.brand_logo %}" width="78" height="36" alt="" /></a>
+                <img src="{% cloudinary_url brand.brand_logo %}" width="78" height="36" alt="" />
             </div>
 
-            <h4 class="section-title font-alt"><a class="follow-brand" href="#">Bookmark {{ brand.brand_name }}1</a></h4> 
+            <h4 class="section-title font-alt"><a class="follow-brand" href="#">Lookmark {{ brand.brand_name }}1</a></h4> 
         </div>
         {% endfor %}
          <!-- Top Link -->

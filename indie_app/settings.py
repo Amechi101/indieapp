@@ -14,7 +14,7 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 # For internal purposes of switching settings components
-DEVELOPMENT = True
+DEVELOPMENT = False
 
 
 # Local time zone for this installation. Choices can be found here:
