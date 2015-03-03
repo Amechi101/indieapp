@@ -88,12 +88,6 @@
                         <div class="section-text align-center mb-70 mb-xs-40">
                             {{ brand.brand_description }}                                  
                         </div>
-                        
-                        <div class="align-center m-20">
-                            <a id="watchfull" allowfullscreen="" mozallowfullscreen="" webkitallowfullscreen="" frameborder="0" height="281" width="500" target="_blank" href="http://player.vimeo.com/video/110769148?title=0&byline=0&portrait=0&color=bdbdbd&autoplay=1">
-                                <i class="b-hero__watchFull">Watch Full Video</i>
-                            </a>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -244,7 +238,7 @@
                 <img src="{% cloudinary_url brand.brand_logo %}" width="78" height="36" alt="" />
             </div>
 
-            <h4 class="section-title font-alt"><a class="follow-brand" href="#">Lookmark {{ brand.brand_name }}1</a></h4> 
+            <h4 class="section-title font-alt"><a class="follow-brand" href="#">Mark {{ brand.brand_name }}1</a></h4> 
         </div>
         {% endfor %}
          <!-- Top Link -->
@@ -255,9 +249,6 @@
     </footer>
     <!-- End Foter -->
 {% endblock %}
-
-
-{% block footer %}{% endblock %}
 
 
 {% block extra_script %}
