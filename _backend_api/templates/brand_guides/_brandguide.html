@@ -101,7 +101,7 @@
                 <div class="row">
                    {% for data in product_list %}
                     <div class="moment">
-                        <img class="moment-img" src="{% cloudinary_url data.product_image PRODUCT %}" />
+                        <img class="moment-img" src="{% cloudinary_url data.product_image %}" />
                         <div class="moments-info">
                             <p class="moments-title">{{ data.product_name }}</p>
                             <p class="moments-text">${{ data.product_price}}</p>
