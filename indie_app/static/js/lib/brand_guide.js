@@ -33,7 +33,7 @@
             
         init_classic_menu();
   
-        init_parallax();
+   
 
     });
     
