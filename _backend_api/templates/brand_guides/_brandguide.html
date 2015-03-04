@@ -118,7 +118,7 @@
                             <div class='magazine-product-img-container'>
                                 <div class='hover-container'>
 
-                                    <div class='product-image' style="background-image:url('{% cloudinary_url product.product_image PRODUCT %}');"></div>
+                                    <div class='product-image' style="background-image:url('{% cloudinary_url data.product_image PRODUCT %}');"></div>
 
                                     <div class='top-right'>
                                         <span class="card-price button-price">${{ data.product_price}}</span>
@@ -126,7 +126,7 @@
 
                                     <!-- <a class="card-view" href="javascript:void(0)"></a> -->
 
-                                    <label class="card-name">{{ brand.product_name }}</label>
+                                    <label class="card-name">{{ data.product_name }}</label>
                                 </div>
                             </div>
                         </div>
