@@ -447,12 +447,12 @@ padding: 18px 34px;
 text-decoration: none !important;
 font-weight: 400;
 font-size: 15px;
-line-height: 1;
+line-height:0.7;
 text-transform: uppercase;
 position: relative;
 height: 50px;
 min-width: 185px;
-background: none repeat scroll 0% 0% #bdc3c7;
+background: none repeat scroll 0% 0% #000;
 border: 2px solid #FFF;
 transition: all 500ms ease 0s;
 }
@@ -999,7 +999,7 @@ a.btn-mod:focus{
     text-transform: uppercase;
   font-size: 30px;
     font-weight: 400;
-  letter-spacing: 51px;
+  letter-spacing: 31px;
   color: #fff;
     opacity: .9;
 }
@@ -1048,7 +1048,7 @@ a.btn-mod:focus{
   font-size: 19px;
   font-weight: 300;
     line-height: 1.2;
-    opacity: .35;
+    opacity: 0.9;
 }
 .hs-line-6.no-transp{
     opacity: 1;
@@ -1735,7 +1735,7 @@ a.logo:hover{
   background-color: #f4f4f4;
 }
 .bg-gray-lighter{
-  background-color: #f8f8f8;
+  background-color: #FFF;
 }
 .bg-dark,
 .bg-dark-lighter,
@@ -2006,7 +2006,7 @@ a.logo:hover{
     font-weight: 400;
     text-transform: uppercase;
     text-align: center;
-    letter-spacing: 0.5em;
+    letter-spacing: 0.2em;
     line-height: 1.4;
 }
 .section-more{
