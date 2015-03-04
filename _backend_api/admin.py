@@ -15,8 +15,8 @@ class ProductAdmin(admin.ModelAdmin):
 	list_per_page = 10
 
 class LocationAdmin(admin.ModelAdmin):
-	list_display = ["id","contact_type",]
-	search_fields = ["contact_type"]
+	list_display = ["brand", "brand_address", "brand_city", "brand_state"]
+	search_fields = ["brand"]
 	list_per_page = 10
 
 # Register Models below

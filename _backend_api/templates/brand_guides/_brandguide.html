@@ -5,7 +5,7 @@
 {% load cloudinary %}
 {% load staticfiles %} 
 
-{% block head_title %}{% trans "Brand Guide" %}{% endblock %}
+{% block head_title %}{{brand.brand_name}} Brand Guide{% endblock %}
 
 {% block extra_style %}
 <link rel="stylesheet" href="{% static "css/brand_guide.css" %}">
@@ -33,9 +33,9 @@
             <!-- Main Menu -->
             <div class="inner-nav desktop-nav">
                 <ul class="clearlist scroll-nav local-scroll">
-                    {% for brand in brand_list %}
-                        <li><a href="#home">{{brand.brand_name}}</a></li>
-                    {% endfor %}
+                 
+                    <li><a href="#home">{{brand.brand_name}}</a></li>
+                  
                     <li><a href="#about">About</a></li>
                     <li><a href="#products">Collection</a></li>
                     <li><a href="#locations">Locations</a></li>
@@ -53,7 +53,7 @@
 
 
 {% block banner %}
-    {% for brand in brand_list %}
+
     <!-- Home Section -->
     <section class="home-section bg-dark-alfa-30 parallax-2" data-background="{% cloudinary_url brand.brand_feature_image BRANDIMAGE %}" id="home">
         <div class="js-height-full">
@@ -71,13 +71,12 @@
         </div>
     </section>
     <!-- End Home Section -->
-    {% endfor %}
 {% endblock  %}
 
 {% block main_container_id %}brand-content{% endblock %}
 {% block body %}
     
-    {% for brand in brand_list %}
+ 
     <!-- About Section -->
     <section id="about" class="page-section bg-1">
         <div class="relative">
@@ -94,7 +93,7 @@
         </div>
     </section>
     <!-- End About Section -->
-    {% endfor %}
+
        
     <!-- Product Section -->
     <section class="page-section" id="products">
@@ -104,17 +103,15 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
-                        {% for brand in brand_list %}  
                         <div class="section-text align-center mb-text-70 mb-xs-40">
                             {{ brand.brand_product_description }} 
-                        </div>
-                        {% endfor %}  
+                        </div> 
                     </div>
                 </div>
             </div>
     
             <ul id="product-grid" class="grid list-item col-3"> 
-                {% for product in product_list %} 
+            {% for data in product_list %}
                 <li class='col n-4'>
                     <div class='magazine-single-card-container medium'>
                         <div class='magazine-card magazine-product-card'>
@@ -124,18 +121,18 @@
                                     <div class='product-image' style="background-image:url('{% cloudinary_url product.product_image PRODUCT %}');"></div>
 
                                     <div class='top-right'>
-                                        <span class="card-price button-price">${{ product.product_price }}</span>
+                                        <span class="card-price button-price">${{ data.product_price}}</span>
                                     </div>
 
                                     <!-- <a class="card-view" href="javascript:void(0)"></a> -->
 
-                                    <label class="card-name">{{ product.product_name }}</label>
+                                    <label class="card-name">{{ brand.product_name }}</label>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </li>
-                {% endfor %}
+            {% endfor %}
             </ul>          
         </div>
     </section>
@@ -155,38 +152,23 @@
             <div class="row mb-60 mb-xs-40">
                 <div class="col-md-8 col-md-offset-2">
                     <div class="row">
-                    {% for address in address_list %} 
-                        {% if address.contact_type == "Web"  %}
-                            <!-- Web -->
-                            <div class="col-sm-6 col-lg-4 pt-20 pb-20 pb-xs-0">
-                                <div class="contact-item">
-                                    <div class="ci-icon">
-                                        <i class="fa fa-globe"></i>
-                                    </div>
-                                     <div class="ci-title font-alt">
-                                        {{address.contact_type}}
-                                    </div>                                        
-                                    <div class="ci-text">
-                                        <a href="{{address.brand_website_url}}">{{address.brand_website_name}}</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End web -->
-                        {% elif address.contact_type == 'Brick & Mortar' %}
-                            <!-- Address -->
-                            <div class="col-sm-6 col-lg-4 pt-20 pb-20 pb-xs-0">
-                                <div class="contact-item">
-                                    <div class="ci-icon">
-                                        <i class="fa fa-building"></i>
-                                    </div>
-                                    <div class="ci-title font-alt">{{address.contact_type}}</div>
-                                    <div class="ci-text">
-                                        {{address.brand_address}}, </br>{{address.brand_city}}, {{address.brand_state}}
+                        {% if brand.brand_location_state == True %}
+                            {% for address in address_list %} 
+                                <!-- Address -->
+                                <div class="col-sm-6 col-lg-4 pt-20 pb-20 pb-xs-0">
+                                    <div class="contact-item">
+                                        <div class="ci-icon">
+                                            <i class="fa fa-building"></i>
+                                        </div>
+                                        <div class="ci-title font-alt">Brick & Mortar</div>
+                                        <div class="ci-text">
+                                            {{address.brand_address}}, {{address.brand_city}}, {{address.brand_state}}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- End Address --> 
-                        {% elif address.contact_type == 'Email' %}
+                                <!-- End Address --> 
+                            {% endfor %} 
+                        {% elif brand.brand_location_state == False and brand.brand_email_state == True %}
                             <!-- Email -->
                             <div class="align-center">
                                 <h3 class="banner-heading font-alt">Contact Designer</h3>
@@ -194,18 +176,36 @@
                                     This Brand has no web or brick                                   
                                 </div>
                                 <div class="local-scroll">
-                                    <a href="#contact" class="btn btn-mod btn-w btn-medium btn-round">{{address.brand_email}}</a>
+                                    <a href="mailto:{{brand.brand_email}}"  class="btn btn-mod btn-w btn-medium btn-round">{{brand.brand_email}}</a>
                                 </div>
                              </div>
-                            <!-- End Email -->          
-                        {% endif %} 
-                    {% endfor %} 
+                            <!-- End Email --> 
+                        {% endif %}      
                     </div>
                 </div> 
             </div> 
         </div>
     </section>
     <!-- End Contact Section -->
+
+    {% if brand.brand_website_url|length > 0 %}
+    <!-- Website -->
+    <section class="small-section bg-dark">
+        <div class="container relative">
+            <div class="align-center">
+                <h3 class="banner-heading font-alt">Vist Website</h3>
+                <div class="local-scroll">
+                    <a href="{{brand.brand_website_url}}" class="btn btn-mod btn-w btn-medium btn-round">{{ brand.brand_name }}.com</a>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    <!-- Website End -->
+    {% else %}
+
+
+    {% endif %}
         
 
     <!-- Divider -->
@@ -233,14 +233,12 @@
     <!-- Foter -->
     <footer class="page-section bg-gray-lighter footer pb-60" id="follow">
         <div class="container">
-        {% for brand in brand_list %}
             <div class="local-scroll mb-30 wow fadeInUp" data-wow-duration="1.5s">
                 <img src="{% cloudinary_url brand.brand_logo %}" width="78" height="36" alt="" />
             </div>
 
             <h4 class="section-title font-alt"><a class="follow-brand" href="#">Mark {{ brand.brand_name }}1</a></h4> 
         </div>
-        {% endfor %}
          <!-- Top Link -->
         <div class="local-scroll">
             <a href="#indie-wrapper" class="link-to-top"><i class="fa fa-caret-up"></i></a>

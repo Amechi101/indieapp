@@ -21,6 +21,7 @@
             <ul class="list-tags">
  
                 <script id="listTagTemplate" type="text/template">
+
                   <% $.each(tags, function(filter_type, value) { %>
                     <li class="close style2"><a href="javascript:void(0)" data-filter-type="<%= filter_type %>"><%= value %></a></li>
                   <% }); %>
@@ -52,7 +53,7 @@
                                     <div class="og-details">
                                         <h3><%= website.get('brand_name') %></h3>
                                         <p><%= website.get('brand_description') %></p>
-                                        <a href="<%= location.origin %>/<%= website.get('brand_detail_slug') %>">Explore</a>
+                                        <a href="<%= location.origin %>/brand/<%= website.get('slug') %>">Explore</a>
                                         <a href="javascript:void(0)">Mark <%= website.get('brand_name') %></a>
                                     </div>
                                 </div>

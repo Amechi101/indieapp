@@ -713,7 +713,7 @@ class SettingsView(LoginRequiredMixin, FormView):
 
         redirect_field_name = self.get_redirect_field_name()
 
-        ctx['website_list'] = Brand.objects.filter(active=True).order_by('name')
+        ctx['brand_list'] = Brand.objects.all()
         ctx.update({
             "redirect_field_name": redirect_field_name,
             "redirect_field_value": self.request.REQUEST.get(redirect_field_name, ""),

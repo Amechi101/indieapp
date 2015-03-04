@@ -42,7 +42,7 @@
                                     <div class="grid-tint" style="background: #0f0f0f url('{% cloudinary_url brand.brand_feature_image BRANDIMAGE %}') center center no-repeat; background-size: cover;"></div>
                                     <div class="table-cell">
                                         <label class="work-title">{{brand.brand_name}}</label>
-                                        <a class="box-button" href="{{brand.brand_detail_slug}}">Explore</a>
+                                        <a class="box-button" href="{{brand.get_absolute_url}}">Explore</a>
                                     </div>
                                 </div>
                             </div>
