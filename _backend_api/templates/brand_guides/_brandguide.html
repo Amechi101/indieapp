@@ -26,6 +26,12 @@
     <!-- Navigation panel -->
     <nav class="main-nav dark transparent stick-fixed">
         <div class="full-wrapper relative clearfix">
+            <!-- Logo ( * your text or image into link tag *) -->
+            <div class="nav-logo-wrap local-scroll">
+                <a href="#top" class="logo">
+                    <img src="images/logo-white.png" width="118" height="27" alt="" />
+                </a>
+            </div>
             <div class="mobile-nav">
                 <i class="fa fa-bars"></i>
             </div>
@@ -101,7 +107,7 @@
                 <div class="row">
                    {% for data in product_list %}
                     <div class="moment">
-                        <img class="moment-img" src="{% cloudinary_url data.product_image %}" />
+                        <img class="moment-img" src="{% cloudinary_url data.product_image PRODUCT %}" />
                         <div class="moments-info">
                             <p class="moments-title">{{ data.product_name }}</p>
                             <p class="moments-text">${{ data.product_price}}</p>
@@ -215,12 +221,14 @@
 
 
 {% block extra_script %}
-<script src="{% static "js/lib/jquery.easing.1.3.js" %}"></script>
-<script src="{% static "js/lib/SmoothScroll.js" %}"></script>
-<script src="{% static "js/lib/jquery.scrollTo.min.js" %}"></script>
-<script src="{% static "js/lib/jquery.localScroll.min.js" %}"></script>
-<script src="{% static "js/lib/jquery.sticky.js" %}"></script>
-<script src="{% static "js/lib/brand_guide.js" %}"></script>
+    <script src="{% static "js/lib/jquery.easing.1.3.js" %}"></script>
+    <script src="{% static "js/lib/SmoothScroll.js" %}"></script>
+    <script src="{% static "js/lib/jquery.scrollTo.min.js" %}"></script>
+    <script src="{% static "js/lib/jquery.localScroll.min.js" %}"></script>
+    <script src="{% static "js/lib/jquery.viewport.mini.js" %}"></script>
+    <script src="{% static "js/lib/jquery.sticky.js" %}"></script>
+    <script src="{% static "js/lib/jquery.parallax-1.1.3.js" %}"></script>
+    <script src="{% static "js/lib/brand_guide.js" %}"></script>
 {% endblock %}
 
 

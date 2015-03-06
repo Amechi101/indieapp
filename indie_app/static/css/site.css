@@ -13,6 +13,19 @@ html.is--overflow {
     overflow: hidden;
 }
 
+
+/* Overthrow CSS:
+ Enable overflow: auto on elements with overthrow class when html element has overthrow-enabled class */
+.overthrow-enabled .overthrow {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    /*z-index: 0*/
+}
+.overthrow-enabled #content.overthrow {
+    height: 14em;
+}
+
+
 body {
   font-family:"futura-pt", "brandon-grotesque", Helvetica,sans-serif;
   font-weight: 300;
@@ -228,7 +241,7 @@ body {
 .dashboard-notifications.is--active-notify{
     bottom:0;
     visibility:visible;
-    overflow:auto
+    /*overflow:auto*/
 }
 
 

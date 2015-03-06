@@ -6,10 +6,10 @@ def consts(request):
         	"format": "jpg", "crop": "fill"
         },
         THUMBNAIL = {
-        	"format": "png", "crop": "fill","height":120,"width":120
+        	"format": "jpg", "crop": "fill","height":300,"width":300
         },
         PRODUCT = {
-           "format": "jpg", "crop": "fill",  "width": 300
+           "format": "jpg", "crop": "fill",  "width": 400,  "height": 500
         },
         CLOUDINARY_CLOUD_NAME = cloudinary.config().cloud_name
     )

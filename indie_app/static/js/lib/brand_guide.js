@@ -32,6 +32,7 @@
         $(window).trigger("resize");
             
         init_classic_menu();
+        init_parallax();
   
    
 
@@ -251,8 +252,7 @@
         
     }
     
-    
-    
+     
     /* ---------------------------------------------
      Scroll navigation
      --------------------------------------------- */
@@ -266,11 +266,10 @@
             easing: "easeInOutExpo"
         });
         
-        var sections = $(".home-section, .split-section, .page-section");
+        var sections = $(".home-section, .split-section, .page-section, .small-section");
         var menu_links = $(".scroll-nav li a");
         
         $(window).scroll(function(){
-        
             sections.filter(":in-viewport:first").each(function(){
                 var active_section = $(this);
                 var active_link = $('.scroll-nav li a[href="#' + active_section.attr("id") + '"]');
@@ -281,10 +280,6 @@
         });
         
     }
-    
-    
-   
-    
     
     /* -------------------------------------------
      Parallax
@@ -301,14 +296,9 @@
         
     }
     
-
-    
 })(jQuery); // End of use strict
     
     
-
-
-
 /* ---------------------------------------------
  Height 100%
  --------------------------------------------- */
