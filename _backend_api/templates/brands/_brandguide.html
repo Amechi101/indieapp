@@ -1,0 +1,269 @@
+{% extends "site_base.html" %}
+
+{% load url from future %}
+{% load i18n %}
+{% load cloudinary %}
+{% load staticfiles %} 
+
+{% block head_title %}{{brand.brand_name}} Brand Guide{% endblock %}
+
+{% block body_class %}brand{% endblock %}
+
+{% block pre_wrapper_extra %}
+    <!-- Page Loader -->        
+    <div class="page-loader">
+        <div class="loader">Loading...</div>
+    </div>
+    <!-- End Page Loader -->
+{% endblock %}
+
+
+{% block main_container_id %}mContent{% endblock %}
+{% block body %}
+    <div id="holder">
+        <ul>
+            <!-- Introduction slide -->
+            <li class="slide section-brand holderAnim">
+                <div class="slideSub slideSub-bg-dark holderAnim" style="background-image: url(&quot;{% cloudinary_url brand.brand_feature_image %}&quot;);"></div>
+                <div class="slideCon">
+                    <div class="sCell">
+                        <div class="sliderCopy">
+                            {{ brand.brand_name }}
+                        </div>
+                        
+                        <div class="scBtn">
+                            <div class="scBT slide1">
+                                Founded {{ brand.brand_founded }} 
+                                <span class="midDotSeparator">·</span> 
+                                {{ brand.brand_origin_city }}, {{ brand.brand_origin_state }}
+                            </div>
+  
+                        </div>
+                    </div>
+                </div>
+                <div class="mSliderLink slide1"><span class="mLink">1 of 5</span></div>
+                <div class="subSArrows slide1 subSLeft">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" width="31.5px" height="11px" viewBox="0 0 31.5 11" enable-background="new 0 0 31.5 11" xml:space="preserve"><defs></defs><path fill="#FFFFFF" d="M16.1,0.1L16,0h-0.5L0,9.8l0.4,0.7c0.3,0.5,0.9,0.7,1.7,0.2l13.1-8.3c0.3-0.2,0.5-0.3,0.6-0.4 c0.1,0.1,0.3,0.3,0.6,0.5l13.1,8.3c0.3,0.2,0.5,0.2,0.7,0.2c0.3,0,0.6-0.1,0.9-0.5l0.4-0.7L16.1,0.1z"></path></svg>
+                </div>
+                <div class="subSArrows slide1 subSRight">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" width="31.1px" height="11px" viewBox="0 0 31.1 11" enable-background="new 0 0 31.1 11" xml:space="preserve"><defs></defs><path fill="#FFFFFF" d="M31,0.7l-0.2-0.2C30.6,0,30-0.2,29.2,0.3L16.2,8.5c-0.3,0.2-0.5,0.3-0.6,0.4c-0.1-0.1-0.3-0.3-0.6-0.5 L1.9,0.2C1.2-0.1,0.7-0.1,0.2,0.5L0.1,0.7C0,0.8,0,1,0,1.1s0.1,0.2,0.2,0.3l15,9.5c0.1,0.1,0.2,0.1,0.3,0.1h0.2c0.1,0,0.2,0,0.3-0.1 l15-9.5c0.1-0.1,0.2-0.2,0.2-0.3S31.1,0.8,31,0.7z"></path></svg>
+                </div>    
+            </li>
+            <!-- End Introduction slide -->
+            
+            <!-- About slide -->
+            <li class="slide section-brand holderAnim">
+            <div class="slideSub slideSub-bg-dark holderAnim" style="background-image: url(&quot;{% cloudinary_url brand.brand_about_image %}&quot;);"></div>
+            
+                <div class="slideCon">
+                    <div class="sCell">
+                        <div class="sliderCopy">About {{ brand.brand_name }}</div>
+                        <div class="scBtn">
+                            <div class="scBT slide2">{{ brand.brand_about_description }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mSliderLink slide2"><span class="mLink">2 of 5</span></div>
+                <div class="subSArrows slide2 subSLeft">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" width="31.5px" height="11px" viewBox="0 0 31.5 11" enable-background="new 0 0 31.5 11" xml:space="preserve"><defs></defs><path fill="#FFFFFF" d="M16.1,0.1L16,0h-0.5L0,9.8l0.4,0.7c0.3,0.5,0.9,0.7,1.7,0.2l13.1-8.3c0.3-0.2,0.5-0.3,0.6-0.4 c0.1,0.1,0.3,0.3,0.6,0.5l13.1,8.3c0.3,0.2,0.5,0.2,0.7,0.2c0.3,0,0.6-0.1,0.9-0.5l0.4-0.7L16.1,0.1z"></path></svg>
+                </div>
+                <div class="subSArrows slide2 subSRight">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" width="31.1px" height="11px" viewBox="0 0 31.1 11" enable-background="new 0 0 31.1 11" xml:space="preserve"><defs></defs><path fill="#FFFFFF" d="M31,0.7l-0.2-0.2C30.6,0,30-0.2,29.2,0.3L16.2,8.5c-0.3,0.2-0.5,0.3-0.6,0.4c-0.1-0.1-0.3-0.3-0.6-0.5 L1.9,0.2C1.2-0.1,0.7-0.1,0.2,0.5L0.1,0.7C0,0.8,0,1,0,1.1s0.1,0.2,0.2,0.3l15,9.5c0.1,0.1,0.2,0.1,0.3,0.1h0.2c0.1,0,0.2,0,0.3-0.1 l15-9.5c0.1-0.1,0.2-0.2,0.2-0.3S31.1,0.8,31,0.7z"></path></svg>
+                </div>
+            </li>
+            <!-- End About slide -->
+            
+            <!-- Collection slide -->
+            <li class="slide section-brand holderAnim">
+            <div class="slideSub slideSub-bg-dark holderAnim" style="background-image: url(&quot;{% cloudinary_url brand.brand_collection_image %}&quot;);"></div> 
+            
+                <div class="slideCon">
+                    <div class="sCell">
+                        <div class="sliderCopy">Collection</div>
+                        <div class="scBtn">
+                            <div class="scBT slide3">{{ brand.brand_collection_description }}</div>
+                            <div class="brand-button slide3"><a href="#">View Collection</a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mSliderLink slide3"><span class="mLink">3 of 5</span></div>
+                <div class="subSArrows slide3 subSLeft">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" width="31.5px" height="11px" viewBox="0 0 31.5 11" enable-background="new 0 0 31.5 11" xml:space="preserve"><defs></defs><path fill="#FFFFFF" d="M16.1,0.1L16,0h-0.5L0,9.8l0.4,0.7c0.3,0.5,0.9,0.7,1.7,0.2l13.1-8.3c0.3-0.2,0.5-0.3,0.6-0.4 c0.1,0.1,0.3,0.3,0.6,0.5l13.1,8.3c0.3,0.2,0.5,0.2,0.7,0.2c0.3,0,0.6-0.1,0.9-0.5l0.4-0.7L16.1,0.1z"></path></svg>
+                </div>
+                <div class="subSArrows slide3 subSRight">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" width="31.1px" height="11px" viewBox="0 0 31.1 11" enable-background="new 0 0 31.1 11" xml:space="preserve"><defs></defs><path fill="#FFFFFF" d="M31,0.7l-0.2-0.2C30.6,0,30-0.2,29.2,0.3L16.2,8.5c-0.3,0.2-0.5,0.3-0.6,0.4c-0.1-0.1-0.3-0.3-0.6-0.5 L1.9,0.2C1.2-0.1,0.7-0.1,0.2,0.5L0.1,0.7C0,0.8,0,1,0,1.1s0.1,0.2,0.2,0.3l15,9.5c0.1,0.1,0.2,0.1,0.3,0.1h0.2c0.1,0,0.2,0,0.3-0.1 l15-9.5c0.1-0.1,0.2-0.2,0.2-0.3S31.1,0.8,31,0.7z"></path></svg>
+                </div>
+            </li>
+            <!-- End Collection slide -->
+            
+            <!-- Connect slide -->
+            <li class="slide section-brand holderAnim">
+            <div class="slideSub slideSub-bg-dark holderAnim" style="background-image: url(&quot;{% cloudinary_url brand.brand_connect_image %}&quot;);"></div> 
+            
+                <div class="slideCon">
+                    <div class="sCell">
+                        <div class="sliderCopy">Connect</div>
+                        <div class="scBtn">
+                            <div class="container">
+                                <div class="row mb-60">
+                                    <div class="col-md-8 col-md-offset-2">
+                                        <div class="row">
+                                            {% if brand.brand_location_state == True %}
+                                                {% for address in address_list %} 
+                                                    <!-- Address -->
+                                                    <div class="col-sm-6 col-lg-4 pt-20 pb-20">
+                                                        <div class="contact-item">
+                                                            <div class="ci-icon">
+                                                                <i class="fa fa-map-marker"></i>
+                                                            </div>
+                                                            <div class="ci-title font-alt">Brick & Mortar</div>
+                                                            <div class="ci-text">
+                                                                {{address.brand_address}}, {{address.brand_city}}, {{address.brand_state}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- End Address --> 
+                                                {% endfor %} 
+                                            {% endif %}  
+
+                                            {% if brand.brand_website_state == True %}
+                                                <!-- Web -->
+                                                <div class="col-sm-6 col-lg-4 pt-20 pb-20 pb-xs-0">
+                                                    <div class="contact-item">
+                                                        <div class="ci-icon">
+                                                            <i class="fa fa-globe"></i>
+                                                        </div>
+                                                        <div class="ci-title font-alt">Web</div>
+                                                        <div class="ci-text">
+                                                            <a href="{{brand.brand_website_url}}">{{brand.brand_name}}.com</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- End Web -->  
+                                            {% endif %}   
+
+
+                                            {% if brand.brand_location_state == False and brand.brand_website_state == False and brand.brand_email_state == True %}
+                                                <!-- Email -->
+                                                <div class="align-center">
+                                                    <div class="section-text align-center mb-70 mb-xs-40">
+                                                        Email the label below if your interested in buying any of the products seen in the collecton.                          
+                                                    </div>
+                                                    <div class="local-scroll">
+                                                        <a href="mailto:{{brand.brand_email}}"  class="btn btn-mod btn-w btn-medium btn-round">{{brand.brand_email}}</a>
+                                                    </div>
+                                                 </div>
+                                                <!-- End Email --> 
+                                            {% endif %}    
+                                        </div>
+                                    </div> 
+                                </div> 
+                            </div><!--Information -->
+                        </div><!--scBtn-->
+                    </div><!--sCell-->
+                </div><!--slideCon-->
+                    
+                <div class="mSliderLink slide4"><span class="mLink">4 of 5</span></div>
+                <div class="subSArrows slide4 subSLeft">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" width="31.5px" height="11px" viewBox="0 0 31.5 11" enable-background="new 0 0 31.5 11" xml:space="preserve"><defs></defs><path fill="#FFFFFF" d="M16.1,0.1L16,0h-0.5L0,9.8l0.4,0.7c0.3,0.5,0.9,0.7,1.7,0.2l13.1-8.3c0.3-0.2,0.5-0.3,0.6-0.4 c0.1,0.1,0.3,0.3,0.6,0.5l13.1,8.3c0.3,0.2,0.5,0.2,0.7,0.2c0.3,0,0.6-0.1,0.9-0.5l0.4-0.7L16.1,0.1z"></path></svg>
+                </div>
+                <div class="subSArrows slide4 subSRight">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" width="31.1px" height="11px" viewBox="0 0 31.1 11" enable-background="new 0 0 31.1 11" xml:space="preserve"><defs></defs><path fill="#FFFFFF" d="M31,0.7l-0.2-0.2C30.6,0,30-0.2,29.2,0.3L16.2,8.5c-0.3,0.2-0.5,0.3-0.6,0.4c-0.1-0.1-0.3-0.3-0.6-0.5 L1.9,0.2C1.2-0.1,0.7-0.1,0.2,0.5L0.1,0.7C0,0.8,0,1,0,1.1s0.1,0.2,0.2,0.3l15,9.5c0.1,0.1,0.2,0.1,0.3,0.1h0.2c0.1,0,0.2,0,0.3-0.1 l15-9.5c0.1-0.1,0.2-0.2,0.2-0.3S31.1,0.8,31,0.7z"></path></svg>
+                </div>
+            </li>
+            <!-- End Connect slide -->
+            
+            <!-- Bookmark Slide -->
+            <li class="slide section-brand holderAnim">
+                <div class="slideSub slideSub-bg-dark holderAnim" style="background-image: url(&quot;https://unsplash.com/photos/YIN4xUBaqnk/download&quot;);"></div>
+                
+                <div class="slideCon">
+                    <div class="sCell">
+                        <div class="sliderCopy">Unlabel {{brand.brand_name}}</div>
+                        <div class="scBtn">
+                            <div class="scBT slide5">Add {{brand.brand_name}} to your collection of independent fashion labels.</div>
+                            <!-- <div class="scBU slide5"></div> -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mSliderLink slide5"><span class="mLink">5 of 5</span></div>
+                <div class="subSArrows slide5 subSLeft">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" width="31.5px" height="11px" viewBox="0 0 31.5 11" enable-background="new 0 0 31.5 11" xml:space="preserve"><defs></defs><path fill="#FFFFFF" d="M16.1,0.1L16,0h-0.5L0,9.8l0.4,0.7c0.3,0.5,0.9,0.7,1.7,0.2l13.1-8.3c0.3-0.2,0.5-0.3,0.6-0.4 c0.1,0.1,0.3,0.3,0.6,0.5l13.1,8.3c0.3,0.2,0.5,0.2,0.7,0.2c0.3,0,0.6-0.1,0.9-0.5l0.4-0.7L16.1,0.1z"></path></svg>
+                </div>
+                <div class="subSArrows slide5 subSRight">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" width="31.1px" height="11px" viewBox="0 0 31.1 11" enable-background="new 0 0 31.1 11" xml:space="preserve"><defs></defs><path fill="#FFFFFF" d="M31,0.7l-0.2-0.2C30.6,0,30-0.2,29.2,0.3L16.2,8.5c-0.3,0.2-0.5,0.3-0.6,0.4c-0.1-0.1-0.3-0.3-0.6-0.5 L1.9,0.2C1.2-0.1,0.7-0.1,0.2,0.5L0.1,0.7C0,0.8,0,1,0,1.1s0.1,0.2,0.2,0.3l15,9.5c0.1,0.1,0.2,0.1,0.3,0.1h0.2c0.1,0,0.2,0,0.3-0.1 l15-9.5c0.1-0.1,0.2-0.2,0.2-0.3S31.1,0.8,31,0.7z"></path></svg>
+                </div>
+
+            </li>
+            <!-- End Bookmark Slide -->
+
+            <div class="clear"></div>
+        </ul>
+    </div><!--holder-->
+    <div style="opacity: 0.2;" id="sLeft" class="slideNav"></div>
+    <div id="sRight" class="slideNav"></div> 
+{% endblock %}
+
+
+{% block extra_script %}
+<script src="{% static "js/lib/jquery.fullPage.min.js" %}"></script>
+<script>
+;(function($){
+    
+    $(window).load(function(){
+        
+        // Page loader
+        $(".page-loader div").delay(0).fadeOut();
+        $(".page-loader").delay(200).fadeOut("slow");
+
+        $(".slide1").delay(1000).css({
+            opacity: 1,
+            transform: "matrix(1, 0, 0, 1, 0, 0)"
+        });
+        
+    });
+
+ 
+    $('#holder').fullpage({
+
+        //Scrolling
+        css3: true,
+        sectionSelector: '.section-brand',
+        //CallBacks
+        afterLoad: function( anchorLink, index){
+            var loadedSlide = $(this);
+ 
+            if(index == 2 ){
+                
+                $('.slide2').css({
+                    opacity: 1,
+                    transform: "matrix(1, 0, 0, 1, 0, 0)"
+                });
+            
+            } else if( index == 3 ) {
+                
+                $('.slide3').css({
+                    opacity: 1,
+                    transform: "matrix(1, 0, 0, 1, 0, 0)"
+                }); 
+            
+            } else if( index == 4 ) {
+
+                $('.slide4').css({
+                    opacity: 1,
+                    transform: "matrix(1, 0, 0, 1, 0, 0)"
+                }); 
+            
+            } else if( index == 5 ) {
+                $('.slide5').css({
+                    opacity: 1,
+                    transform: "matrix(1, 0, 0, 1, 0, 0)"
+                });
+            }
+        }  
+    });
+
+})(jQuery); // End of use strict
+</script>  
+{% endblock %}

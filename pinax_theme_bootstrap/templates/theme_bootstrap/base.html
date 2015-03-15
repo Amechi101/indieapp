@@ -4,13 +4,17 @@
 <!--[if lt IE 9]><html class="ie"><![endif]-->
 <!--[if gte IE 9]><!--><html lang="{{ LANGUAGE_CODE }}" class="no-js"><!--<![endif]-->
     <head> 
-        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        
+        <meta name="title" content="">
         <meta content="" name="description"></meta>
         <meta content="" name="author"></meta>
-        <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+        <meta name="keywords" content="">
+    
         <title>{% block head_title_base %}{% if SITE_NAME %}{{ SITE_NAME }} | {% endif %}{% block head_title %}{% endblock %}{% endblock %}</title>
         {% block viewport %}
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
         {% endblock %}
 
         {% block style_base %}
@@ -41,31 +45,31 @@
         
         <div id="indie-wrapper">            
             {% block topbar_base %}
-            <header id="indie-global-menu" class="navbar {% block header_class %}{% endblock %}">
-                <nav>
-                   <!--  <div id="navbar_logo_wrapper" class="">
-                        <a href="{% url "home" %}" id="navbar_logo" class="text-hide">Home</a>
-                    </div> -->
+                <header id="indie-global-menu" class="navbar">
+                    <nav>
+                       <!--  <div id="navbar_logo_wrapper" class="">
+                            <a href="{% url "home" %}" id="navbar_logo" class="text-hide">Unlabel</a>
+                        </div>
+                        -->
+                  
 
-                    <div class="navbar-left">
-                        <a id="indie-global-menu-open" href="javascript:void(0)" class="btn btn-navbar btn-toggle-sidebar-left">
-                            <div class="bars">
-                                <div class="bar"></div>
-                                <div class="bar"></div>
-                                <div class="bar"></div>
-                            </div>
-                        </a>
-                    </div>
+                        <div class="navbar-left">
+                            <a href="{% url "home" %}" class="btn btn-navbar btn-toggle-sidebar-left">
+                                <span id="navbar_logo"></span>
+                            </a>          
+                        </div>
 
-                    {% block header_website_search_icon %}
-                    <div class="navbar-right">
-                        <a id="indie-global-website-search" href="javascript:void(0)" class="btn btn-navbar btn-toggle-sidebar-right">
-                            <span class="icon-indie_web-02 icon-main"></span>
-                        </a>          
-                    </div>
-                    {% endblock %}
-                </nav>
-            </header>
+                        <div class="navbar-right">
+                            <a id="indie-global-menu-open" href="javascript:void(0)" class="btn btn-navbar btn-toggle-sidebar-right">
+                                <div class="bars">
+                                    <div class="bar"></div>
+                                    <div class="bar"></div>
+                                    <div class="bar"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </nav>
+                </header>
             {% endblock %}
 
             {% block banner_base %}
@@ -84,8 +88,6 @@
             {% endblock %} 
 
             {% block global_menu %}{% include "_global_partials/_global_menu.html" %}{% endblock %}
-
-            {% block website_search %}{% include "_global_partials/_website_search.html" %}{% endblock %}
 
         </div>
 

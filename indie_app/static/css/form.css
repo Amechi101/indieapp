@@ -20,8 +20,8 @@
    
 }
 
-#content-form p, #content-form blockquote {
-    margin-bottom: 23px;
+#content-form p {
+    margin-bottom: 0x;
     line-height: 190%
 }
 

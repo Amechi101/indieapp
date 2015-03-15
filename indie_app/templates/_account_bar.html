@@ -8,14 +8,13 @@
     
     {% else %}
     <li><a href="{% url "account_login" %}">{% trans "Log In" %}</a></li>
-    <!-- <li><a href="{% url "account_signup" %}">{% trans "SIGN UP" %}</a></li> -->
+    <li><a href="{% url "account_signup" %}">{% trans "Sign Up" %}</a></li>
     
     {% endif %}
-    <li><a href="{% url "home" %}">Home</a></li>
-    <li><a href="#member"><a href="#">About Lookmark</a></li>
-<!--     <li><a href="#service">Terms & Conditions</a></li>
-    <li><a href="#Privacy">Privacy Policy</a></li> -->
-    <li><a href="mailto:amechiegbe@gmail.com">Contact Us</a></li>
+    <li><a href="#member"><a href="#">About Unlabel</a></li>
+    <li><a href="#service">Legal Stuff</a></li>
+    <li><a href="{% url "brand_archive" %}">Archive</a></li>
+    <li><a href="mailto:info@unlabel.us">Contact</a></li>
 </ul> 
 <form id="accountLogOutForm" style="display: none;" action="{% url "account_logout" %}" method="POST">
     {% csrf_token %}

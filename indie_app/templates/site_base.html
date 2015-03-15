@@ -10,7 +10,19 @@
     <link rel="stylesheet" href="{% static "css/site.css" %}" />
     <link rel="stylesheet" href="{% static "css/fonts.css" %}" />
     <link rel="stylesheet" href="{% static "css/form.css" %}" />
+    <link rel="stylesheet" href="{% static "fonts/font-awesome/css/font-awesome.min.css" %}">
 
+    <!-- Icon links -->
+    
+    <!-- <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    
+    <link rel="apple-touch-icon" sizes="60x60" href="">
+    <link rel="apple-touch-icon" sizes="76x76" href="">
+    <link rel="apple-touch-icon" sizes="120x120" href="">
+    <link rel="apple-touch-icon" sizes="152x152" href="">
+    <link rel="apple-touch-icon" sizes="180x180" href=""> -->
+    
     {% block extra_style %}{% endblock %}
 {% endblock %}
 
@@ -38,11 +50,6 @@
     
     <script src="{% static "pinax/js/theme.js" %}"></script>
     <script src="{% static "js/lib/classie.js" %}"></script>
-
-    <script src="{% static "js/lib/overthrow-detect.js" %}"></script>
-    <script src="{% static "js/lib/overthrow-init.js" %}"></script>
-    <script src="{% static "js/lib/overthrow-polyfill.js" %}"></script>
-    <script src="{% static "js/lib/overthrow-toss.js" %}"></script>
 
     {% block extra_script %}{% endblock %}
 

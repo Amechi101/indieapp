@@ -17,27 +17,31 @@ class Brand(models.Model):
     """
     
     brand_name = models.CharField(max_length=255, blank=True, null=True, unique=True)
-    brand_founded = models.IntegerField(max_length=4, null=True)
     
+    brand_founded = models.IntegerField(max_length=4, null=True)
     brand_origin_city = models.CharField(max_length=255, blank=True, null=True)
     brand_origin_state = models.CharField(max_length=2, blank=True, null=True)
 
-    brand_description = models.TextField(null=True, blank=True)
-    brand_product_description = models.TextField(null=True, blank=True)
+    brand_about_description = models.TextField(null=True, blank=True)
+    brand_collection_description = models.TextField(null=True, blank=True)
 
     #Shows details about specific brand
     slug = models.SlugField(max_length=255, verbose_name=_('Brand Slug'), unique=True,  null=True,  blank=True)
     
     brand_logo = CloudinaryField('Logo Image', null=True, blank=True)
     brand_feature_image = CloudinaryField('Featured Brand Image', null=True, blank=True)
+    brand_about_image = CloudinaryField('About Brand Image', null=True, blank=True)
+    brand_collection_image = CloudinaryField('Collection Brand Image', null=True, blank=True)
+    brand_connect_image = CloudinaryField('Connect Brand Image', null=True, blank=True)
 
     brand_website_url = models.URLField(max_length=200, null=True, blank=True)
-    brand_email = models.URLField(max_length=200, null=True, blank=True)
+    brand_email = models.EmailField(max_length=75, null=True, blank=True)
 
     #For the different active states for the brands
-    brand_state = models.BooleanField(default=False, verbose_name=_('Brand Available'))
+    brand_state = models.BooleanField(default=False, verbose_name=_('Brand active'))
     brand_location_state = models.BooleanField(default=False, verbose_name=_('Location(s) Available'))
     brand_email_state = models.BooleanField(default=False, verbose_name=_('Email Available'))
+    brand_website_state = models.BooleanField(default=False, verbose_name=_('Website Available'))
 
     # Whether brand is menswear, womenswear or both
     menswear = models.BooleanField(default=False, verbose_name=_('Menswear'))
@@ -86,13 +90,13 @@ class Brand(models.Model):
         """
         return "{0}".format(self.brand_origin_state)
 
-    def get_brand_description(self):
+    def get_brand_about_description(self):
         """
         Return item (provided for extensibility)
         """
         return "{0}".format(self.brand_description)
 
-    def get_brand_product_description(self):
+    def get_brand_collection_description(self):
         """
         Return item (provided for extensibility)
         """

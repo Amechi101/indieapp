@@ -65,68 +65,46 @@ indieScrapInitilazer = (function ( $, document, window, _ , undefined  ) {
 
             /*
              *
-             * Scroll Up functionality
-             *
-             */
-            var $elScroll = $('#scrollTop');
-
-            $(window).scroll(function() {
-                if( $(this).scrollTop() > 100 ) {
-                    $elScroll.fadeIn();
-                } else {
-                    $elScroll.fadeOut();
-                }
-            });
-
-            $elScroll.on('click', function() {
-                $('html, body').animate({
-                    scrollTop:0
-                }, 600);
-                return false;
-            });
-
-            /*
-             *
              * Functionality for Left Global Menu & Website Search & Product Detail
              *
              */
 
-            var cardContainer = Array.prototype.slice.call( document.querySelectorAll( '.hover-container' ) ),
-                eventType =  mobilecheck() ? 'touchstart' : 'click';
+            // var cardContainer = Array.prototype.slice.call( document.querySelectorAll( '.hover-container' ) ),
+            //     eventType =  mobilecheck() ? 'touchstart' : 'click';
 
           
-            cardContainer.forEach(function (element, index) {
+            // cardContainer.forEach(function (element, index) {
 
 
-                var cardTargetsOpen = element.querySelector( '.hover-container > a.card-view' ),
-                    cardTargetsContainer = element.querySelector( '.hover-container > div.card-cover' ),
-                    cardTargetsClose = element.querySelectorAll( '.hover-container > div.card-cover > a.card-close' );
+            //     var cardTargetsOpen = element.querySelector( '.hover-container > a.card-view' ),
+            //         cardTargetsContainer = element.querySelector( '.hover-container > div.card-cover' ),
+            //         cardTargetsClose = element.querySelectorAll( '.hover-container > div.card-cover > a.card-close' );
 
 
-                    // console.log(cardTargetsContainer);
+            //         // console.log(cardTargetsContainer);
 
                             
-                cardTargetsOpen.addEventListener(eventType, function( event ) {
-                    event.preventDefault();
-                    event.stopPropagation();
+            //     cardTargetsOpen.addEventListener(eventType, function( event ) {
+            //         event.preventDefault();
+            //         event.stopPropagation();
 
 
-                    classie.add( cardTargetsContainer, 'card--active' );
-                } ,false);
+            //         classie.add( cardTargetsContainer, 'card--active' );
+            //     } ,false);
 
-                Array.prototype.slice.call( cardTargetsClose ).forEach(function( closeTarget ) {
+            //     Array.prototype.slice.call( cardTargetsClose ).forEach(function( closeTarget ) {
 
-                    closeTarget.addEventListener(eventType, function( event ) {
-                        event.preventDefault();
-                        event.stopPropagation();
+            //         closeTarget.addEventListener(eventType, function( event ) {
+            //             event.preventDefault();
+            //             event.stopPropagation();
 
 
-                        classie.remove( cardTargetsContainer, 'card--active' );
+            //             classie.remove( cardTargetsContainer, 'card--active' );
                     
-                    } ,false);
+            //         } ,false);
 
-                });
-            });
+            //     });
+            // });
 
 
             //@TODO revise the functionality, refactor code      

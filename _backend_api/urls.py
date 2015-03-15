@@ -6,7 +6,7 @@ from tastypie.api import Api
 # Add resource to use here
 from api.brands.allbrands_resources import BrandResource
 
-from _backend_api.views import BrandDetailView
+from _backend_api.views import BrandDetailView, BrandArchiveView
 
 ###########################
 v1_api = Api(api_name='v1')
@@ -18,8 +18,8 @@ urlpatterns = patterns('',
 	# Api resource
     url(r'^_internal_brandall_api/', include(v1_api.urls)),
 	
-	#url for brands
 	url(r'^(?P<slug>[\w\d-]+)$', BrandDetailView.as_view(), name="brand_view"),
+	url(r'^archive/', BrandArchiveView.as_view(), name="brand_archive"),
 )
 
 

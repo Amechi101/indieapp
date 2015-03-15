@@ -9,7 +9,7 @@ from _backend_api.models import Product, Brand, Location
 
 class BrandDetailView(SingleObjectMixin, ListView):
 	
-	template_name = 'brand_guides/_brandguide.html'
+	template_name = 'brands/_brandguide.html'
 	
 	def get(self, request, *args, **kwargs):
 		self.object = self.get_object(queryset=Brand.objects.all())
@@ -27,6 +27,19 @@ class BrandDetailView(SingleObjectMixin, ListView):
 
 	def get_queryset(self,  **kwargs):
 		return self.object
+
+
+class BrandArchiveView( ListView):
+	
+	template_name = 'brands/_brandarchive.html'
+
+	model = Brand
+	
+	def get_context_data(self, **kwargs):
+		context = super(BrandArchiveView, self).get_context_data(**kwargs)
+		context['brand_list_archive'] = Brand.objects.filter(brand_state=True).order_by('brand_name')
+		
+		return context
 
 
 class HomepageView(ListView):

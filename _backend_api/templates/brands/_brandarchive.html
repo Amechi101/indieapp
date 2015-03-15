@@ -1,13 +1,23 @@
+{% extends "site_base.html" %}
+
 {% load url from future %}
 {% load i18n %}
 {% load cloudinary %}
+{% load staticfiles %} 
+{% load jsonify %}
 
-<!-- Global Website search (top) -->
-<section class="website-filtersearch overthrow">
-    <header class="navigation__header navigation__header-search">
-        <a id="indie-global-websearch-close" href="javascript:void(0)" class="navigation__header__close"><span class="icon-indie_web-03"></span></a>
-    </header>   
-    <div class="nav-sidebar" id="nav-filters">
+{% block head_title %}Brand Archive{% endblock %}
+
+{% block body_class %}archive{% endblock %}
+
+{% block topbar_base %}{% endblock %}
+
+{% block main_container_id %}archive-content{% endblock %}
+{% block body %}
+    <section class="navigation__header navigation__header-search">
+        <a href="{% url "home" %}"><span class="navigation__header__branding">Unlabel</span></a>
+    </section>   
+    <section class="nav-sidebar" id="nav-filters">
         <div class="wrapper-nav">
             <h3 class="results">Filter Sites By:</h3>
             
@@ -28,8 +38,8 @@
                 </script>
             </ul>
         </div>
-    </div> 
-    <div id="indie-populate-websites" class="indie-fill-websites">
+    </section> 
+    <section id="indie-populate-websites" class="indie-fill-websites">
         <div class="indie-fill-panel-wrapper">
             <div id="sidebar_search_block" class="sidebar-block">      
                 <script id="websiteTemplate" type="text/template">
@@ -54,7 +64,6 @@
                                         <h3><%= website.get('brand_name') %></h3>
                                         <p><%= website.get('brand_description') %></p>
                                         <a href="<%= location.origin %>/brand/<%= website.get('slug') %>">Explore</a>
-                                        <a href="javascript:void(0)">Mark <%= website.get('brand_name') %></a>
                                     </div>
                                 </div>
                             </div>
@@ -63,8 +72,22 @@
                 </script>
             </div>
         </div>
-        <!-- <div id="sidebar_right_loader" class="please-wait"><span class="text-hide">Loading...</span></div> -->
-    </div>
-</section>
+    </section>
+{% endblock %}
 
+{% block backbone_scripts_extra %}
+    <!-- Bootstrapped Model -->
+    <script type="text/javascript">
+        var websites = {{ brand_list_archive|jsonify }};
+    </script>
 
+    <!-- Collection -->
+    <script src="{% static "backboneapp/collections/website_search_collection.js" %}"></script>
+
+    <!-- View -->
+    <script src="{% static "backboneapp/views/website_search_view.js" %}"></script>
+{% endblock %}
+
+{% block extra_script %}
+
+{% endblock %}
