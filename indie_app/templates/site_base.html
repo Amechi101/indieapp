@@ -5,12 +5,19 @@
 {% load i18n %}
     
 {% block style_base %}
-    <!-- Stylesheets for Indie-Scrap -->
+    
+    <!-- Stylesheets for Unlabel -->
     <link rel="stylesheet" href="{% static "css/base.css" %}" />
     <link rel="stylesheet" href="{% static "css/site.css" %}" />
-    <link rel="stylesheet" href="{% static "css/fonts.css" %}" />
     <link rel="stylesheet" href="{% static "css/form.css" %}" />
+
+    <!-- Other css -->
+    <link rel="stylesheet" href="{% static "css/animsition.css" %}" />
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="{% static "css/fonts.css" %}" />
     <link rel="stylesheet" href="{% static "fonts/font-awesome/css/font-awesome.min.css" %}">
+
 
     <!-- Icon links -->
     
@@ -50,6 +57,7 @@
     
     <script src="{% static "pinax/js/theme.js" %}"></script>
     <script src="{% static "js/lib/classie.js" %}"></script>
+    <script src="{% static "js/lib/jquery.animsition.min.js" %}"></script>
 
     {% block extra_script %}{% endblock %}
 

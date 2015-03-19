@@ -16,8 +16,7 @@
     clear: both;
     position: relative;
     transition: padding 0.25s ease-out 0s;
-    padding: 0 15px;
-   
+    padding: 0 15px;   
 }
 
 #content-form p {

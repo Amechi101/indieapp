@@ -18,8 +18,8 @@ urlpatterns = patterns('',
 	# Api resource
     url(r'^_internal_brandall_api/', include(v1_api.urls)),
 	
-	url(r'^(?P<slug>[\w\d-]+)$', BrandDetailView.as_view(), name="brand_view"),
-	url(r'^archive/', BrandArchiveView.as_view(), name="brand_archive"),
+	url(r'^brand/(?P<slug>[\w\d-]+)$', BrandDetailView.as_view(), name="brand_view"),
+	url(r'^brand/archive/', BrandArchiveView.as_view(), name="brand_archive"),
 )
 
 

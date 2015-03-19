@@ -3,30 +3,29 @@
 {% load url from future %}
 {% load i18n %}
 {% load cloudinary %}
+{% load jsonify %}
 {% load staticfiles %} 
 
 {% block head_title %}{{brand.brand_name}} Brand Guide{% endblock %}
 
-{% block body_class %}brand{% endblock %}
-
-{% block pre_wrapper_extra %}
-    <!-- Page Loader -->        
-    <div class="page-loader">
-        <div class="loader">Loading...</div>
-    </div>
-    <!-- End Page Loader -->
+{% block extra_style %}
+    <link rel="stylesheet" href="{% static "css/jquery.fullPage.css" %}" />
+    <link rel="stylesheet" href="{% static "css/photoswipe.css" %}"> 
+    <link rel="stylesheet" href="{% static "css/default-skin.css" %}"> 
 {% endblock %}
 
+{% block body_class %}brand-cover{% endblock %}
 
-{% block main_container_id %}mContent{% endblock %}
+
+{% block main_container_id %}brand-cover-content{% endblock %}
 {% block body %}
-    <div id="holder">
+    <div id="unlabelBrandCover">
         <ul>
             <!-- Introduction slide -->
-            <li class="slide section-brand holderAnim">
-                <div class="slideSub slideSub-bg-dark holderAnim" style="background-image: url(&quot;{% cloudinary_url brand.brand_feature_image %}&quot;);"></div>
-                <div class="slideCon">
-                    <div class="sCell">
+            <li class="section-brand">
+                <div class="slideSub unlabel-bg-dark" style="background-image: url(&quot;{% cloudinary_url brand.brand_feature_image %}&quot;);"></div>
+                <div class="unlabelTable">
+                    <div class="unlabelTableCell">
                         <div class="sliderCopy">
                             {{ brand.brand_name }}
                         </div>
@@ -42,9 +41,6 @@
                     </div>
                 </div>
                 <div class="mSliderLink slide1"><span class="mLink">1 of 5</span></div>
-                <div class="subSArrows slide1 subSLeft">
-                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" width="31.5px" height="11px" viewBox="0 0 31.5 11" enable-background="new 0 0 31.5 11" xml:space="preserve"><defs></defs><path fill="#FFFFFF" d="M16.1,0.1L16,0h-0.5L0,9.8l0.4,0.7c0.3,0.5,0.9,0.7,1.7,0.2l13.1-8.3c0.3-0.2,0.5-0.3,0.6-0.4 c0.1,0.1,0.3,0.3,0.6,0.5l13.1,8.3c0.3,0.2,0.5,0.2,0.7,0.2c0.3,0,0.6-0.1,0.9-0.5l0.4-0.7L16.1,0.1z"></path></svg>
-                </div>
                 <div class="subSArrows slide1 subSRight">
                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" width="31.1px" height="11px" viewBox="0 0 31.1 11" enable-background="new 0 0 31.1 11" xml:space="preserve"><defs></defs><path fill="#FFFFFF" d="M31,0.7l-0.2-0.2C30.6,0,30-0.2,29.2,0.3L16.2,8.5c-0.3,0.2-0.5,0.3-0.6,0.4c-0.1-0.1-0.3-0.3-0.6-0.5 L1.9,0.2C1.2-0.1,0.7-0.1,0.2,0.5L0.1,0.7C0,0.8,0,1,0,1.1s0.1,0.2,0.2,0.3l15,9.5c0.1,0.1,0.2,0.1,0.3,0.1h0.2c0.1,0,0.2,0,0.3-0.1 l15-9.5c0.1-0.1,0.2-0.2,0.2-0.3S31.1,0.8,31,0.7z"></path></svg>
                 </div>    
@@ -52,11 +48,11 @@
             <!-- End Introduction slide -->
             
             <!-- About slide -->
-            <li class="slide section-brand holderAnim">
-            <div class="slideSub slideSub-bg-dark holderAnim" style="background-image: url(&quot;{% cloudinary_url brand.brand_about_image %}&quot;);"></div>
+            <li class="section-brand">
+                <div class="slideSub unlabel-bg-dark" style="background-image: url(&quot;{% cloudinary_url brand.brand_about_image %}&quot;);"></div>
             
-                <div class="slideCon">
-                    <div class="sCell">
+                <div class="unlabelTable">
+                    <div class="unlabelTableCell">
                         <div class="sliderCopy">About {{ brand.brand_name }}</div>
                         <div class="scBtn">
                             <div class="scBT slide2">{{ brand.brand_about_description }}</div>
@@ -74,18 +70,19 @@
             <!-- End About slide -->
             
             <!-- Collection slide -->
-            <li class="slide section-brand holderAnim">
-            <div class="slideSub slideSub-bg-dark holderAnim" style="background-image: url(&quot;{% cloudinary_url brand.brand_collection_image %}&quot;);"></div> 
-            
-                <div class="slideCon">
-                    <div class="sCell">
-                        <div class="sliderCopy">Collection</div>
-                        <div class="scBtn">
-                            <div class="scBT slide3">{{ brand.brand_collection_description }}</div>
-                            <div class="brand-button slide3"><a href="#">View Collection</a></div>
+            <li class="section-brand">
+                    <div class="slideSub unlabel-bg-dark" style="background-image: url(&quot;{% cloudinary_url brand.brand_collection_image %}&quot;);"></div> 
+                
+                    <div class="unlabelTable">
+                        <div class="unlabelTableCell">
+                            <div class="sliderCopy">Collection</div>
+                            <div class="scBtn">
+                                <div class="scBT slide3">{{ brand.brand_collection_description }}</div>
+                                <div class="brand-cover-button"><a  id="btn" href="javascript:void(0);">View Collection</a></div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                
                 <div class="mSliderLink slide3"><span class="mLink">3 of 5</span></div>
                 <div class="subSArrows slide3 subSLeft">
                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" width="31.5px" height="11px" viewBox="0 0 31.5 11" enable-background="new 0 0 31.5 11" xml:space="preserve"><defs></defs><path fill="#FFFFFF" d="M16.1,0.1L16,0h-0.5L0,9.8l0.4,0.7c0.3,0.5,0.9,0.7,1.7,0.2l13.1-8.3c0.3-0.2,0.5-0.3,0.6-0.4 c0.1,0.1,0.3,0.3,0.6,0.5l13.1,8.3c0.3,0.2,0.5,0.2,0.7,0.2c0.3,0,0.6-0.1,0.9-0.5l0.4-0.7L16.1,0.1z"></path></svg>
@@ -97,11 +94,11 @@
             <!-- End Collection slide -->
             
             <!-- Connect slide -->
-            <li class="slide section-brand holderAnim">
-            <div class="slideSub slideSub-bg-dark holderAnim" style="background-image: url(&quot;{% cloudinary_url brand.brand_connect_image %}&quot;);"></div> 
+            <li class="section-brand">
+                <div class="slideSub unlabel-bg-dark" style="background-image: url(&quot;{% cloudinary_url brand.brand_connect_image %}&quot;);"></div> 
             
-                <div class="slideCon">
-                    <div class="sCell">
+                <div class="unlabelTable">
+                    <div class="unlabelTableCell">
                         <div class="sliderCopy">Connect</div>
                         <div class="scBtn">
                             <div class="container">
@@ -160,8 +157,8 @@
                                 </div> 
                             </div><!--Information -->
                         </div><!--scBtn-->
-                    </div><!--sCell-->
-                </div><!--slideCon-->
+                    </div><!--unlabelTableCell-->
+                </div><!--unlabelTable-->
                     
                 <div class="mSliderLink slide4"><span class="mLink">4 of 5</span></div>
                 <div class="subSArrows slide4 subSLeft">
@@ -174,15 +171,42 @@
             <!-- End Connect slide -->
             
             <!-- Bookmark Slide -->
-            <li class="slide section-brand holderAnim">
-                <div class="slideSub slideSub-bg-dark holderAnim" style="background-image: url(&quot;https://unsplash.com/photos/YIN4xUBaqnk/download&quot;);"></div>
+            <li class="section-brand">
+                <div class="slideSub unlabel-bg-dark" style="background-image: url(&quot;{% static "images/save-brand.jpg" %}&quot;);"></div>
                 
-                <div class="slideCon">
-                    <div class="sCell">
-                        <div class="sliderCopy">Unlabel {{brand.brand_name}}</div>
+                <div class="unlabelTable">
+                    <div class="unlabelTableCell">
+                        <div class="sliderCopy">Add {{brand.brand_name}}</div>
                         <div class="scBtn">
-                            <div class="scBT slide5">Add {{brand.brand_name}} to your collection of independent fashion labels.</div>
-                            <!-- <div class="scBU slide5"></div> -->
+                            <div class="scBT slide5">Click on the Heart and add {{brand.brand_name}} to your collection of independent fashion labels.</div>
+                            <div id="unlabelFollow" class=" brand-follow icon-unlabel_web-05"></div>
+                        </div>
+                        <div class="social-wrapper">
+                            <div class="social-share"><h1>Share {{brand.brand_name}}</h1></div>
+                            <div class="social-buttons">
+                                <ul>
+                                    <li class="social-button">
+                                        <a target="_blank" href="">
+                                            <img alt="" src="{% static "images/facebook-share-brand.png" %}" />
+                                        </a>
+                                    </li>
+                                    <li class="social-button">
+                                        <a target="_blank" href="">
+                                            <img alt="" src="{% static "images/tumblr-share-brand.png" %}" />
+                                        </a>
+                                    </li>
+                                    <li class="social-button">
+                                        <a target="_blank" href="">
+                                            <img alt="" src="{% static "images/twitter-share-brand.png" %}" />
+                                        </a>
+                                    </li>
+                                    <li class="social-button">
+                                        <a target="_blank" href="">
+                                            <img alt="" src="{% static "images/pinterest-share-brand.png" %}" />
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -191,79 +215,185 @@
                 <div class="subSArrows slide5 subSLeft">
                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" width="31.5px" height="11px" viewBox="0 0 31.5 11" enable-background="new 0 0 31.5 11" xml:space="preserve"><defs></defs><path fill="#FFFFFF" d="M16.1,0.1L16,0h-0.5L0,9.8l0.4,0.7c0.3,0.5,0.9,0.7,1.7,0.2l13.1-8.3c0.3-0.2,0.5-0.3,0.6-0.4 c0.1,0.1,0.3,0.3,0.6,0.5l13.1,8.3c0.3,0.2,0.5,0.2,0.7,0.2c0.3,0,0.6-0.1,0.9-0.5l0.4-0.7L16.1,0.1z"></path></svg>
                 </div>
-                <div class="subSArrows slide5 subSRight">
-                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" width="31.1px" height="11px" viewBox="0 0 31.1 11" enable-background="new 0 0 31.1 11" xml:space="preserve"><defs></defs><path fill="#FFFFFF" d="M31,0.7l-0.2-0.2C30.6,0,30-0.2,29.2,0.3L16.2,8.5c-0.3,0.2-0.5,0.3-0.6,0.4c-0.1-0.1-0.3-0.3-0.6-0.5 L1.9,0.2C1.2-0.1,0.7-0.1,0.2,0.5L0.1,0.7C0,0.8,0,1,0,1.1s0.1,0.2,0.2,0.3l15,9.5c0.1,0.1,0.2,0.1,0.3,0.1h0.2c0.1,0,0.2,0,0.3-0.1 l15-9.5c0.1-0.1,0.2-0.2,0.2-0.3S31.1,0.8,31,0.7z"></path></svg>
-                </div>
-
             </li>
             <!-- End Bookmark Slide -->
 
             <div class="clear"></div>
         </ul>
     </div><!--holder-->
-    <div style="opacity: 0.2;" id="sLeft" class="slideNav"></div>
-    <div id="sRight" class="slideNav"></div> 
+
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+    <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+        <!-- Background of PhotoSwipe. 
+             It's a separate element, as animating opacity is faster than rgba(). -->
+        <div class="pswp__bg"></div>
+
+        <!-- Slides wrapper with overflow:hidden. -->
+        <div class="pswp__scroll-wrap">
+
+            <!-- Container that holds slides. PhotoSwipe keeps only 3 slides in DOM to save memory. -->
+            <div class="pswp__container">
+                <!-- don't modify these 3 pswp__item elements, data is added later on -->
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+            </div>
+
+            <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+            <div class="pswp__ui pswp__ui--hidden">
+
+                <div class="pswp__top-bar">
+
+                    <!--  Controls are self-explanatory. Order can be changed. -->
+
+                    <div class="pswp__counter"></div>
+
+                    <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                    <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                    <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                    <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                    <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                    <!-- element will get class pswp__preloader--active when preloader is running -->
+                    <div class="pswp__preloader">
+                        <div class="pswp__preloader__icn">
+                          <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                    <div class="pswp__share-tooltip"></div> 
+                </div>
+
+                <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+                </button>
+
+                <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+                </button>
+
+                <div class="pswp__caption">
+                    <div class="pswp__caption__center"></div>
+                </div>
+
+              </div>
+
+        </div>
+    </div>
 {% endblock %}
 
 
 {% block extra_script %}
-<script src="{% static "js/lib/jquery.fullPage.min.js" %}"></script>
-<script>
-;(function($){
-    
-    $(window).load(function(){
-        
-        // Page loader
-        $(".page-loader div").delay(0).fadeOut();
-        $(".page-loader").delay(200).fadeOut("slow");
+    <script src="{% static "js/lib/jquery.fullPage.min.js" %}"></script>
+    <script src="{% static "js/lib/photoswipe.min.js" %}"></script> 
+    <script src="{% static "js/lib/photoswipe-ui-default.min.js" %}"></script> 
+    <script>
+    ;(function($){
 
-        $(".slide1").delay(1000).css({
+        var brands = {{ product_list|jsonify }},
+            items = [];
+
+        
+        for(var i = 0; i < brands.length; i++) {
+
+            var pk = brands[i].pk;
+            brands[i] = brands[i].fields;
+
+            brands[i].pk = pk;
+        }
+
+    
+        var openPhotoSwipe = function() {
+            
+            var pswpElement = document.querySelectorAll('.pswp')[0];
+
+            // build items array
+            brands.forEach(function ( brand ) {
+                console.log(brand);
+
+                items.push({
+                    src: 'http://res.cloudinary.com/doqjl5owq/image/upload/' + brand.product_image,
+                    w: 400,
+                    h: 400,
+                    title: brand.product_name,
+                    author: brand.product_price,
+                });
+            });
+
+            console.log(items);
+
+            // define options (if needed)
+            var options = {
+
+                history: false,
+                focus: false,
+                index: 0,
+
+                showAnimationDuration: 0,
+                hideAnimationDuration: 0
+                
+            };
+        
+            var gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
+            gallery.init();
+        };
+
+
+        document.getElementById('btn').onclick = openPhotoSwipe;
+
+        
+
+        $("#unlabelBrandCover .slide1").delay(1000).css({
             opacity: 1,
             transform: "matrix(1, 0, 0, 1, 0, 0)"
         });
         
-    });
 
- 
-    $('#holder').fullpage({
-
-        //Scrolling
-        css3: true,
-        sectionSelector: '.section-brand',
-        //CallBacks
-        afterLoad: function( anchorLink, index){
-            var loadedSlide = $(this);
- 
-            if(index == 2 ){
+     
+        $('#unlabelBrandCover').fullpage({
+            css3: true,
+            sectionSelector: '.section-brand',
+            afterLoad: function( anchorLink, index){
+                var loadedSlide = $(this);
+     
+                if(index == 2 ){
+                    
+                    $('#unlabelBrandCover .slide2').css({
+                        opacity: 1,
+                        transform: "matrix(1, 0, 0, 1, 0, 0)"
+                    });
                 
-                $('.slide2').css({
-                    opacity: 1,
-                    transform: "matrix(1, 0, 0, 1, 0, 0)"
-                });
-            
-            } else if( index == 3 ) {
+                } else if( index == 3 ) {
+                    
+                    $('#unlabelBrandCover .slide3').css({
+                        opacity: 1,
+                        transform: "matrix(1, 0, 0, 1, 0, 0)"
+                    }); 
                 
-                $('.slide3').css({
-                    opacity: 1,
-                    transform: "matrix(1, 0, 0, 1, 0, 0)"
-                }); 
-            
-            } else if( index == 4 ) {
+                } else if( index == 4 ) {
 
-                $('.slide4').css({
-                    opacity: 1,
-                    transform: "matrix(1, 0, 0, 1, 0, 0)"
-                }); 
-            
-            } else if( index == 5 ) {
-                $('.slide5').css({
-                    opacity: 1,
-                    transform: "matrix(1, 0, 0, 1, 0, 0)"
-                });
-            }
-        }  
-    });
+                    $('#unlabelBrandCover .slide4').css({
+                        opacity: 1,
+                        transform: "matrix(1, 0, 0, 1, 0, 0)"
+                    }); 
+                
+                } else if( index == 5 ) {
+                    $('#unlabelBrandCover .slide5').css({
+                        opacity: 1,
+                        transform: "matrix(1, 0, 0, 1, 0, 0)"
+                    });
+                }
+            }  
+        });
 
-})(jQuery); // End of use strict
-</script>  
+    })(jQuery); 
+    </script>  
 {% endblock %}
+
+

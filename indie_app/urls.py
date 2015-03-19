@@ -10,7 +10,7 @@ urlpatterns = patterns("",
     url(r"^admin/", include(admin.site.urls)),
     url(r"^account/social/", include("social.apps.django_app.urls", namespace="social")),
     url(r"^account/", include("account.urls")),
-    url(r"^brand/", include('_backend_api.urls')), 
+    url(r"", include('_backend_api.urls')), 
 )
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

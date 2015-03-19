@@ -10,14 +10,11 @@
 
 {% block body_class %}archive{% endblock %}
 
-{% block topbar_base %}{% endblock %}
 
 {% block main_container_id %}archive-content{% endblock %}
 {% block body %}
-    <section class="navigation__header navigation__header-search">
-        <a href="{% url "home" %}"><span class="navigation__header__branding">Unlabel</span></a>
-    </section>   
-    <section class="nav-sidebar" id="nav-filters">
+<section class="nav-sidebar" id="nav-filters">
+<h1>Brand Archive</h1>
         <div class="wrapper-nav">
             <h3 class="results">Filter Sites By:</h3>
             
@@ -29,7 +26,6 @@
             </div>
 
             <ul class="list-tags">
- 
                 <script id="listTagTemplate" type="text/template">
 
                   <% $.each(tags, function(filter_type, value) { %>
@@ -39,6 +35,7 @@
             </ul>
         </div>
     </section> 
+    
     <section id="indie-populate-websites" class="indie-fill-websites">
         <div class="indie-fill-panel-wrapper">
             <div id="sidebar_search_block" class="sidebar-block">      
@@ -62,7 +59,7 @@
                                     </div>
                                     <div class="og-details">
                                         <h3><%= website.get('brand_name') %></h3>
-                                        <p><%= website.get('brand_description') %></p>
+                                        <p><%= website.get('brand_about_description') %></p>
                                         <a href="<%= location.origin %>/brand/<%= website.get('slug') %>">Explore</a>
                                     </div>
                                 </div>

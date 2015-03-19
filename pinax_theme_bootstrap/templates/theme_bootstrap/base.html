@@ -43,24 +43,18 @@
             {% block pre_wrapper_extra %}{% endblock %}
         {% endblock %}   
         
-        <div id="indie-wrapper">            
+        <div id="unlabel-wrapper" class="animsition">            
             {% block topbar_base %}
-                <header id="indie-global-menu" class="navbar">
+                <header class="unlabelNavbar">
                     <nav>
-                       <!--  <div id="navbar_logo_wrapper" class="">
-                            <a href="{% url "home" %}" id="navbar_logo" class="text-hide">Unlabel</a>
-                        </div>
-                        -->
-                  
-
-                        <div class="navbar-left">
-                            <a href="{% url "home" %}" class="btn btn-navbar btn-toggle-sidebar-left">
+                        <div class="left">
+                            <a href="{% url "home" %}" class="unlabel-sidebar-left">
                                 <span id="navbar_logo"></span>
                             </a>          
                         </div>
 
-                        <div class="navbar-right">
-                            <a id="indie-global-menu-open" href="javascript:void(0)" class="btn btn-navbar btn-toggle-sidebar-right">
+                        <div class="right">
+                            <a id="indie-global-menu-open" href="javascript:void(0)" class="unlabel-sidebar-right">
                                 <div class="bars">
                                     <div class="bar"></div>
                                     <div class="bar"></div>

@@ -1,76 +1,75 @@
 {% extends "site_base.html" %}
+
 {% load url from future %}
 {% load staticfiles %}
 {% load i18n %}
 {% load cloudinary %}
-{% load jsonify %}
-
 
 {% block head_title %}{% trans "Homepage" %}{% endblock %}
 
-{% block extra_style %}
-<link rel="stylesheet" href="{% static "css/jquery.fullPage.css" %}" />
-{% endblock %}
+
+ {% block extra_style %}
+    <link rel="stylesheet" href="{% static "css/jquery.fullPage.css" %}" />
+ {% endblock %}
 
 {% block body_class %}home{% endblock %}
 
-
 {% block body %}
-<div id="fullpage">
+<div id="unlabelHomeContainer"> 
     
     <!-- Home -->
-    <section id="section0" class="section slideSub-bg-dark">
-        <div class="slideCon">
-            <div class="sCell">
-                <a id="watchfull" allowfullscreen="" mozallowfullscreen="" webkitallowfullscreen="" frameborder="0" height="281" width="500" target="_blank" href="http://player.vimeo.com/video/110769148?title=0&byline=0&portrait=0&color=bdbdbd&autoplay=1">
-
-                    <i class="b-hero__watchFull">Watch Full Video</i>
+    <section id="unlabelHome" class="section-home unlabel-bg-dark">
+        <div class="unlabelTable">
+            <div class="unlabelTableCell">
+                <a id="unlabelWatch" allowfullscreen="" mozallowfullscreen="" webkitallowfullscreen="" frameborder="0" height="281" width="500" target="_blank" href="">
+                    <i class="unlabelWatchIcon">Watch Video</i>
                 </a>
             </div>
         </div> 
         <div id="scroll_down">
-            <div class="arrow down fixed"><a href="#homeSlide2"></a></div>
+            <div class="arrow down fixed"></div>
         </div> 
     </section>
    
    <!-- Brands -->
-    <section class="section">
-        <div class="slideshow">
-            <div>
-                <div class="slide build">
-                    <figure class="featured-work-grid">
-                        <div class="pure-g">
-                        {% for brand in brand_list %}  
-                            <div class="pure-u-1 pure-u-sm-1-3">
-                                <div class="relative-container" style="width: 100%; height: 100%;">
-                                    <div class="grid-tint" style="background: #0f0f0f url('{% cloudinary_url brand.brand_feature_image BRANDIMAGE %}') center center no-repeat; background-size: cover;"></div>
-                                    <div class="table-cell">
-                                        <label class="work-title">{{brand.brand_name}}</label>
-                                        <a class="box-button" href="{{brand.get_absolute_url}}">Explore</a>
-                                    </div>
-                                </div>
+    <section class="section-home">
+        <div class="unlabelHomeBrands">
+            <figure class="unlabelHomeBrands-grid">
+                <div class="unlabelHomeBrands-grid-inner">
+                
+                {% for brand in brand_list %}  
+                    <div class="unlabelHomeBrands-grid-col-1 unlabelHomeBrands-grid-col-1-sm">
+                        <div class="relative-container">
+                            <div class="brand-tint" style="background: #0f0f0f url('{% cloudinary_url brand.brand_feature_image BRANDIMAGE %}') center center no-repeat; background-size: cover;"></div>
+                            
+                            <div class="table-cell">
+                                <label class="brand-name">{{brand.brand_name}}</label>
+                                <a class="brand-button" href="{{brand.get_absolute_url}}">View</a>
                             </div>
-                        {% endfor %}  
+                        
                         </div>
-                    </figure>
+                    </div>
+                {% endfor %}  
+               
                 </div>
-            </div>
-        </div>
+            </figure>
+        </div>  
     </section>
 </div>
 {% endblock %}
 
 {% block extra_script %}
-    <script src="{% static "js/lib/jquery.fullPage.min.js" %}"></script>
+ <script src="{% static "js/lib/jquery.fullPage.min.js" %}"></script>
     <script>
-        $(document).ready(function() {
-            $('#fullpage').fullpage({
+        ;(function($){
 
-                //Scrolling
-                css3: true, 
-                sectionSelector: '.section',
+
+            $('#unlabelHomeContainer').fullpage({
+                sectionSelector: '.section-home',
             });
-        });
+        
+
+        })(jQuery); 
     </script>
 {% endblock %}
 
