@@ -118,6 +118,8 @@ class Brand(models.Model):
         return reverse('brand_view', args=[self.slug])
 
 
+
+
 class Product(models.Model):
     """
     Products for each brand

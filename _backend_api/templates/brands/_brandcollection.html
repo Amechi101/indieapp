@@ -1,0 +1,57 @@
+{% extends "site_base.html" %}
+
+{% load url from future %}
+{% load i18n %}
+{% load cloudinary %}
+{% load staticfiles %} 
+
+{% block head_title %}{{brand.brand_name}} Brand Guide{% endblock %}
+
+{% block extra_style %}
+    <link rel="stylesheet" href="{% static "css/collection.css" %}" />
+{% endblock %}
+
+{% block body_class %}brand-collectionr{% endblock %}
+
+
+{% block topbar_base %}
+<!-- Top Navigation -->
+<div class="codrops-top clearfix">
+	<a class="codrops-icon codrops-icon-prev" href="{{brand.get_absolute_url}}#collection"><span>Back To {{ brand.brand_name }} Guide</span></a>
+	<span class="right"></span>
+</div>
+{% endblock %}
+
+
+{% block main_container_id %}brand-collection-content{% endblock %}
+{% block body %}
+<ul class="grid effect-2" id="grid">
+{% for product in product_list %} 
+	<li>
+		<img src="{% cloudinary_url product.product_image %}">
+		<div class="moments-info">
+			<p class="moments-title">{{product.product_name}}</p>
+			<p class="moments-text">{{product.product_price}} </p>
+		</div>
+	</li>
+{% endfor %} 
+
+</ul>
+{% endblock %}
+
+
+{% block extra_script %}
+	<script src="{% static "js/lib/masonry.pkgd.min.js" %}"></script>
+    <script src="{% static "js/lib/imagesloaded.js" %}"></script>
+    <script src="{% static "js/lib/classie.js" %}"></script>
+    <script src="{% static "js/lib/AnimOnScroll.js" %}"></script>
+    <script>
+    	new AnimOnScroll( document.getElementById( 'grid' ), {
+			minDuration : 0.4,
+			maxDuration : 0.7,
+			viewportFactor : 0.2
+		});
+    </script>  
+{% endblock %}
+
+
