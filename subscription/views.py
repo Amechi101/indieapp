@@ -15,6 +15,11 @@ from subscription.models import Subscription
 from _backend_api.models import Brand
 from subscription.managers import SubscriptionManager
 
+class LoginRequiredMixin(object):
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(LoginRequiredMixin, self).dispatch(request, *args, **kwargs)
+
 
 @login_required
 def account_subscribe( request ):   
@@ -37,6 +42,11 @@ def unsubscribe( request ):
 	SubscriptionManager.unsubscribe(brand=get_object_or_404(name=request.GET.get("brand_name"), user=request.user))
 	return HttpResponse("ok")
 
+
+class SubscriptionListView(LoginRequiredMixin, View):	
+	def get(request):
+		brands = Subscription.objects.filter(brands=request.user)
+		return render_to_response("account/account_features/_user_brands.html", {"brands": brands})
 
 
 
