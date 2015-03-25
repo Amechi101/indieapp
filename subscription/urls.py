@@ -10,8 +10,7 @@ from subscription.views import account_subscribe, unsubscribe, subscribe, Subscr
 urlpatterns = patterns('',
 
 	url(r"^api/subscribe/", views.subscribe),
-	url(r"^api/unsubscribe/", views.unsubscribe),
-	#url(r"^subscribed-brands/$", views.account_subscribe ),
+	url(r"^api/unsubscribe/", UnsubscribeView.as_view()),
 	url(r"^subscribed-brands/$", SubscriptionListView.as_view() ),
 )
 
