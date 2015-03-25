@@ -15,6 +15,6 @@ urlpatterns = patterns("",
     url(r"^password/$", ChangePasswordView.as_view(), name="account_password"),
     url(r"^password/reset/$", PasswordResetView.as_view(), name="account_password_reset"),
     url(r"^password/reset/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+)/$", PasswordResetTokenView.as_view(), name="account_password_reset_token"),
-    url(r"^dashboard/$", SettingsView.as_view(), name="account_settings"),
+    url(r"^settings/$", SettingsView.as_view(), name="account_settings"),
     url(r"^delete/$", DeleteView.as_view(), name="account_delete"),
 )

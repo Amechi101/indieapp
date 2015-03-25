@@ -11,9 +11,10 @@
     <li><a href="{% url "account_signup" %}">{% trans "Sign Up" %}</a></li>
     
     {% endif %}
-    <li><a href="#member"><a href="#">About Unlabel</a></li>
-    <li><a href="#service">Legal Stuff</a></li>
+    <li><a href="http://localhost:8000/#about">About Unlabel</a></li>
+    <li><a href="http://localhost:8000/#brands">Featured Brands</a></li>
     <li><a href="{% url "brand_archive" %}">Archive</a></li>
+    <li><a href="#">Legal Stuff</a></li>
     <li><a href="mailto:info@unlabel.us">Contact</a></li>
 </ul> 
 <form id="accountLogOutForm" style="display: none;" action="{% url "account_logout" %}" method="POST">

@@ -10,8 +10,6 @@
 
 {% block extra_style %}
     <link rel="stylesheet" href="{% static "css/jquery.fullPage.css" %}" />
-    <link rel="stylesheet" href="{% static "css/photoswipe.css" %}"> 
-    <link rel="stylesheet" href="{% static "css/default-skin.css" %}"> 
 {% endblock %}
 
 {% block body_class %}brand-cover{% endblock %}
@@ -179,24 +177,24 @@
                         <div class="sliderCopy">Add {{brand.brand_name}}</div>
                         <div class="scBtn">
                             <div class="scBT slide5">Click on the Heart and add {{brand.brand_name}} to your collection of independent fashion labels.</div>
-                            <div id="unlabelFollow" class=" brand-follow icon-unlabel_web-05"></div>
+                            <a href="/account/api/subscribe/?brand_name={{ brand.brand_name }}"><span id="unlabelFollow" class=" brand-follow icon-unlabel_web-05"></span></a>
                         </div>
                         <div class="social-wrapper">
                             <div class="social-share"><h1>Share {{brand.brand_name}}</h1></div>
                             <div class="social-buttons">
                                 <ul>
                                     <li class="social-button">
-                                        <a target="_blank" href="">
+                                        <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:8000/brand/hotel-1171">
                                             <img alt="" src="{% static "images/facebook-share-brand.png" %}" />
                                         </a>
                                     </li>
                                     <li class="social-button">
-                                        <a target="_blank" href="">
+                                        <a  href="">
                                             <img alt="" src="{% static "images/tumblr-share-brand.png" %}" />
                                         </a>
                                     </li>
                                     <li class="social-button">
-                                        <a target="_blank" href="">
+                                        <a href="http://twitter.com/share">
                                             <img alt="" src="{% static "images/twitter-share-brand.png" %}" />
                                         </a>
                                     </li>
@@ -240,7 +238,7 @@
         $('#unlabelBrandCover').fullpage({
             css3: true,
             sectionSelector: '.section-brand',
-            anchors:['introduction', 'about','collection','connect','bookmark'],
+            anchors:['intro', 'bio', 'collection', 'connect', 'bookmark'],
             afterLoad: function( anchorLink, index){
                 var loadedSlide = $(this);
      

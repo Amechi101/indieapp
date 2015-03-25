@@ -14,7 +14,7 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 # For internal purposes of switching settings components
-DEVELOPMENT = True
+DEVELOPMENT = False
 
 
 # Local time zone for this installation. Choices can be found here:
@@ -138,12 +138,13 @@ INSTALLED_APPS = [
     "eventlog",
     "metron",
     "south",
+    "cloudinary",
     "social.apps.django_app.default",
 
     # project
     "indie_app",
     "_backend_api",
-    "cloudinary",
+    "subscription",
 ]
 
 # A sample logging configuration. The only tangible logging

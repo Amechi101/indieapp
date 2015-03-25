@@ -16,10 +16,9 @@
 
 {% block topbar_base %}
 <!-- Top Navigation -->
-<div class="codrops-top clearfix">
-	<a class="codrops-icon codrops-icon-prev" href="{{brand.get_absolute_url}}#collection"><span>Back To {{ brand.brand_name }} Guide</span></a>
-	<span class="right"></span>
-</div>
+<header class="codrops-top clearfix">
+	<a class="brand-back-button" href="{{brand.get_absolute_url}}#collection"><span class="fa fa-arrow-left"></span><span>Back To {{ brand.brand_name }}</span></a>
+</header>
 {% endblock %}
 
 
@@ -31,12 +30,14 @@
 		<img src="{% cloudinary_url product.product_image %}">
 		<div class="moments-info">
 			<p class="moments-title">{{product.product_name}}</p>
-			<p class="moments-text">{{product.product_price}} </p>
+			<p class="moments-text">Classic 100% acrylic Beanie. Available in 5 cololrs: Black, Charcoal, Red, and Lt. Gray. Made in the USA.</p>
+			<p class="moments-text">${{product.product_price}} </p>
 		</div>
 	</li>
 {% endfor %} 
 
 </ul>
+<a href="javascript:void(0);" id="scrollTop">Scroll Top</a>
 {% endblock %}
 
 
@@ -46,6 +47,29 @@
     <script src="{% static "js/lib/classie.js" %}"></script>
     <script src="{% static "js/lib/AnimOnScroll.js" %}"></script>
     <script>
+
+    	/*
+         *
+         * Scroll Up functionality
+         *
+         */
+        var $elScroll = $('#scrollTop');
+
+        $(window).scroll(function() {
+            if( $(this).scrollTop() > 100 ) {
+                $elScroll.fadeIn();
+            } else {
+                $elScroll.fadeOut();
+            }
+        });
+
+        $elScroll.on('click', function() {
+            $('html, body').animate({
+                scrollTop:0
+            }, 600);
+            return false;
+        });
+    	
     	new AnimOnScroll( document.getElementById( 'grid' ), {
 			minDuration : 0.4,
 			maxDuration : 0.7,

@@ -9,6 +9,7 @@ urlpatterns = patterns("",
     url(r"^$", HomepageView.as_view(), name="home"),
     url(r"^admin/", include(admin.site.urls)),
     url(r"^account/social/", include("social.apps.django_app.urls", namespace="social")),
+    url(r"^account/", include("subscription.urls")),
     url(r"^account/", include("account.urls")),
     url(r"^brand/", include('_backend_api.urls')), 
 )
