@@ -48,9 +48,13 @@ class SubscriptionListView(LoginRequiredMixin, View):
 		brands = Subscription.objects.filter(brands=request.user)
 		return render_to_response("account/account_features/_user_brands.html", {"brands": brands})
 
-class UnsubscriveView(LoginRequiredMixin, View):	
+class UnsubscribeView(LoginRequiredMixin, View):	
 	def get(self, request):
 		SubscriptionManager.unsubscribe(brand=get_object_or_404(name=request.GET.get("brand_name"), user=request.user))
+		return HttpResponse("ok")
+		
+	def post(self, request):
+		SubscriptionManager.unsubscribe(brand=get_object_or_404(name=request.POST.get("brand_name"), user=request.user))
 		return HttpResponse("ok")
 		
 
