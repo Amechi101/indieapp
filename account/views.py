@@ -270,7 +270,6 @@ class SignupView(FormView):
         }
         return self.response_class(**response_kwargs)
 
-
 class LoginView(FormView):
 
     template_name = "account/login.html"

@@ -1,0 +1,42 @@
+<h1> Login </h1>
+<div class="ajax_wrapper_brand_follow">
+    <div class="socialconnect">
+        <a href="#" class="facebook">Login with your Facebook</a>
+        <a href="#" class="twitter">Sign-up with Twitter</a>
+    </div>
+    <p align="center"><em>Or Login with your Username & Password</em></p>
+    <form method="POST" action="{% url "account_login" %}" autocapitalize="off" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
+        {% csrf_token %}
+        {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+        {% endif %}
+        
+        <div class="form-group">
+            <label class="control-label  " for="id_username">Username</label>
+            <div class="">
+                <input class=" form-control" id="id_username" maxlength="30" name="username" type="text" />   
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label class="control-label  " for="id_password">Password</label>
+            <div class=" ">
+                <input class=" form-control" id="id_password" name="password" type="password" />   
+            </div>   
+        </div>
+
+        <div class="form-group">
+            <div class="">
+                <div class="checkbox">
+                    <label><input id="id_remember" name="remember" type="checkbox" /> <span>Remember Me</span></label>
+                </div>
+            </div>   
+        </div>
+        <p><button type="submit" class="button large bold">{% trans "Log in" %}</button></p>
+    </form>  
+    <div class="footer">
+        <h2 class="heading-title" align="center">Not a member yet? 
+            <a href="{% url "account_signup" %}">{% trans "Register now" %}</a>
+        </h2>
+    </div>  
+</div>

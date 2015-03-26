@@ -29,6 +29,7 @@ class SubscriptionListView(LoginRequiredMixin, View):
 		return render_to_response("account/account_features/_user_brands.html", {"brands": brands})
 		
 class SubscribeView(LoginRequiredMixin, View):
+
 	def get(self, request):
 		SubscriptionManager().subscribe(brand=get_object_or_404(Brand, brand_name=request.GET.get("brand_name") ),user=request.user)
 
@@ -40,6 +41,7 @@ class UnsubscribeView(LoginRequiredMixin, View):
 	def get(self, request):
 		SubscriptionManager.unsubscribe(brand=get_object_or_404(name=request.GET.get("brand_name"), user=request.user))
 		return HttpResponse("ok")
+	
 	#TODO: switch to POST view	
 	def post(self, request):
 		SubscriptionManager.unsubscribe(brand=get_object_or_404(name=request.POST.get("brand_name"), user=request.user))

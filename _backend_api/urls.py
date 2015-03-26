@@ -16,11 +16,11 @@ v1_api.register( BrandResource() )
 
 urlpatterns = patterns('',
 	# Api resource
-    url(r'^_internal_brandall_api/', include(v1_api.urls)),
+    url(r'^_internal_brandall_api/$', include(v1_api.urls)),
 	
-	url(r'^(?P<slug>[\w\d-]+)$', BrandDetailView.as_view(), name="brand_view"),
-	url(r'^(?P<slug>[\w\d-]+)/collection', BrandCollectionView.as_view(), name="brand_collection"),
-	url(r'^archive/', BrandArchiveView.as_view(), name="brand_archive"),
+	url(r'^(?P<slug>[\w\d-]+)/$', BrandDetailView.as_view(), name="brand_view"),
+	url(r'^(?P<slug>[\w\d-]+)/collection/$', BrandCollectionView.as_view(), name="brand_collection"),
+	url(r'^archive/$', BrandArchiveView.as_view(), name="brand_archive"),
 )
 
 
