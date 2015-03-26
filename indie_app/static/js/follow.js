@@ -6,7 +6,11 @@ $(document).ready(function(){
       // <a id="unlabelFollow" href="/account/api/subscribe/?brand_name={{ brand.brand_name }}"><span class=" brand-follow icon-unlabel_web-05"></span></a>
       var link = $('#unlabelFollow').attr('href');
 
+
       console.log(link)
+
+      link += '?ajax=1';
+
       alert(link);
       $.ajax({
             type: "GET",
