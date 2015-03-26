@@ -9,7 +9,7 @@ $(document).ready(function(){
 
       console.log(link)
 
-      link += '?ajax=1';
+      link += '&ajax=1';
 
       alert(link);
       $.ajax({
