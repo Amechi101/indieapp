@@ -178,11 +178,11 @@
                     <div class="unlabelTableCell">
                         <div class="sliderCopy">Add {{brand.brand_name}}</div>
                         <div class="scBtn">
-                            <div class="scBT slide5">Click on the Heart and add {{brand.brand_name}} to your collection of independent fashion labels.</div>
+                            <div class="scBT slide5">Click on the Heart and add <span>{{brand.brand_name}}</span> to your collection of independent fashion labels.</div>
                             {% if request.user.is_authenticated %}
-                                <a id="unlabelFollow" href="/account/api/subscribe/?brand_name={{ brand.brand_name }}"><span class=" brand-follow icon-unlabel_web-05"></span></a>
+                                <a class="brand_follow follow" href="/account/api/subscribe/?brand_name={{ brand.brand_name }}"><span class="unfollow icon-heart"></span></a>
                             {% else %}
-                                <a id="unlabelFollow" class="ajax_login_brand_follow" data-remodal-target="modal" data-url="/ajax_login" href="javascript:void(0);"><span class="brand-follow icon-unlabel_web-05"></span></a>
+                                <a class="brand_login_follow" data-remodal-target="modal" data-url="/ajax_login" href="javascript:void(0);"><div class="unfollow icon-heart"></div></a>
                             {% endif %}
                         </div>
                         <div class="social-wrapper">
@@ -190,7 +190,7 @@
                             <div class="social-buttons">
                                 <ul>
                                     <li class="social-button">
-                                        <a target="_blank" href="#">
+                                        <a target="_blank" href="http://www.facebook.com/sharer/sharer.php?u=http://{{ request.get_host }}{{ request.path }}&title={{ brand.brand_name }}">
                                             <img alt="" src="{% static "images/facebook-share-brand.png" %}" />
                                         </a>
                                     </li>
@@ -296,26 +296,6 @@
                     });
                 }
             }  
-        });
-
-        /*
-         *
-         *  AJAX
-         *
-         */
-
-        $('.ajax_login_brand_follow').on('click', function( event ) {
-            
-            event.preventDefault();
-
-            var _this = $(this);
-
-            $.ajax({
-                type: "GET",
-                success : function(data) {
-                    $('#ajax-login-brand').load(_this.data('url'));
-                }
-            });
         });
     })(jQuery); 
     </script>  

@@ -8,19 +8,32 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import redirect, get_object_or_404, render_to_response
 from django.utils.decorators import method_decorator
 from django.core.urlresolvers import reverse
-from django.shortcuts import render
 
 from django.views.generic import View
 
-
+from subscription.managers import SubscriptionManager
 from subscription.models import Subscription
 from _backend_api.models import Brand
-from subscription.managers import SubscriptionManager
+
+import json
 
 class LoginRequiredMixin(object):
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         return super(LoginRequiredMixin, self).dispatch(request, *args, **kwargs)
+
+class SubscribeView(LoginRequiredMixin, View):
+
+	def get(self, *args, **kwargs):
+
+		if self.request.user.is_authenticated():
+			if self.request.GET.get("ajax"):
+				return HttpResponse(json.dumps({ "status" : "ok"} ), content_type="application/json")
+
+			SubscriptionManager().subscribe(brand=get_object_or_404(Brand, brand_name=self.request.GET.get("brand_name") ), user=self.request.user)
+			return HttpResponseRedirect("/account/subscribed-brands/?added=")
+
+		return super(SubscribeView, self).get(*args, **kwargs)
 
 
 class SubscriptionListView(LoginRequiredMixin, View):	
@@ -28,14 +41,6 @@ class SubscriptionListView(LoginRequiredMixin, View):
 		brands = Subscription.objects.filter(brand=request.user)
 		return render_to_response("account/account_features/_user_brands.html", {"brands": brands})
 		
-class SubscribeView(LoginRequiredMixin, View):
-
-	def get(self, request):
-		SubscriptionManager().subscribe(brand=get_object_or_404(Brand, brand_name=request.GET.get("brand_name") ),user=request.user)
-
-		if request.GET.get("ajax"):
-			return HttpResponse('ok')
-		return HttpResponseRedirect("/account/subscribed-brands/?added=")
 
 class UnsubscribeView(LoginRequiredMixin, View):	
 	def get(self, request):

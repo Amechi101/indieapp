@@ -1,27 +1,56 @@
 $(document).ready(function(){
 
-    $('#unlabelFollow').click(function(e) {
-       e.preventDefault();
-      alert('followed...');
-      // <a id="unlabelFollow" href="/account/api/subscribe/?brand_name={{ brand.brand_name }}"><span class=" brand-follow icon-unlabel_web-05"></span></a>
-      var link = $('#unlabelFollow').attr('href');
+	/*
+     *
+     *  Login Follow
+     *
+     */
 
+    $('.brand_login_follow').on('click', function( event ) {
+        
+        event.preventDefault();
 
-      console.log(link)
+        var _this = $(this);
 
-      link += '&ajax=1';
-
-      alert(link);
-      $.ajax({
+        $.ajax({
             type: "GET",
-            url: link,
-            success: function(r) {
-                alert(r);
-                if (r.status == "ok") {
-                } else {
-                    alert(r.error);
-                }
+            success : function(data) {
+                $('#ajax-login-brand').load(_this.data('url'));
             }
         });
     });
+
+
+    /*
+     *
+     *  Subscribe Follow
+     *
+     */
+
+    $('.brand_follow').click(function(e) {
+    	
+    	e.preventDefault();
+    	alert('followed...');
+
+    	var link = $('.brand_login_follow').attr('href');
+
+    	link += '&ajax=1';
+		alert(link);
+		
+		$.ajax({
+		    type: "GET",
+		    url: link,
+		    success: function(r) {
+		        
+		        if (r.status == "ok") {
+		        	
+		        	$('.scBT.slide5').fadeIn().text('You have followed');
+
+		        } else {
+		            console.error(r.error);
+		        }
+		    }
+		});
+    });
+
 });

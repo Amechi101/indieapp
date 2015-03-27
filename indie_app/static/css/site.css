@@ -1044,14 +1044,28 @@ body.archive header.unlabelNavbar {
 }
 
 
-#unlabelBrandCover .brand-follow {
+.brand_login_follow:hover, .brand_follow:hover {
+    text-decoration:none;  
+}
+
+
+#unlabelBrandCover .icon-heart {
     position:relative;
     width: 50%;
     margin:0 auto;
     font-size:3.0em;
     color: red;
     cursor: pointer;
-    -webkit-animation: animateHeart 1s cubic-bezier(.28,.25,.74,.86) infinite;
+}
+
+/* unfollow state*/
+
+#unlabelBrandCover .unfollow.icon-heart:before {
+    content: "\f08a";
+}
+
+#unlabelBrandCover .unfollow.icon-heart {   
+  -webkit-animation: animateHeart 1s cubic-bezier(.28,.25,.74,.86) infinite;
     -moz-animation: animateHeart 1s cubic-bezier(.28,.25,.74,.86) infinite;
     -o-animation: animateHeart 1s cubic-bezier(.28,.25,.74,.86) infinite;
     -ms-animation: animateHeart 1s cubic-bezier(.28,.25,.74,.86)infinite;
@@ -1059,9 +1073,16 @@ body.archive header.unlabelNavbar {
 }
 
 
-#unlabelFollow {
-    text-decoration:none;  
+/* follow state */
+
+
+#unlabelBrandCover .follow.icon-heart:before {
+     content: "\f004";
 }
+
+
+
+
 
 
 @-webkit-keyframes animateHeart {

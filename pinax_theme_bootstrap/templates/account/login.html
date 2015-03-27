@@ -14,7 +14,8 @@
         <a href="" class="facebook">Login with your Facebook</a>
         <a href="#" class="twitter">Sign-up with Twitter</a>
     </div>
-    <p align="center"><em>Or Login with your Username & Password</em></p>
+    <p align="center"><strong>Or</strong></p>
+    <p align="center">Login with your Username & Password</p>
     <form method="POST" action="{% url "account_login" %}" autocapitalize="off" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
         {% csrf_token %}
         {{ form|bootstrap }}
@@ -25,14 +26,12 @@
          <p><button type="submit" class="button large bold">{% trans "Log in" %}</button></p>
     </form>  
     <div class="footer">
-        <h2 class="heading-title" align="center">Not a member yet? 
+        <h2 class="heading-title" align="center">Not registered yet? 
             <a href="{% url "account_signup" %}">{% trans "Register now" %}</a>
         </h2>
 
-</div>       
+    </div>       
 {% endblock %}
-
-
 
 {% block extra_script %}
     <script type="text/javascript">
