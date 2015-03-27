@@ -46,6 +46,14 @@ $(document).ready(function(){
 		        	
 		        	$('.scBT.slide5').fadeIn().text('You have followed');
 
+		        	if ($(this).find('span').hasClass('follow')) {
+                        $(this).find('span').removeClass('follow')
+                        $(this).find('span').addClass('unfollow')
+                    } else {
+                        $(this).find('span').removeClass('unfollow')
+                        $(this).find('span').addClass('follow')
+                    }
+
 		        } else {
 		            console.error(r.error);
 		        }
