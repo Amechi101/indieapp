@@ -84,8 +84,8 @@
 }
 
 #content-form .button.large {
-    height: 50px;
-    line-height: 51px
+    height: 55px;
+    line-height: 51px;
 }
 
 
@@ -117,7 +117,7 @@
 }
 
 #content-form #id_remember {
-  position:relative;  
+    margin-top: -13px;
 }
 
 
@@ -221,7 +221,7 @@
 }
 
 #content-form .box-login .socialconnect{
-    margin-bottom:30px
+    margin-bottom:10px
 }
 
 #content-form .box-login .socialconnect:after{

@@ -14,7 +14,8 @@
     <a href="{% url "social:begin" "facebook" %}?next={{ request.path }}" class="facebook">Sign-up with Facebook</a>
     <a href="{% url "social:begin" "twitter" %}" class="twitter">Sign-up with Twitter</a>
 </div>
-    <p align="center"><em>Or signup with an email & username</em></p>
+    <p align="center"><strong>Or</strong></p>
+    <p align="center">Signup with an Email & Username</p>
 <form id="signup_form" method="post" action="{% url "account_signup" %}" autocapitalize="off" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
     {% csrf_token %} 
     {{ form|bootstrap }} 

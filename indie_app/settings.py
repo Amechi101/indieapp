@@ -68,7 +68,7 @@ STATICFILES_DIRS = [
 ]
 
 # Empty list to store host allowed
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.bubbletime-gum-gum.herokuapp.com']
 
 
 # List of finder classes that know how to find static files in

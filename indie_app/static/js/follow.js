@@ -1,34 +1,64 @@
 $(document).ready(function(){
 
-    $('#unlabelFollow').click(function(e) {
-       e.preventDefault();
-      alert('followed...');
-      // <a id="unlabelFollow" href="/account/api/subscribe/?brand_name={{ brand.brand_name }}"><span class=" brand-follow icon-unlabel_web-05"></span></a>
-      var link = $('#unlabelFollow').attr('href');
+	/*
+     *
+     *  Login Follow
+     *
+     */
 
+    $('.brand_login_follow').on('click', function( event ) {
+        
+        event.preventDefault();
 
-      console.log(link)
+        var _this = $(this);
 
-      link += '&ajax=1';
-
-      alert(link);
-      $.ajax({
+        $.ajax({
             type: "GET",
-            url: link,
-            success: function(r) {
-                alert(r);
-                if (r.status == "ok") {
-                    if ($(this).hasClass('followed')) {
-                        $(this).removeClass('followed')
-                        $(this).addClass('unfollowed')
-                    } else {
-                        $(this).removeClass('unfollowed')
-                        $(this).addClass('followed')
-                    }
-                } else {
-                    alert(r.error);
-                }
+            success : function(data) {
+                $('#ajax-login-brand').load(_this.data('url'));
             }
         });
     });
+
+
+    /*
+     *
+     *  Subscribe Follow
+     *
+     */
+
+    $('.brand_follow').click(function(e) {
+    	
+    	e.preventDefault();
+    	alert('followed...');
+
+    	var link = $('.brand_login_follow').attr('href');
+
+    	link += '&ajax=1';
+		alert(link);
+		
+		$.ajax({
+		    type: "GET",
+		    url: link,
+		    success: function(r) {
+		        
+		        if (r.status == "ok") {
+		        	
+		        	$('.scBT.slide5').fadeIn().text('You have followed');
+
+		        	if ($(this).find('span').hasClass('follow')) {
+                        $(this).find('span').removeClass('follow')
+                        $(this).find('span').addClass('unfollow')
+                    } else {
+                        $(this).find('span').removeClass('unfollow')
+                        $(this).find('span').addClass('follow')
+                    }
+
+		        } else {
+		            console.error(r.error);
+		        }
+		    }
+		});
+    });
+
 });
