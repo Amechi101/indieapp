@@ -180,10 +180,10 @@
                         <div class="scBtn">
                             <div class="scBT slide5">Click on the Heart and add {{brand.brand_name}} to your collection of independent fashion labels.</div>
                             {% if request.user.is_authenticated %}
-                                {% if SUBSCRIBED %}
-                                    <a id="unlabelFollow" href="/account/api/subscribe/?brand_name={{ brand.brand_name }}"><span class=" brand-follow icon-unlabel_web-05"></span></a>
+                                {% if is_followed %}
+                                    <a id="unlabelFollow" class="followed" href="/account/api/unsubscribe/?brand_name={{ brand.brand_name }}"><span class=" brand-follow icon-unlabel_web-05"></span></a>
                                 {% else %}
-                                    <a id="unlabelFollow" href="/account/api/unsubscribe/?brand_name={{ brand.brand_name }}"><span class=" brand-follow icon-unlabel_web-05"></span></a>
+                                    <a id="unlabelFollow" class="unfollowed" href="/account/api/subscribe/?brand_name={{ brand.brand_name }}"><span class=" brand-follow icon-unlabel_web-05"></span></a>
                                 {% endif %}
                             {% else %}
                                 <a id="unlabelFollow" class="ajax_login_brand_follow" data-remodal-target="modal" data-url="/ajax_login" href="javascript:void(0);"><span class="brand-follow icon-unlabel_web-05"></span></a>
