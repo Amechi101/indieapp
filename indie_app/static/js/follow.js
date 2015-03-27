@@ -18,6 +18,13 @@ $(document).ready(function(){
             success: function(r) {
                 alert(r);
                 if (r.status == "ok") {
+                    if ($(this).hasClass('followed')) {
+                        $(this).removeClass('followed')
+                        $(this).addClass('unfollowed')
+                    } else {
+                        $(this).removeClass('unfollowed')
+                        $(this).addClass('followed')
+                    }
                 } else {
                     alert(r.error);
                 }
