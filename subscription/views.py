@@ -40,7 +40,7 @@ class SubscriptionListView(LoginRequiredMixin, View):
 	context_object_name = 'subscribed'
 
 	def get(self, request):
-		brands = Subscription.objects.filter(brand=request.user)
+		brands = Subscription.objects.filter(user=request.user)
 		return render_to_response("account/account_features/_user_brands.html", {"brands": brands})
 		
 
