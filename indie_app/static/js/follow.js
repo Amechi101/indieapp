@@ -27,6 +27,33 @@ $(document).ready(function(){
      *
      */
 
+       $.ajax({
+            type: "GET",
+            url: link,
+            success: function(r) {
+                console.log(r);
+                if (r.status == "ok") {
+                    if ($('.brand_follow').find('span').hasClass('follow')) {
+                              //str.replace(regexp, newSubStr|function)
+                              link.replace('subscribe', 'unsubscribe');
+                              $('.brand_follow').attr('href', link)
+                        $('.brand_follow').find('span').removeClass('follow')
+                        $('.brand_follow').find('span').addClass('unfollow')
+                    } else {
+                        link.replace('subscribe', 'unsubscribe');
+                              $('.brand_follow').attr('href', link)
+                        $('.brand_follow').find('span').removeClass('unfollow')
+                        $('.brand_follow').find('span').addClass('follow')
+                    }
+
+                } else {
+                    console.error(r.error);
+                }
+            }
+        });
+    });
+/*
+
     $('.brand_follow').click(function(e) {
     	
     	e.preventDefault();
@@ -62,5 +89,5 @@ $(document).ready(function(){
 		    }
 		});
     });
- 
+*/
 });
