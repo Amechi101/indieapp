@@ -25,11 +25,11 @@ class LoginRequiredMixin(object):
 class SubscribeView(LoginRequiredMixin, View):
 
 	def get(self, *args, **kwargs):
-        if self.request.user.is_authenticated():
-            if self.request.GET.get("ajax"):
-                if (Subscription.objects.filter(user=request.user, brand=get_object_or_404(Brand, brand_name=self.request.GET.get("brand_name") )):
-                    print('Subscription exists!!!.')
-                    return HttpResponse(json.dumps({ "status" : "exists"} ), content_type="application/json")
+		if self.request.user.is_authenticated():
+			if self.request.GET.get("ajax"):
+				if (Subscription.objects.filter(user=request.user, brand=get_object_or_404(Brand, brand_name=self.request.GET.get("brand_name") ))):
+					print('Subscription exists!!!.')
+					return HttpResponse(json.dumps({ "status" : "exists"} ), content_type="application/json")
                 SubscriptionManager().subscribe(brand=get_object_or_404(Brand, brand_name=self.request.GET.get("brand_name") ), user=self.request.user)
                 return HttpResponse(json.dumps({ "status" : "ok"} ), content_type="application/json")
 
