@@ -46,12 +46,12 @@ class SubscriptionListView(LoginRequiredMixin, View):
 
 class UnsubscribeView(LoginRequiredMixin, View):	
 	def get(self, request):
-		SubscriptionManager.unsubscribe(brand=get_object_or_404(Brand, brand_name=self.request.GET.get("brand_name") ), user=request.user))
+		SubscriptionManager().unsubscribe(brand=get_object_or_404(Brand, brand_name=self.request.GET.get("brand_name") ), user=request.user)
 		return HttpResponse(json.dumps({ "status" : "ok"} ), content_type="application/json")
 	
 	#TODO: switch to POST view	
 	def post(self, request):
-		SubscriptionManager.unsubscribe(brand=get_object_or_404(name=request.POST.get("brand_name"), user=request.user))
+		SubscriptionManager().unsubscribe(brand=get_object_or_404(name=request.POST.get("brand_name"), user=request.user))
 		return HttpResponse(json.dumps({ "status" : "ok"} ), content_type="application/json")
 		
 

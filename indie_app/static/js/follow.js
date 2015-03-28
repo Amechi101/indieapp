@@ -43,11 +43,15 @@ $(document).ready(function(){
 		    success: function(r) {
 		        console.log(r);
 		        if (r.status == "ok") {
-		        	
 		        	if ($(this).find('span').hasClass('follow')) {
+		        	          //str.replace(regexp, newSubStr|function)
+		        	          link.replace('subscribe', 'unsubscribe');
+		        	          $('.brand_follow').attr('href', link)
                         $(this).find('span').removeClass('follow')
                         $(this).find('span').addClass('unfollow')
                     } else {
+                        link.replace('subscribe', 'unsubscribe');
+		        	          $('.brand_follow').attr('href', link)
                         $(this).find('span').removeClass('unfollow')
                         $(this).find('span').addClass('follow')
                     }
@@ -58,5 +62,5 @@ $(document).ready(function(){
 		    }
 		});
     });
-
+ 
 });
