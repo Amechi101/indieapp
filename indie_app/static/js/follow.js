@@ -32,7 +32,7 @@ $(document).ready(function(){
     	e.preventDefault();
     	alert('followed...');
 
-    	var link = $('.brand_login_follow').attr('href');
+    	var link = $('.brand_follow').attr('href');
 
     	link += '&ajax=1';
 		alert(link);
@@ -44,7 +44,10 @@ $(document).ready(function(){
 		        
 		        if (r.status == "ok") {
 		        	
-		        	$('.scBT.slide5').fadeIn().text('You have followed');
+		        	$('.scBT.slide5').fadeIn("slow", function() {
+		        		$(this).text('You have followed');
+		        	});
+
 
 		        	if ($(this).find('span').hasClass('follow')) {
                         $(this).find('span').removeClass('follow')

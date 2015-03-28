@@ -23,20 +23,22 @@ class LoginRequiredMixin(object):
         return super(LoginRequiredMixin, self).dispatch(request, *args, **kwargs)
 
 class SubscribeView(LoginRequiredMixin, View):
+	
 
 	def get(self, *args, **kwargs):
-
 		if self.request.user.is_authenticated():
 			if self.request.GET.get("ajax"):
 				return HttpResponse(json.dumps({ "status" : "ok"} ), content_type="application/json")
-
-			SubscriptionManager().subscribe(brand=get_object_or_404(Brand, brand_name=self.request.GET.get("brand_name") ), user=self.request.user)
+				SubscriptionManager().subscribe(brand=get_object_or_404(Brand, brand_name=self.request.GET.get("brand_name") ), user=self.request.user)
 			return HttpResponseRedirect("/account/subscribed-brands/?added=")
-
 		return super(SubscribeView, self).get(*args, **kwargs)
 
 
 class SubscriptionListView(LoginRequiredMixin, View):	
+	
+	template_name = "account/account_features/_user_brands.html"
+	context_object_name = 'subscribed'
+
 	def get(self, request):
 		brands = Subscription.objects.filter(brand=request.user)
 		return render_to_response("account/account_features/_user_brands.html", {"brands": brands})

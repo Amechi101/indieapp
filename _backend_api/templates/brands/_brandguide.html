@@ -178,12 +178,14 @@
                     <div class="unlabelTableCell">
                         <div class="sliderCopy">Add {{brand.brand_name}}</div>
                         <div class="scBtn">
-                            <div class="scBT slide5">Click on the Heart and add <span>{{brand.brand_name}}</span> to your collection of independent fashion labels.</div>
                             {% if request.user.is_authenticated %}
-
                                 {% if is_followed %}
-                                    <a class="brand_follow" href="/account/api/subscribe/?brand_name={{ brand.brand_name }}"><span class="unfollow icon-heart"></span></a>
+                                    {% for message in messages %}
+                                        <div class="scBT slide5">{{ message }}</div>
+                                    {% endfor %}
+                                    <span class="follow icon-heart"></span>
                                 {% else %}
+                                    <div class="scBT slide5">Click on the Heart and add <span>{{brand.brand_name}}</span> to your collection of independent fashion labels.</div>
                                     <a class="brand_follow" href="/account/api/subscribe/?brand_name={{ brand.brand_name }}"><span class="unfollow icon-heart"></span></a>
                                 {% endif %}
 
@@ -201,17 +203,17 @@
                                         </a>
                                     </li>
                                     <li class="social-button">
-                                        <a target="_blank" href="">
+                                        <a target="_blank" href="http://www.tumblr.com/share?v=3&u=http://{{ request.get_host }}{{ request.path }}&t=[TITLE]">
                                             <img alt="" src="{% static "images/tumblr-share-brand.png" %}" />
                                         </a>
                                     </li>
                                     <li class="social-button">
-                                        <a target="_blank" href="">
+                                        <a target="_blank" href="http://twitter.com/intent/tweet?status=[TITLE]+http://{{ request.get_host }}{{ request.path }}">
                                             <img alt="" src="{% static "images/twitter-share-brand.png" %}" />
                                         </a>
                                     </li>
                                     <li class="social-button">
-                                        <a target="_blank" href="">
+                                        <a target="_blank" href="http://pinterest.com/pin/create/bookmarklet/?media={% cloudinary_url brand.brand_feature_image %}&url=http://{{ request.get_host }}{{ request.path }}&is_video=false&description=[TITLE]">
                                             <img alt="" src="{% static "images/pinterest-share-brand.png" %}" />
                                         </a>
                                     </li>

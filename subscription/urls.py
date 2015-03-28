@@ -11,6 +11,6 @@ urlpatterns = patterns('',
 
 	url(r"^api/subscribe/$", SubscribeView.as_view()),
 	url(r"^api/unsubscribe/$", UnsubscribeView.as_view()),
-	url(r"^subscribed-brands/$", SubscriptionListView.as_view() ),
+	url(r"^subscribed-brands/$", SubscriptionListView.as_view(), name="subscribed" ),
 )
 

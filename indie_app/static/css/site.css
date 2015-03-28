@@ -1080,6 +1080,11 @@ body.archive header.unlabelNavbar {
      content: "\f004";
 }
 
+#unlabelBrandCover .follow.icon-heart {
+     cursor:default;
+}
+
+
 
 
 
