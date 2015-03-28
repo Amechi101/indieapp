@@ -28,10 +28,11 @@ class SubscribeView(LoginRequiredMixin, View):
 	def get(self, *args, **kwargs):
 		if self.request.user.is_authenticated():
 			if self.request.GET.get("ajax"):
-				return HttpResponse(json.dumps({ "status" : "ok"} ), content_type="application/json")
+                if (Subscription.objects.filter(user=request.user, brand=get_object_or_404(Brand, brand_name=self.request.GET.get("brand_name") )):
+                    print('Subscription exists!!!.')
+                    return HttpResponse(json.dumps({ "status" : "exists"} ), content_type="application/json")
 				SubscriptionManager().subscribe(brand=get_object_or_404(Brand, brand_name=self.request.GET.get("brand_name") ), user=self.request.user)
-			return HttpResponseRedirect("/account/subscribed-brands/?added=")
-		return super(SubscribeView, self).get(*args, **kwargs)
+				return HttpResponse(json.dumps({ "status" : "ok"} ), content_type="application/json")
 
 
 class SubscriptionListView(LoginRequiredMixin, View):	
