@@ -41,9 +41,9 @@ $(document).ready(function(){
 		    type: "GET",
 		    url: link,
 		    success: function(r) {
-		        
+		        console.log(r);
 		        if (r.status == "ok") {
-		        
+		        	
 		        	if ($(this).find('span').hasClass('follow')) {
                         $(this).find('span').removeClass('follow')
                         $(this).find('span').addClass('unfollow')
