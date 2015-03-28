@@ -179,15 +179,7 @@
                         <div class="sliderCopy">Add {{brand.brand_name}}</div>
                         <div class="scBtn">
                             {% if request.user.is_authenticated %}
-                                {% if is_followed %}
-     
-                                    <div class="scBT slide5">Followed</div>
-      
-                                    <div class="brand_follow"><span class="follow icon-heart"></span></div>
-                                {% else %}
-                                    <div class="scBT slide5">Click on the Heart and add <span>{{brand.brand_name}}</span> to your collection of independent fashion labels.</div>
-                                    <a class="brand_follow" href="/account/api/subscribe/?brand_name={{ brand.brand_name }}"><span class="unfollow icon-heart"></span></a>
-                                {% endif %}
+                                <a class="brand_follow" href="/account/api/{% if is_followed %}un{% endif %}subscribe/?brand_name={{ brand.brand_name }}"><span class="{% if is_followed %}follow{% endif %} icon-heart"></span></a>
 
                             {% else %}
                                 <div class="scBT slide5">Click on the Heart and add <span>{{brand.brand_name}}</span> to your collection of independent fashion labels.</div>
