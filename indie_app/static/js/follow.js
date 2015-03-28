@@ -27,40 +27,80 @@ $(document).ready(function(){
      *
      */
 
-    $('.brand_follow').click(function(e) {
+  //   $('.brand_follow').click(function(e) {
     	
-    	e.preventDefault();
-    	alert('followed...');
+  //   	e.preventDefault();
+  //   	alert('followed...');
 
-    	var link = $('.brand_follow').attr('href');
+  //   	var link = $('.brand_follow').attr('href');
 
-    	link += '&ajax=1';
-		alert(link);
+  //   	link += '&ajax=1';
+		// alert(link);
+
+  //       console.log($(this).find('span').hasClass('follow'));
 		
-		$.ajax({
-		    type: "GET",
-		    url: link,
-		    success: function(r) {
-		        console.log(r);
-		        if (r.status == "ok") {
-		        	if ($(this).find('span').hasClass('follow')) {
-		        	          //str.replace(regexp, newSubStr|function)
-		        	          link.replace('subscribe', 'unsubscribe');
-		        	          $('.brand_follow').attr('href', link)
-                        $(this).find('span').removeClass('follow')
-                        $(this).find('span').addClass('unfollow')
+		// $.ajax({
+		//     type: "GET",
+		//     url: link,
+		//     success: function(r) {
+		//         console.log(r);
+		//         if (r.status == "ok") {
+		//         	if ($(this).find('span').hasClass('follow')) {
+  //                               alert('has class follow!');
+		//         	          //str.replace(regexp, newSubStr|function)
+		//         	          link.replace('subscribe', 'unsubscribe');
+		//         	          $('.brand_follow').attr('href', link);
+  //                       $(this).find('span').removeClass('follow');
+  //                       $(this).find('span').addClass('unfollow');
+  //                   } else {
+  //                       link.replace('subscribe', 'unsubscribe');
+		//         	 $('.brand_follow').attr('href', link);
+  //                       $(this).find('span').removeClass('unfollow');
+  //                       $(this).find('span').addClass('follow');
+  //                   }
+
+		//         } else {
+		//             console.error(r.error);
+		//         }
+		//     }
+		// });
+  //   });
+
+ $('.brand_follow').click(function(e) {
+
+        e.preventDefault();
+        alert('followed...');
+
+        var link = $('.brand_follow').attr('href');
+
+        link += '&ajax=1';
+        alert(link);
+   
+        $.ajax({
+            type: "GET",
+            url: link,
+            success: function(r) {
+                console.log(r);
+                if (r.status == "ok") {
+                    if ($('.brand_login_follow').find('span').hasClass('follow')) {
+                              //str.replace(regexp, newSubStr|function)
+                              link.replace('subscribe', 'unsubscribe');
+                              $('.brand_follow').attr('href', link)
+                        $('.brand_login_follow').find('span').removeClass('follow')
+                        $('.brand_login_follow').find('span').addClass('unfollow')
                     } else {
                         link.replace('subscribe', 'unsubscribe');
-		        	          $('.brand_follow').attr('href', link)
-                        $(this).find('span').removeClass('unfollow')
-                        $(this).find('span').addClass('follow')
+                              $('.brand_follow').attr('href', link)
+                        $('.brand_login_follow').find('span').removeClass('unfollow')
+                        $('.brand_login_follow').find('span').addClass('follow')
                     }
 
-		        } else {
-		            console.error(r.error);
-		        }
-		    }
-		});
+                } else {
+                    console.error(r.error);
+                }
+            }
+        });
     });
+
  
 });
