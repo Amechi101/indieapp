@@ -23,7 +23,6 @@ class LoginRequiredMixin(object):
         return super(LoginRequiredMixin, self).dispatch(request, *args, **kwargs)
 
 class SubscribeView(LoginRequiredMixin, View):
-
 	def get(self, request):
         if self.request.user.is_authenticated():
             if self.request.GET.get("ajax"):
@@ -41,6 +40,7 @@ class SubscriptionListView(LoginRequiredMixin, View):
 
 	def get(self, request):
 		brands = Subscription.objects.filter(user=request.user)
+		print(brands)
 		return render_to_response("account/account_features/_user_brands.html", {"brands": brands})
 		
 
