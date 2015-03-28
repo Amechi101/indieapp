@@ -24,7 +24,7 @@ class LoginRequiredMixin(object):
 
 class SubscribeView(LoginRequiredMixin, View):
 
-	def get(self, *args, **kwargs):
+	def get(self, request):
         if self.request.user.is_authenticated():
             if self.request.GET.get("ajax"):
                 if (Subscription.objects.filter(user=request.user, brand=get_object_or_404(Brand, brand_name=self.request.GET.get("brand_name") )):
