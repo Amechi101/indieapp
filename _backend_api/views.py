@@ -14,23 +14,10 @@ from subscription.managers import SubscriptionManager
 class BrandDetailView(SingleObjectMixin, ListView):
 	
 	template_name = 'brands/_brandguide.html'
-	messages = {
-        "brand_follow": {
-            "level": messages.SUCCESS,
-            "text": _("Brand was followed.")
-        },
-    }
 	
 	def get(self, request, *args, **kwargs):
 		self.object = self.get_object(queryset=Brand.objects.all())
 
-		if self.messages.get("brand_follow"):
-			messages.add_message(
-				self.request,
-				self.messages["brand_follow"]["level"],
-				self.messages["brand_follow"]["text"]
-			)
-		
 		return super(BrandDetailView, self).get(request, *args, **kwargs)
 
 	def get_context_data(self, **kwargs):
