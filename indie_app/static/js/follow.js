@@ -42,12 +42,12 @@ $(document).ready(function(){
                 if (r.status == "ok") {
                     if ($('.brand_follow').find('span').hasClass('follow')) {
                               //str.replace(regexp, newSubStr|function)
-                              link=link.replace('subscribe', 'unsubscribe');
+                              link=link.replace('unsubscribe', 'subscribe');
                               $('.brand_follow').attr('href', link)
                         $('.brand_follow').find('span').removeClass('follow')
                         $('.brand_follow').find('span').addClass('unfollow')
                     } else {
-                        link=link.replace('unsubscribe', 'subscribe');
+                        link=link.replace('subscribe', 'unsubscribe');
                               $('.brand_follow').attr('href', link)
                         $('.brand_follow').find('span').removeClass('unfollow')
                         $('.brand_follow').find('span').addClass('follow')
