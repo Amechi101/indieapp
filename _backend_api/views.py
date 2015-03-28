@@ -24,7 +24,7 @@ class BrandDetailView(SingleObjectMixin, ListView):
 		context = super(BrandDetailView, self).get_context_data(**kwargs)
 		
 		context['brand'] = self.object
-		context['is_followed'] = Subscription.objects.filter(brand=self.object).count()
+		context['is_followed'] = Subscription.objects.filter(brand=self.object, user=self.request.user).count()
 		context['product_list'] = Product.objects.filter(brand=self.object)
 		context['address_list'] = Location.objects.filter(brand=self.object)
 		
