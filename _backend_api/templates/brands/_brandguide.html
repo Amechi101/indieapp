@@ -185,11 +185,11 @@
                                     {% endfor %}
                                     <span class="follow icon-heart"></span>
                                 {% else %}
-                                    <div class="scBT slide5">Click on the Heart and add <span>{{brand.brand_name}}</span> to your collection of independent fashion labels.</div>
                                     <a class="brand_follow" href="/account/api/subscribe/?brand_name={{ brand.brand_name }}"><span class="unfollow icon-heart"></span></a>
                                 {% endif %}
 
                             {% else %}
+                                <div class="scBT slide5">Click on the Heart and add <span>{{brand.brand_name}}</span> to your collection of independent fashion labels.</div>
                                 <a class="brand_login_follow" data-remodal-target="modal" data-url="/ajax_login" href="javascript:void(0);"><div class="unfollow icon-heart"></div></a>
                             {% endif %}
                         </div>

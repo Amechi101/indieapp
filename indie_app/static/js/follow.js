@@ -43,12 +43,7 @@ $(document).ready(function(){
 		    success: function(r) {
 		        
 		        if (r.status == "ok") {
-		        	
-		        	$('.scBT.slide5').fadeIn("slow", function() {
-		        		$(this).text('You have followed');
-		        	});
-
-
+		        
 		        	if ($(this).find('span').hasClass('follow')) {
                         $(this).find('span').removeClass('follow')
                         $(this).find('span').addClass('unfollow')
