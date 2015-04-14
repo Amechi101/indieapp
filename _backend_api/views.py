@@ -21,14 +21,15 @@ class BrandDetailView(SingleObjectMixin, ListView):
 		return super(BrandDetailView, self).get(request, *args, **kwargs)
 
 	def get_context_data(self, **kwargs):
-		context = super(BrandDetailView, self).get_context_data(**kwargs)
+
+		ctx = super(BrandDetailView, self).get_context_data(**kwargs)
 		
-		context['brand'] = self.object
-		context['is_followed'] = Subscription.objects.filter(brand=self.object, user=self.request.user).count()
-		context['product_list'] = Product.objects.filter(brand=self.object)
-		context['address_list'] = Location.objects.filter(brand=self.object)
+		ctx['brand'] = self.object
+		ctx['is_followed'] = Subscription.objects.filter(brand=self.object, user=self.request.user.id).count()
+		ctx['product_list'] = Product.objects.filter(brand=self.object)
+		ctx['address_list'] = Location.objects.filter(brand=self.object)
 		
-		return context
+		return ctx
 
 	def get_queryset(self,  **kwargs):
 		return self.object
@@ -45,27 +46,29 @@ class BrandCollectionView(SingleObjectMixin, ListView):
 		return super(BrandCollectionView, self).get(request, *args, **kwargs)
 
 	def get_context_data(self, **kwargs):
-		context = super(BrandCollectionView, self).get_context_data(**kwargs)
 		
-		context['brand'] = self.object
-		context['product_list'] = Product.objects.filter(brand=self.object)
+		ctx = super(BrandCollectionView, self).get_context_data(**kwargs)
 		
-		return context
+		ctx['brand'] = self.object
+		ctx['product_list'] = Product.objects.filter(brand=self.object)
+		
+		return ctx
 
 	def get_queryset(self,  **kwargs):
 		return self.object
 
 
-class BrandArchiveView( ListView):
+class BrandArchiveView( ListView ):
 	
 	template_name = 'brands/_brandarchive.html'
 	model = Brand
 	
 	def get_context_data(self, **kwargs):
-		context = super(BrandArchiveView, self).get_context_data(**kwargs)
-		context['brand_list_archive'] = Brand.objects.filter(brand_state=False).order_by('brand_name')
+
+		ctx = super(BrandArchiveView, self).get_context_data(**kwargs)
+		ctx['brand_list_archive'] = Brand.objects.filter(brand_state=True).order_by('brand_name')
 		
-		return context
+		return ctx
 
 
 

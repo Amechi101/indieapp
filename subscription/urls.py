@@ -1,9 +1,6 @@
 from __future__ import unicode_literals
 
 from django.conf.urls import patterns, include, url
-
-from . import views
-
 from subscription.views import SubscriptionListView, UnsubscribeView, SubscribeView
 
 

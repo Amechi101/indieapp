@@ -14,7 +14,7 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 # For internal purposes of switching settings components
-DEVELOPMENT = False
+DEVELOPMENT = True
 
 
 # Local time zone for this installation. Choices can be found here:
@@ -226,11 +226,14 @@ ACCOUNT_LOGOUT_REDIRECT_URL = "/"
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 2
 
 AUTHENTICATION_BACKENDS = [
-    "social.backends.google.GoogleOAuth2",
     "social.backends.facebook.FacebookOAuth2",
     "social.backends.twitter.TwitterOAuth",
     "account.auth_backends.UsernameAuthenticationBackend",   
 ]
+
+SOUTH_MIGRATION_MODULES = {
+    'default': 'social.apps.django_app.default.south_migrations'
+}
 
 SOCIAL_AUTH_PIPELINE = [
     "social.pipeline.social_auth.social_details",
@@ -245,24 +248,21 @@ SOCIAL_AUTH_PIPELINE = [
     "social.pipeline.user.user_details"
 ]
 
-# SOCIAL_AUTH_USER_MODEL = 'social.apps.django_app.default.models.UserSocialAuth'
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+# SOCIAL_AUTH_USER_MODEL = 'indie_app.social.apps.django_app.default.models.CustomUser'
+SOCIAL_LOGIN_REDIRECT_URL = '/'
 
-SOCIAL_AUTH_LOGIN_REDIRECT_URL = "/"
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ.get("SOCIAL_AUTH_GOOGLE_OAUTH2_KEY")
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ.get("SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET")
+SOCIAL_AUTH_STRATEGY = 'social.strategies.django_strategy.DjangoStrategy'
+SOCIAL_AUTH_STORAGE = 'social.apps.django_app.default.models.DjangoStorage'
+
+
 SOCIAL_AUTH_TWITTER_KEY = os.environ.get("SOCIAL_AUTH_TWITTER_KEY")
 SOCIAL_AUTH_TWITTER_SECRET = os.environ.get("SOCIAL_AUTH_TWITTER_SECRET")
+
 SOCIAL_AUTH_FACEBOOK_KEY = '1421811444777881'
 SOCIAL_AUTH_FACEBOOK_SECRET = 'b860d27e4724aa93b86c3b4570a82145'
-
-SOCIAL_AUTH_FACEBOOK_SCOPE = [
-    "email"
-]
-SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
-    "profile",
-    "email"
-]
+SOCIAL_AUTH_FACEBOOK_SCOPE = ["email"]
 
 if DEVELOPMENT == True:
 

@@ -4,7 +4,11 @@ import os
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2", # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        "NAME": "", 
+        "NAME":"",
+        # "HOST":"ec2-54-163-254-93.compute-1.amazonaws.com",
+        # "USER":"wzumuooiwbdjsw",
+        # "PASSWORD":"LeBO8_aeZKwr8z0aWvJ9_wK0TI",
+        # "PORT":"5432"
 
     }
 }

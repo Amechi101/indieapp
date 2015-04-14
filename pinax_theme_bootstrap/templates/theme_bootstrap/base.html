@@ -11,6 +11,10 @@
         <meta content="" name="description"></meta>
         <meta content="" name="author"></meta>
         <meta name="keywords" content="">
+
+        {% block meta_tags_base %}
+            {% block extra_meta_tags %}{% endblock %}
+        {% endblock %}
     
         <title>{% block head_title_base %}{% if SITE_NAME %}{{ SITE_NAME }} | {% endif %}{% block head_title %}{% endblock %}{% endblock %}</title>
         {% block viewport %}

@@ -1,31 +1,6 @@
 
-/* Header Style */
-.container > header {
-	margin: 0 auto;
-	padding: 2em;
-}
 
-.container > header {
-	text-align: center;
-	background: rgba(0,0,0,0.01);
-}
-
-.container > header h1 {
-	font-size: 2.625em;
-	line-height: 1.3;
-	margin: 0;
-	font-weight: 300;
-}
-
-.container > header span {
-	display: block;
-	font-size: 60%;
-	opacity: 0.8;
-	padding: 0 0 0.6em 0.1em;
-}
-
-/* To Navigation Style */
-.codrops-top {
+.brand-collection-top {
 	background: #fff;
 	background: rgb(0, 0, 0);
 	text-transform: uppercase;
@@ -34,7 +9,7 @@
 	line-height: 2.2;
 }
 
-.codrops-top a {
+.brand-collection-top a {
 	padding: 0 1em;
 	letter-spacing: 0.1em;
 	color: #FFF;
@@ -45,15 +20,40 @@
     transition:all 300ms ease
 }
 
-.codrops-top a span{
+.brand-collection-top a span{
 	margin-left: 7px;
 	font-weight: 400;
 }
 
-.codrops-top a:hover {
+.brand-collection-top a:hover {
 	color: #424b5a;
 }
 
+
+/* Header Style */
+.grid-title{
+	margin: 0 auto;
+	padding: 2em;
+}
+
+.grid-title {
+	text-align: center;
+	background: rgba(0,0,0,0.01);
+}
+
+.grid-title h1 {
+	font-size: 2.625em;
+	line-height: 1.3;
+	margin: 0;
+	font-weight: 300;
+}
+
+.grid-title span {
+	display: block;
+	font-size: 60%;
+	opacity: 0.8;
+	padding: 0 0 0.6em 0.1em;
+}
 
 
 .grid {
@@ -84,28 +84,28 @@
 	max-width: 100%;
 }
 
-.moments-info{
+.grid-info{
 	padding:5% 10% 12% 10%;
 	text-align:center
 }
 
-.moments-title{
+.grid-product-title{
 	font-size:14px;
 	color:#000;
 }
 
-.moments-text{
+.grid-product-text{
 	font-size:13px;
 	text-transform:uppercase;
 	color:#1e1e1e
 }
 
 @media only screen and (max-width:767px){
-	.moments-info{
+	.grid-info{
 		padding:18px 32px 40px
 	}
 
-	.moments-info .moment-title{
+	.grid-info .grid-product-title{
 		font-size:13px
 	}
 

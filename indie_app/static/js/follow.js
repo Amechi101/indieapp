@@ -20,46 +20,47 @@ $(document).ready(function(){
         });
     });
 
+    /*
+     *
+     *  Subscribe/Unsubscribe Follow
+     *
+     */
 
- 
+    var link = $('.brand_follow').attr('href');
+        link += '&ajax=1';
 
-
-    $('.brand_follow').click(function(e) {
+    $('.brand_follow').click(function ( event ) {
+    	var brandFollow = $('.brand_follow').find('div').hasClass('follow');
     	
-    	e.preventDefault();
-    	alert('followed...');
+        event.preventDefault();
 
-    	var link = $('.brand_follow').attr('href');
-
-    	link += '&ajax=1';
-		alert(link);
-		
       $.ajax({
             type: "GET",
             url: link,
-            success: function(r) {
-                console.log(r);
-                if (r.status == "ok") {
-                    if ($('.brand_follow').find('span').hasClass('follow')) {
-                              //str.replace(regexp, newSubStr|function)
-                              link=link.replace('unsubscribe', 'subscribe');
-                              $('.brand_follow').attr('href', link)
-                        $('.brand_follow').find('span').removeClass('follow')
-                        $('.brand_follow').find('span').addClass('unfollow')
+            success: function( data ) {
+                if (data.status == "ok") {
+                    if ( brandFollow ) {
+
+                        link = link.replace('unsubscribe', 'subscribe');
+                        
+                        $('.brand_follow').attr('href', link);
+                        $('.brand_follow').find('div').removeClass('follow');
+                        $('.brand_follow').find('div').addClass('unfollow');
+
+
                     } else {
-                        link=link.replace('subscribe', 'unsubscribe');
-                              $('.brand_follow').attr('href', link)
-                        $('.brand_follow').find('span').removeClass('unfollow')
-                        $('.brand_follow').find('span').addClass('follow')
+                        link = link.replace('subscribe', 'unsubscribe');
+                        
+                        $('.brand_follow').attr('href', link);
+                        $('.brand_follow').find('div').removeClass('unfollow');
+                        $('.brand_follow').find('div').addClass('follow');
                     }
 
                 } else {
-                    console.error(r.error);
+                    console.error(data.error);
                 }
             }
         });
     });
-
-
 });
 

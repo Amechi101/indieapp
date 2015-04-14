@@ -20,7 +20,7 @@ urlpatterns = patterns('',
 	
 	url(r'^(?P<slug>[\w\d-]+)/$', BrandDetailView.as_view(), name="brand_view"),
 	url(r'^(?P<slug>[\w\d-]+)/collection/$', BrandCollectionView.as_view(), name="brand_collection"),
-	url(r'^archive/$', BrandArchiveView.as_view(), name="brand_archive"),
+	# url(r'^archive/$', BrandArchiveView.as_view(), name="brand_archive"),
 )
 
 

@@ -145,22 +145,6 @@ UnlabelInitilazer = (function ( $, document, window, undefined  ) {
         
             });
 
-            
-
-            // var hashMenuClosing = $('.navigation > .navigation__primary > ul > li > a');
-
-            // console.log(hashMenuClosing)
-
-            // if( hashMenuClosing ) {
-            //     // Hash menu forwarding
-            //     if (window.location.hash === "#brands"){
-            //         var hash_offset = $(window.location.hash).offset().top;
-            //         $("html, body").animate({
-            //             scrollTop: hash_offset
-            //         });
-            //     }
-            // }
-
         }
     };//return end
 })(  jQuery, document, window, undefined );

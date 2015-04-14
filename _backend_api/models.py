@@ -32,6 +32,7 @@ class Brand(models.Model):
     brand_about_image = CloudinaryField('About Brand Image', null=True, blank=True)
     brand_collection_image = CloudinaryField('Collection Brand Image', null=True, blank=True)
     brand_connect_image = CloudinaryField('Connect Brand Image', null=True, blank=True)
+    brand_follow_image = CloudinaryField('Follow Brand Image', null=True, blank=True)
 
     brand_website_url = models.URLField(max_length=200, null=True, blank=True)
     brand_email = models.EmailField(max_length=75, null=True, blank=True)
@@ -125,6 +126,7 @@ class Product(models.Model):
     """
 
     product_name = models.CharField(max_length=255, verbose_name=_('Product Name'), null=True, blank=True)
+    product_description = models.TextField(null=True, blank=True)
     product_price = CurrencyField( verbose_name=_('Unit price') )
 
     # Points to a Cloudinary image

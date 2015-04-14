@@ -12,7 +12,7 @@ Website: unlabel.us.com
 [Table of contents]
 
 1. Common Styles
-2. Typography
+2. Typography & Fonts
 3. Body & General
 4. Buttons
 5. Header
@@ -22,6 +22,7 @@ Website: unlabel.us.com
 9. Brand Section ( Homepage )
 10. Brand Cover Story
     1a. Contact Section
+    2a. Collection View
 11. Brand Archive
 12. Dashboard (Users)
     1a. Notifications ( .ns-box class )
@@ -57,16 +58,31 @@ Website: unlabel.us.com
 
 
 /* ==============================
-   Typography
+   Typography & Fonts
    ============================== */
-
-.font-size-mid {
-    font-size:22px;
-    font-weight:400;
-    letter-spacing: 1px;
+/*
+@font-face {
+    font-family: 'GothamMedium';
+    src: url('../fonts/gotham-medium/GothamMedium.eot');
+    src: url('../fonts/gotham-medium/GothamMedium.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/gotham-medium/GothamMedium.woff') format('woff'),
+       url('../fonts/gotham-medium/GothamMedium.ttf') format('truetype'),
+       url('../fonts/gotham-medium/GothamMedium.svg#GothamMedium') format('svg');
+    font-weight: normal;
+    font-style: normal;
 }
 
-
+@font-face {
+    font-family: "NobelBook";
+    src: url("../fonts/nobel-book/4cc5c751-3849-4622-8d82-dc54484c5870?ec_token=8f7c4c4997246fd7fa920071cb943b562a0dfef7c1c72d153ee3718ba0058142c726b2eeb9854813e0669639999e48c42008ff3224172bf8e08eeaaf9621caacc7b856d660120ce825fe592bea7017d9d7db8e46d20b07a1a57bdf9a14db3ada10d43e3bde73384b3a547257b623c67ab454b9b62017760b84295a682999e9467fa1929c7e99c16c5fa61b0793");
+    src: url("../fonts/nobel-book/4cc5c751-3849-4622-8d82-dc54484c5870?ec_token=8f7c4c4997246fd7fa920071cb943b562a0dfef7c1c72d153ee3718ba0058142c726b2eeb9854813e0669639999e48c42008ff3224172bf8e08eeaaf9621caacc7b856d660120ce825fe592bea7017d9d7db8e46d20b07a1a57bdf9a14db3ada10d43e3bde73384b3a547257b623c67ab454b9b62017760b84295a682999e9467fa1929c7e99c16c5fa61b0793#iefix")  format("embedded-opentype"),
+        url("../fonts/nobel-book/7ba27bed-b639-4d30-b02a-4db226c012e0?ec_token=8f7c4c4997246fd7fa920071cb943b562a0dfef7c1c72d153ee3718ba0058142c726b2eeb9854813e36695389b991c919acbc5339042081ff2b467336c8035a162748bb7723d333092a720c2849b99d77e1dc9678bc626199e02b5c55df2f7a821a41acdd1b2402ec4c47340e3da2c0353a3696d0547c27d3ea472379fce9853ef8ae57c26e730dbac26a70b5a") format("truetype"),
+        url("../fonts/nobel-book/09052125-b34d-49de-902f-504a5e53c1a3?ec_token=8f7c4c4997246fd7fa920071cb943b562a0dfef7c1c72d153ee3718ba0058142c726b2eeb9854813e1669263ca9e19c29c33dd18ab5f3be96c2e54e5bf5a2983ce66942a6e03bdfaa80e81665c4e13f14ba9bb1d7f0727f7b780884021112cd5f5bac5aa067e1bbde488b5eb57448f7a831af89c3a86411434fa8fe3d6c19fa80844e1c4ba65389ffbbc81292d") format("woff"),
+        url("../fonts/nobel-book/1d5672fb-df32-488e-a47e-544a5e1bc647?ec_token=8f7c4c4997246fd7fa920071cb943b562a0dfef7c1c72d153ee3718ba0058142c726b2eeb9854813e666933ecf9d1cc1f54e624e39c720faa80bf660b414b3ac5b0e31e7750ff9b8118d1299c8f13ca8b961181ab689acea81c2dab263c8ebe289c84cb7d7fbb68233fe0b6150ef8195839e540c083eb21fe78423d3ccdade43680bd17f552d8c848977b11831#web") format("svg");
+    font-style: normal;
+    font-weight: normal;
+}
+*/
 
 /* ==============================
    Body & General
@@ -77,7 +93,7 @@ html.is--overflow {
 }
 
 body {
-  font-family:"futura-pt", "brandon-grotesque", Helvetica,sans-serif;
+  font-family:"brandon-grotesque", Helvetica,sans-serif;
   font-weight: 300;
   font-size: 16px/1.5;
   line-height: 1.42857143;
@@ -149,7 +165,7 @@ header.unlabelNavbar .unlabel-sidebar-right .bar {
 #navbar_logo {
     opacity:.95;
     filter:alpha(opacity=95);
-    background-image:url('');
+    background-image:url('../images/logo-2.png');
     background-size:72px 16px;
     display:block;
     height:16px;
@@ -274,7 +290,7 @@ body.archive header.unlabelNavbar {
 
 /* 160px by 50px  */
 .navigation__header__branding {
-   background-image: url("");
+   background-image: url("../images/final-logo-2-01.svg");
 
 }
 .navigation__header__branding {
@@ -654,7 +670,6 @@ body.archive header.unlabelNavbar {
 
 
 .unlabelHomeBrands-grid label.brand-name {
-    font-family:"futura-pt";
     font-weight:bold;
     font-size:24px;
     letter-spacing:1px;
@@ -830,7 +845,7 @@ body.archive header.unlabelNavbar {
     background-position: 45% center;
     -webkit-box-shadow:inset 0 -100px 150px 0 rgba(0,0,0,.6);
     -moz-box-shadow:inset 0 -100px 150px 0 rgba(0,0,0,.6);
-    box-shadow:inset 0 -100px 150px 0 rgba(0,0,0,.6);
+    box-shadow:inset 0px -100px 250px 0px rgba(0,0,0,.6);
     -webkit-backface-visibility:hidden;
     -moz-backface-visibility:hidden;
     -ms-backface-visibility:hidden;
@@ -908,7 +923,7 @@ body.archive header.unlabelNavbar {
 #unlabelBrandCover .sliderCopy{
     display:block;
     position:relative;
-    font-family:proxima_nova_ltsemibold,sans-serif;
+    letter-spacing: 1px;
     font-size:36px;
     line-height:40px;
     color:#fff;
@@ -927,7 +942,7 @@ body.archive header.unlabelNavbar {
 }
 
 #unlabelBrandCover .scBtn{
-    font-size:18px;
+    font-size:19px;
     color:#fff;
     margin:20px 0 0;
     display:inline-block;
@@ -1030,8 +1045,7 @@ body.archive header.unlabelNavbar {
     text-decoration: none;
     text-transform: uppercase;
     letter-spacing: 1px;
-    font-weight: 500;  
-    
+    font-weight: 500;
     -webkit-transition:all 1000ms cubic-bezier(0.23,1,.32,1);
     -moz-transition:all 1000ms cubic-bezier(0.23,1,.32,1);
     -o-transition:all 1000ms cubic-bezier(0.23,1,.32,1);
@@ -1044,18 +1058,26 @@ body.archive header.unlabelNavbar {
 }
 
 
-.brand_login_follow:hover, .brand_follow:hover {
+a.brand_login_follow, a.brand_follow {
+    text-decoration:none;  
+    outline: none;
+    color: red;
+}
+
+
+a.brand_login_follow:hover, a.brand_follow:hover {
     text-decoration:none;  
 }
 
 
 #unlabelBrandCover .icon-heart {
     position:relative;
-    width: 50%;
+    width: 100%;
     margin:0 auto;
     font-size:3.0em;
     color: red;
     cursor: pointer;
+   
 }
 
 /* unfollow state*/
@@ -1074,20 +1096,9 @@ body.archive header.unlabelNavbar {
 
 
 /* follow state */
-
-
 #unlabelBrandCover .follow.icon-heart:before {
-     content: "\f004";
+    content: "\f004";
 }
-
-#unlabelBrandCover .follow.icon-heart {
-     cursor:default;
-}
-
-
-
-
-
 
 
 @-webkit-keyframes animateHeart {
@@ -1395,15 +1406,176 @@ body.archive header.unlabelNavbar {
 
 @media only screen and (max-width:767px){
 
-  .mb-xs-40{
+.mb-xs-40{
     margin-bottom:40px
-  }
+}
 
   .pb-xs-0{
     padding-bottom:0!important
   }
 
 }
+
+/* ==============================
+   Collection View
+   ============================== */
+
+.brand-collection-top {
+    background: #fff;
+    background: rgb(0, 0, 0);
+    text-transform: uppercase;
+    width: 100%;
+    font-size: 1.3em;
+    line-height: 2.2;
+}
+
+.brand-collection-top a {
+    padding: 0 1em;
+    letter-spacing: 0.1em;
+    color: #FFF;
+    display: inline-block;
+    text-decoration: none;
+    -webkit-transition:all 300ms ease;
+    -moz-transition:all 300ms ease;
+    transition:all 300ms ease
+}
+
+.brand-collection-top a span{
+    margin-left: 7px;
+    font-weight: 400;
+}
+
+.brand-collection-top a:hover {
+    color: #424b5a;
+}
+
+
+/* Header Style */
+.grid-title{
+    margin: 0 auto;
+    padding: 2em;
+}
+
+.grid-title {
+    text-align: center;
+    background: rgba(0,0,0,0.01);
+}
+
+.grid-title h1 {
+    font-size: 2.625em;
+    line-height: 1.3;
+    margin: 0;
+    font-weight: 300;
+}
+
+.grid-title span {
+    display: block;
+    font-size: 60%;
+    opacity: 0.8;
+    padding: 0 0 0.6em 0.1em;
+}
+
+
+.grid {
+    max-width: 69em;
+    list-style: none;
+    margin: 30px auto;
+    padding: 0;
+}
+
+.grid li {
+    display: block;
+    float: left;
+    padding: 7px;
+    width: 33%;
+    opacity: 0;
+}
+
+.grid li.shown,
+.no-js .grid li,
+.no-cssanimations .grid li {
+    opacity: 1;
+}
+
+.grid li img {
+    outline: none;
+    border: none;
+    display: block;
+    max-width: 100%;
+}
+
+.grid-info{
+    padding:5% 10% 12% 10%;
+    text-align:center
+}
+
+.grid-product-title{
+    font-size:14px;
+    color:#000;
+}
+
+.grid-product-text{
+    font-size:13px;
+    text-transform:uppercase;
+    color:#1e1e1e
+}
+
+@media only screen and (max-width:767px){
+    .grid-info{
+        padding:18px 32px 40px
+    }
+
+    .grid-info .grid-product-title{
+        font-size:13px
+    }
+
+}
+
+
+.grid.effect-2 li.animate {
+    -webkit-transform: translateY(200px);
+    transform: translateY(200px);
+    -webkit-animation: moveUp 0.65s ease forwards;
+    animation: moveUp 0.65s ease forwards;
+}
+
+@-webkit-keyframes moveUp {
+    0% { }
+    100% { -webkit-transform: translateY(0); opacity: 1; }
+}
+
+@keyframes moveUp {
+    0% { }
+    100% { -webkit-transform: translateY(0); transform: translateY(0); opacity: 1; }
+}
+
+
+@media screen and (max-width: 900px) {
+    .grid li {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .grid li {
+        width: 100%;
+    }
+}
+
+
+#scrollTop {
+    position: fixed;
+    z-index:99999;
+    bottom: 20px;
+    right: 20px;
+    width: 38px;
+    height: 38px;
+    display: none;
+    text-indent: -9999px;
+    outline: none;
+    background: url("../images/up-arrow.png") no-repeat scroll 0% 0% transparent;
+}
+
 
 
 
@@ -1987,13 +2159,12 @@ body.archive header.unlabelNavbar {
 .tabs-style-line nav ul {
     padding: 0 2em;
     max-width: none;
-    box-shadow: inset 0 -2px #d1d3d2;
-    background:
+    box-shadow: inset 0 -2px #000;
 }
 
 .tabs-style-line nav a {
     padding: 1.5em 1.5em;
-    color: #74777b;
+    color: #000;
     text-align: left;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -2006,13 +2177,9 @@ body.archive header.unlabelNavbar {
 
 .tabs-style-line nav a:hover,
 .tabs-style-line nav a:focus {
-    box-shadow: inset 0 -2px #74777b;
+    box-shadow: inset 0 -2px #FFF;
 }
 
-.tabs-style-line nav li.tab-current a {
-    box-shadow: inset 0 -2px #2CC185;
-    color: #2CC185;
-}
 
 @media screen and (max-width: 68em) {
     .tabs-style-line nav ul {
@@ -2026,10 +2193,48 @@ body.archive header.unlabelNavbar {
     }
     
     .tabs-style-line nav a {
-        box-shadow: inset 0 -2px #d1d3d2; 
+        box-shadow: inset 0 -2px #000; 
     }
 }
 
+
+
+/* ==============================
+   User Liked Brands
+   ============================== */
+.dashboard .brands {
+    list-style: none;
+    text-align: center;
+    margin:0 auto;
+}
+
+.dashboard .brands li{
+    background: #000;
+    padding: 20px;
+    color: #FFF;   
+    text-transform: uppercase;
+}
+
+.dashboard ul.brands li{
+    width:32%;
+    float:left;
+    margin-top:1%;
+    margin-right:1%;  
+}
+
+
+@media screen and (max-width: 760px) {  
+    .dashboard ul.brands li{
+        width:46%;  
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .dashboard ul.brands li{
+        width:100%;
+        margin:1% -6.5%;
+    }  
+}
 
 
 

@@ -7,9 +7,14 @@
 {% block head_title %}User Brands{% endblock %}
 
 {% block user_brands %}
-	<li>hello</li>
-	{% for subscription in brands %} 
-		<li>{{ subscription.brand_name }}</li> 
-	{% endfor %}
-
+	{% if brands.count == 0 %} 
+		<p>No brand exist please check out our <a href="http://{{ request.get_host }}#brands">featured brands</a></p>
+	{% else %}
+		{% for brand in brands %} 
+			<h3>{% trans "Change password" %}</h3>
+			<ul class="brands">
+				<li>{{ brand }}</li>
+			</ul>
+		{% endfor %}
+	{% endif %}
 {% endblock %}

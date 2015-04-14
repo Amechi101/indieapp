@@ -5,33 +5,32 @@
 {% load cloudinary %}
 {% load staticfiles %} 
 
-{% block head_title %}{{brand.brand_name}} Brand Guide{% endblock %}
-
-{% block extra_style %}
-    <link rel="stylesheet" href="{% static "css/collection.css" %}" />
-{% endblock %}
+{% block head_title %}{{brand.brand_name}}'s Collection{% endblock %}
 
 {% block body_class %}brand-collectionr{% endblock %}
 
 
 {% block topbar_base %}
 <!-- Top Navigation -->
-<header class="codrops-top clearfix">
-	<a class="brand-back-button" href="{{brand.get_absolute_url}}#collection"><span class="fa fa-arrow-left"></span><span>Back To {{ brand.brand_name }}</span></a>
+<header class="brand-collection-top clearfix">
+	<a class="brand-back-button" href="{{brand.get_absolute_url}}#collection"><span class="fa fa-reply"></span><span>Back To {{ brand.brand_name }}</span></a>
 </header>
 {% endblock %}
 
 
 {% block main_container_id %}brand-collection-content{% endblock %}
 {% block body %}
+<div class="grid-title"> 
+    <h1><span>We have curated {{product_list.count}} items from {{ brand.brand_name }}'s Collection.</span></h1>
+</div>
 <ul class="grid effect-2" id="grid">
 {% for product in product_list %} 
 	<li>
 		<img src="{% cloudinary_url product.product_image %}">
-		<div class="moments-info">
-			<p class="moments-title">{{product.product_name}}</p>
-			<p class="moments-text">Classic 100% acrylic Beanie. Available in 5 cololrs: Black, Charcoal, Red, and Lt. Gray. Made in the USA.</p>
-			<p class="moments-text">${{product.product_price}} </p>
+		<div class="grid-info">
+			<p class="grid-product-title">{{product.product_name}}</p>
+			<p class="grid-product-description">{{product.product_description}}</p>
+			<p class="grid-product-text">${{product.product_price}} </p>
 		</div>
 	</li>
 {% endfor %} 

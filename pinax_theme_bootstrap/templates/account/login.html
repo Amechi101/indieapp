@@ -11,8 +11,8 @@
         <h2 class="heading-title">Log In</h2>
     </div>
     <div class="socialconnect">
-        <a href="" class="facebook">Login with your Facebook</a>
-        <a href="#" class="twitter">Sign-up with Twitter</a>
+        <a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}" class="facebook">Login with your Facebook</a>
+        <a href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}" class="twitter">Sign-up with Twitter</a>
     </div>
     <p align="center"><strong>Or</strong></p>
     <p align="center">Login with your Username & Password</p>
